@@ -14,6 +14,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Resume comparison tools
 - Multiple resume versions support
 
+## [1.1.1] - 2025-10-09
+
+### Added
+- **Online Validator/Linter** (`validator.html`)
+  - Real-time JSON Schema validation against Schema Resume v1.1.0
+  - JSON-LD compatibility checks for @context and Schema.org mapping
+  - ISO 8601 date format validation
+  - Detailed error messages with suggestions
+  - Example CV loader for quick testing
+  - JSON formatting tool
+  - CV statistics display
+  - Modern UI with TailwindCSS and Lucide icons
+  - Responsive design for mobile and desktop
+  - Hosted at: `https://tradik.github.io/schema-resume/validator.html`
+
+### Changed
+- Updated README.md with online validator section
+- Updated roadmap to mark JSON-LD context and validator as completed
+
 ## [1.1.0] - 2025-10-09
 
 ### Added

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema Resume Validator - JSON-LD CV Linter</title>
+    <meta name="description" content="Validate and lint your JSON-LD CV/Resume against the Schema Resume specification">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Ajv JSON Schema Validator -->
+    <script src="https://cdn.jsdelivr.net/npm/ajv@8.12.0/dist/ajv7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ajv-formats@2.1.1/dist/ajv-formats.min.js"></script>
+    
+    <style>
+        .error-line {
+            background-color: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+        }
+        .warning-line {
+            background-color: rgba(251, 191, 36, 0.1);
+            border-left: 3px solid #fbbf24;
+        }
+        .success-line {
+            background-color: rgba(34, 197, 94, 0.1);
+            border-left: 3px solid #22c55e;
+        }
+        .code-editor {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-slate-200">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-lg">
+                        <i data-lucide="file-check-2" class="text-white" size="24"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">Schema Resume Validator</h1>
+                        <p class="text-sm text-slate-600">JSON-LD CV/Resume Linter & Validator</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">v1.1.0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Input Section -->
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2 text-white">
+                            <i data-lucide="code" size="20"></i>
+                            <h2 class="text-lg font-semibold">JSON-LD Input</h2>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="loadExample" class="px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-sm rounded-lg transition-colors flex items-center gap-1">
+                                <i data-lucide="file-text" size="16"></i>
+                                Example
+                            </button>
+                            <button id="clearInput" class="px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-sm rounded-lg transition-colors flex items-center gap-1">
+                                <i data-lucide="trash-2" size="16"></i>
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <textarea 
+                        id="jsonInput" 
+                        class="w-full h-[600px] p-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 code-editor text-sm resize-none"
+                        placeholder='Paste your JSON-LD CV here...
+
+Example:
+{
+  "$schema": "https://tradik.github.io/schema-resume/schema.json",
+  "@context": "https://tradik.github.io/schema-resume/schema.json",
+  "basics": {
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+}'
+                    ></textarea>
+                    
+                    <div class="mt-4 flex gap-3">
+                        <button id="validateBtn" class="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle" size="20"></i>
+                            Validate JSON-LD
+                        </button>
+                        <button id="formatBtn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center gap-2">
+                            <i data-lucide="align-left" size="20"></i>
+                            Format
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4">
+                    <div class="flex items-center gap-2 text-white">
+                        <i data-lucide="list-checks" size="20"></i>
+                        <h2 class="text-lg font-semibold">Validation Results</h2>
+                    </div>
+                </div>
+                
+                <div id="results" class="p-6 h-[680px] overflow-y-auto">
+                    <div class="flex flex-col items-center justify-center h-full text-center text-slate-400">
+                        <i data-lucide="arrow-left" size="48" class="mb-4 opacity-50"></i>
+                        <p class="text-lg font-medium">Paste your JSON-LD and click "Validate"</p>
+                        <p class="text-sm mt-2">The validator will check your CV against the Schema Resume specification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-start gap-3">
+                    <div class="bg-blue-100 p-2 rounded-lg">
+                        <i data-lucide="shield-check" class="text-blue-600" size="24"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-1">JSON Schema Validation</h3>
+                        <p class="text-sm text-slate-600">Validates against the official Schema Resume v1.1.0 specification</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-start gap-3">
+                    <div class="bg-green-100 p-2 rounded-lg">
+                        <i data-lucide="link" class="text-green-600" size="24"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-1">JSON-LD Support</h3>
+                        <p class="text-sm text-slate-600">Checks for proper @context and Schema.org compatibility</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-start gap-3">
+                    <div class="bg-purple-100 p-2 rounded-lg">
+                        <i data-lucide="zap" class="text-purple-600" size="24"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-1">Instant Feedback</h3>
+                        <p class="text-sm text-slate-600">Real-time validation with detailed error messages and suggestions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documentation Link -->
+        <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-6">
+            <div class="flex items-start gap-4">
+                <div class="bg-blue-100 p-3 rounded-lg">
+                    <i data-lucide="book-open" class="text-blue-600" size="28"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Need Help?</h3>
+                    <p class="text-slate-700 mb-3">Check out the documentation to learn more about the Schema Resume format and JSON-LD integration.</p>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/tradik/schema-resume" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 font-medium rounded-lg border border-slate-300 transition-colors">
+                            <i data-lucide="github" size="18"></i>
+                            GitHub Repository
+                        </a>
+                        <a href="./JSON-LD.md" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 font-medium rounded-lg border border-slate-300 transition-colors">
+                            <i data-lucide="file-text" size="18"></i>
+                            JSON-LD Guide
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container mx-auto px-4 py-8 mt-12 border-t border-slate-200">
+        <div class="text-center text-slate-600 text-sm">
+            <p>Schema Resume Validator v1.1.0 | Made with ❤️ for the developer community</p>
+            <p class="mt-2">
+                <a href="https://github.com/tradik/schema-resume" class="text-blue-600 hover:text-blue-700 underline">GitHub</a> • 
+                <a href="./schema.json" class="text-blue-600 hover:text-blue-700 underline">Schema</a> • 
+                <a href="./JSON-LD.md" class="text-blue-600 hover:text-blue-700 underline">Documentation</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Schema URL
+        const SCHEMA_URL = 'https://tradik.github.io/schema-resume/schema.json';
+        const SCHEMA_LOCAL = './schema.json';
+
+        // Initialize Ajv
+        let ajv;
+        let validate;
+        let schemaData;
+
+        // Load schema
+        async function loadSchema() {
+            try {
+                // Try to load from local first, fallback to CDN
+                let response;
+                try {
+                    response = await fetch(SCHEMA_LOCAL);
+                    if (!response.ok) throw new Error('Local schema not found');
+                } catch (e) {
+                    response = await fetch(SCHEMA_URL);
+                }
+                
+                schemaData = await response.json();
+                
+                // Initialize Ajv with formats
+                ajv = new Ajv({
+                    allErrors: true,
+                    verbose: true,
+                    strict: false,
+                    validateFormats: true
+                });
+                
+                // Add formats support
+                if (typeof ajvFormats !== 'undefined') {
+                    ajvFormats(ajv);
+                }
+                
+                // Compile schema
+                validate = ajv.compile(schemaData);
+                
+                console.log('Schema loaded successfully');
+            } catch (error) {
+                console.error('Failed to load schema:', error);
+                showError('Failed to load validation schema. Please check your internet connection.');
+            }
+        }
+
+        // Example CV data
+        const exampleCV = {
+            "$schema": "https://tradik.github.io/schema-resume/schema.json",
+            "@context": "https://tradik.github.io/schema-resume/schema.json",
+            "basics": {
+                "name": "Jane Smith",
+                "label": "Senior Software Engineer",
+                "image": "https://example.com/photo.jpg",
+                "email": "jane.smith@example.com",
+                "phone": "+44 20 1234 5678",
+                "url": "https://janesmith.dev",
+                "summary": "Experienced software engineer with 8+ years in full-stack development, specializing in cloud-native applications and microservices architecture.",
+                "location": {
+                    "city": "London",
+                    "countryCode": "GB",
+                    "region": "England"
+                },
+                "profiles": [
+                    {
+                        "network": "LinkedIn",
+                        "username": "janesmith",
+                        "url": "https://linkedin.com/in/janesmith"
+                    },
+                    {
+                        "network": "GitHub",
+                        "username": "janesmith",
+                        "url": "https://github.com/janesmith"
+                    }
+                ]
+            },
+            "work": [
+                {
+                    "name": "Tech Corp",
+                    "position": "Senior Software Engineer",
+                    "startDate": "2020-03",
+                    "url": "https://techcorp.com",
+                    "summary": "Leading development of cloud-native microservices",
+                    "highlights": [
+                        "Architected and deployed 15+ microservices on Kubernetes",
+                        "Reduced deployment time by 60% through CI/CD automation"
+                    ]
+                }
+            ],
+            "education": [
+                {
+                    "institution": "University of Technology",
+                    "area": "Computer Science",
+                    "studyType": "Bachelor",
+                    "startDate": "2012-09",
+                    "endDate": "2016-06",
+                    "score": "First Class Honours"
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Backend Development",
+                    "level": "Expert",
+                    "yearsOfExperience": 8,
+                    "keywords": ["Node.js", "Python", "Go", "Java"]
+                },
+                {
+                    "name": "Cloud & DevOps",
+                    "level": "Advanced",
+                    "yearsOfExperience": 6,
+                    "keywords": ["AWS", "Kubernetes", "Docker", "Terraform"]
+                }
+            ],
+            "languages": [
+                {
+                    "language": "English",
+                    "fluency": "Native"
+                },
+                {
+                    "language": "Spanish",
+                    "fluency": "Intermediate"
+                }
+            ]
+        };
+
+        // DOM elements
+        const jsonInput = document.getElementById('jsonInput');
+        const validateBtn = document.getElementById('validateBtn');
+        const formatBtn = document.getElementById('formatBtn');
+        const loadExampleBtn = document.getElementById('loadExample');
+        const clearInputBtn = document.getElementById('clearInput');
+        const resultsDiv = document.getElementById('results');
+
+        // Event listeners
+        validateBtn.addEventListener('click', validateJSON);
+        formatBtn.addEventListener('click', formatJSON);
+        loadExampleBtn.addEventListener('click', loadExample);
+        clearInputBtn.addEventListener('click', clearInput);
+
+        // Load example
+        function loadExample() {
+            jsonInput.value = JSON.stringify(exampleCV, null, 2);
+        }
+
+        // Clear input
+        function clearInput() {
+            jsonInput.value = '';
+            resultsDiv.innerHTML = `
+                <div class="flex flex-col items-center justify-center h-full text-center text-slate-400">
+                    <i data-lucide="arrow-left" size="48" class="mb-4 opacity-50"></i>
+                    <p class="text-lg font-medium">Paste your JSON-LD and click "Validate"</p>
+                    <p class="text-sm mt-2">The validator will check your CV against the Schema Resume specification</p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Format JSON
+        function formatJSON() {
+            try {
+                const json = JSON.parse(jsonInput.value);
+                jsonInput.value = JSON.stringify(json, null, 2);
+                showSuccess('JSON formatted successfully!');
+            } catch (error) {
+                showError('Invalid JSON: ' + error.message);
+            }
+        }
+
+        // Validate JSON
+        function validateJSON() {
+            if (!validate) {
+                showError('Schema not loaded yet. Please wait...');
+                return;
+            }
+
+            const input = jsonInput.value.trim();
+            
+            if (!input) {
+                showError('Please paste your JSON-LD CV data first.');
+                return;
+            }
+
+            let data;
+            try {
+                data = JSON.parse(input);
+            } catch (error) {
+                showParseError(error);
+                return;
+            }
+
+            // Validate against schema
+            const valid = validate(data);
+            
+            // Additional JSON-LD checks
+            const jsonLdIssues = validateJSONLD(data);
+            
+            // Display results
+            if (valid && jsonLdIssues.length === 0) {
+                showValidationSuccess(data);
+            } else {
+                showValidationErrors(validate.errors || [], jsonLdIssues, data);
+            }
+        }
+
+        // Validate JSON-LD specific requirements
+        function validateJSONLD(data) {
+            const issues = [];
+
+            // Check for @context
+            if (!data['@context']) {
+                issues.push({
+                    type: 'warning',
+                    message: 'Missing @context field',
+                    suggestion: 'Add "@context": "https://tradik.github.io/schema-resume/schema.json" for JSON-LD compatibility',
+                    path: '/@context'
+                });
+            }
+
+            // Check for $schema
+            if (!data['$schema']) {
+                issues.push({
+                    type: 'warning',
+                    message: 'Missing $schema field',
+                    suggestion: 'Add "$schema": "https://tradik.github.io/schema-resume/schema.json" for validation',
+                    path: '/$schema'
+                });
+            }
+
+            // Check ISO 8601 date formats
+            const dateFields = findDateFields(data);
+            dateFields.forEach(field => {
+                if (!isValidISO8601(field.value)) {
+                    issues.push({
+                        type: 'error',
+                        message: `Invalid date format at ${field.path}`,
+                        suggestion: 'Use ISO 8601 format: YYYY-MM-DD, YYYY-MM, or YYYY',
+                        path: field.path
+                    });
+                }
+            });
+
+            return issues;
+        }
+
+        // Find date fields in object
+        function findDateFields(obj, path = '') {
+            const dateFields = [];
+            const dateFieldNames = ['startDate', 'endDate', 'date', 'releaseDate', 'validTo', 'lastModified'];
+
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const currentPath = path ? `${path}/${key}` : key;
+                    const value = obj[key];
+
+                    if (dateFieldNames.includes(key) && typeof value === 'string') {
+                        dateFields.push({ path: currentPath, value });
+                    } else if (typeof value === 'object' && value !== null) {
+                        dateFields.push(...findDateFields(value, currentPath));
+                    }
+                }
+            }
+
+            return dateFields;
+        }
+
+        // Validate ISO 8601 date
+        function isValidISO8601(dateString) {
+            const pattern = /^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$/;
+            return pattern.test(dateString);
+        }
+
+        // Show parse error
+        function showParseError(error) {
+            resultsDiv.innerHTML = `
+                <div class="error-line p-4 rounded-lg mb-4">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="x-circle" class="text-red-500 flex-shrink-0" size="24"></i>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-red-900 mb-1">JSON Parse Error</h3>
+                            <p class="text-sm text-red-700">${escapeHtml(error.message)}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-slate-900 mb-2">Common Issues:</h4>
+                    <ul class="text-sm text-slate-700 space-y-1 list-disc list-inside">
+                        <li>Missing or extra commas</li>
+                        <li>Unclosed brackets or braces</li>
+                        <li>Unquoted keys or values</li>
+                        <li>Trailing commas (not allowed in JSON)</li>
+                    </ul>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Show validation success
+        function showValidationSuccess(data) {
+            const stats = getDataStats(data);
+            
+            resultsDiv.innerHTML = `
+                <div class="success-line p-4 rounded-lg mb-6">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="check-circle" class="text-green-500 flex-shrink-0" size="24"></i>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-green-900 mb-1">✓ Validation Passed!</h3>
+                            <p class="text-sm text-green-700">Your JSON-LD CV is valid and conforms to the Schema Resume v1.1.0 specification.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200 mb-6">
+                    <h4 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                        <i data-lucide="bar-chart-3" size="20"></i>
+                        CV Statistics
+                    </h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        ${stats.map(stat => `
+                            <div class="bg-white p-3 rounded-lg">
+                                <div class="text-2xl font-bold text-slate-900">${stat.value}</div>
+                                <div class="text-sm text-slate-600">${stat.label}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <h4 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="lightbulb" size="18"></i>
+                        Next Steps
+                    </h4>
+                    <ul class="text-sm text-slate-700 space-y-2">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                            <span>Test your CV in the <a href="https://json-ld.org/playground/" target="_blank" class="text-blue-600 hover:underline">JSON-LD Playground</a></span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                            <span>Validate with <a href="https://validator.schema.org/" target="_blank" class="text-blue-600 hover:underline">Schema.org Validator</a></span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                            <span>Embed in your website for better SEO</span>
+                        </li>
+                    </ul>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Get data statistics
+        function getDataStats(data) {
+            const stats = [];
+            
+            if (data.work) stats.push({ label: 'Work Experiences', value: data.work.length });
+            if (data.education) stats.push({ label: 'Education', value: data.education.length });
+            if (data.skills) stats.push({ label: 'Skills', value: data.skills.length });
+            if (data.projects) stats.push({ label: 'Projects', value: data.projects.length });
+            if (data.languages) stats.push({ label: 'Languages', value: data.languages.length });
+            if (data.certificates) stats.push({ label: 'Certificates', value: data.certificates.length });
+            
+            return stats;
+        }
+
+        // Show validation errors
+        function showValidationErrors(schemaErrors, jsonLdIssues, data) {
+            const allErrors = [...schemaErrors.map(e => ({
+                type: 'error',
+                message: e.message,
+                path: e.instancePath || e.dataPath || '/',
+                params: e.params,
+                keyword: e.keyword
+            })), ...jsonLdIssues];
+
+            const errorCount = allErrors.filter(e => e.type === 'error').length;
+            const warningCount = allErrors.filter(e => e.type === 'warning').length;
+
+            resultsDiv.innerHTML = `
+                <div class="error-line p-4 rounded-lg mb-6">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="alert-circle" class="text-red-500 flex-shrink-0" size="24"></i>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-red-900 mb-1">Validation Failed</h3>
+                            <p class="text-sm text-red-700">
+                                Found ${errorCount} error${errorCount !== 1 ? 's' : ''} 
+                                ${warningCount > 0 ? `and ${warningCount} warning${warningCount !== 1 ? 's' : ''}` : ''}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    ${allErrors.map((error, index) => `
+                        <div class="${error.type === 'error' ? 'error-line' : 'warning-line'} p-4 rounded-lg">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="${error.type === 'error' ? 'x-circle' : 'alert-triangle'}" 
+                                   class="${error.type === 'error' ? 'text-red-500' : 'text-yellow-600'} flex-shrink-0" 
+                                   size="20"></i>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-xs font-mono bg-slate-200 px-2 py-0.5 rounded">${escapeHtml(error.path)}</span>
+                                        ${error.keyword ? `<span class="text-xs bg-slate-100 px-2 py-0.5 rounded text-slate-600">${error.keyword}</span>` : ''}
+                                    </div>
+                                    <p class="text-sm ${error.type === 'error' ? 'text-red-900' : 'text-yellow-900'} font-medium mb-1">
+                                        ${escapeHtml(error.message)}
+                                    </p>
+                                    ${error.suggestion ? `
+                                        <p class="text-sm ${error.type === 'error' ? 'text-red-700' : 'text-yellow-700'} mt-2">
+                                            💡 ${escapeHtml(error.suggestion)}
+                                        </p>
+                                    ` : ''}
+                                    ${error.params ? `
+                                        <details class="mt-2">
+                                            <summary class="text-xs text-slate-600 cursor-pointer hover:text-slate-900">Show details</summary>
+                                            <pre class="text-xs bg-slate-100 p-2 rounded mt-1 overflow-x-auto">${JSON.stringify(error.params, null, 2)}</pre>
+                                        </details>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="mt-6 bg-slate-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="help-circle" size="18"></i>
+                        Need Help?
+                    </h4>
+                    <ul class="text-sm text-slate-700 space-y-1 list-disc list-inside">
+                        <li>Check the <a href="./JSON-LD.md" class="text-blue-600 hover:underline">JSON-LD documentation</a></li>
+                        <li>Review the <a href="./schema.json" class="text-blue-600 hover:underline">schema definition</a></li>
+                        <li>Load the example CV to see correct format</li>
+                    </ul>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Show error message
+        function showError(message) {
+            resultsDiv.innerHTML = `
+                <div class="error-line p-4 rounded-lg">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="x-circle" class="text-red-500 flex-shrink-0" size="24"></i>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-red-900 mb-1">Error</h3>
+                            <p class="text-sm text-red-700">${escapeHtml(message)}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const temp = document.createElement('div');
+            temp.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2';
+            temp.innerHTML = `
+                <i data-lucide="check" size="20"></i>
+                <span>${escapeHtml(message)}</span>
+            `;
+            document.body.appendChild(temp);
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                temp.remove();
+            }, 3000);
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Initialize
+        loadSchema();
+    </script>
+</body>
+</html>

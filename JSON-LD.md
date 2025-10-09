@@ -325,6 +325,7 @@ WHERE {
 - [Titanium JSON-LD](https://github.com/filip26/titanium-json-ld)
 
 ### Validators
+- **[Schema Resume Validator](https://tradik.github.io/schema-resume/validator.html)** - Recommended, specifically designed for this schema
 - [JSON-LD Validator](https://json-ld.org/playground/)
 - [Schema.org Validator](https://validator.schema.org/)
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
