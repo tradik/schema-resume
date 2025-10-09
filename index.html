@@ -262,6 +262,16 @@
     </header>
 
     <main class="container">
+        <section id="validator" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 30px; border-radius: 12px; margin-bottom: 40px; color: white; text-align: center;">
+            <h2 style="color: white; border: none; margin-bottom: 15px; font-size: 1.75rem;">✨ Try the Online Validator</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1rem; opacity: 0.95;">
+                Validate your JSON-LD CV instantly with our online validator. Get real-time feedback, detailed error messages, and helpful suggestions.
+            </p>
+            <a href="./validator.html" class="btn" style="background-color: white; color: var(--primary-color); font-size: 1.1rem; padding: 14px 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                🚀 Launch Validator
+            </a>
+        </section>
+
         <section id="overview">
             <h2>Overview</h2>
             <p>
@@ -343,6 +353,13 @@
             </div>
             
             <h3>Validation</h3>
+            <p><strong>Online Validator (Recommended):</strong></p>
+            <p style="margin-bottom: 15px;">
+                Use our <a href="./validator.html" style="color: var(--primary-color); font-weight: 600;">online validator</a> 
+                for instant validation with detailed error messages and suggestions.
+            </p>
+            
+            <p><strong>Command Line:</strong></p>
             <p>Validate your resume JSON using AJV:</p>
             <div class="code-block">
 <code>npm install -g ajv-cli
@@ -373,6 +390,7 @@ ajv validate -s schema.json -d your-resume.json</code>
         <section id="resources">
             <h2>Resources</h2>
             <div style="margin: 20px 0;">
+                <a href="./validator.html" class="btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border: none;">🔍 Online Validator</a>
                 <a href="https://github.com/tradik/schema-resume/blob/main/schema.json" class="btn">View Schema</a>
                 <a href="https://github.com/tradik/schema-resume/blob/main/example.json" class="btn">View Example</a>
                 <a href="https://github.com/tradik/schema-resume" class="btn btn-secondary">GitHub Repository</a>
@@ -401,6 +419,7 @@ ajv validate -s schema.json -d your-resume.json</code>
         <div class="container">
             <p>&copy; 2025 Schema Resume. Released under the MIT License.</p>
             <div class="links">
+                <a href="./validator.html">Validator</a>
                 <a href="https://github.com/tradik/schema-resume">GitHub</a>
                 <a href="https://github.com/tradik/schema-resume/issues">Issues</a>
                 <a href="https://github.com/tradik/schema-resume/blob/main/CHANGELOG.md">Changelog</a>

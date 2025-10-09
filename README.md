@@ -46,6 +46,20 @@ The schema and related files are hosted on GitHub Pages:
 
 The schema is **self-contained** and does not rely on external JSON Schema definitions.
 
+## 🎯 Online Validator
+
+**Try the live validator**: [validator.html](https://tradik.github.io/schema-resume/validator.html)
+
+The online validator provides:
+- **Real-time validation** against Schema Resume v1.1.0
+- **JSON-LD compatibility checks** for @context and Schema.org mapping
+- **Detailed error messages** with suggestions for fixes
+- **Example CV** to get started quickly
+- **JSON formatting** tool
+- **Statistics** about your CV content
+
+Simply paste your JSON-LD CV and click "Validate" to check for errors and warnings.
+
 ## 📖 Usage
 
 ### Basic Example
@@ -139,6 +153,7 @@ print("Resume is valid!")
 
 #### Using Online Validators
 
+- **[Schema Resume Validator](https://tradik.github.io/schema-resume/validator.html)** - Recommended, specifically designed for this schema
 - [JSON Schema Validator](https://www.jsonschemavalidator.net/)
 - [JSON Schema Lint](https://jsonschemalint.com/)
 
@@ -316,7 +331,8 @@ For questions, issues, or suggestions:
 
 ## 🎯 Roadmap
 
-- [ ] Add JSON-LD context for semantic web integration
+- [x] Add JSON-LD context for semantic web integration
+- [x] Create online validator/linter
 - [ ] Create TypeScript type definitions
 - [ ] Add validation examples for more languages
 - [ ] Create resume builder web application
