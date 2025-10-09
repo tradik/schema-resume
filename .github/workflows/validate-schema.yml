@@ -34,7 +34,8 @@ jobs:
       - name: Validate example.json against schema
         run: |
           echo "Validating example.json against schema.json..."
-          ajv validate -s schema.json -d example.json --strict=false
+          # Add meta-schema as a reference for ajv
+          ajv validate -s schema.json -r meta-schema.json -d example.json --strict=false
       
       - name: Check schema formatting
         run: |
