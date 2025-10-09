@@ -21,14 +21,15 @@ A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation
 
 The schema includes the following main sections:
 
-- **basics**: Personal information, contact details, and social profiles
+- **basics**: Personal information, contact details, social profiles, nationalities, and work authorization
 - **work**: Work experience and employment history
 - **volunteer**: Volunteer work and community involvement
 - **education**: Academic background and qualifications
 - **awards**: Professional awards and recognitions
 - **certificates**: Professional certifications
 - **publications**: Published works and articles
-- **skills**: Technical and professional skills
+- **skills**: Technical and professional skills with experience levels
+- **tools**: Specific software and tools used professionally
 - **languages**: Language proficiencies
 - **interests**: Personal interests and hobbies
 - **references**: Professional references
@@ -150,6 +151,8 @@ print("Resume is valid!")
 | `summary` | string | Professional summary (2-3 sentences) |
 | `location` | object | Address and location details |
 | `profiles` | array | Social media profiles |
+| `nationalities` | array | Citizenship information with country codes and birth country |
+| `workAuthorization` | object | Work authorization including right to work countries and active visas |
 
 ### Work Section
 
@@ -171,7 +174,18 @@ print("Resume is valid!")
 |-------|------|-------------|
 | `name` | string | Skill category (e.g., "Web Development") |
 | `level` | string | Proficiency level (e.g., "Expert", "Advanced") |
+| `yearsOfExperience` | number | Years of practical experience with this skill |
+| `comment` | string | Additional context or notes about the skill |
 | `keywords` | array | Specific technologies and tools |
+
+### Tools Section
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Name of the tool or software |
+| `yearsOfExperience` | number | Years using this tool professionally |
+| `comment` | string | Additional details about usage and proficiency |
+| `url` | string | Link to the tool's website or documentation |
 
 For complete field descriptions, see the [schema.json](./schema.json) file.
 

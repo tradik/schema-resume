@@ -88,6 +88,39 @@
       "@container": "@list"
     },
     
+    "nationalities": {
+      "@id": "schema:nationality",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "workAuthorization": {
+      "@id": "schema:hasCredential",
+      "@type": "@id"
+    },
+    
+    "rightToWork": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string",
+      "@container": "@list"
+    },
+    
+    "visas": {
+      "@id": "schema:permit",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "validTo": {
+      "@id": "schema:validUntil",
+      "@type": "xsd:date"
+    },
+    
+    "born": {
+      "@id": "schema:birthPlace",
+      "@type": "xsd:boolean"
+    },
+    
     "network": {
       "@id": "schema:name",
       "@type": "xsd:string"
@@ -222,8 +255,29 @@
       "@container": "@list"
     },
     
+    "tools": {
+      "@id": "schema:knowsAbout",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "yearsOfExperience": {
+      "@id": "schema:yearsInOperation",
+      "@type": "xsd:decimal"
+    },
+    
+    "comment": {
+      "@id": "schema:comment",
+      "@type": "xsd:string"
+    },
+    
     "level": {
       "@id": "schema:proficiencyLevel",
+      "@type": "xsd:string"
+    },
+    
+    "country": {
+      "@id": "schema:addressCountry",
       "@type": "xsd:string"
     },
     

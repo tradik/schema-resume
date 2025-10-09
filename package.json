@@ -1,7 +1,7 @@
 {
   "name": "schema-resume",
-  "version": "1.0.0",
-  "description": "A comprehensive JSON Schema for CV/Resume parsing and validation",
+  "version": "1.1.0",
+  "description": "A comprehensive JSON-LD Schema for CV/Resume parsing and validation with work authorization and tools tracking",
   "main": "schema.json",
   "scripts": {
     "validate": "ajv compile -s schema.json --strict=false",

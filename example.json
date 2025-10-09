@@ -32,7 +32,26 @@
         "username": "ellie_devops",
         "url": "https://twitter.com/ellie_devops"
       }
-    ]
+    ],
+    "nationalities": [
+      {
+        "country": "GB",
+        "born": true
+      }
+    ],
+    "workAuthorization": {
+      "rightToWork": [
+        "GB",
+        "IE"
+      ],
+      "visas": [
+        {
+          "country": "US",
+          "validTo": "2026-08-15",
+          "type": "H-1B Skilled Worker Visa"
+        }
+      ]
+    }
   },
   "work": [
     {
@@ -201,6 +220,8 @@
     {
       "name": "Cloud Platforms",
       "level": "Expert",
+      "yearsOfExperience": 8,
+      "comment": "Extensive experience architecting and managing multi-cloud environments for enterprise applications",
       "keywords": [
         "AWS",
         "Google Cloud Platform",
@@ -212,6 +233,8 @@
     {
       "name": "Container Orchestration",
       "level": "Expert",
+      "yearsOfExperience": 6,
+      "comment": "Led multiple Kubernetes migrations and manage clusters serving millions of requests daily",
       "keywords": [
         "Kubernetes",
         "Docker",
@@ -223,6 +246,8 @@
     {
       "name": "Infrastructure as Code",
       "level": "Expert",
+      "yearsOfExperience": 7,
+      "comment": "Designed and implemented IaC standards across multiple organizations",
       "keywords": [
         "Terraform",
         "Ansible",
@@ -234,6 +259,8 @@
     {
       "name": "CI/CD",
       "level": "Advanced",
+      "yearsOfExperience": 7,
+      "comment": "Built and maintained CI/CD pipelines for 50+ projects",
       "keywords": [
         "GitHub Actions",
         "GitLab CI",
@@ -245,6 +272,8 @@
     {
       "name": "Monitoring & Observability",
       "level": "Advanced",
+      "yearsOfExperience": 6,
+      "comment": "Implemented comprehensive monitoring solutions with custom dashboards and alerting",
       "keywords": [
         "Prometheus",
         "Grafana",
@@ -257,6 +286,8 @@
     {
       "name": "Programming",
       "level": "Advanced",
+      "yearsOfExperience": 9,
+      "comment": "Proficient in multiple languages for automation, tooling, and infrastructure management",
       "keywords": [
         "Python",
         "Go",
@@ -268,6 +299,8 @@
     {
       "name": "Databases",
       "level": "Intermediate",
+      "yearsOfExperience": 5,
+      "comment": "Experience with database administration, optimization, and migration",
       "keywords": [
         "PostgreSQL",
         "MySQL",
@@ -275,6 +308,68 @@
         "Redis",
         "DynamoDB"
       ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "Terraform",
+      "yearsOfExperience": 7,
+      "comment": "Primary IaC tool, authored 50+ reusable modules and contributed to open source",
+      "url": "https://www.terraform.io"
+    },
+    {
+      "name": "Kubernetes",
+      "yearsOfExperience": 6,
+      "comment": "CKA certified, manage production clusters with 100+ nodes",
+      "url": "https://kubernetes.io"
+    },
+    {
+      "name": "AWS",
+      "yearsOfExperience": 8,
+      "comment": "Solutions Architect Professional certified, extensive experience across 30+ services",
+      "url": "https://aws.amazon.com"
+    },
+    {
+      "name": "Docker",
+      "yearsOfExperience": 7,
+      "comment": "Containerized 100+ applications, optimized images for production use",
+      "url": "https://www.docker.com"
+    },
+    {
+      "name": "Prometheus",
+      "yearsOfExperience": 5,
+      "comment": "Designed monitoring architecture for large-scale distributed systems",
+      "url": "https://prometheus.io"
+    },
+    {
+      "name": "GitHub Actions",
+      "yearsOfExperience": 4,
+      "comment": "Created custom actions and workflows for complex deployment scenarios",
+      "url": "https://github.com/features/actions"
+    },
+    {
+      "name": "Ansible",
+      "yearsOfExperience": 6,
+      "comment": "Configuration management and automation for infrastructure provisioning",
+      "url": "https://www.ansible.com"
+    },
+    {
+      "name": "Grafana",
+      "yearsOfExperience": 5,
+      "comment": "Built 50+ dashboards for infrastructure and application monitoring",
+      "url": "https://grafana.com"
+    },
+    {
+      "name": "ArgoCD",
+      "yearsOfExperience": 3,
+      "comment": "Implemented GitOps workflows for Kubernetes deployments",
+      "url": "https://argo-cd.readthedocs.io"
+    },
+    {
+      "name": "Helm",
+      "yearsOfExperience": 5,
+      "comment": "Package management for Kubernetes, created 20+ charts",
+      "url": "https://helm.sh"
     }
   ],
   "languages": [
@@ -414,7 +509,7 @@
   ],
   "meta": {
     "canonical": "https://eleanor-fitzwilliam.dev/resume.json",
-    "version": "v2.3.1",
-    "lastModified": "2025-10-09T12:11:00+01:00"
+    "version": "v2.4.0",
+    "lastModified": "2025-10-09T12:47:00+01:00"
   }
 }

@@ -8,12 +8,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- JSON-LD context for semantic web integration
 - TypeScript type definitions
 - Resume builder web application
 - Export to PDF functionality
 - Resume comparison tools
 - Multiple resume versions support
+
+## [1.1.0] - 2025-10-09
+
+### Added
+- **nationalities** field in basics section for citizenship information
+  - Country code using ISO-3166-1 ALPHA-2
+  - Born flag to indicate country of birth
+- **workAuthorization** field in basics section
+  - `rightToWork` array for countries with unrestricted work rights
+  - `visas` array for active work visas and permits with expiration dates
+- **yearsOfExperience** field in skills section
+- **comment** field in skills section for additional context
+- **tools** section for specific software and platforms
+  - Tool name
+  - Years of experience
+  - Comment field for usage details
+  - URL to tool documentation
+
+### Changed
+- Updated example.json with new fields and UK-focused data
+- Enhanced skills section with experience tracking
+- Improved documentation for work authorization scenarios
 
 ## [1.0.0] - 2025-10-09
 
@@ -22,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Self-hosted JSON Schema with custom meta-schema (no external dependencies)
 - JSON-LD context for semantic web integration
 - Schema.org vocabulary mapping
+- Original descriptions for all schema fields (no copied content)
 - Comprehensive resume sections:
   - `basics`: Personal information and contact details
   - `work`: Work experience and employment history

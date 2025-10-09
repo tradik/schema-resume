@@ -114,6 +114,64 @@
               }
             }
           }
+        },
+        "nationalities": {
+          "type": "array",
+          "description": "Citizenship and nationality information",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "country": {
+                "type": "string",
+                "description": "Country of citizenship using ISO-3166-1 ALPHA-2 code (GB, US, FR, etc.)"
+              },
+              "born": {
+                "type": "boolean",
+                "description": "Whether this is the country of birth"
+              }
+            }
+          }
+        },
+        "workAuthorization": {
+          "type": "object",
+          "description": "Work authorization and visa information",
+          "additionalProperties": true,
+          "properties": {
+            "rightToWork": {
+              "type": "array",
+              "description": "Countries where person has unrestricted right to work",
+              "additionalItems": false,
+              "items": {
+                "type": "string",
+                "description": "Country code using ISO-3166-1 ALPHA-2 standard"
+              }
+            },
+            "visas": {
+              "type": "array",
+              "description": "Active work visas and permits",
+              "additionalItems": false,
+              "items": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "description": "Country where visa is valid using ISO-3166-1 ALPHA-2 code"
+                  },
+                  "validTo": {
+                    "$ref": "#/definitions/iso8601",
+                    "description": "Expiration date of the visa or work permit"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Type or category of visa (e.g., Skilled Worker, Temporary, Permanent Residence)"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -367,6 +425,15 @@
             "type": "string",
             "description": "Proficiency level (Beginner, Intermediate, Advanced, Expert)"
           },
+          "yearsOfExperience": {
+            "type": "number",
+            "description": "Number of years of practical experience with this skill",
+            "minimum": 0
+          },
+          "comment": {
+            "type": "string",
+            "description": "Additional context or notes about this skill"
+          },
           "keywords": {
             "type": "array",
             "description": "Specific technologies, tools, or techniques within this skill area",
@@ -375,6 +442,35 @@
               "type": "string",
               "description": "Technology or tool name"
             }
+          }
+        }
+      }
+    },
+    "tools": {
+      "type": "array",
+      "description": "Specific tools, software, and platforms used professionally",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the tool or software"
+          },
+          "yearsOfExperience": {
+            "type": "number",
+            "description": "Number of years using this tool professionally",
+            "minimum": 0
+          },
+          "comment": {
+            "type": "string",
+            "description": "Additional details about usage, proficiency, or context"
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to the tool's website or documentation",
+            "format": "uri"
           }
         }
       }

@@ -26,9 +26,12 @@ Schema Resume maps resume fields to Schema.org vocabulary:
 | `work` | `schema:worksFor` | Work experience |
 | `education` | `schema:alumniOf` | Educational background |
 | `skills` | `schema:knowsAbout` | Skills and knowledge |
+| `tools` | `schema:knowsAbout` | Tools and software proficiency |
 | `languages` | `schema:knowsLanguage` | Language proficiency |
 | `awards` | `schema:award` | Awards received |
 | `publications` | `schema:publishedBy` | Published works |
+| `nationalities` | `schema:nationality` | Citizenship information |
+| `workAuthorization` | `schema:hasCredential` | Work authorization and visas |
 
 ## 🔗 Using the JSON-LD Context
 

@@ -86,19 +86,20 @@ The schema includes:
 
 ## 📊 Resume Sections
 
-1. **basics**: Personal information, contact details, profiles
+1. **basics**: Personal information, contact details, profiles, nationalities, and work authorization
 2. **work**: Employment history and achievements
 3. **volunteer**: Volunteer work and community involvement
 4. **education**: Academic background and qualifications
 5. **awards**: Professional awards and recognitions
 6. **certificates**: Professional certifications
 7. **publications**: Published works and articles
-8. **skills**: Technical and professional skills with proficiency levels
-9. **languages**: Language proficiencies
-10. **interests**: Personal interests and hobbies
-11. **references**: Professional references
-12. **projects**: Personal and professional projects
-13. **meta**: Schema metadata and versioning
+8. **skills**: Technical and professional skills with proficiency levels and experience tracking
+9. **tools**: Specific software and platforms with years of experience
+10. **languages**: Language proficiencies
+11. **interests**: Personal interests and hobbies
+12. **references**: Professional references
+13. **projects**: Personal and professional projects
+14. **meta**: Schema metadata and versioning
 
 ## 🎨 Design Principles
 
@@ -212,6 +213,7 @@ npm test
 
 ## 📝 Version History
 
+- **v1.1.0** (2025-10-09): Added nationalities, work authorization, tools section, and enhanced skills tracking
 - **v1.0.0** (2025-10-09): Initial release with self-hosted schema and JSON-LD support
 
 ## 🤝 Contributing
