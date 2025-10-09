@@ -76,7 +76,7 @@
     },
     "examples": {
       "type": "array",
-      "items": true,
+      "items": {},
       "description": "Example values demonstrating valid data"
     },
     "multipleOf": {
