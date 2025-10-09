@@ -1,9 +1,10 @@
 {
   "$schema": "https://tradik.github.io/schema-resume/meta-schema.json",
   "$id": "https://tradik.github.io/schema-resume/meta-schema.json",
-  "title": "Schema Resume Meta-Schema",
+  "title": "Schema Resume Meta-Schema v1.1.0",
   "description": "Self-hosted meta-schema providing validation rules for resume documents without external dependencies",
   "type": "object",
+  "version": "1.1.0",
   "definitions": {
     "schemaArray": {
       "type": "array",

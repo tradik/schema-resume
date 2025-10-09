@@ -1,9 +1,9 @@
 # Schema Resume
 
-[![JSON Schema](https://img.shields.io/badge/JSON%20Schema-draft--07-blue.svg)](https://json-schema.org/)
+[![Schema Version](https://img.shields.io/badge/Schema-v1.1.0-blue.svg)](https://tradik.github.io/schema-resume/schema.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success.svg)](https://tradik.github.io/schema-resume/)
-[![Validation](https://img.shields.io/badge/Schema-Valid-brightgreen.svg)](https://tradik.github.io/schema-resume/schema.json)
+[![Self Hosted](https://img.shields.io/badge/Self--Hosted-Yes-brightgreen.svg)](https://tradik.github.io/schema-resume/meta-schema.json)
 
 A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation. This schema provides a standardized format for representing professional resumes in JSON format with semantic web integration, making it easy to parse, validate, and exchange resume data between systems without relying on external schema definitions.
 
