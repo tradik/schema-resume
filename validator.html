@@ -14,8 +14,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- Ajv JSON Schema Validator - Standalone bundle for browsers -->
-    <script src="https://cdn.jsdelivr.net/npm/ajv@8.12.0/dist/ajv2020.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ajv-formats@3.0.1/dist/ajv-formats.bundle.min.js"></script>
+    <script src="https://unpkg.com/ajv@8.12.0/dist/ajv7.min.js"></script>
+    <script src="https://unpkg.com/ajv-formats@2.1.1/dist/ajv-formats.min.js"></script>
     
     <style>
         .error-line {
@@ -221,7 +221,7 @@ Example:
         async function loadSchema() {
             try {
                 // Wait for Ajv to be available
-                if (typeof window.ajv2020 === 'undefined') {
+                if (typeof window.ajv7 === 'undefined') {
                     console.log('Waiting for Ajv to load...');
                     setTimeout(loadSchema, 100);
                     return;
@@ -239,7 +239,7 @@ Example:
                 schemaData = await response.json();
                 
                 // Initialize Ajv with formats
-                ajv = new window.ajv2020({
+                ajv = new window.ajv7({
                     allErrors: true,
                     verbose: true,
                     strict: false,
