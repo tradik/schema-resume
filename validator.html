@@ -237,15 +237,22 @@ Example:
                 
                 schemaData = await response.json();
                 
+                // Create a clean schema for Ajv (remove JSON-LD specific fields)
+                const cleanSchema = { ...schemaData };
+                delete cleanSchema['@context'];
+                delete cleanSchema['$schema'];
+                delete cleanSchema['$id'];
+                
                 // Initialize Ajv (v6 has built-in format validation)
                 ajv = new window.Ajv({
                     allErrors: true,
                     verbose: true,
-                    format: 'full'
+                    format: 'full',
+                    schemaId: 'auto'
                 });
                 
                 // Compile schema
-                validate = ajv.compile(schemaData);
+                validate = ajv.compile(cleanSchema);
                 
                 console.log('Schema loaded successfully');
             } catch (error) {
