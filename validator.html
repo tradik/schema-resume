@@ -6,14 +6,15 @@
     <title>Schema Resume Validator - JSON-LD CV Linter</title>
     <meta name="description" content="Validate and lint your JSON-LD CV/Resume against the Schema Resume specification">
     
-    <!-- TailwindCSS -->
+    <!-- TailwindCSS CDN - Note: For production use, consider installing via PostCSS or Tailwind CLI -->
+    <!-- See: https://tailwindcss.com/docs/installation -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- Ajv JSON Schema Validator -->
-    <script src="https://cdn.jsdelivr.net/npm/ajv@8.12.0/dist/ajv7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ajv@8.12.0/dist/2020.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ajv-formats@2.1.1/dist/ajv-formats.min.js"></script>
     
     <style>
@@ -219,6 +220,13 @@ Example:
         // Load schema
         async function loadSchema() {
             try {
+                // Wait for Ajv to be available
+                if (typeof window.ajv8 === 'undefined') {
+                    console.log('Waiting for Ajv to load...');
+                    setTimeout(loadSchema, 100);
+                    return;
+                }
+
                 // Try to load from local first, fallback to CDN
                 let response;
                 try {
@@ -231,7 +239,7 @@ Example:
                 schemaData = await response.json();
                 
                 // Initialize Ajv with formats
-                ajv = new Ajv({
+                ajv = new window.ajv8({
                     allErrors: true,
                     verbose: true,
                     strict: false,
@@ -239,8 +247,10 @@ Example:
                 });
                 
                 // Add formats support
-                if (typeof ajvFormats !== 'undefined') {
-                    ajvFormats(ajv);
+                if (typeof ajvFormats !== 'undefined' && ajvFormats.default) {
+                    ajvFormats.default(ajv);
+                } else if (typeof addFormats !== 'undefined') {
+                    addFormats(ajv);
                 }
                 
                 // Compile schema
