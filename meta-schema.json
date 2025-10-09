@@ -196,7 +196,7 @@
     },
     "enum": {
       "type": "array",
-      "items": true,
+      "items": {},
       "minItems": 1,
       "uniqueItems": true,
       "description": "List of allowed values"
