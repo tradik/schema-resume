@@ -1,0 +1,50 @@
+name: Validate Schema
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  validate-schema:
+    name: Validate JSON Schema
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          npm install -g ajv-cli ajv-formats
+      
+      - name: Validate schema.json structure
+        run: |
+          echo "Validating schema.json is valid JSON Schema..."
+          ajv compile -s schema.json --strict=false
+      
+      - name: Validate example.json against schema
+        run: |
+          echo "Validating example.json against schema.json..."
+          ajv validate -s schema.json -d example.json --strict=false
+      
+      - name: Check schema formatting
+        run: |
+          echo "Checking JSON formatting..."
+          node -e "JSON.parse(require('fs').readFileSync('schema.json', 'utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('example.json', 'utf8'))"
+          echo "✓ All JSON files are properly formatted"
+      
+      - name: Validation successful
+        run: |
+          echo "✓ Schema validation completed successfully!"
+          echo "✓ schema.json is a valid JSON Schema"
+          echo "✓ example.json validates against the schema"

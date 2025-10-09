@@ -1,0 +1,420 @@
+{
+  "@context": "https://tradik.github.io/schema-resume/schema.json",
+  "$schema": "https://tradik.github.io/schema-resume/schema.json",
+  "basics": {
+    "name": "Eleanor Fitzwilliam",
+    "label": "Lead DevOps Engineer",
+    "image": "https://avatars.example.co.uk/efitzwilliam.jpg",
+    "email": "e.fitzwilliam@techmail.co.uk",
+    "phone": "+44 7700 900123",
+    "url": "https://eleanor-fitzwilliam.dev",
+    "summary": "Experienced DevOps engineer with 8+ years building scalable cloud infrastructure. Passionate about automation, infrastructure as code, and fostering collaborative engineering cultures.",
+    "location": {
+      "address": "42 Kensington Gardens\nFlat 3B",
+      "postalCode": "W2 4RU",
+      "city": "London",
+      "countryCode": "GB",
+      "region": "Greater London"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "eleanor-fitzwilliam",
+        "url": "https://linkedin.com/in/eleanor-fitzwilliam"
+      },
+      {
+        "network": "GitHub",
+        "username": "efitzdev",
+        "url": "https://github.com/efitzdev"
+      },
+      {
+        "network": "Twitter",
+        "username": "ellie_devops",
+        "url": "https://twitter.com/ellie_devops"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "CloudScale Technologies Ltd",
+      "location": "Manchester, UK",
+      "description": "Enterprise cloud solutions provider",
+      "position": "Lead DevOps Engineer",
+      "url": "https://cloudscale.tech",
+      "startDate": "2021-06",
+      "summary": "Leading a team of 6 engineers in designing and implementing cloud infrastructure for enterprise clients across Europe",
+      "highlights": [
+        "Reduced infrastructure costs by 38% through automated resource optimization",
+        "Implemented zero-downtime deployment pipeline serving 2M+ daily users",
+        "Mentored 4 junior engineers who were promoted to mid-level roles",
+        "Migrated legacy monolith to microservices architecture on Kubernetes"
+      ]
+    },
+    {
+      "name": "FinTech Innovations plc",
+      "location": "Edinburgh, Scotland",
+      "description": "Financial technology startup",
+      "position": "Senior DevOps Engineer",
+      "url": "https://fintechinnovations.co.uk",
+      "startDate": "2018-03",
+      "endDate": "2021-05",
+      "summary": "Built and maintained cloud infrastructure for payment processing platform handling £50M+ in daily transactions",
+      "highlights": [
+        "Achieved 99.97% uptime across all production services",
+        "Designed disaster recovery system with 15-minute RTO",
+        "Automated compliance reporting reducing audit preparation time by 75%",
+        "Implemented GitOps workflow improving deployment frequency by 400%"
+      ]
+    },
+    {
+      "name": "Digital Solutions UK",
+      "location": "Bristol, UK",
+      "description": "Web development agency",
+      "position": "DevOps Engineer",
+      "url": "https://digitalsolutions-uk.com",
+      "startDate": "2016-01",
+      "endDate": "2018-02",
+      "summary": "Managed infrastructure for 20+ client projects and internal development platforms",
+      "highlights": [
+        "Built CI/CD pipelines reducing deployment time from hours to minutes",
+        "Containerized 15 legacy applications improving resource utilization",
+        "Established monitoring and alerting system across all client projects"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Code Club UK",
+      "position": "Technical Mentor",
+      "url": "https://codeclub.org.uk",
+      "startDate": "2019-09",
+      "summary": "Teaching programming fundamentals to children aged 9-13 at local community centre",
+      "highlights": [
+        "Delivered weekly coding sessions to 25+ students",
+        "Developed curriculum materials for Python and web development",
+        "Helped 12 students complete their first software projects"
+      ]
+    },
+    {
+      "organization": "Women in Tech Manchester",
+      "position": "Speaker and Organizer",
+      "url": "https://womenintech-mcr.org.uk",
+      "startDate": "2020-02",
+      "summary": "Supporting women entering and advancing in technology careers",
+      "highlights": [
+        "Organized quarterly meetups with 50-100 attendees",
+        "Delivered talks on DevOps practices and career development",
+        "Mentored 8 women transitioning into tech roles"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Edinburgh",
+      "url": "https://ed.ac.uk",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science (Honours)",
+      "startDate": "2012-09",
+      "endDate": "2016-06",
+      "score": "First Class Honours (78%)",
+      "courses": [
+        "CS3102 - Distributed Systems",
+        "CS4103 - Cloud Computing Architecture",
+        "CS3201 - Software Engineering Principles",
+        "CS4204 - Computer Security"
+      ]
+    },
+    {
+      "institution": "King Edward VI Grammar School",
+      "url": "https://kegs.org.uk",
+      "area": "Mathematics, Computer Science, Physics",
+      "studyType": "A-Levels",
+      "startDate": "2010-09",
+      "endDate": "2012-06",
+      "score": "A*A*A",
+      "courses": []
+    }
+  ],
+  "awards": [
+    {
+      "title": "DevOps Excellence Award",
+      "date": "2023-11",
+      "awarder": "CloudScale Technologies Ltd",
+      "summary": "Recognized for outstanding contribution to infrastructure modernization and team leadership"
+    },
+    {
+      "title": "Best Technical Innovation",
+      "date": "2020-03",
+      "awarder": "FinTech UK Awards",
+      "summary": "Awarded for implementing automated compliance monitoring system"
+    },
+    {
+      "title": "Dean's List",
+      "date": "2015-06",
+      "awarder": "University of Edinburgh",
+      "summary": "Academic excellence in Computer Science programme"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Certified Solutions Architect - Professional",
+      "date": "2023-07",
+      "url": "https://aws.amazon.com/certification/",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "date": "2022-11",
+      "url": "https://www.cncf.io/certification/cka/",
+      "issuer": "Cloud Native Computing Foundation"
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "date": "2021-09",
+      "url": "https://www.hashicorp.com/certification/terraform-associate",
+      "issuer": "HashiCorp"
+    },
+    {
+      "name": "Google Cloud Professional Cloud Architect",
+      "date": "2020-04",
+      "url": "https://cloud.google.com/certification/cloud-architect",
+      "issuer": "Google Cloud"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Infrastructure as Code: Best Practices for Enterprise Deployments",
+      "publisher": "DevOps Weekly",
+      "releaseDate": "2023-05",
+      "url": "https://devopsweekly.co.uk/articles/iac-best-practices",
+      "summary": "Comprehensive guide covering Terraform, Ansible, and CloudFormation patterns for large-scale infrastructure management"
+    },
+    {
+      "name": "Zero-Downtime Deployments in Kubernetes",
+      "publisher": "Cloud Architecture Journal",
+      "releaseDate": "2022-08",
+      "url": "https://cloudarchjournal.com/zero-downtime-k8s",
+      "summary": "Technical deep-dive into rolling updates, blue-green deployments, and canary releases in production Kubernetes environments"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Cloud Platforms",
+      "level": "Expert",
+      "keywords": [
+        "AWS",
+        "Google Cloud Platform",
+        "Microsoft Azure",
+        "DigitalOcean",
+        "Cloudflare"
+      ]
+    },
+    {
+      "name": "Container Orchestration",
+      "level": "Expert",
+      "keywords": [
+        "Kubernetes",
+        "Docker",
+        "Helm",
+        "Docker Compose",
+        "Rancher"
+      ]
+    },
+    {
+      "name": "Infrastructure as Code",
+      "level": "Expert",
+      "keywords": [
+        "Terraform",
+        "Ansible",
+        "CloudFormation",
+        "Pulumi",
+        "AWS CDK"
+      ]
+    },
+    {
+      "name": "CI/CD",
+      "level": "Advanced",
+      "keywords": [
+        "GitHub Actions",
+        "GitLab CI",
+        "Jenkins",
+        "ArgoCD",
+        "CircleCI"
+      ]
+    },
+    {
+      "name": "Monitoring & Observability",
+      "level": "Advanced",
+      "keywords": [
+        "Prometheus",
+        "Grafana",
+        "ELK Stack",
+        "Datadog",
+        "New Relic",
+        "Jaeger"
+      ]
+    },
+    {
+      "name": "Programming",
+      "level": "Advanced",
+      "keywords": [
+        "Python",
+        "Go",
+        "Bash",
+        "JavaScript",
+        "YAML"
+      ]
+    },
+    {
+      "name": "Databases",
+      "level": "Intermediate",
+      "keywords": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Redis",
+        "DynamoDB"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native"
+    },
+    {
+      "language": "French",
+      "fluency": "Intermediate"
+    },
+    {
+      "language": "Spanish",
+      "fluency": "Basic"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Open Source",
+      "keywords": [
+        "Contributing to CNCF projects",
+        "Maintaining Terraform modules",
+        "Documentation improvements"
+      ]
+    },
+    {
+      "name": "Technology",
+      "keywords": [
+        "Cloud native architecture",
+        "Platform engineering",
+        "Site reliability engineering"
+      ]
+    },
+    {
+      "name": "Outdoor Activities",
+      "keywords": [
+        "Hiking in the Lake District",
+        "Rock climbing",
+        "Trail running"
+      ]
+    },
+    {
+      "name": "Community",
+      "keywords": [
+        "Tech meetups",
+        "Conference speaking",
+        "Mentoring"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "name": "Dr. James Morrison",
+      "reference": "Eleanor is an exceptional engineer who combines deep technical expertise with outstanding leadership abilities. Her work on our infrastructure modernization project exceeded all expectations and set new standards for our engineering practices."
+    },
+    {
+      "name": "Sarah Chen",
+      "reference": "I had the pleasure of working with Eleanor for three years at FinTech Innovations. Her ability to design robust, scalable systems while maintaining a pragmatic approach to problem-solving made her invaluable to our team. She's also an excellent mentor who genuinely cares about helping others grow."
+    }
+  ],
+  "projects": [
+    {
+      "name": "K8s-AutoScale",
+      "description": "Open-source Kubernetes autoscaling solution with predictive scaling based on historical metrics",
+      "highlights": [
+        "1,200+ GitHub stars",
+        "Used in production by 50+ companies",
+        "Featured in CNCF landscape",
+        "Active community with 30+ contributors"
+      ],
+      "keywords": [
+        "Kubernetes",
+        "Go",
+        "Prometheus",
+        "Machine Learning",
+        "Autoscaling"
+      ],
+      "startDate": "2022-01",
+      "url": "https://github.com/efitzdev/k8s-autoscale",
+      "roles": [
+        "Creator",
+        "Lead Maintainer"
+      ],
+      "entity": "Personal Project",
+      "type": "application"
+    },
+    {
+      "name": "DevOps Masterclass Series",
+      "description": "Educational workshop series covering modern DevOps practices and cloud architecture",
+      "highlights": [
+        "Delivered to 300+ engineers across UK",
+        "4.9/5 average rating",
+        "Presented at DevOps Days London and Manchester",
+        "Created comprehensive learning materials"
+      ],
+      "keywords": [
+        "DevOps",
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "Education"
+      ],
+      "startDate": "2021-03",
+      "url": "https://devops-masterclass.uk",
+      "roles": [
+        "Instructor",
+        "Content Creator",
+        "Speaker"
+      ],
+      "entity": "CloudScale Technologies Ltd",
+      "type": "conference"
+    },
+    {
+      "name": "Terraform AWS Modules Collection",
+      "description": "Comprehensive collection of production-ready Terraform modules for AWS infrastructure",
+      "highlights": [
+        "800+ GitHub stars",
+        "Downloaded 50,000+ times",
+        "Covers 25+ AWS services",
+        "Fully documented with examples"
+      ],
+      "keywords": [
+        "Terraform",
+        "AWS",
+        "Infrastructure as Code",
+        "Modules"
+      ],
+      "startDate": "2020-06",
+      "url": "https://github.com/efitzdev/terraform-aws-modules",
+      "roles": [
+        "Creator",
+        "Maintainer"
+      ],
+      "entity": "Personal Project",
+      "type": "application"
+    }
+  ],
+  "meta": {
+    "canonical": "https://eleanor-fitzwilliam.dev/resume.json",
+    "version": "v2.3.1",
+    "lastModified": "2025-10-09T12:11:00+01:00"
+  }
+}

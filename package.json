@@ -1,0 +1,43 @@
+{
+  "name": "schema-resume",
+  "version": "1.0.0",
+  "description": "A comprehensive JSON Schema for CV/Resume parsing and validation",
+  "main": "schema.json",
+  "scripts": {
+    "validate": "ajv compile -s schema.json --strict=false",
+    "validate:example": "ajv validate -s schema.json -d example.json --strict=false",
+    "test": "npm run validate && npm run validate:example",
+    "format:check": "node -e \"JSON.parse(require('fs').readFileSync('schema.json', 'utf8'))\" && node -e \"JSON.parse(require('fs').readFileSync('example.json', 'utf8'))\"",
+    "lint": "npm run format:check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tradik/schema-resume.git"
+  },
+  "keywords": [
+    "json-schema",
+    "resume",
+    "cv",
+    "curriculum-vitae",
+    "parser",
+    "validation",
+    "json-ld",
+    "schema",
+    "job",
+    "career",
+    "professional"
+  ],
+  "author": "Tradik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tradik/schema-resume/issues"
+  },
+  "homepage": "https://tradik.github.io/schema-resume/",
+  "devDependencies": {
+    "ajv-cli": "^5.0.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
