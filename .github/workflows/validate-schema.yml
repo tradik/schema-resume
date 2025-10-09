@@ -28,7 +28,8 @@ jobs:
       - name: Validate schema.json structure
         run: |
           echo "Validating schema.json is valid JSON Schema..."
-          ajv compile -s schema.json --strict=false
+          # Add meta-schema as a reference for ajv
+          ajv compile -s schema.json -r meta-schema.json --strict=false
       
       - name: Validate example.json against schema
         run: |
