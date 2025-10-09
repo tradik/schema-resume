@@ -107,8 +107,14 @@ You can validate your resume JSON against this schema using various tools:
 #### Using AJV (Node.js)
 
 ```bash
-npm install -g ajv-cli
-ajv validate -s schema.json -d your-resume.json
+# Install AJV CLI globally
+npm install -g ajv-cli ajv-formats
+
+# Validate against local schema
+ajv validate -s schema.json -d your-resume.json --strict=false
+
+# Validate against hosted schema
+ajv validate -s https://tradik.github.io/schema-resume/schema.json -d your-resume.json --strict=false
 ```
 
 #### Using Python

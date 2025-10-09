@@ -68,20 +68,24 @@ wget https://tradik.github.io/schema-resume/schema.json
 ### Install Dependencies
 
 ```bash
+# Install project dependencies (optional - only needed for local development)
 npm install
+
+# OR install AJV globally for validation
+npm install -g ajv-cli ajv-formats
 ```
 
 ### Validate Schema
 
 ```bash
-# Validate schema structure
-npm run validate
+# If you installed project dependencies:
+npm run validate        # Validate schema structure
+npm run validate:example # Validate example against schema
+npm test                # Run all tests
 
-# Validate example against schema
-npm run validate:example
-
-# Run all tests
-npm test
+# If you installed AJV globally:
+ajv compile -s schema.json --strict=false
+ajv validate -s schema.json -d example.json --strict=false
 ```
 
 ### Check JSON Formatting
