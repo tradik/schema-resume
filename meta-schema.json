@@ -113,9 +113,13 @@
       "format": "regex",
       "description": "Regular expression pattern that string must match"
     },
-    "additionalItems": { 
-      "$ref": "#",
-      "description": "Schema for additional array items beyond defined positions"
+    "additionalItems": {
+      "anyOf": [
+        { "type": "boolean" },
+        { "$ref": "#" }
+      ],
+      "default": true,
+      "description": "Schema for additional array items beyond defined positions, or boolean to allow/disallow them"
     },
     "items": {
       "anyOf": [
@@ -154,9 +158,13 @@
       "$ref": "#/definitions/stringArray",
       "description": "List of property names that must be present"
     },
-    "additionalProperties": { 
-      "$ref": "#",
-      "description": "Schema for properties not explicitly defined"
+    "additionalProperties": {
+      "anyOf": [
+        { "type": "boolean" },
+        { "$ref": "#" }
+      ],
+      "default": true,
+      "description": "Schema for properties not explicitly defined, or boolean to allow/disallow them"
     },
     "definitions": {
       "type": "object",
