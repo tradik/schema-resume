@@ -199,6 +199,11 @@
             "type": "string",
             "description": "Job title or role held at the organization"
           },
+          "workType": {
+            "type": "string",
+            "description": "Type of work arrangement (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary)",
+            "enum": ["remote", "hybrid", "onsite", "full-time", "part-time", "contract", "freelance", "internship", "temporary"]
+          },
           "url": {
             "type": "string",
             "description": "Company website address",

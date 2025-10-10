@@ -142,6 +142,11 @@
       "@type": "xsd:string"
     },
     
+    "workType": {
+      "@id": "schema:employmentType",
+      "@type": "xsd:string"
+    },
+    
     "startDate": {
       "@id": "schema:startDate",
       "@type": "xsd:date"

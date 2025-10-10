@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `group` field for categorizing tools (e.g., "Monitoring & Logging", "Web & Servers")
   - `category` field (alias for `group`)
   - `level` field for proficiency level with the tool
+- **Work experience enhancements**:
+  - `workType` field for work arrangement type with multiple options:
+    - Location: remote, hybrid, onsite
+    - Employment: full-time, part-time, contract, freelance, internship, temporary
 
 ### Planned
 - TypeScript type definitions

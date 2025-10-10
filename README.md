@@ -183,6 +183,7 @@ print("Resume is valid!")
 | `location` | string | Work location |
 | `description` | string | Company description |
 | `position` | string | Job title |
+| `workType` | string | Work arrangement type (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary) |
 | `url` | string | Company website |
 | `startDate` | string | Start date (ISO 8601) |
 | `endDate` | string | End date (ISO 8601, optional for current position) |
