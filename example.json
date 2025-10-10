@@ -133,9 +133,14 @@
       "url": "https://ed.ac.uk",
       "area": "Computer Science",
       "studyType": "Bachelor of Science (Honours)",
+      "degree": "BSc (Hons) Computer Science",
+      "description": "Focused on distributed systems, cloud computing, and software engineering. Completed final year dissertation on microservices architecture patterns.",
       "startDate": "2012-09",
       "endDate": "2016-06",
       "score": "First Class Honours (78%)",
+      "gpa": "3.9/4.0",
+      "location": "Edinburgh, Scotland",
+      "country": "GB",
       "courses": [
         "CS3102 - Distributed Systems",
         "CS4103 - Cloud Computing Architecture",
@@ -145,12 +150,15 @@
     },
     {
       "institution": "King Edward VI Grammar School",
+      "school": "King Edward VI Grammar School",
       "url": "https://kegs.org.uk",
       "area": "Mathematics, Computer Science, Physics",
       "studyType": "A-Levels",
       "startDate": "2010-09",
       "endDate": "2012-06",
       "score": "A*A*A",
+      "location": "Chelmsford, Essex",
+      "country": "GB",
       "courses": []
     }
   ],

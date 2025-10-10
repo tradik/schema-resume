@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Education section enhancements**:
+  - `school` field (alias for `institution`)
+  - `degree` field (alias for `studyType`)
+  - `description` field for additional educational details
+  - `gpa` field (alias for `score`)
+  - `location` field for institution's geographic location
+  - `country` field for institution's country (ISO-3166-1 ALPHA-2)
+
 ### Planned
 - TypeScript type definitions
 - Resume builder web application

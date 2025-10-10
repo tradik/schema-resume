@@ -189,6 +189,25 @@ print("Resume is valid!")
 | `summary` | string | Role overview |
 | `highlights` | array | Key accomplishments |
 
+### Education Section
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `institution` | string | Name of the educational institution or university |
+| `school` | string | Alias for `institution` |
+| `url` | string | Website address of the institution |
+| `area` | string | Field of study or academic discipline |
+| `studyType` | string | Type of qualification (Bachelor, Master, PhD, etc.) |
+| `degree` | string | Alias for `studyType` |
+| `description` | string | Additional details about the educational experience |
+| `startDate` | string | Date when studies commenced (ISO 8601) |
+| `endDate` | string | Date when studies concluded (ISO 8601) |
+| `score` | string | Final grade, GPA, or classification achieved |
+| `gpa` | string | Alias for `score` (Grade Point Average) |
+| `location` | string | Geographic location of the institution |
+| `country` | string | Country where institution is located (ISO-3166-1 ALPHA-2) |
+| `courses` | array | Relevant modules, courses, or subjects studied |
+
 ### Skills Section
 
 | Field | Type | Description |

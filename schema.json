@@ -285,6 +285,10 @@
             "type": "string",
             "description": "Name of the educational institution or university"
           },
+          "school": {
+            "type": "string",
+            "description": "Name of the educational institution or university (alias for institution)"
+          },
           "url": {
             "type": "string",
             "description": "Website address of the institution",
@@ -298,6 +302,14 @@
             "type": "string",
             "description": "Type of qualification (Bachelor, Master, PhD, etc.)"
           },
+          "degree": {
+            "type": "string",
+            "description": "Type of degree or qualification obtained (alias for studyType)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Additional details about the educational experience, achievements, or focus areas"
+          },
           "startDate": {
             "$ref": "#/definitions/iso8601",
             "description": "Date when studies commenced"
@@ -309,6 +321,18 @@
           "score": {
             "type": "string",
             "description": "Final grade, GPA, or classification achieved"
+          },
+          "gpa": {
+            "type": "string",
+            "description": "Grade Point Average or equivalent scoring (alias for score)"
+          },
+          "location": {
+            "type": "string",
+            "description": "Geographic location of the educational institution (city, state/region)"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country where the institution is located, preferably using ISO-3166-1 ALPHA-2 code"
           },
           "courses": {
             "type": "array",

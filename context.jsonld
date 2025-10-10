@@ -180,6 +180,11 @@
       "@type": "xsd:string"
     },
     
+    "school": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
     "area": {
       "@id": "schema:educationalCredentialAwarded",
       "@type": "xsd:string"
@@ -190,7 +195,17 @@
       "@type": "xsd:string"
     },
     
+    "degree": {
+      "@id": "schema:educationalLevel",
+      "@type": "xsd:string"
+    },
+    
     "score": {
+      "@id": "schema:grade",
+      "@type": "xsd:string"
+    },
+    
+    "gpa": {
       "@id": "schema:grade",
       "@type": "xsd:string"
     },
