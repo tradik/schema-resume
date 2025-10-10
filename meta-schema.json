@@ -191,7 +191,7 @@
       "description": "Type of work arrangement"
     },
     "keyAchievements": {
-      "type": "array",
+      "type": "object",
       "description": "Notable achievements"
     },
     "coreCompetencies": {

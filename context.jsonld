@@ -54,8 +54,7 @@
     
     "keyAchievements": {
       "@id": "schema:award",
-      "@type": "@id",
-      "@container": "@list"
+      "@type": "@id"
     },
     
     "coreCompetencies": {

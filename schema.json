@@ -66,25 +66,30 @@
           "description": "Brief professional summary highlighting key experience and expertise"
         },
         "keyAchievements": {
-          "type": "array",
+          "type": "object",
           "description": "Notable career achievements and accomplishments",
-          "additionalItems": false,
-          "items": {
-            "type": "object",
-            "additionalProperties": true,
-            "properties": {
-              "text": {
+          "additionalProperties": true,
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Overview of key achievements"
+            },
+            "list": {
+              "type": "array",
+              "description": "List of specific achievements",
+              "additionalItems": false,
+              "items": {
                 "type": "string",
-                "description": "Description of the achievement"
-              },
-              "keywords": {
-                "type": "array",
-                "description": "Related skills, technologies, or topics",
-                "additionalItems": false,
-                "items": {
-                  "type": "string",
-                  "description": "Keyword or tag"
-                }
+                "description": "Individual achievement"
+              }
+            },
+            "keywords": {
+              "type": "array",
+              "description": "Related skills, technologies, or topics",
+              "additionalItems": false,
+              "items": {
+                "type": "string",
+                "description": "Keyword or tag"
               }
             }
           }
