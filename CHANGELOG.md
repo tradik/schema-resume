@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `gpa` field (alias for `score`)
   - `location` field for institution's geographic location
   - `country` field for institution's country (ISO-3166-1 ALPHA-2)
+- **Tools section enhancements**:
+  - `group` field for categorizing tools (e.g., "Monitoring & Logging", "Web & Servers")
+  - `category` field (alias for `group`)
+  - `level` field for proficiency level with the tool
 
 ### Planned
 - TypeScript type definitions

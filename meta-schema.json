@@ -178,6 +178,14 @@
       "default": {},
       "description": "Schema definitions for object properties"
     },
+    "group": {
+      "type": "string",
+      "description": "Grouping or categorization field"
+    },
+    "category": {
+      "type": "string",
+      "description": "Category or classification field"
+    },
     "patternProperties": {
       "type": "object",
       "additionalProperties": { "$ref": "#" },

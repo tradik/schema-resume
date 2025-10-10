@@ -276,6 +276,16 @@
       "@container": "@list"
     },
     
+    "group": {
+      "@id": "schema:category",
+      "@type": "xsd:string"
+    },
+    
+    "category": {
+      "@id": "schema:category",
+      "@type": "xsd:string"
+    },
+    
     "yearsOfExperience": {
       "@id": "schema:yearsInOperation",
       "@type": "xsd:decimal"

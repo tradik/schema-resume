@@ -223,7 +223,10 @@ print("Resume is valid!")
 | Field | Type | Description |
 |-------|------|-------------|
 | `name` | string | Name of the tool or software |
+| `group` | string | Category for organizing related tools (e.g., "Monitoring & Logging") |
+| `category` | string | Alias for `group` |
 | `yearsOfExperience` | number | Years using this tool professionally |
+| `level` | string | Proficiency level (Beginner, Intermediate, Advanced, Expert) |
 | `comment` | string | Additional details about usage and proficiency |
 | `url` | string | Link to the tool's website or documentation |
 

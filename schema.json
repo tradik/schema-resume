@@ -482,10 +482,22 @@
             "type": "string",
             "description": "Name of the tool or software"
           },
+          "group": {
+            "type": "string",
+            "description": "Category or group for organizing related tools (e.g., 'Monitoring & Logging', 'Web & Servers')"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category or group for organizing related tools (alias for group)"
+          },
           "yearsOfExperience": {
             "type": "number",
             "description": "Number of years using this tool professionally",
             "minimum": 0
+          },
+          "level": {
+            "type": "string",
+            "description": "Proficiency level with this tool (Beginner, Intermediate, Advanced, Expert)"
           },
           "comment": {
             "type": "string",

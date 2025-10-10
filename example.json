@@ -321,37 +321,73 @@
   "tools": [
     {
       "name": "Terraform",
+      "group": "Infrastructure as Code",
       "yearsOfExperience": 7,
+      "level": "Expert",
       "comment": "Primary IaC tool, authored 50+ reusable modules and contributed to open source",
       "url": "https://www.terraform.io"
     },
     {
       "name": "Kubernetes",
+      "group": "Container Orchestration",
       "yearsOfExperience": 6,
+      "level": "Expert",
       "comment": "CKA certified, manage production clusters with 100+ nodes",
       "url": "https://kubernetes.io"
     },
     {
       "name": "AWS",
+      "group": "Cloud Platforms",
       "yearsOfExperience": 8,
+      "level": "Expert",
       "comment": "Solutions Architect Professional certified, extensive experience across 30+ services",
       "url": "https://aws.amazon.com"
     },
     {
       "name": "Docker",
+      "group": "Container Orchestration",
       "yearsOfExperience": 7,
+      "level": "Expert",
       "comment": "Containerized 100+ applications, optimized images for production use",
       "url": "https://www.docker.com"
     },
     {
       "name": "Prometheus",
+      "group": "Monitoring & Logging",
       "yearsOfExperience": 5,
+      "level": "Advanced",
       "comment": "Designed monitoring architecture for large-scale distributed systems",
       "url": "https://prometheus.io"
     },
     {
-      "name": "GitHub Actions",
+      "name": "Grafana",
+      "group": "Monitoring & Logging",
+      "yearsOfExperience": 5,
+      "level": "Advanced",
+      "comment": "Created custom dashboards and alerting rules for infrastructure monitoring",
+      "url": "https://grafana.com"
+    },
+    {
+      "name": "ELK Stack",
+      "group": "Monitoring & Logging",
       "yearsOfExperience": 4,
+      "level": "Intermediate",
+      "comment": "Implemented centralized logging for microservices architecture",
+      "url": "https://www.elastic.co/elastic-stack"
+    },
+    {
+      "name": "Nginx",
+      "group": "Web & Servers",
+      "yearsOfExperience": 8,
+      "level": "Advanced",
+      "comment": "Configured as reverse proxy, load balancer, and API gateway",
+      "url": "https://nginx.org"
+    },
+    {
+      "name": "GitHub Actions",
+      "group": "CI/CD",
+      "yearsOfExperience": 4,
+      "level": "Advanced",
       "comment": "Created custom actions and workflows for complex deployment scenarios",
       "url": "https://github.com/features/actions"
     },
