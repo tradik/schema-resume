@@ -170,8 +170,8 @@ print("Resume is valid!")
 | `phone` | string | Phone number (any format) |
 | `url` | string | Personal website URL |
 | `summary` | string | Professional summary (2-3 sentences) |
-| `keyAchievements` | object | Notable career achievements with description, list, and keywords |
-| `coreCompetencies` | object | Core competencies with description, list, and keywords |
+| `keyAchievements` | array | Notable career achievements (list of strings) |
+| `coreCompetencies` | array | Core professional competencies (list of strings) |
 | `location` | object | Address and location details |
 | `profiles` | array | Social media profiles |
 | `nationalities` | array | Citizenship information with country codes and birth country |

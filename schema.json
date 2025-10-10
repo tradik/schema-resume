@@ -66,61 +66,21 @@
           "description": "Brief professional summary highlighting key experience and expertise"
         },
         "keyAchievements": {
-          "type": "object",
+          "type": "array",
           "description": "Notable career achievements and accomplishments",
-          "additionalProperties": true,
-          "properties": {
-            "description": {
-              "type": "string",
-              "description": "Overview of key achievements"
-            },
-            "list": {
-              "type": "array",
-              "description": "List of specific achievements",
-              "additionalItems": false,
-              "items": {
-                "type": "string",
-                "description": "Individual achievement"
-              }
-            },
-            "keywords": {
-              "type": "array",
-              "description": "Related skills, technologies, or topics",
-              "additionalItems": false,
-              "items": {
-                "type": "string",
-                "description": "Keyword or tag"
-              }
-            }
+          "additionalItems": false,
+          "items": {
+            "type": "string",
+            "description": "Individual achievement"
           }
         },
         "coreCompetencies": {
-          "type": "object",
+          "type": "array",
           "description": "Core professional competencies and areas of expertise",
-          "additionalProperties": true,
-          "properties": {
-            "description": {
-              "type": "string",
-              "description": "Overview of core competencies"
-            },
-            "list": {
-              "type": "array",
-              "description": "List of specific competencies",
-              "additionalItems": false,
-              "items": {
-                "type": "string",
-                "description": "Competency or area of expertise"
-              }
-            },
-            "keywords": {
-              "type": "array",
-              "description": "Related skills and technologies",
-              "additionalItems": false,
-              "items": {
-                "type": "string",
-                "description": "Keyword or tag"
-              }
-            }
+          "additionalItems": false,
+          "items": {
+            "type": "string",
+            "description": "Competency or area of expertise"
           }
         },
         "location": {

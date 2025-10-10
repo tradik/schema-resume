@@ -191,20 +191,12 @@
       "description": "Type of work arrangement"
     },
     "keyAchievements": {
-      "type": "object",
+      "type": "array",
       "description": "Notable achievements"
     },
     "coreCompetencies": {
-      "type": "object",
-      "description": "Core professional competencies"
-    },
-    "text": {
-      "type": "string",
-      "description": "Text content"
-    },
-    "list": {
       "type": "array",
-      "description": "List of items"
+      "description": "Core professional competencies"
     },
     "patternProperties": {
       "type": "object",
