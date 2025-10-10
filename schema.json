@@ -65,6 +65,59 @@
           "type": "string",
           "description": "Brief professional summary highlighting key experience and expertise"
         },
+        "keyAchievements": {
+          "type": "array",
+          "description": "Notable career achievements and accomplishments",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Description of the achievement"
+              },
+              "keywords": {
+                "type": "array",
+                "description": "Related skills, technologies, or topics",
+                "additionalItems": false,
+                "items": {
+                  "type": "string",
+                  "description": "Keyword or tag"
+                }
+              }
+            }
+          }
+        },
+        "coreCompetencies": {
+          "type": "object",
+          "description": "Core professional competencies and areas of expertise",
+          "additionalProperties": true,
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Overview of core competencies"
+            },
+            "list": {
+              "type": "array",
+              "description": "List of specific competencies",
+              "additionalItems": false,
+              "items": {
+                "type": "string",
+                "description": "Competency or area of expertise"
+              }
+            },
+            "keywords": {
+              "type": "array",
+              "description": "Related skills and technologies",
+              "additionalItems": false,
+              "items": {
+                "type": "string",
+                "description": "Keyword or tag"
+              }
+            }
+          }
+        },
         "location": {
           "type": "object",
           "additionalProperties": true,

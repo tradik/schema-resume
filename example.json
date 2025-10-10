@@ -9,6 +9,52 @@
     "phone": "+44 7700 900123",
     "url": "https://eleanor-fitzwilliam.dev",
     "summary": "Experienced DevOps engineer with 8+ years building scalable cloud infrastructure. Passionate about automation, infrastructure as code, and fostering collaborative engineering cultures.",
+    "keyAchievements": [
+      {
+        "text": "Reduced infrastructure costs by 38% through automated resource optimization and right-sizing strategies",
+        "keywords": ["cost optimization", "automation", "cloud efficiency"]
+      },
+      {
+        "text": "Led migration of 50+ microservices to Kubernetes, achieving 99.97% uptime",
+        "keywords": ["Kubernetes", "microservices", "migration", "high availability"]
+      },
+      {
+        "text": "Implemented zero-downtime deployment pipeline serving 2M+ daily active users",
+        "keywords": ["CI/CD", "deployment", "scalability"]
+      },
+      {
+        "text": "Mentored and developed 4 junior engineers who advanced to mid-level positions",
+        "keywords": ["mentorship", "leadership", "team development"]
+      }
+    ],
+    "coreCompetencies": {
+      "description": "Specialized in cloud infrastructure, container orchestration, and DevOps practices with expertise across AWS, Azure, and GCP platforms",
+      "list": [
+        "Cloud Architecture & Infrastructure Design",
+        "Container Orchestration (Kubernetes, Docker)",
+        "Infrastructure as Code (Terraform, CloudFormation)",
+        "CI/CD Pipeline Development",
+        "Monitoring & Observability",
+        "Security & Compliance Automation",
+        "Team Leadership & Mentoring"
+      ],
+      "keywords": [
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "Terraform",
+        "Ansible",
+        "Jenkins",
+        "GitOps",
+        "Prometheus",
+        "Grafana",
+        "Python",
+        "Go",
+        "Bash"
+      ]
+    },
     "location": {
       "address": "42 Kensington Gardens\nFlat 3B",
       "postalCode": "W2 4RU",

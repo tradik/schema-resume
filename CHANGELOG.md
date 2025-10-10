@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Basics section enhancements**:
+  - `keyAchievements` array for notable career achievements with text and keywords
+  - `coreCompetencies` object with description, list, and keywords for areas of expertise
 - **Education section enhancements**:
   - `school` field (alias for `institution`)
   - `degree` field (alias for `studyType`)

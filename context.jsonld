@@ -52,6 +52,28 @@
       "@type": "xsd:string"
     },
     
+    "keyAchievements": {
+      "@id": "schema:award",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "coreCompetencies": {
+      "@id": "schema:knowsAbout",
+      "@type": "@id"
+    },
+    
+    "text": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    
+    "list": {
+      "@id": "schema:itemListElement",
+      "@type": "xsd:string",
+      "@container": "@list"
+    },
+    
     "location": {
       "@id": "schema:address",
       "@type": "@id"
