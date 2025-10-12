@@ -407,6 +407,11 @@
     "lastModified": {
       "@id": "schema:dateModified",
       "@type": "xsd:dateTime"
+    },
+    
+    "dateCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
     }
   }
 }

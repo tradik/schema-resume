@@ -198,6 +198,34 @@
       "type": "array",
       "description": "Core professional competencies"
     },
+    "title": {
+      "type": "string",
+      "description": "Honorific title or prefix"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "description": "Date of birth"
+    },
+    "age": {
+      "type": "integer",
+      "description": "Current age in years"
+    },
+    "placeOfBirth": {
+      "type": "object",
+      "description": "Location where the person was born"
+    },
+    "sex": {
+      "type": "string",
+      "description": "Biological sex or gender identity"
+    },
+    "legalNote": {
+      "type": "object",
+      "description": "Legal disclaimers or notes"
+    },
+    "dateCreated": {
+      "type": "string",
+      "description": "Document creation timestamp"
+    },
     "patternProperties": {
       "type": "object",
       "additionalProperties": { "$ref": "#" },

@@ -680,6 +680,11 @@
         "lastModified": {
           "type": "string",
           "description": "Timestamp of last modification in ISO 8601 format"
+        },
+        "dateCreated": {
+          "type": "string",
+          "description": "Timestamp when the document was created in ISO 8601 format",
+          "format": "date-time"
         }
       }
     }

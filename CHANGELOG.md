@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Basics section enhancements**:
+  - `title` field for honorific title or prefix (e.g., Dr., Prof., Mr., Ms., Mx.)
+  - `dateOfBirth` field for date of birth in ISO 8601 format
+  - `age` field for current age in years (integer)
+  - `placeOfBirth` object for birthplace location with city, county, state, province, region, country, and countryCode
+  - `sex` field for biological sex or gender identity
+  - `legalNote` object for legal disclaimers or notes with country-specific context
   - `keyAchievements` array for notable career achievements
   - `coreCompetencies` array for core professional competencies and areas of expertise
 - **Education section enhancements**:
@@ -26,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `workType` field for work arrangement type with multiple options:
     - Location: remote, hybrid, onsite
     - Employment: full-time, part-time, contract, freelance, internship, temporary
+- **Meta section enhancements**:
+  - `dateCreated` field for document creation timestamp in ISO 8601 format
 
 ### Planned
 - TypeScript type definitions
