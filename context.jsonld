@@ -159,6 +159,11 @@
       "@type": "xsd:string"
     },
     
+    "workLocation": {
+      "@id": "schema:workLocation",
+      "@type": "xsd:string"
+    },
+    
     "startDate": {
       "@id": "schema:startDate",
       "@type": "xsd:date"

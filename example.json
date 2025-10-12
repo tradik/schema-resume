@@ -75,7 +75,7 @@
   "work": [
     {
       "name": "CloudScale Technologies Ltd",
-      "location": "Manchester, UK",
+      "workLocation": "Manchester, UK",
       "description": "Enterprise cloud solutions provider",
       "position": "Lead DevOps Engineer",
       "workType": "full-time",
@@ -91,7 +91,7 @@
     },
     {
       "name": "FinTech Innovations plc",
-      "location": "Edinburgh, Scotland",
+      "workLocation": "Edinburgh, Scotland",
       "description": "Financial technology startup",
       "position": "Senior DevOps Engineer",
       "workType": "remote",
@@ -108,7 +108,7 @@
     },
     {
       "name": "Digital Solutions UK",
-      "location": "Bristol, UK",
+      "workLocation": "Bristol, UK",
       "description": "Web development agency",
       "position": "DevOps Engineer",
       "workType": "onsite",
