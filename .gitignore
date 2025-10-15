@@ -8,6 +8,8 @@ ehthumbs.db
 Thumbs.db
 Desktop.ini
 
+.windsurf/
+
 # Editor and IDE Files
 .vscode/
 .idea/
