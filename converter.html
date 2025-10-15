@@ -510,7 +510,12 @@
             const dataForValidation = { ...data };
             delete dataForValidation['@context'];
             
-            const validate = ajv.compile(schema);
+            // Create a copy of schema without $schema reference to avoid meta-schema resolution
+            const schemaForValidation = { ...schema };
+            delete schemaForValidation['$schema'];
+            delete schemaForValidation['@context'];
+            
+            const validate = ajv.compile(schemaForValidation);
             const valid = validate(dataForValidation);
             
             return {
