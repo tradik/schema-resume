@@ -64,19 +64,27 @@
         "born": true
       }
     ],
-    "workAuthorization": {
-      "rightToWork": [
-        "GB",
-        "IE"
-      ],
-      "visas": [
-        {
-          "country": "US",
-          "validTo": "2026-08-15",
-          "type": "H-1B Skilled Worker Visa"
-        }
-      ]
-    }
+    "workAuthorization": [
+      {
+        "country": "GB",
+        "status": "Citizen",
+        "rightToWork": true
+      },
+      {
+        "country": "IE",
+        "status": "EU Citizen Rights",
+        "rightToWork": true,
+        "notes": "Right to work through UK-Ireland Common Travel Area"
+      },
+      {
+        "country": "US",
+        "status": "Work Visa",
+        "rightToWork": false,
+        "visaType": "H-1B Skilled Worker Visa",
+        "validFrom": "2023-08-15",
+        "validTo": "2026-08-15"
+      }
+    ]
   },
   "work": [
     {

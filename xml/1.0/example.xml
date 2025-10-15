@@ -68,17 +68,25 @@
     </nationalities>
     
     <workAuthorization>
-      <rightToWork>
+      <authorization>
         <country>GB</country>
+        <status>Citizen</status>
+        <rightToWork>true</rightToWork>
+      </authorization>
+      <authorization>
         <country>IE</country>
-      </rightToWork>
-      <visas>
-        <visa>
-          <country>US</country>
-          <validTo>2026-08-15</validTo>
-          <type>H-1B Skilled Worker Visa</type>
-        </visa>
-      </visas>
+        <status>EU Citizen Rights</status>
+        <rightToWork>true</rightToWork>
+        <notes>Right to work through UK-Ireland Common Travel Area</notes>
+      </authorization>
+      <authorization>
+        <country>US</country>
+        <status>Work Visa</status>
+        <rightToWork>false</rightToWork>
+        <visaType>H-1B Skilled Worker Visa</visaType>
+        <validFrom>2023-08-15</validFrom>
+        <validTo>2026-08-15</validTo>
+      </authorization>
     </workAuthorization>
   </basics>
   

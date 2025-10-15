@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **workAuthorization structure** in basics section:
+  - Changed from object to array to support multiple countries
+  - Each entry now includes: country, status, rightToWork flag, visaType, validFrom, validTo, and notes
+  - Allows specifying work authorization details separately for each country
+  - More flexible structure for complex immigration scenarios
+
 ### Added
 - **XML Schema (XSD) support**:
   - Added comprehensive XSD schema definition at `xml/1.0/schema-resume.xsd`

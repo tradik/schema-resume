@@ -320,7 +320,7 @@ public class ResumeValidator {
 | `location` | object | Address and location details |
 | `profiles` | array | Social media profiles |
 | `nationalities` | array | Citizenship information with country codes and birth country |
-| `workAuthorization` | object | Work authorization including right to work countries and active visas |
+| `workAuthorization` | array | Work authorization for multiple countries with status, visa details, and validity dates |
 
 ### Work Section
 

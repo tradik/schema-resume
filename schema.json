@@ -166,42 +166,43 @@
           }
         },
         "workAuthorization": {
-          "type": "object",
-          "description": "Work authorization and visa information",
-          "additionalProperties": true,
-          "properties": {
-            "rightToWork": {
-              "type": "array",
-              "description": "Countries where person has unrestricted right to work",
-              "additionalItems": false,
-              "items": {
+          "type": "array",
+          "description": "Work authorization information for multiple countries",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "country": {
                 "type": "string",
-                "description": "Country code using ISO-3166-1 ALPHA-2 standard"
+                "description": "Country code using ISO-3166-1 ALPHA-2 standard (e.g., GB, US, FR)"
+              },
+              "status": {
+                "type": "string",
+                "description": "Work authorization status (e.g., 'Citizen', 'Permanent Resident', 'Work Visa', 'No Authorization')"
+              },
+              "rightToWork": {
+                "type": "boolean",
+                "description": "Whether person has unrestricted right to work in this country"
+              },
+              "visaType": {
+                "type": "string",
+                "description": "Type or category of visa if applicable (e.g., 'H-1B', 'Skilled Worker', 'Temporary', 'Permanent Residence')"
+              },
+              "validFrom": {
+                "$ref": "#/definitions/iso8601",
+                "description": "Start date of work authorization or visa validity"
+              },
+              "validTo": {
+                "$ref": "#/definitions/iso8601",
+                "description": "Expiration date of work authorization or visa (omit if permanent)"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Additional notes or restrictions on work authorization"
               }
             },
-            "visas": {
-              "type": "array",
-              "description": "Active work visas and permits",
-              "additionalItems": false,
-              "items": {
-                "type": "object",
-                "additionalProperties": true,
-                "properties": {
-                  "country": {
-                    "type": "string",
-                    "description": "Country where visa is valid using ISO-3166-1 ALPHA-2 code"
-                  },
-                  "validTo": {
-                    "$ref": "#/definitions/iso8601",
-                    "description": "Expiration date of the visa or work permit"
-                  },
-                  "type": {
-                    "type": "string",
-                    "description": "Type or category of visa (e.g., Skilled Worker, Temporary, Permanent Residence)"
-                  }
-                }
-              }
-            }
+            "required": ["country"]
           }
         }
       }

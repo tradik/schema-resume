@@ -93,11 +93,13 @@
         "born": true
       }
     ],
-    "workAuthorization": {
-      "rightToWork": [
-        "US"
-      ]
-    }
+    "workAuthorization": [
+      {
+        "country": "US",
+        "status": "Citizen",
+        "rightToWork": true
+      }
+    ]
   },
   "work": [
     {

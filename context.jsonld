@@ -113,24 +113,38 @@
     
     "workAuthorization": {
       "@id": "schema:hasCredential",
-      "@type": "@id"
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "status": {
+      "@id": "schema:credentialCategory",
+      "@type": "xsd:string"
     },
     
     "rightToWork": {
-      "@id": "schema:addressCountry",
-      "@type": "xsd:string",
-      "@container": "@list"
+      "@id": "schema:validIn",
+      "@type": "xsd:boolean"
     },
     
-    "visas": {
-      "@id": "schema:permit",
-      "@type": "@id",
-      "@container": "@list"
+    "visaType": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
+    "validFrom": {
+      "@id": "schema:validFrom",
+      "@type": "xsd:date"
     },
     
     "validTo": {
       "@id": "schema:validUntil",
       "@type": "xsd:date"
+    },
+    
+    "notes": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
     },
     
     "born": {

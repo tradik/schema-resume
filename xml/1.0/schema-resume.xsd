@@ -157,28 +157,19 @@
 
   <xs:complexType name="WorkAuthorizationType">
     <xs:sequence>
-      <xs:element name="rightToWork" type="sr:CountryListType" minOccurs="0"/>
-      <xs:element name="visas" type="sr:VisasType" minOccurs="0"/>
+      <xs:element name="authorization" type="sr:WorkAuthorizationEntryType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="CountryListType">
+  <xs:complexType name="WorkAuthorizationEntryType">
     <xs:sequence>
-      <xs:element name="country" type="sr:countryCodeType" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="VisasType">
-    <xs:sequence>
-      <xs:element name="visa" type="sr:VisaType" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="VisaType">
-    <xs:sequence>
-      <xs:element name="country" type="sr:countryCodeType" minOccurs="0"/>
+      <xs:element name="country" type="sr:countryCodeType"/>
+      <xs:element name="status" type="xs:string" minOccurs="0"/>
+      <xs:element name="rightToWork" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="visaType" type="xs:string" minOccurs="0"/>
+      <xs:element name="validFrom" type="sr:iso8601DateType" minOccurs="0"/>
       <xs:element name="validTo" type="sr:iso8601DateType" minOccurs="0"/>
-      <xs:element name="type" type="xs:string" minOccurs="0"/>
+      <xs:element name="notes" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 

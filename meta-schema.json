@@ -234,6 +234,26 @@
       "type": "string",
       "description": "Document creation timestamp"
     },
+    "workAuthorization": {
+      "type": "array",
+      "description": "Work authorization information for multiple countries"
+    },
+    "status": {
+      "type": "string",
+      "description": "Work authorization status"
+    },
+    "visaType": {
+      "type": "string",
+      "description": "Type or category of visa"
+    },
+    "validFrom": {
+      "type": "string",
+      "description": "Start date of validity"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or information"
+    },
     "patternProperties": {
       "type": "object",
       "additionalProperties": { "$ref": "#" },
