@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert and validate JSON Resume to JSON-LD or XML format in real-time. Supports remote and local schema contexts.">
+    <meta name="keywords" content="JSON to JSON-LD converter, JSON to XML, Resume converter, CV converter, JSON-LD, Schema.org">
+    <meta name="author" content="Tradik">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tradik.github.io/schema-resume/converter.html">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tradik.github.io/schema-resume/converter.html">
+    <meta property="og:title" content="JSON Resume Converter - JSON-LD & XML">
+    <meta property="og:description" content="Convert and validate JSON Resume to JSON-LD or XML format in real-time">
+    <meta property="og:site_name" content="Schema Resume">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tradik.github.io/schema-resume/converter.html">
+    <meta property="twitter:title" content="JSON Resume Converter - JSON-LD & XML">
+    <meta property="twitter:description" content="Convert and validate JSON Resume to JSON-LD or XML format in real-time">
+    
+    <title>JSON Resume Converter - Schema Resume</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/ajv@8.12.0/dist/2020.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ajv-formats@2.1.1/dist/ajv-formats.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-secondary);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: calc(100vh - 300px);
+            min-height: 500px;
+        }
+        
+        .editor-panel {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 16px 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .editor-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .editor-content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 20px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: none;
+            background-color: #f8f9fa;
+            color: var(--text-primary);
+        }
+        
+        textarea:focus {
+            outline: none;
+            background-color: #ffffff;
+        }
+        
+        .status-bar {
+            padding: 8px 20px;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--text-secondary);
+        }
+        
+        .status-dot.success {
+            background-color: var(--success-color);
+        }
+        
+        .status-dot.error {
+            background-color: var(--error-color);
+        }
+        
+        .status-dot.warning {
+            background-color: var(--warning-color);
+        }
+        
+        .error-message {
+            background-color: #fee;
+            border-left: 4px solid var(--error-color);
+            padding: 12px 16px;
+            margin: 10px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #c00;
+        }
+        
+        .warning-message {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--warning-color);
+            padding: 12px 16px;
+            margin: 10px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #92400e;
+        }
+        
+        .success-message {
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--success-color);
+            padding: 12px 16px;
+            margin: 10px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #166534;
+        }
+        
+        @media (max-width: 1024px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .editor-panel {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2 flex items-center gap-3">
+                        <i data-lucide="repeat" size="32"></i>
+                        JSON Resume Converter
+                    </h1>
+                    <p class="text-blue-100 text-lg">Real-time conversion to JSON-LD and XML with validation</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="./index.html" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+                        <i data-lucide="home" size="18"></i>
+                        Home
+                    </a>
+                    <a href="./validator.html" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+                        <i data-lucide="check-circle" size="18"></i>
+                        Validator
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Controls -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Output Format -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        <i data-lucide="file-type" size="16" class="inline"></i>
+                        Output Format
+                    </label>
+                    <select id="outputFormat" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="jsonld">JSON-LD</option>
+                        <option value="xml">XML</option>
+                    </select>
+                </div>
+                
+                <!-- Context Type -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        <i data-lucide="link" size="16" class="inline"></i>
+                        Context Type
+                    </label>
+                    <select id="contextType" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="remote">Remote Schema (URL)</option>
+                        <option value="inline">Inline Context</option>
+                    </select>
+                </div>
+                
+                <!-- Actions -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        <i data-lucide="settings" size="16" class="inline"></i>
+                        Actions
+                    </label>
+                    <div class="flex gap-2">
+                        <button id="loadExample" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="file-text" size="16"></i>
+                            Load Example
+                        </button>
+                        <button id="clearBtn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-lg transition-colors">
+                            <i data-lucide="x" size="16"></i>
+                        </button>
+                        <button id="copyOutput" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            <i data-lucide="copy" size="16"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editor Panels -->
+        <div class="editor-container">
+            <!-- Input Panel -->
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <h3>
+                        <i data-lucide="edit-3" size="20"></i>
+                        Input JSON
+                    </h3>
+                    <span id="inputChars" class="text-sm opacity-80">0 chars</span>
+                </div>
+                <div class="editor-content">
+                    <textarea id="inputJson" placeholder="Paste your JSON resume here..."></textarea>
+                </div>
+                <div class="status-bar">
+                    <div class="status-indicator">
+                        <div id="inputStatus" class="status-dot"></div>
+                        <span id="inputStatusText">Ready</span>
+                    </div>
+                    <span id="inputLines">0 lines</span>
+                </div>
+            </div>
+
+            <!-- Output Panel -->
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <h3>
+                        <i data-lucide="file-output" size="20"></i>
+                        Output <span id="outputFormatLabel">(JSON-LD)</span>
+                    </h3>
+                    <span id="outputChars" class="text-sm opacity-80">0 chars</span>
+                </div>
+                <div class="editor-content">
+                    <textarea id="outputJson" readonly placeholder="Converted output will appear here..."></textarea>
+                </div>
+                <div class="status-bar">
+                    <div class="status-indicator">
+                        <div id="outputStatus" class="status-dot"></div>
+                        <span id="outputStatusText">Waiting for input</span>
+                    </div>
+                    <span id="outputLines">0 lines</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages" class="mt-4"></div>
+
+        <!-- Info Section -->
+        <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                <i data-lucide="info" size="20"></i>
+                How to Use
+            </h3>
+            <ul class="space-y-2 text-sm text-slate-700">
+                <li class="flex items-start gap-2">
+                    <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Paste or type</strong> your JSON resume in the left panel</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Select output format</strong>: JSON-LD (with Schema.org context) or XML</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Choose context type</strong>: Remote (URL reference) or Inline (embedded context)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Real-time conversion</strong>: Output updates automatically as you type</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <i data-lucide="check" size="16" class="text-blue-600 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Validation</strong>: Errors and warnings are displayed instantly</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="mt-12 border-t border-slate-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-600">
+            <p>&copy; 2025 Schema Resume. Licensed under MIT.</p>
+            <div class="mt-4 flex justify-center gap-6 text-sm">
+                <a href="https://github.com/tradik/schema-resume" class="text-blue-600 hover:underline flex items-center gap-1">
+                    <i data-lucide="github" size="16"></i>
+                    GitHub
+                </a>
+                <a href="./JSON-LD.md" class="text-blue-600 hover:underline flex items-center gap-1">
+                    <i data-lucide="book-open" size="16"></i>
+                    Documentation
+                </a>
+                <a href="https://github.com/tradik/schema-resume/issues" class="text-blue-600 hover:underline flex items-center gap-1">
+                    <i data-lucide="message-circle" size="16"></i>
+                    Report Issue
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Elements
+        const inputJson = document.getElementById('inputJson');
+        const outputJson = document.getElementById('outputJson');
+        const outputFormat = document.getElementById('outputFormat');
+        const contextType = document.getElementById('contextType');
+        const loadExampleBtn = document.getElementById('loadExample');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyOutputBtn = document.getElementById('copyOutput');
+        const messagesDiv = document.getElementById('messages');
+        const outputFormatLabel = document.getElementById('outputFormatLabel');
+
+        // Status elements
+        const inputStatus = document.getElementById('inputStatus');
+        const inputStatusText = document.getElementById('inputStatusText');
+        const outputStatus = document.getElementById('outputStatus');
+        const outputStatusText = document.getElementById('outputStatusText');
+        const inputChars = document.getElementById('inputChars');
+        const outputChars = document.getElementById('outputChars');
+        const inputLines = document.getElementById('inputLines');
+        const outputLines = document.getElementById('outputLines');
+
+        // Schema and context
+        let schema = null;
+        let context = null;
+        let ajv = null;
+
+        // Load schema and context
+        async function loadSchema() {
+            try {
+                const [schemaRes, contextRes] = await Promise.all([
+                    fetch('./schema.json'),
+                    fetch('./context.jsonld')
+                ]);
+                
+                schema = await schemaRes.json();
+                context = await contextRes.json();
+                
+                // Initialize AJV
+                ajv = new window.ajv2020({
+                    allErrors: true,
+                    verbose: true,
+                    strict: false
+                });
+                window.ajvFormats(ajv);
+                
+                console.log('Schema and context loaded successfully');
+            } catch (error) {
+                showMessage('error', `Failed to load schema: ${error.message}`);
+            }
+        }
+
+        // Convert JSON to JSON-LD
+        function convertToJsonLd(data, useInlineContext) {
+            const output = { ...data };
+            
+            if (useInlineContext && context) {
+                // Inline context
+                output['@context'] = context['@context'];
+            } else {
+                // Remote context
+                output['@context'] = 'https://tradik.github.io/schema-resume/context.jsonld';
+            }
+            
+            // Ensure $schema is present
+            if (!output.$schema) {
+                output.$schema = 'https://tradik.github.io/schema-resume/schema.json';
+            }
+            
+            return output;
+        }
+
+        // Convert JSON to XML
+        function convertToXml(data, indent = 0) {
+            const indentStr = '  '.repeat(indent);
+            let xml = '';
+            
+            if (indent === 0) {
+                xml += '<?xml version="1.0" encoding="UTF-8"?>\n';
+                xml += '<resume xmlns="https://tradik.github.io/schema-resume/schema.json">\n';
+            }
+            
+            for (const [key, value] of Object.entries(data)) {
+                if (key.startsWith('@') || key.startsWith('$')) continue;
+                
+                if (value === null || value === undefined) {
+                    continue;
+                } else if (Array.isArray(value)) {
+                    value.forEach(item => {
+                        if (typeof item === 'object') {
+                            xml += `${indentStr}  <${key}>\n`;
+                            xml += convertToXml(item, indent + 2);
+                            xml += `${indentStr}  </${key}>\n`;
+                        } else {
+                            xml += `${indentStr}  <${key}>${escapeXml(String(item))}</${key}>\n`;
+                        }
+                    });
+                } else if (typeof value === 'object') {
+                    xml += `${indentStr}  <${key}>\n`;
+                    xml += convertToXml(value, indent + 2);
+                    xml += `${indentStr}  </${key}>\n`;
+                } else {
+                    xml += `${indentStr}  <${key}>${escapeXml(String(value))}</${key}>\n`;
+                }
+            }
+            
+            if (indent === 0) {
+                xml += '</resume>';
+            }
+            
+            return xml;
+        }
+
+        // Escape XML special characters
+        function escapeXml(str) {
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+        }
+
+        // Validate JSON
+        function validateJson(data) {
+            if (!ajv || !schema) {
+                return { valid: false, errors: ['Schema not loaded'] };
+            }
+            
+            const validate = ajv.compile(schema);
+            const valid = validate(data);
+            
+            return {
+                valid,
+                errors: validate.errors || []
+            };
+        }
+
+        // Process input
+        function processInput() {
+            const input = inputJson.value.trim();
+            
+            // Update stats
+            updateStats(input, 'input');
+            
+            if (!input) {
+                clearOutput();
+                setStatus('input', 'ready', 'Ready');
+                setStatus('output', 'ready', 'Waiting for input');
+                clearMessages();
+                return;
+            }
+            
+            try {
+                // Parse JSON
+                const data = JSON.parse(input);
+                setStatus('input', 'success', 'Valid JSON');
+                
+                // Validate against schema
+                const validation = validateJson(data);
+                
+                if (!validation.valid) {
+                    const errorCount = validation.errors.length;
+                    showMessage('warning', `JSON is valid but has ${errorCount} schema validation error${errorCount !== 1 ? 's' : ''}`);
+                    setStatus('input', 'warning', `${errorCount} validation error${errorCount !== 1 ? 's' : ''}`);
+                } else {
+                    showMessage('success', 'JSON is valid and matches schema');
+                }
+                
+                // Convert based on selected format
+                const format = outputFormat.value;
+                const useInlineContext = contextType.value === 'inline';
+                
+                let output;
+                if (format === 'jsonld') {
+                    output = convertToJsonLd(data, useInlineContext);
+                    output = JSON.stringify(output, null, 2);
+                    setStatus('output', 'success', 'JSON-LD generated');
+                } else if (format === 'xml') {
+                    output = convertToXml(data);
+                    setStatus('output', 'success', 'XML generated');
+                }
+                
+                outputJson.value = output;
+                updateStats(output, 'output');
+                
+            } catch (error) {
+                setStatus('input', 'error', 'Invalid JSON');
+                showMessage('error', `JSON Parse Error: ${error.message}`);
+                clearOutput();
+            }
+        }
+
+        // Update statistics
+        function updateStats(text, type) {
+            const chars = text.length;
+            const lines = text ? text.split('\n').length : 0;
+            
+            if (type === 'input') {
+                inputChars.textContent = `${chars.toLocaleString()} chars`;
+                inputLines.textContent = `${lines} lines`;
+            } else {
+                outputChars.textContent = `${chars.toLocaleString()} chars`;
+                outputLines.textContent = `${lines} lines`;
+            }
+        }
+
+        // Set status
+        function setStatus(panel, type, text) {
+            const statusDot = panel === 'input' ? inputStatus : outputStatus;
+            const statusText = panel === 'input' ? inputStatusText : outputStatusText;
+            
+            statusDot.className = 'status-dot';
+            if (type !== 'ready') {
+                statusDot.classList.add(type);
+            }
+            statusText.textContent = text;
+        }
+
+        // Show message
+        function showMessage(type, text) {
+            const className = type === 'error' ? 'error-message' : 
+                            type === 'warning' ? 'warning-message' : 'success-message';
+            
+            messagesDiv.innerHTML = `<div class="${className}">${escapeHtml(text)}</div>`;
+        }
+
+        // Clear messages
+        function clearMessages() {
+            messagesDiv.innerHTML = '';
+        }
+
+        // Clear output
+        function clearOutput() {
+            outputJson.value = '';
+            updateStats('', 'output');
+            setStatus('output', 'ready', 'Waiting for input');
+        }
+
+        // Load example
+        async function loadExample() {
+            try {
+                const response = await fetch('./example.json');
+                const example = await response.json();
+                inputJson.value = JSON.stringify(example, null, 2);
+                processInput();
+                showMessage('success', 'Example loaded successfully');
+            } catch (error) {
+                showMessage('error', `Failed to load example: ${error.message}`);
+            }
+        }
+
+        // Clear input
+        function clearInput() {
+            inputJson.value = '';
+            processInput();
+        }
+
+        // Copy output
+        async function copyOutput() {
+            const text = outputJson.value;
+            if (!text) {
+                showMessage('warning', 'Nothing to copy');
+                return;
+            }
+            
+            try {
+                await navigator.clipboard.writeText(text);
+                showMessage('success', 'Copied to clipboard!');
+            } catch (error) {
+                showMessage('error', 'Failed to copy to clipboard');
+            }
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Update output format label
+        function updateFormatLabel() {
+            const format = outputFormat.value;
+            outputFormatLabel.textContent = format === 'jsonld' ? '(JSON-LD)' : '(XML)';
+        }
+
+        // Event listeners
+        inputJson.addEventListener('input', processInput);
+        outputFormat.addEventListener('change', () => {
+            updateFormatLabel();
+            processInput();
+        });
+        contextType.addEventListener('change', processInput);
+        loadExampleBtn.addEventListener('click', loadExample);
+        clearBtn.addEventListener('click', clearInput);
+        copyOutputBtn.addEventListener('click', copyOutput);
+
+        // Initialize
+        loadSchema();
+        updateFormatLabel();
+        updateStats('', 'input');
+        updateStats('', 'output');
+    </script>
+</body>
+</html>

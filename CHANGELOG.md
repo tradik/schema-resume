@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Converter tool**:
+  - Added converter.html - real-time JSON to JSON-LD/XML converter
+  - Dual-panel editor with live conversion as you type
+  - Support for remote schema reference or inline context
+  - JSON-LD output with Schema.org context
+  - XML output with proper structure and escaping
+  - Real-time validation with error reporting
+  - Character and line count statistics
+  - Copy to clipboard functionality
+  - Load example data feature
 - **Schema.org validation support**:
   - Added `@type` field to all schema sections for validator.schema.org compatibility
   - `@type` property in basics (schema:Person)

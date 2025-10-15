@@ -13,6 +13,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://tradik.github.io/schema-resume/converter.html</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tradik.github.io/schema-resume/schema.json</loc>
     <lastmod>2024-10-15</lastmod>
     <changefreq>monthly</changefreq>

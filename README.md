@@ -60,6 +60,23 @@ The online validator provides:
 
 Simply paste your JSON-LD CV and click "Validate" to check for errors and warnings.
 
+## 🔄 Converter Tool
+
+**Try the live converter**: [converter.html](https://tradik.github.io/schema-resume/converter.html)
+
+The converter tool provides:
+- **Real-time conversion** from JSON to JSON-LD or XML format
+- **Dual-panel editor** with live updates as you type
+- **Remote or inline context** - choose between URL reference or embedded context
+- **JSON-LD output** with Schema.org context integration
+- **XML output** with proper structure and escaping
+- **Validation** with error reporting and suggestions
+- **Statistics** including character and line counts
+- **Copy to clipboard** for easy export
+- **Load example** to see the format in action
+
+Perfect for converting existing JSON resumes to semantic web formats or generating XML for legacy systems.
+
 ## 📖 Usage
 
 > **⚠️ Important for Schema.org Validation**: If you plan to validate your resume with **validator.schema.org**, you must include `@type` properties for all structured entities (basics, location, profiles, nationalities, work, volunteer, education, awards, certificates, publications, skills, tools, projects, languages, interests, references). Also use `streetAddress` instead of `address` in location. See [SCHEMA-ORG-VALIDATION.md](./docs/SCHEMA-ORG-VALIDATION.md) for complete details. The `@type` field is optional for standard JSON Schema validation.
