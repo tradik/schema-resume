@@ -408,12 +408,20 @@
                 context = await contextRes.json();
                 
                 // Initialize AJV
-                ajv = new window.ajv2020({
+                const Ajv = window.ajv2020 || window.Ajv2020 || window.Ajv;
+                if (!Ajv) {
+                    throw new Error('AJV library not loaded');
+                }
+                ajv = new Ajv({
                     allErrors: true,
                     verbose: true,
                     strict: false
                 });
-                window.ajvFormats(ajv);
+                
+                // Add formats if available
+                if (window.ajvFormats) {
+                    window.ajvFormats(ajv);
+                }
                 
                 console.log('Schema and context loaded successfully');
             } catch (error) {
