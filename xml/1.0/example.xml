@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resume xmlns="https://tradik.github.io/schema-resume/xml/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://tradik.github.io/schema-resume/xml/1.0
+                            https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd">
+  
+  <basics>
+    <name>Eleanor Fitzwilliam</name>
+    <label>Lead DevOps Engineer</label>
+    <image>https://avatars.example.co.uk/efitzwilliam.jpg</image>
+    <email>e.fitzwilliam@techmail.co.uk</email>
+    <phone>+44 7700 900123</phone>
+    <url>https://eleanor-fitzwilliam.dev</url>
+    <summary>Experienced DevOps engineer with 8+ years building scalable cloud infrastructure. Passionate about automation, infrastructure as code, and fostering collaborative engineering cultures.</summary>
+    
+    <keyAchievements>
+      <item>Reduced infrastructure costs by 38% through automated resource optimization and right-sizing strategies</item>
+      <item>Led migration of 50+ microservices to Kubernetes, achieving 99.97% uptime</item>
+      <item>Implemented zero-downtime deployment pipeline serving 2M+ daily active users</item>
+      <item>Mentored and developed 4 junior engineers who advanced to mid-level positions</item>
+      <item>Designed disaster recovery system with 15-minute RTO for financial services platform</item>
+      <item>Automated compliance reporting reducing audit preparation time by 75%</item>
+    </keyAchievements>
+    
+    <coreCompetencies>
+      <item>Cloud Architecture &amp; Infrastructure Design</item>
+      <item>Container Orchestration (Kubernetes, Docker)</item>
+      <item>Infrastructure as Code (Terraform, CloudFormation)</item>
+      <item>CI/CD Pipeline Development</item>
+      <item>Monitoring &amp; Observability</item>
+      <item>Security &amp; Compliance Automation</item>
+      <item>Team Leadership &amp; Mentoring</item>
+      <item>AWS, Azure, GCP Multi-Cloud Expertise</item>
+      <item>Python, Go, Bash Scripting</item>
+    </coreCompetencies>
+    
+    <location>
+      <streetAddress>42 Kensington Gardens, Flat 3B</streetAddress>
+      <postalCode>W2 4RU</postalCode>
+      <city>London</city>
+      <countryCode>GB</countryCode>
+      <region>Greater London</region>
+    </location>
+    
+    <profiles>
+      <profile>
+        <network>LinkedIn</network>
+        <username>eleanor-fitzwilliam</username>
+        <url>https://linkedin.com/in/eleanor-fitzwilliam</url>
+      </profile>
+      <profile>
+        <network>GitHub</network>
+        <username>efitzdev</username>
+        <url>https://github.com/efitzdev</url>
+      </profile>
+      <profile>
+        <network>Twitter</network>
+        <username>ellie_devops</username>
+        <url>https://twitter.com/ellie_devops</url>
+      </profile>
+    </profiles>
+    
+    <nationalities>
+      <nationality>
+        <country>GB</country>
+        <born>true</born>
+      </nationality>
+    </nationalities>
+    
+    <workAuthorization>
+      <rightToWork>
+        <country>GB</country>
+        <country>IE</country>
+      </rightToWork>
+      <visas>
+        <visa>
+          <country>US</country>
+          <validTo>2026-08-15</validTo>
+          <type>H-1B Skilled Worker Visa</type>
+        </visa>
+      </visas>
+    </workAuthorization>
+  </basics>
+  
+  <work>
+    <name>CloudScale Technologies Ltd</name>
+    <workLocation>Manchester, UK</workLocation>
+    <description>Enterprise cloud solutions provider</description>
+    <position>Lead DevOps Engineer</position>
+    <workType>full-time</workType>
+    <url>https://cloudscale.tech</url>
+    <startDate>2021-06</startDate>
+    <summary>Leading a team of 6 engineers in designing and implementing cloud infrastructure for enterprise clients across Europe</summary>
+    <highlights>
+      <item>Reduced infrastructure costs by 38% through automated resource optimization</item>
+      <item>Implemented zero-downtime deployment pipeline serving 2M+ daily users</item>
+      <item>Mentored 4 junior engineers who were promoted to mid-level roles</item>
+      <item>Migrated legacy monolith to microservices architecture on Kubernetes</item>
+    </highlights>
+  </work>
+  
+  <work>
+    <name>FinTech Innovations plc</name>
+    <workLocation>Edinburgh, Scotland</workLocation>
+    <description>Financial technology startup</description>
+    <position>Senior DevOps Engineer</position>
+    <workType>remote</workType>
+    <url>https://fintechinnovations.co.uk</url>
+    <startDate>2018-03</startDate>
+    <endDate>2021-05</endDate>
+    <summary>Built and maintained cloud infrastructure for payment processing platform handling £50M+ in daily transactions</summary>
+    <highlights>
+      <item>Achieved 99.97% uptime across all production services</item>
+      <item>Designed disaster recovery system with 15-minute RTO</item>
+      <item>Automated compliance reporting reducing audit preparation time by 75%</item>
+      <item>Implemented GitOps workflow improving deployment frequency by 400%</item>
+    </highlights>
+  </work>
+  
+  <volunteer>
+    <organization>Code Club UK</organization>
+    <position>Technical Mentor</position>
+    <url>https://codeclub.org.uk</url>
+    <startDate>2019-09</startDate>
+    <summary>Teaching programming fundamentals to children aged 9-13 at local community centre</summary>
+    <highlights>
+      <item>Delivered weekly coding sessions to 25+ students</item>
+      <item>Developed curriculum materials for Python and web development</item>
+      <item>Helped 12 students complete their first software projects</item>
+    </highlights>
+  </volunteer>
+  
+  <education>
+    <institution>University of Edinburgh</institution>
+    <url>https://ed.ac.uk</url>
+    <area>Computer Science</area>
+    <studyType>Bachelor of Science (Honours)</studyType>
+    <degree>BSc (Hons) Computer Science</degree>
+    <description>Focused on distributed systems, cloud computing, and software engineering. Completed final year dissertation on microservices architecture patterns.</description>
+    <startDate>2012-09</startDate>
+    <endDate>2016-06</endDate>
+    <score>First Class Honours (78%)</score>
+    <gpa>3.9/4.0</gpa>
+    <location>Edinburgh, Scotland</location>
+    <country>GB</country>
+    <courses>
+      <item>CS3102 - Distributed Systems</item>
+      <item>CS4103 - Cloud Computing Architecture</item>
+      <item>CS3201 - Software Engineering Principles</item>
+      <item>CS4204 - Computer Security</item>
+    </courses>
+  </education>
+  
+  <awards>
+    <title>DevOps Excellence Award</title>
+    <date>2023-11</date>
+    <awarder>CloudScale Technologies Ltd</awarder>
+    <summary>Recognized for outstanding contribution to infrastructure modernization and team leadership</summary>
+  </awards>
+  
+  <awards>
+    <title>Best Technical Innovation</title>
+    <date>2020-03</date>
+    <awarder>FinTech UK Awards</awarder>
+    <summary>Awarded for implementing automated compliance monitoring system</summary>
+  </awards>
+  
+  <certificates>
+    <name>AWS Certified Solutions Architect - Professional</name>
+    <date>2023-07</date>
+    <url>https://aws.amazon.com/certification/</url>
+    <issuer>Amazon Web Services</issuer>
+  </certificates>
+  
+  <certificates>
+    <name>Certified Kubernetes Administrator (CKA)</name>
+    <date>2022-11</date>
+    <url>https://www.cncf.io/certification/cka/</url>
+    <issuer>Cloud Native Computing Foundation</issuer>
+  </certificates>
+  
+  <publications>
+    <name>Infrastructure as Code: Best Practices for Enterprise Deployments</name>
+    <publisher>DevOps Weekly</publisher>
+    <releaseDate>2023-05</releaseDate>
+    <url>https://devopsweekly.co.uk/articles/iac-best-practices</url>
+    <summary>Comprehensive guide covering Terraform, Ansible, and CloudFormation patterns for large-scale infrastructure management</summary>
+  </publications>
+  
+  <skills>
+    <name>Cloud Platforms</name>
+    <level>Expert</level>
+    <yearsOfExperience>8</yearsOfExperience>
+    <comment>Extensive experience architecting and managing multi-cloud environments for enterprise applications</comment>
+    <keywords>
+      <item>AWS</item>
+      <item>Google Cloud Platform</item>
+      <item>Microsoft Azure</item>
+      <item>DigitalOcean</item>
+      <item>Cloudflare</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Container Orchestration</name>
+    <level>Expert</level>
+    <yearsOfExperience>6</yearsOfExperience>
+    <comment>Led multiple Kubernetes migrations and manage clusters serving millions of requests daily</comment>
+    <keywords>
+      <item>Kubernetes</item>
+      <item>Docker</item>
+      <item>Helm</item>
+      <item>Docker Compose</item>
+      <item>Rancher</item>
+    </keywords>
+  </skills>
+  
+  <tools>
+    <name>Terraform</name>
+    <group>Infrastructure as Code</group>
+    <yearsOfExperience>7</yearsOfExperience>
+    <level>Expert</level>
+    <comment>Primary IaC tool, authored 50+ reusable modules and contributed to open source</comment>
+    <url>https://www.terraform.io</url>
+  </tools>
+  
+  <tools>
+    <name>Kubernetes</name>
+    <group>Container Orchestration</group>
+    <yearsOfExperience>6</yearsOfExperience>
+    <level>Expert</level>
+    <comment>CKA certified, manage production clusters with 100+ nodes</comment>
+    <url>https://kubernetes.io</url>
+  </tools>
+  
+  <languages>
+    <language>English</language>
+    <fluency>Native</fluency>
+  </languages>
+  
+  <languages>
+    <language>French</language>
+    <fluency>Intermediate</fluency>
+  </languages>
+  
+  <interests>
+    <name>Open Source</name>
+    <keywords>
+      <item>Contributing to CNCF projects</item>
+      <item>Maintaining Terraform modules</item>
+      <item>Documentation improvements</item>
+    </keywords>
+  </interests>
+  
+  <interests>
+    <name>Technology</name>
+    <keywords>
+      <item>Cloud native architecture</item>
+      <item>Platform engineering</item>
+      <item>Site reliability engineering</item>
+    </keywords>
+  </interests>
+  
+  <references>
+    <name>Dr. James Morrison</name>
+    <reference>Eleanor is an exceptional engineer who combines deep technical expertise with outstanding leadership abilities. Her work on our infrastructure modernization project exceeded all expectations and set new standards for our engineering practices.</reference>
+  </references>
+  
+  <projects>
+    <name>K8s-AutoScale</name>
+    <description>Open-source Kubernetes autoscaling solution with predictive scaling based on historical metrics</description>
+    <highlights>
+      <item>1,200+ GitHub stars</item>
+      <item>Used in production by 50+ companies</item>
+      <item>Featured in CNCF landscape</item>
+      <item>Active community with 30+ contributors</item>
+    </highlights>
+    <keywords>
+      <item>Kubernetes</item>
+      <item>Go</item>
+      <item>Prometheus</item>
+      <item>Machine Learning</item>
+      <item>Autoscaling</item>
+    </keywords>
+    <startDate>2022-01</startDate>
+    <url>https://github.com/efitzdev/k8s-autoscale</url>
+    <roles>
+      <item>Creator</item>
+      <item>Lead Maintainer</item>
+    </roles>
+    <entity>Personal Project</entity>
+    <type>application</type>
+  </projects>
+  
+  <meta>
+    <canonical>https://eleanor-fitzwilliam.dev/resume.xml</canonical>
+    <version>v2.4.0</version>
+    <lastModified>2025-10-09T12:47:00+01:00</lastModified>
+    <dateCreated>2023-01-15T09:30:00+00:00</dateCreated>
+  </meta>
+  
+</resume>

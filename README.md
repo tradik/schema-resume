@@ -40,9 +40,14 @@ The schema includes the following main sections:
 
 The schema and related files are hosted on GitHub Pages:
 
+### JSON Schema
 - **Main Schema**: `https://tradik.github.io/schema-resume/schema.json`
 - **Meta Schema**: `https://tradik.github.io/schema-resume/meta-schema.json`
 - **JSON-LD Context**: `https://tradik.github.io/schema-resume/context.jsonld`
+
+### XML Schema (XSD)
+- **XSD Schema**: `https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd`
+- **XML Example**: `https://tradik.github.io/schema-resume/xml/1.0/example.xml`
 
 The schema is **self-contained** and does not rely on external JSON Schema definitions.
 
@@ -131,7 +136,67 @@ Create a JSON file with your resume data and reference the schema:
 }
 ```
 
-See [example.json](./example.json) for a complete example.
+See [example.json](./example.json) for a complete JSON example.
+
+### XML Example
+
+Create an XML file with your resume data and reference the XSD schema:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<resume xmlns="https://tradik.github.io/schema-resume/xml/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://tradik.github.io/schema-resume/xml/1.0
+                            https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd">
+  
+  <basics>
+    <name>John Doe</name>
+    <label>Software Engineer</label>
+    <email>john.doe@example.com</email>
+    <phone>+1-555-123-4567</phone>
+    <url>https://johndoe.dev</url>
+    <summary>Experienced software engineer with 10+ years in full-stack development.</summary>
+    
+    <location>
+      <city>San Francisco</city>
+      <countryCode>US</countryCode>
+      <region>California</region>
+    </location>
+    
+    <profiles>
+      <profile>
+        <network>LinkedIn</network>
+        <username>johndoe</username>
+        <url>https://linkedin.com/in/johndoe</url>
+      </profile>
+    </profiles>
+  </basics>
+  
+  <work>
+    <name>Tech Corp</name>
+    <position>Senior Software Engineer</position>
+    <startDate>2020-03</startDate>
+    <summary>Lead development of microservices architecture</summary>
+    <highlights>
+      <item>Reduced API response time by 40%</item>
+      <item>Mentored team of 5 junior developers</item>
+    </highlights>
+  </work>
+  
+  <skills>
+    <name>Backend Development</name>
+    <level>Expert</level>
+    <keywords>
+      <item>Node.js</item>
+      <item>Python</item>
+      <item>PostgreSQL</item>
+    </keywords>
+  </skills>
+  
+</resume>
+```
+
+See [xml/1.0/example.xml](./xml/1.0/example.xml) for a complete XML example.
 
 ### Validation
 
@@ -175,6 +240,67 @@ print("Resume is valid!")
 - **[Schema Resume Validator](https://tradik.github.io/schema-resume/validator.html)** - Recommended, specifically designed for this schema
 - [JSON Schema Validator](https://www.jsonschemavalidator.net/)
 - [JSON Schema Lint](https://jsonschemalint.com/)
+
+#### Validating XML Files
+
+You can validate your XML resume against the XSD schema using various tools:
+
+**Using xmllint (Linux/Mac):**
+
+```bash
+# Validate against local XSD
+xmllint --schema xml/1.0/schema-resume.xsd your-resume.xml --noout
+
+# Validate against hosted XSD
+xmllint --schema https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd your-resume.xml --noout
+```
+
+**Using Python:**
+
+```python
+from lxml import etree
+import requests
+
+# Load XSD schema
+xsd_url = "https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd"
+xsd_doc = etree.parse(requests.get(xsd_url, stream=True).raw)
+xsd_schema = etree.XMLSchema(xsd_doc)
+
+# Load and validate XML
+xml_doc = etree.parse('your-resume.xml')
+if xsd_schema.validate(xml_doc):
+    print("XML is valid!")
+else:
+    print("Validation errors:", xsd_schema.error_log)
+```
+
+**Using Java:**
+
+```java
+import javax.xml.XMLConstants;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.*;
+import java.io.File;
+import java.net.URL;
+
+public class ResumeValidator {
+    public static void main(String[] args) throws Exception {
+        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = factory.newSchema(
+            new URL("https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd")
+        );
+        
+        Validator validator = schema.newValidator();
+        validator.validate(new StreamSource(new File("your-resume.xml")));
+        System.out.println("XML is valid!");
+    }
+}
+```
+
+**Using Online XML Validators:**
+
+- [FreeFormatter XML Validator](https://www.freeformatter.com/xml-validator-xsd.html)
+- [XML Validation](https://www.xmlvalidation.com/)
 
 ## 📚 Field Descriptions
 
@@ -385,6 +511,7 @@ For questions, issues, or suggestions:
 
 - [x] Add JSON-LD context for semantic web integration
 - [x] Create online validator/linter
+- [x] Add XML Schema (XSD) support with comprehensive validation
 - [ ] Create TypeScript type definitions
 - [ ] Add validation examples for more languages
 - [ ] Create resume builder web application

@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **XML Schema (XSD) support**:
+  - Added comprehensive XSD schema definition at `xml/1.0/schema-resume.xsd`
+  - Created XML example file at `xml/1.0/example.xml`
+  - Full support for all resume sections in XML format
+  - Proper namespace definition: `https://tradik.github.io/schema-resume/xml/1.0`
+  - ISO 8601 date format validation in XSD
+  - Enumerated types for work types, proficiency levels, and language fluency
+  - Country code validation (ISO-3166-1 ALPHA-2)
+  - Comprehensive documentation in README.md with validation examples
+  - Support for xmllint, Python (lxml), Java, and online validators
 - **Converter tool**:
   - Added converter.html - real-time JSON to JSON-LD/XML converter
   - Dual-panel editor with live conversion as you type
