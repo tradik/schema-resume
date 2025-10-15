@@ -236,11 +236,11 @@
                 <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-2">
                         <i data-lucide="link" size="16" class="inline"></i>
-                        Context Type
+                        <span id="contextTypeLabel">Context Type</span>
                     </label>
                     <select id="contextType" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="remote">Remote Schema (URL)</option>
-                        <option value="inline">Inline Context</option>
+                        <option value="inline" id="inlineOption">Inline Context</option>
                     </select>
                 </div>
                 
@@ -449,13 +449,23 @@
         }
 
         // Convert JSON to XML
-        function convertToXml(data, indent = 0) {
+        function convertToXml(data, useInlineContext, indent = 0) {
             const indentStr = '  '.repeat(indent);
             let xml = '';
             
             if (indent === 0) {
                 xml += '<?xml version="1.0" encoding="UTF-8"?>\n';
-                xml += '<resume xmlns="https://tradik.github.io/schema-resume/schema.json">\n';
+                if (useInlineContext) {
+                    // Inline schema location (no remote reference)
+                    xml += '<resume xmlns="https://tradik.github.io/schema-resume/xml/1.0"\n';
+                    xml += '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n';
+                } else {
+                    // Remote schema location reference
+                    xml += '<resume xmlns="https://tradik.github.io/schema-resume/xml/1.0"\n';
+                    xml += '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n';
+                    xml += '        xsi:schemaLocation="https://tradik.github.io/schema-resume/xml/1.0\n';
+                    xml += '                            https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd">\n';
+                }
             }
             
             for (const [key, value] of Object.entries(data)) {
@@ -464,18 +474,25 @@
                 if (value === null || value === undefined) {
                     continue;
                 } else if (Array.isArray(value)) {
-                    value.forEach(item => {
-                        if (typeof item === 'object') {
+                    // Handle arrays - for XSD compatibility, wrap items in container
+                    if (value.length > 0 && typeof value[0] === 'object') {
+                        // Array of objects - each object becomes an element
+                        value.forEach(item => {
                             xml += `${indentStr}  <${key}>\n`;
-                            xml += convertToXml(item, indent + 2);
+                            xml += convertToXml(item, useInlineContext, indent + 2);
                             xml += `${indentStr}  </${key}>\n`;
-                        } else {
-                            xml += `${indentStr}  <${key}>${escapeXml(String(item))}</${key}>\n`;
-                        }
-                    });
+                        });
+                    } else if (value.length > 0) {
+                        // Array of primitives - wrap in parent element with <item> children
+                        xml += `${indentStr}  <${key}>\n`;
+                        value.forEach(item => {
+                            xml += `${indentStr}    <item>${escapeXml(String(item))}</item>\n`;
+                        });
+                        xml += `${indentStr}  </${key}>\n`;
+                    }
                 } else if (typeof value === 'object') {
                     xml += `${indentStr}  <${key}>\n`;
-                    xml += convertToXml(value, indent + 2);
+                    xml += convertToXml(value, useInlineContext, indent + 2);
                     xml += `${indentStr}  </${key}>\n`;
                 } else {
                     xml += `${indentStr}  <${key}>${escapeXml(String(value))}</${key}>\n`;
@@ -564,7 +581,7 @@
                     output = JSON.stringify(output, null, 2);
                     setStatus('output', 'success', 'JSON-LD generated');
                 } else if (format === 'xml') {
-                    output = convertToXml(data);
+                    output = convertToXml(data, useInlineContext);
                     setStatus('output', 'success', 'XML generated');
                 }
                 
@@ -670,6 +687,17 @@
         function updateFormatLabel() {
             const format = outputFormat.value;
             outputFormatLabel.textContent = format === 'jsonld' ? '(JSON-LD)' : '(XML)';
+            
+            // Update context type label based on format
+            const contextTypeLabel = document.getElementById('contextTypeLabel');
+            const inlineOption = document.getElementById('inlineOption');
+            if (format === 'xml') {
+                contextTypeLabel.textContent = 'Schema Location';
+                inlineOption.textContent = 'No Schema Location (Inline)';
+            } else {
+                contextTypeLabel.textContent = 'Context Type';
+                inlineOption.textContent = 'Inline Context';
+            }
         }
 
         // Event listeners
