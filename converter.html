@@ -498,8 +498,12 @@
                 return { valid: false, errors: ['Schema not loaded'] };
             }
             
+            // Create a copy without @context for validation (JSON-LD specific, not in schema)
+            const dataForValidation = { ...data };
+            delete dataForValidation['@context'];
+            
             const validate = ajv.compile(schema);
-            const valid = validate(data);
+            const valid = validate(dataForValidation);
             
             return {
                 valid,
