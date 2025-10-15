@@ -31,6 +31,15 @@
       "description": "link to the version of the schema that can validate the resume",
       "format": "uri"
     },
+    "@type": {
+      "type": "string",
+      "description": "JSON-LD type for the document, typically 'DigitalDocument' for Schema.org compatibility"
+    },
+    "additionalType": {
+      "type": "string",
+      "description": "Additional type information for the document, can be a URL or Schema.org type",
+      "format": "uri"
+    },
     "basics": {
       "type": "object",
       "additionalProperties": true,
@@ -141,6 +150,10 @@
             "type": "object",
             "additionalProperties": true,
             "properties": {
+              "@type": {
+                "type": "string",
+                "description": "Schema.org type, should be 'schema:Country' for validator.schema.org compatibility"
+              },
               "country": {
                 "type": "string",
                 "description": "Country of citizenship using ISO-3166-1 ALPHA-2 code (GB, US, FR, etc.)"
@@ -201,6 +214,10 @@
         "type": "object",
         "additionalProperties": true,
         "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Organization' for validator.schema.org compatibility"
+          },
           "name": {
             "type": "string",
             "description": "Company or organization name"
@@ -259,6 +276,10 @@
         "type": "object",
         "additionalProperties": true,
         "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Organization' for validator.schema.org compatibility"
+          },
           "organization": {
             "type": "string",
             "description": "Name of the charitable organization or community group"
@@ -377,6 +398,10 @@
         "type": "object",
         "additionalProperties": true,
         "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Award' for validator.schema.org compatibility"
+          },
           "title": {
             "type": "string",
             "description": "Name or title of the award"
@@ -542,6 +567,10 @@
         "type": "object",
         "additionalProperties": true,
         "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Language' for validator.schema.org compatibility"
+          },
           "language": {
             "type": "string",
             "description": "Name of the language"
@@ -561,6 +590,10 @@
         "type": "object",
         "additionalProperties": true,
         "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Thing' for validator.schema.org compatibility"
+          },
           "name": {
             "type": "string",
             "description": "Interest category or area"
@@ -604,6 +637,10 @@
         "type": "object",
         "additionalProperties": true,
         "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type for the project (e.g., 'schema:SoftwareApplication', 'schema:CreativeWork', 'schema:Event')"
+          },
           "name": {
             "type": "string",
             "description": "Project name or title"

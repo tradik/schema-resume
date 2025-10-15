@@ -1,0 +1,594 @@
+{
+  "@context": {
+    "@vocab": "https://tradik.github.io/schema-resume/",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dc": "http://purl.org/dc/terms/",
+    "name": "schema:name",
+    "email": "schema:email",
+    "url": "schema:url",
+    "telephone": "schema:telephone",
+    "address": "schema:address",
+    "jobTitle": "schema:jobTitle",
+    "worksFor": "schema:worksFor",
+    "alumniOf": "schema:alumniOf",
+    "award": "schema:award",
+    "knowsAbout": "schema:knowsAbout",
+    "knowsLanguage": "schema:knowsLanguage",
+    "homepage": "foaf:homepage",
+    "mbox": "foaf:mbox",
+    "created": "dc:created",
+    "modified": "dc:modified",
+    "creator": "dc:creator"
+  },
+  "$schema": "https://tradik.github.io/schema-resume/schema.json",
+  "@type": "DigitalDocument",
+  "additionalType": "https://tradik.github.io/schema-resume/Person",
+  "basics": {
+    "@type": "schema:Person",
+    "name": "Marcus Chen",
+    "label": "Full Stack Software Engineer",
+    "image": "https://avatars.example.com/mchen.jpg",
+    "email": "marcus.chen@techmail.com",
+    "phone": "+1 (415) 555-0142",
+    "url": "https://marcuschen.dev",
+    "summary": "Passionate full-stack engineer with 6+ years of experience building scalable web applications. Specialized in React, Node.js, and cloud-native architectures with a focus on user experience and performance optimization.",
+    "keyAchievements": [
+      "Architected and launched SaaS platform serving 100K+ users with 99.9% uptime",
+      "Reduced application load time by 60% through performance optimization initiatives",
+      "Led team of 5 engineers to deliver major product features ahead of schedule",
+      "Open source contributor with 3K+ GitHub stars across projects",
+      "Implemented accessibility improvements achieving WCAG 2.1 AA compliance"
+    ],
+    "coreCompetencies": [
+      "Full Stack Web Development",
+      "React & Modern JavaScript Frameworks",
+      "Node.js & Backend Architecture",
+      "RESTful & GraphQL API Design",
+      "Database Design & Optimization",
+      "Cloud Infrastructure (AWS, GCP)",
+      "Agile Development & Team Leadership",
+      "UI/UX Design Principles",
+      "Test-Driven Development"
+    ],
+    "location": {
+      "@type": "schema:PostalAddress",
+      "streetAddress": "1234 Market Street\nApt 567",
+      "postalCode": "94103",
+      "city": "San Francisco",
+      "countryCode": "US",
+      "region": "California"
+    },
+    "profiles": [
+      {
+        "@type": "schema:ContactPoint",
+        "network": "LinkedIn",
+        "username": "marcuschen-dev",
+        "url": "https://linkedin.com/in/marcuschen-dev"
+      },
+      {
+        "@type": "schema:ContactPoint",
+        "network": "GitHub",
+        "username": "mchen-dev",
+        "url": "https://github.com/mchen-dev"
+      },
+      {
+        "@type": "schema:ContactPoint",
+        "network": "Twitter",
+        "username": "marcuschen_dev",
+        "url": "https://twitter.com/marcuschen_dev"
+      },
+      {
+        "@type": "schema:ContactPoint",
+        "network": "Stack Overflow",
+        "username": "marcus-chen",
+        "url": "https://stackoverflow.com/users/1234567/marcus-chen"
+      }
+    ],
+    "nationalities": [
+      {
+        "@type": "schema:Country",
+        "country": "US",
+        "born": true
+      }
+    ],
+    "workAuthorization": {
+      "rightToWork": [
+        "US"
+      ]
+    }
+  },
+  "work": [
+    {
+      "@type": "schema:Organization",
+      "name": "TechFlow Inc.",
+      "workLocation": "San Francisco, CA",
+      "description": "B2B SaaS platform for workflow automation",
+      "position": "Senior Full Stack Engineer",
+      "workType": "hybrid",
+      "url": "https://techflow.io",
+      "startDate": "2022-03",
+      "summary": "Leading development of core platform features and mentoring junior engineers in a fast-paced startup environment",
+      "highlights": [
+        "Architected microservices-based backend handling 1M+ API requests daily",
+        "Built real-time collaboration features using WebSockets and Redis",
+        "Improved test coverage from 45% to 85% across frontend and backend",
+        "Led migration from monolith to microservices architecture",
+        "Mentored 3 junior engineers who were promoted to mid-level roles"
+      ]
+    },
+    {
+      "@type": "schema:Organization",
+      "name": "DataViz Solutions",
+      "workLocation": "Remote",
+      "description": "Data visualization and analytics platform",
+      "position": "Full Stack Engineer",
+      "workType": "remote",
+      "url": "https://dataviz-solutions.com",
+      "startDate": "2019-06",
+      "endDate": "2022-02",
+      "summary": "Developed interactive data visualization tools and dashboards for enterprise clients",
+      "highlights": [
+        "Built custom charting library used by 50+ enterprise clients",
+        "Reduced dashboard load time by 60% through optimization and caching",
+        "Implemented OAuth 2.0 and SSO integration for enterprise customers",
+        "Created comprehensive API documentation and developer guides"
+      ]
+    },
+    {
+      "@type": "schema:Organization",
+      "name": "WebCraft Studios",
+      "workLocation": "Seattle, WA",
+      "description": "Digital agency specializing in web applications",
+      "position": "Frontend Developer",
+      "workType": "onsite",
+      "url": "https://webcraft-studios.com",
+      "startDate": "2017-08",
+      "endDate": "2019-05",
+      "summary": "Developed responsive web applications for diverse clients across various industries",
+      "highlights": [
+        "Delivered 15+ client projects with 100% on-time completion rate",
+        "Implemented responsive designs achieving 95+ Google Lighthouse scores",
+        "Introduced React and modern build tools to the development workflow",
+        "Collaborated with designers to create pixel-perfect implementations"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "@type": "schema:Organization",
+      "organization": "Code for America",
+      "position": "Volunteer Developer",
+      "url": "https://codeforamerica.org",
+      "startDate": "2020-01",
+      "summary": "Contributing to civic tech projects that improve government services and community resources",
+      "highlights": [
+        "Developed features for public benefit eligibility screening tool",
+        "Participated in monthly brigade meetings and hack nights",
+        "Collaborated with government agencies and community organizations"
+      ]
+    },
+    {
+      "@type": "schema:Organization",
+      "organization": "FreeCodeCamp",
+      "position": "Mentor",
+      "url": "https://freecodecamp.org",
+      "startDate": "2018-09",
+      "summary": "Mentoring aspiring developers through online forums and code reviews",
+      "highlights": [
+        "Provided guidance to 50+ learners on web development topics",
+        "Conducted code reviews and offered constructive feedback",
+        "Created tutorial content for JavaScript and React"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "@type": "schema:EducationalOrganization",
+      "institution": "University of California, Berkeley",
+      "url": "https://berkeley.edu",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "degree": "BS Computer Science",
+      "description": "Focused on software engineering, algorithms, and web technologies. Active member of the Web Development Club and participated in multiple hackathons.",
+      "startDate": "2013-08",
+      "endDate": "2017-05",
+      "score": "3.7 GPA",
+      "gpa": "3.7/4.0",
+      "location": "Berkeley, California",
+      "country": "US",
+      "courses": [
+        "CS61A - Structure and Interpretation of Computer Programs",
+        "CS61B - Data Structures",
+        "CS170 - Efficient Algorithms and Intractable Problems",
+        "CS186 - Database Systems",
+        "CS169 - Software Engineering"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "@type": "schema:Award",
+      "title": "Employee of the Year",
+      "date": "2023-12",
+      "awarder": "TechFlow Inc.",
+      "summary": "Recognized for exceptional technical contributions and team leadership"
+    },
+    {
+      "@type": "schema:Award",
+      "title": "Best Technical Innovation",
+      "date": "2021-10",
+      "awarder": "DataViz Solutions",
+      "summary": "Awarded for developing breakthrough performance optimization techniques"
+    },
+    {
+      "@type": "schema:Award",
+      "title": "Hackathon Winner - Best Overall Project",
+      "date": "2016-11",
+      "awarder": "Cal Hacks 3.0",
+      "summary": "Led team to first place with real-time collaborative coding platform"
+    }
+  ],
+  "certificates": [
+    {
+      "@type": "schema:EducationalOccupationalCredential",
+      "name": "AWS Certified Developer - Associate",
+      "date": "2023-03",
+      "url": "https://aws.amazon.com/certification/certified-developer-associate/",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "@type": "schema:EducationalOccupationalCredential",
+      "name": "Professional Scrum Master I (PSM I)",
+      "date": "2022-07",
+      "url": "https://www.scrum.org/professional-scrum-master-i-certification",
+      "issuer": "Scrum.org"
+    },
+    {
+      "@type": "schema:EducationalOccupationalCredential",
+      "name": "MongoDB Certified Developer",
+      "date": "2021-05",
+      "url": "https://university.mongodb.com/certification",
+      "issuer": "MongoDB University"
+    }
+  ],
+  "publications": [
+    {
+      "@type": "schema:Article",
+      "name": "Building Scalable Real-Time Applications with WebSockets",
+      "publisher": "Dev.to",
+      "releaseDate": "2023-08",
+      "url": "https://dev.to/marcuschen/building-scalable-realtime-apps",
+      "summary": "Comprehensive guide on implementing WebSocket-based real-time features in production applications with best practices for scaling and error handling"
+    },
+    {
+      "@type": "schema:Article",
+      "name": "Modern React Patterns: Hooks, Context, and Performance",
+      "publisher": "Medium",
+      "releaseDate": "2022-11",
+      "url": "https://medium.com/@marcuschen/modern-react-patterns",
+      "summary": "Deep dive into advanced React patterns and performance optimization techniques for large-scale applications"
+    }
+  ],
+  "skills": [
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Frontend Development",
+      "level": "Expert",
+      "yearsOfExperience": 6,
+      "comment": "Extensive experience building modern, responsive web applications with focus on performance and accessibility",
+      "keywords": [
+        "React",
+        "TypeScript",
+        "JavaScript (ES6+)",
+        "HTML5",
+        "CSS3",
+        "Sass/SCSS",
+        "Tailwind CSS",
+        "Next.js",
+        "Vue.js",
+        "Webpack",
+        "Vite"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Backend Development",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Strong experience in building RESTful and GraphQL APIs with Node.js and various frameworks",
+      "keywords": [
+        "Node.js",
+        "Express.js",
+        "NestJS",
+        "GraphQL",
+        "REST APIs",
+        "WebSockets",
+        "Microservices",
+        "Python",
+        "Django"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Databases",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Experience with both SQL and NoSQL databases, including schema design and query optimization",
+      "keywords": [
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "MySQL",
+        "DynamoDB",
+        "Elasticsearch"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Cloud & DevOps",
+      "level": "Intermediate",
+      "yearsOfExperience": 4,
+      "comment": "Proficient in deploying and managing applications on cloud platforms with CI/CD pipelines",
+      "keywords": [
+        "AWS",
+        "Google Cloud Platform",
+        "Docker",
+        "Kubernetes",
+        "GitHub Actions",
+        "CircleCI",
+        "Terraform"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Testing",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Strong advocate for test-driven development with comprehensive testing strategies",
+      "keywords": [
+        "Jest",
+        "React Testing Library",
+        "Cypress",
+        "Playwright",
+        "Mocha",
+        "Chai",
+        "Supertest"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "React",
+      "group": "Frontend Frameworks",
+      "yearsOfExperience": 6,
+      "level": "Expert",
+      "comment": "Primary frontend framework, built 20+ production applications",
+      "url": "https://react.dev"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Node.js",
+      "group": "Backend Runtime",
+      "yearsOfExperience": 5,
+      "level": "Advanced",
+      "comment": "Backend development for APIs and microservices",
+      "url": "https://nodejs.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "TypeScript",
+      "group": "Programming Languages",
+      "yearsOfExperience": 4,
+      "level": "Advanced",
+      "comment": "Type-safe development across frontend and backend",
+      "url": "https://www.typescriptlang.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "PostgreSQL",
+      "group": "Databases",
+      "yearsOfExperience": 5,
+      "level": "Advanced",
+      "comment": "Primary relational database, including complex queries and optimization",
+      "url": "https://www.postgresql.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Docker",
+      "group": "DevOps",
+      "yearsOfExperience": 4,
+      "level": "Intermediate",
+      "comment": "Containerization for development and production environments",
+      "url": "https://www.docker.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Git",
+      "group": "Version Control",
+      "yearsOfExperience": 6,
+      "level": "Advanced",
+      "comment": "Version control and collaboration workflows",
+      "url": "https://git-scm.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Figma",
+      "group": "Design Tools",
+      "yearsOfExperience": 3,
+      "level": "Intermediate",
+      "comment": "Collaborating with designers and implementing designs",
+      "url": "https://www.figma.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "VS Code",
+      "yearsOfExperience": 6,
+      "comment": "Primary development environment with extensive customization",
+      "url": "https://code.visualstudio.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Postman",
+      "yearsOfExperience": 5,
+      "comment": "API development and testing",
+      "url": "https://www.postman.com"
+    }
+  ],
+  "languages": [
+    {
+      "@type": "schema:Language",
+      "language": "English",
+      "fluency": "Native"
+    },
+    {
+      "@type": "schema:Language",
+      "language": "Mandarin Chinese",
+      "fluency": "Intermediate"
+    },
+    {
+      "@type": "schema:Language",
+      "language": "Spanish",
+      "fluency": "Basic"
+    }
+  ],
+  "interests": [
+    {
+      "@type": "schema:Thing",
+      "name": "Open Source",
+      "keywords": [
+        "Contributing to React ecosystem",
+        "Maintaining npm packages",
+        "Documentation and tutorials"
+      ]
+    },
+    {
+      "@type": "schema:Thing",
+      "name": "Web Technologies",
+      "keywords": [
+        "Web performance optimization",
+        "Progressive Web Apps",
+        "Web accessibility (a11y)",
+        "Modern CSS techniques"
+      ]
+    },
+    {
+      "@type": "schema:Thing",
+      "name": "Photography",
+      "keywords": [
+        "Landscape photography",
+        "Street photography",
+        "Photo editing"
+      ]
+    },
+    {
+      "@type": "schema:Thing",
+      "name": "Gaming",
+      "keywords": [
+        "Indie games",
+        "Game development",
+        "Speedrunning"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "@type": "schema:Review",
+      "name": "Jennifer Rodriguez",
+      "reference": "Marcus is one of the most talented engineers I've had the pleasure of working with. His technical skills are exceptional, but what really sets him apart is his ability to communicate complex ideas clearly and his dedication to mentoring others. He was instrumental in our platform's success."
+    },
+    {
+      "@type": "schema:Review",
+      "name": "David Kim",
+      "reference": "I worked closely with Marcus for two years at DataViz Solutions. His problem-solving abilities and attention to detail are outstanding. He consistently delivered high-quality code and was always willing to help teammates overcome technical challenges."
+    }
+  ],
+  "projects": [
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "React Performance Toolkit",
+      "description": "Open-source library providing performance monitoring and optimization tools for React applications",
+      "highlights": [
+        "3,000+ GitHub stars",
+        "50,000+ weekly npm downloads",
+        "Featured in React newsletter",
+        "Used by companies like Spotify and Airbnb"
+      ],
+      "keywords": [
+        "React",
+        "Performance",
+        "TypeScript",
+        "Developer Tools"
+      ],
+      "startDate": "2021-09",
+      "url": "https://github.com/mchen-dev/react-perf-toolkit",
+      "roles": [
+        "Creator",
+        "Lead Maintainer"
+      ],
+      "entity": "Personal Project",
+      "type": "application"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "CollabCode",
+      "description": "Real-time collaborative code editor with video chat and pair programming features",
+      "highlights": [
+        "Won Best Overall Project at Cal Hacks 3.0",
+        "Built with WebRTC and operational transforms",
+        "Supports 10+ programming languages",
+        "Featured on Product Hunt"
+      ],
+      "keywords": [
+        "WebRTC",
+        "Real-time Collaboration",
+        "WebSockets",
+        "React",
+        "Node.js"
+      ],
+      "startDate": "2016-10",
+      "endDate": "2017-03",
+      "url": "https://github.com/mchen-dev/collabcode",
+      "roles": [
+        "Co-Creator",
+        "Lead Developer"
+      ],
+      "entity": "Hackathon Project",
+      "type": "application"
+    },
+    {
+      "@type": "schema:Event",
+      "name": "API Design Workshop Series",
+      "description": "Educational workshop series on RESTful and GraphQL API design best practices",
+      "highlights": [
+        "Delivered to 200+ developers at tech meetups",
+        "4.8/5 average rating",
+        "Created comprehensive learning materials and code examples",
+        "Presented at React SF and Node.js SF meetups"
+      ],
+      "keywords": [
+        "API Design",
+        "REST",
+        "GraphQL",
+        "Education",
+        "Node.js"
+      ],
+      "startDate": "2022-01",
+      "url": "https://api-design-workshop.dev",
+      "roles": [
+        "Instructor",
+        "Content Creator"
+      ],
+      "entity": "Community Education",
+      "type": "conference"
+    }
+  ],
+  "meta": {
+    "canonical": "https://marcuschen.dev/resume.json",
+    "version": "v2.4.0",
+    "lastModified": "2025-10-15T10:30:00-07:00",
+    "dateCreated": "2024-02-20T14:15:00-08:00"
+  }
+}

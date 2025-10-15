@@ -8,6 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Schema.org validation support**:
+  - Added `@type` field to all schema sections for validator.schema.org compatibility
+  - `@type` property in basics (schema:Person)
+  - `@type` property in location (schema:PostalAddress)
+  - `@type` property in profiles[] (schema:ContactPoint)
+  - `@type` property in nationalities[] (schema:Country)
+  - `@type` property in work[] (schema:Organization)
+  - `@type` property in volunteer[] (schema:Organization)
+  - `@type` property in education[] (schema:EducationalOrganization)
+  - `@type` property in awards[] (schema:Award)
+  - `@type` property in certificates[] (schema:EducationalOccupationalCredential)
+  - `@type` property in publications[] (schema:Article)
+  - `@type` property in skills[] (schema:DefinedTerm)
+  - `@type` property in tools[] (schema:SoftwareApplication)
+  - `@type` property in projects[] (schema:SoftwareApplication or schema:Event)
+  - `@type` property in languages[] (schema:Language)
+  - `@type` property in interests[] (schema:Thing)
+  - `@type` property in references[] (schema:Review)
+  - `streetAddress` property in location for Schema.org compliance (address kept for backwards compatibility)
+  - Document-level `@type` property (e.g., "DigitalDocument") for document classification
+  - Document-level `additionalType` property for additional type information
+- **Documentation enhancements**:
+  - Added SCHEMA-ORG-VALIDATION.md guide with complete @type mapping
+  - Added second example file (example-with-local-context.json) demonstrating local context definition
+  - Updated JSON-LD.md with @type requirements and examples
+  - Added @type support to context.jsonld and meta-schema.json
 - **Basics section enhancements**:
   - `title` field for honorific title or prefix (e.g., Dr., Prof., Mr., Ms., Mx.)
   - `dateOfBirth` field for date of birth in ISO 8601 format

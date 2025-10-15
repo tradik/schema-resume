@@ -58,6 +58,14 @@
     "@context": {
       "description": "JSON-LD context for semantic web integration"
     },
+    "@type": {
+      "type": "string",
+      "description": "JSON-LD type annotation for semantic web compatibility (e.g., 'schema:Person', 'schema:Organization')"
+    },
+    "additionalType": {
+      "type": "string",
+      "description": "Additional type information for semantic web compatibility, can be a URL or Schema.org type"
+    },
     "title": {
       "type": "string",
       "description": "Human-readable title for the schema"

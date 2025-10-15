@@ -69,6 +69,11 @@
       "@type": "@id"
     },
     
+    "streetAddress": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    
     "address": {
       "@id": "schema:streetAddress",
       "@type": "xsd:string"
@@ -391,6 +396,16 @@
     
     "type": {
       "@id": "rdf:type",
+      "@type": "@id"
+    },
+    
+    "@type": {
+      "@id": "rdf:type",
+      "@type": "@id"
+    },
+    
+    "additionalType": {
+      "@id": "schema:additionalType",
       "@type": "@id"
     },
     

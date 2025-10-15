@@ -62,6 +62,8 @@ Simply paste your JSON-LD CV and click "Validate" to check for errors and warnin
 
 ## 📖 Usage
 
+> **⚠️ Important for Schema.org Validation**: If you plan to validate your resume with **validator.schema.org**, you must include `@type` properties for all structured entities (basics, location, profiles, nationalities, work, volunteer, education, awards, certificates, publications, skills, tools, projects, languages, interests, references). Also use `streetAddress` instead of `address` in location. See [SCHEMA-ORG-VALIDATION.md](./docs/SCHEMA-ORG-VALIDATION.md) for complete details. The `@type` field is optional for standard JSON Schema validation.
+
 ### Basic Example
 
 Create a JSON file with your resume data and reference the schema:
@@ -346,6 +348,14 @@ Schema Resume includes full JSON-LD support for semantic web integration. See [J
 - RDF conversion examples
 - SPARQL query examples
 - Integration with knowledge graphs
+
+### Schema.org Validation
+
+When validating with **validator.schema.org**, you need to include `@type` properties for structured entities. See [SCHEMA-ORG-VALIDATION.md](./SCHEMA-ORG-VALIDATION.md) for:
+- Required `@type` values for different sections
+- Common Schema.org types for projects, work, education
+- Troubleshooting validation errors
+- Best practices for semantic web integration
 
 ## 📞 Support
 

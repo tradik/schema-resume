@@ -2,6 +2,7 @@
   "@context": "https://tradik.github.io/schema-resume/schema.json",
   "$schema": "https://tradik.github.io/schema-resume/schema.json",
   "basics": {
+    "@type": "schema:Person",
     "name": "Eleanor Fitzwilliam",
     "label": "Lead DevOps Engineer",
     "image": "https://avatars.example.co.uk/efitzwilliam.jpg",
@@ -29,7 +30,8 @@
       "Python, Go, Bash Scripting"
     ],
     "location": {
-      "address": "42 Kensington Gardens\nFlat 3B",
+      "@type": "schema:PostalAddress",
+      "streetAddress": "42 Kensington Gardens\nFlat 3B",
       "postalCode": "W2 4RU",
       "city": "London",
       "countryCode": "GB",
@@ -37,16 +39,19 @@
     },
     "profiles": [
       {
+        "@type": "schema:ContactPoint",
         "network": "LinkedIn",
         "username": "eleanor-fitzwilliam",
         "url": "https://linkedin.com/in/eleanor-fitzwilliam"
       },
       {
+        "@type": "schema:ContactPoint",
         "network": "GitHub",
         "username": "efitzdev",
         "url": "https://github.com/efitzdev"
       },
       {
+        "@type": "schema:ContactPoint",
         "network": "Twitter",
         "username": "ellie_devops",
         "url": "https://twitter.com/ellie_devops"
@@ -54,6 +59,7 @@
     ],
     "nationalities": [
       {
+        "@type": "schema:Country",
         "country": "GB",
         "born": true
       }
@@ -74,6 +80,7 @@
   },
   "work": [
     {
+      "@type": "schema:Organization",
       "name": "CloudScale Technologies Ltd",
       "workLocation": "Manchester, UK",
       "description": "Enterprise cloud solutions provider",
@@ -90,6 +97,7 @@
       ]
     },
     {
+      "@type": "schema:Organization",
       "name": "FinTech Innovations plc",
       "workLocation": "Edinburgh, Scotland",
       "description": "Financial technology startup",
@@ -107,6 +115,7 @@
       ]
     },
     {
+      "@type": "schema:Organization",
       "name": "Digital Solutions UK",
       "workLocation": "Bristol, UK",
       "description": "Web development agency",
@@ -125,6 +134,7 @@
   ],
   "volunteer": [
     {
+      "@type": "schema:Organization",
       "organization": "Code Club UK",
       "position": "Technical Mentor",
       "url": "https://codeclub.org.uk",
@@ -137,6 +147,7 @@
       ]
     },
     {
+      "@type": "schema:Organization",
       "organization": "Women in Tech Manchester",
       "position": "Speaker and Organizer",
       "url": "https://womenintech-mcr.org.uk",
@@ -151,6 +162,7 @@
   ],
   "education": [
     {
+      "@type": "schema:EducationalOrganization",
       "institution": "University of Edinburgh",
       "url": "https://ed.ac.uk",
       "area": "Computer Science",
@@ -171,6 +183,7 @@
       ]
     },
     {
+      "@type": "schema:EducationalOrganization",
       "institution": "King Edward VI Grammar School",
       "school": "King Edward VI Grammar School",
       "url": "https://kegs.org.uk",
@@ -186,18 +199,21 @@
   ],
   "awards": [
     {
+      "@type": "schema:Award",
       "title": "DevOps Excellence Award",
       "date": "2023-11",
       "awarder": "CloudScale Technologies Ltd",
       "summary": "Recognized for outstanding contribution to infrastructure modernization and team leadership"
     },
     {
+      "@type": "schema:Award",
       "title": "Best Technical Innovation",
       "date": "2020-03",
       "awarder": "FinTech UK Awards",
       "summary": "Awarded for implementing automated compliance monitoring system"
     },
     {
+      "@type": "schema:Award",
       "title": "Dean's List",
       "date": "2015-06",
       "awarder": "University of Edinburgh",
@@ -206,24 +222,28 @@
   ],
   "certificates": [
     {
+      "@type": "schema:EducationalOccupationalCredential",
       "name": "AWS Certified Solutions Architect - Professional",
       "date": "2023-07",
       "url": "https://aws.amazon.com/certification/",
       "issuer": "Amazon Web Services"
     },
     {
+      "@type": "schema:EducationalOccupationalCredential",
       "name": "Certified Kubernetes Administrator (CKA)",
       "date": "2022-11",
       "url": "https://www.cncf.io/certification/cka/",
       "issuer": "Cloud Native Computing Foundation"
     },
     {
+      "@type": "schema:EducationalOccupationalCredential",
       "name": "HashiCorp Certified: Terraform Associate",
       "date": "2021-09",
       "url": "https://www.hashicorp.com/certification/terraform-associate",
       "issuer": "HashiCorp"
     },
     {
+      "@type": "schema:EducationalOccupationalCredential",
       "name": "Google Cloud Professional Cloud Architect",
       "date": "2020-04",
       "url": "https://cloud.google.com/certification/cloud-architect",
@@ -232,6 +252,7 @@
   ],
   "publications": [
     {
+      "@type": "schema:Article",
       "name": "Infrastructure as Code: Best Practices for Enterprise Deployments",
       "publisher": "DevOps Weekly",
       "releaseDate": "2023-05",
@@ -239,6 +260,7 @@
       "summary": "Comprehensive guide covering Terraform, Ansible, and CloudFormation patterns for large-scale infrastructure management"
     },
     {
+      "@type": "schema:Article",
       "name": "Zero-Downtime Deployments in Kubernetes",
       "publisher": "Cloud Architecture Journal",
       "releaseDate": "2022-08",
@@ -248,6 +270,7 @@
   ],
   "skills": [
     {
+      "@type": "schema:DefinedTerm",
       "name": "Cloud Platforms",
       "level": "Expert",
       "yearsOfExperience": 8,
@@ -261,6 +284,7 @@
       ]
     },
     {
+      "@type": "schema:DefinedTerm",
       "name": "Container Orchestration",
       "level": "Expert",
       "yearsOfExperience": 6,
@@ -274,6 +298,7 @@
       ]
     },
     {
+      "@type": "schema:DefinedTerm",
       "name": "Infrastructure as Code",
       "level": "Expert",
       "yearsOfExperience": 7,
@@ -287,6 +312,7 @@
       ]
     },
     {
+      "@type": "schema:DefinedTerm",
       "name": "CI/CD",
       "level": "Advanced",
       "yearsOfExperience": 7,
@@ -300,6 +326,7 @@
       ]
     },
     {
+      "@type": "schema:DefinedTerm",
       "name": "Monitoring & Observability",
       "level": "Advanced",
       "yearsOfExperience": 6,
@@ -314,6 +341,7 @@
       ]
     },
     {
+      "@type": "schema:DefinedTerm",
       "name": "Programming",
       "level": "Advanced",
       "yearsOfExperience": 9,
@@ -327,6 +355,7 @@
       ]
     },
     {
+      "@type": "schema:DefinedTerm",
       "name": "Databases",
       "level": "Intermediate",
       "yearsOfExperience": 5,
@@ -342,6 +371,7 @@
   ],
   "tools": [
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Terraform",
       "group": "Infrastructure as Code",
       "yearsOfExperience": 7,
@@ -350,6 +380,7 @@
       "url": "https://www.terraform.io"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Kubernetes",
       "group": "Container Orchestration",
       "yearsOfExperience": 6,
@@ -358,6 +389,7 @@
       "url": "https://kubernetes.io"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "AWS",
       "group": "Cloud Platforms",
       "yearsOfExperience": 8,
@@ -366,6 +398,7 @@
       "url": "https://aws.amazon.com"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Docker",
       "group": "Container Orchestration",
       "yearsOfExperience": 7,
@@ -374,6 +407,7 @@
       "url": "https://www.docker.com"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Prometheus",
       "group": "Monitoring & Logging",
       "yearsOfExperience": 5,
@@ -382,6 +416,7 @@
       "url": "https://prometheus.io"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Grafana",
       "group": "Monitoring & Logging",
       "yearsOfExperience": 5,
@@ -390,6 +425,7 @@
       "url": "https://grafana.com"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "ELK Stack",
       "group": "Monitoring & Logging",
       "yearsOfExperience": 4,
@@ -398,6 +434,7 @@
       "url": "https://www.elastic.co/elastic-stack"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Nginx",
       "group": "Web & Servers",
       "yearsOfExperience": 8,
@@ -406,6 +443,7 @@
       "url": "https://nginx.org"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "GitHub Actions",
       "group": "CI/CD",
       "yearsOfExperience": 4,
@@ -414,24 +452,28 @@
       "url": "https://github.com/features/actions"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Ansible",
       "yearsOfExperience": 6,
       "comment": "Configuration management and automation for infrastructure provisioning",
       "url": "https://www.ansible.com"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Grafana",
       "yearsOfExperience": 5,
       "comment": "Built 50+ dashboards for infrastructure and application monitoring",
       "url": "https://grafana.com"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "ArgoCD",
       "yearsOfExperience": 3,
       "comment": "Implemented GitOps workflows for Kubernetes deployments",
       "url": "https://argo-cd.readthedocs.io"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Helm",
       "yearsOfExperience": 5,
       "comment": "Package management for Kubernetes, created 20+ charts",
@@ -440,20 +482,24 @@
   ],
   "languages": [
     {
+      "@type": "schema:Language",
       "language": "English",
       "fluency": "Native"
     },
     {
+      "@type": "schema:Language",
       "language": "French",
       "fluency": "Intermediate"
     },
     {
+      "@type": "schema:Language",
       "language": "Spanish",
       "fluency": "Basic"
     }
   ],
   "interests": [
     {
+      "@type": "schema:Thing",
       "name": "Open Source",
       "keywords": [
         "Contributing to CNCF projects",
@@ -462,6 +508,7 @@
       ]
     },
     {
+      "@type": "schema:Thing",
       "name": "Technology",
       "keywords": [
         "Cloud native architecture",
@@ -470,6 +517,7 @@
       ]
     },
     {
+      "@type": "schema:Thing",
       "name": "Outdoor Activities",
       "keywords": [
         "Hiking in the Lake District",
@@ -478,6 +526,7 @@
       ]
     },
     {
+      "@type": "schema:Thing",
       "name": "Community",
       "keywords": [
         "Tech meetups",
@@ -488,16 +537,19 @@
   ],
   "references": [
     {
+      "@type": "schema:Review",
       "name": "Dr. James Morrison",
       "reference": "Eleanor is an exceptional engineer who combines deep technical expertise with outstanding leadership abilities. Her work on our infrastructure modernization project exceeded all expectations and set new standards for our engineering practices."
     },
     {
+      "@type": "schema:Review",
       "name": "Sarah Chen",
       "reference": "I had the pleasure of working with Eleanor for three years at FinTech Innovations. Her ability to design robust, scalable systems while maintaining a pragmatic approach to problem-solving made her invaluable to our team. She's also an excellent mentor who genuinely cares about helping others grow."
     }
   ],
   "projects": [
     {
+      "@type": "schema:SoftwareApplication",
       "name": "K8s-AutoScale",
       "description": "Open-source Kubernetes autoscaling solution with predictive scaling based on historical metrics",
       "highlights": [
@@ -523,6 +575,7 @@
       "type": "application"
     },
     {
+      "@type": "schema:Event",
       "name": "DevOps Masterclass Series",
       "description": "Educational workshop series covering modern DevOps practices and cloud architecture",
       "highlights": [
@@ -549,6 +602,7 @@
       "type": "conference"
     },
     {
+      "@type": "schema:SoftwareApplication",
       "name": "Terraform AWS Modules Collection",
       "description": "Comprehensive collection of production-ready Terraform modules for AWS infrastructure",
       "highlights": [
