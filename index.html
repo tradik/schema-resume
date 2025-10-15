@@ -6,20 +6,58 @@
     <meta name="description" content="A self-hosted JSON-LD schema for CV/Resume parsing and validation. Standardized format with semantic web integration, no external dependencies.">
     <meta name="keywords" content="JSON Schema, Resume, CV, Parser, Validation, JSON-LD">
     <meta name="author" content="Tradik">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://tradik.github.io/schema-resume/">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tradik.github.io/schema-resume/">
     <meta property="og:title" content="Schema Resume - JSON Schema for CV/Resume Parsing">
     <meta property="og:description" content="A self-hosted JSON-LD schema for CV/Resume parsing and validation with semantic web integration">
+    <meta property="og:image" content="https://tradik.github.io/schema-resume/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Schema Resume">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://tradik.github.io/schema-resume/">
     <meta property="twitter:title" content="Schema Resume - JSON Schema for CV/Resume Parsing">
     <meta property="twitter:description" content="A self-hosted JSON-LD schema for CV/Resume parsing and validation with semantic web integration">
+    <meta property="twitter:image" content="https://tradik.github.io/schema-resume/og-image.png">
+    <meta name="twitter:creator" content="@tradik">
     
     <title>Schema Resume - JSON Schema for CV/Resume Parsing</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Schema Resume",
+      "applicationCategory": "DeveloperApplication",
+      "description": "A self-hosted JSON-LD schema for CV/Resume parsing and validation with semantic web integration",
+      "url": "https://tradik.github.io/schema-resume/",
+      "author": {
+        "@type": "Organization",
+        "name": "Tradik"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "softwareVersion": "1.1.0",
+      "operatingSystem": "Any",
+      "license": "https://opensource.org/licenses/MIT",
+      "codeRepository": "https://github.com/tradik/schema-resume"
+    }
+    </script>
     
     <style>
         :root {
@@ -251,7 +289,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>📄 Schema Resume</h1>
+            <h1><span role="img" aria-label="Document">📄</span> Schema Resume</h1>
             <p>A comprehensive JSON Schema for CV/Resume parsing and validation</p>
             <div class="badges">
                 <span class="badge">Schema v1.1.0</span>
@@ -263,12 +301,12 @@
 
     <main class="container">
         <section id="validator" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 30px; border-radius: 12px; margin-bottom: 40px; color: white; text-align: center;">
-            <h2 style="color: white; border: none; margin-bottom: 15px; font-size: 1.75rem;">✨ Try the Online Validator</h2>
+            <h2 style="color: white; border: none; margin-bottom: 15px; font-size: 1.75rem;"><span role="img" aria-label="Sparkles">✨</span> Try the Online Validator</h2>
             <p style="margin-bottom: 20px; font-size: 1.1rem; opacity: 0.95;">
                 Validate your JSON-LD CV instantly with our online validator. Get real-time feedback, detailed error messages, and helpful suggestions.
             </p>
-            <a href="./validator.html" class="btn" style="background-color: white; color: var(--primary-color); font-size: 1.1rem; padding: 14px 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
-                🚀 Launch Validator
+            <a href="./validator.html" class="btn" style="background-color: white; color: var(--primary-color); font-size: 1.1rem; padding: 14px 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" aria-label="Launch online validator">
+                <span role="img" aria-label="Rocket">🚀</span> Launch Validator
             </a>
         </section>
 
@@ -286,31 +324,31 @@
             <h2>Features</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>🎯 Comprehensive</h3>
+                    <h3><span role="img" aria-label="Target">🎯</span> Comprehensive</h3>
                     <p>Covers all standard resume sections including work experience, education, skills, certifications, and more.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>📅 Flexible Dates</h3>
+                    <h3><span role="img" aria-label="Calendar">📅</span> Flexible Dates</h3>
                     <p>ISO 8601 date format with optional precision (year, year-month, or full date).</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🔧 Extensible</h3>
+                    <h3><span role="img" aria-label="Wrench">🔧</span> Extensible</h3>
                     <p>Additional properties allowed for custom fields to meet your specific needs.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>📖 Well-Documented</h3>
+                    <h3><span role="img" aria-label="Book">📖</span> Well-Documented</h3>
                     <p>Detailed descriptions and examples for all fields with comprehensive documentation.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🔒 Self-Hosted</h3>
+                    <h3><span role="img" aria-label="Lock">🔒</span> Self-Hosted</h3>
                     <p>Complete validation without external dependencies. All schema definitions included.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🌐 JSON-LD Compatible</h3>
+                    <h3><span role="img" aria-label="Globe">🌐</span> JSON-LD Compatible</h3>
                     <p>Semantic web integration with Schema.org vocabulary mapping.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🌐 Publicly Hosted</h3>
+                    <h3><span role="img" aria-label="Globe">🌐</span> Publicly Hosted</h3>
                     <p>Hosted on GitHub Pages with a stable, publicly accessible URL.</p>
                 </div>
             </div>
@@ -390,7 +428,7 @@ ajv validate -s schema.json -d your-resume.json</code>
         <section id="resources">
             <h2>Resources</h2>
             <div style="margin: 20px 0;">
-                <a href="./validator.html" class="btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border: none;">🔍 Online Validator</a>
+                <a href="./validator.html" class="btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border: none;" aria-label="Open online validator"><span role="img" aria-label="Magnifying glass">🔍</span> Online Validator</a>
                 <a href="https://github.com/tradik/schema-resume/blob/main/schema.json" class="btn">View Schema</a>
                 <a href="https://github.com/tradik/schema-resume/blob/main/example.json" class="btn">View Example</a>
                 <a href="https://github.com/tradik/schema-resume" class="btn btn-secondary">GitHub Repository</a>
@@ -425,7 +463,7 @@ ajv validate -s schema.json -d your-resume.json</code>
                 <a href="https://github.com/tradik/schema-resume/blob/main/CHANGELOG.md">Changelog</a>
                 <a href="https://github.com/tradik/schema-resume/blob/main/LICENSE">License</a>
             </div>
-            <p style="margin-top: 20px; font-size: 0.9rem;">Made with ❤️ for the developer community</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Made with <span role="img" aria-label="love">❤️</span> for the developer community</p>
         </div>
     </footer>
 </body>
