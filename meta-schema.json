@@ -254,6 +254,18 @@
       "type": "string",
       "description": "Additional notes or information"
     },
+    "industry": {
+      "type": "string",
+      "description": "Industry sector or business domain"
+    },
+    "contactDetails": {
+      "type": "object",
+      "description": "Organization contact information"
+    },
+    "fax": {
+      "type": "string",
+      "description": "Fax number"
+    },
     "patternProperties": {
       "type": "object",
       "additionalProperties": { "$ref": "#" },

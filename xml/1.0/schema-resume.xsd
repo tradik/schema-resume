@@ -177,7 +177,10 @@
   <xs:complexType name="WorkType">
     <xs:sequence>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="industry" type="xs:string" minOccurs="0"/>
+      <xs:element name="location" type="sr:WorkLocationAddressType" minOccurs="0"/>
       <xs:element name="workLocation" type="xs:string" minOccurs="0"/>
+      <xs:element name="contactDetails" type="sr:ContactDetailsType" minOccurs="0"/>
       <xs:element name="description" type="xs:string" minOccurs="0"/>
       <xs:element name="position" type="xs:string" minOccurs="0"/>
       <xs:element name="workType" type="sr:workTypeEnum" minOccurs="0"/>
@@ -186,6 +189,25 @@
       <xs:element name="endDate" type="sr:iso8601DateType" minOccurs="0"/>
       <xs:element name="summary" type="xs:string" minOccurs="0"/>
       <xs:element name="highlights" type="sr:StringListType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="WorkLocationAddressType">
+    <xs:sequence>
+      <xs:element name="address" type="xs:string" minOccurs="0"/>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="region" type="xs:string" minOccurs="0"/>
+      <xs:element name="postalCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="countryCode" type="sr:countryCodeType" minOccurs="0"/>
+      <xs:element name="country" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ContactDetailsType">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0"/>
+      <xs:element name="fax" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 

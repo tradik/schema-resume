@@ -90,7 +90,22 @@
     {
       "@type": "schema:Organization",
       "name": "CloudScale Technologies Ltd",
+      "industry": "Cloud Computing & Enterprise Software",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "15 Deansgate Square\nSuite 400",
+        "city": "Manchester",
+        "region": "Greater Manchester",
+        "postalCode": "M3 1BJ",
+        "countryCode": "GB",
+        "country": "United Kingdom"
+      },
       "workLocation": "Manchester, UK",
+      "contactDetails": {
+        "email": "careers@cloudscale.tech",
+        "phone": "+44 161 123 4567",
+        "fax": "+44 161 123 4568"
+      },
       "description": "Enterprise cloud solutions provider",
       "position": "Lead DevOps Engineer",
       "workType": "full-time",
@@ -107,7 +122,21 @@
     {
       "@type": "schema:Organization",
       "name": "FinTech Innovations plc",
+      "industry": "Financial Technology",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "22 George Street",
+        "city": "Edinburgh",
+        "region": "Scotland",
+        "postalCode": "EH2 2PQ",
+        "countryCode": "GB",
+        "country": "United Kingdom"
+      },
       "workLocation": "Edinburgh, Scotland",
+      "contactDetails": {
+        "email": "info@fintechinnovations.co.uk",
+        "phone": "+44 131 555 7890"
+      },
       "description": "Financial technology startup",
       "position": "Senior DevOps Engineer",
       "workType": "remote",
@@ -125,7 +154,22 @@
     {
       "@type": "schema:Organization",
       "name": "Digital Solutions UK",
+      "industry": "Web Development & Digital Services",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "45 Colston Street",
+        "city": "Bristol",
+        "region": "South West England",
+        "postalCode": "BS1 5AP",
+        "countryCode": "GB",
+        "country": "United Kingdom"
+      },
       "workLocation": "Bristol, UK",
+      "contactDetails": {
+        "email": "contact@digitalsolutions-uk.com",
+        "phone": "+44 117 456 7890",
+        "fax": "+44 117 456 7891"
+      },
       "description": "Web development agency",
       "position": "DevOps Engineer",
       "workType": "onsite",

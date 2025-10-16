@@ -22,6 +22,7 @@ When validating with **validator.schema.org**, you must include `@type` properti
 | `basics.location` | `schema:PostalAddress` |
 | `basics.profiles[]` | `schema:ContactPoint` |
 | `work[]` | `schema:Organization` |
+| `work[].location` | `schema:PostalAddress` |
 | `volunteer[]` | `schema:Organization` |
 | `education[]` | `schema:EducationalOrganization` |
 | `certificates[]` | `schema:EducationalOccupationalCredential` |
@@ -46,6 +47,9 @@ Schema Resume maps resume fields to Schema.org vocabulary:
 | `label` | `schema:jobTitle` | Job title |
 | `summary` | `schema:description` | Description |
 | `location` | `schema:address` | Postal address |
+| `industry` | `schema:industry` | Industry sector |
+| `contactDetails` | `schema:contactPoint` | Contact information |
+| `fax` | `schema:faxNumber` | Fax number |
 | `work` | `schema:worksFor` | Work experience |
 | `education` | `schema:alumniOf` | Educational background |
 | `skills` | `schema:knowsAbout` | Skills and knowledge |

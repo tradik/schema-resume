@@ -223,9 +223,68 @@
             "type": "string",
             "description": "Company or organization name"
           },
+          "industry": {
+            "type": "string",
+            "description": "Industry sector or business domain of the organization (e.g., 'Financial Technology', 'Healthcare', 'E-commerce', 'Manufacturing')"
+          },
+          "location": {
+            "type": "object",
+            "description": "Structured address of the organization's workplace location",
+            "additionalProperties": true,
+            "properties": {
+              "@type": {
+                "type": "string",
+                "description": "Schema.org type, should be 'schema:PostalAddress' for validator.schema.org compatibility"
+              },
+              "address": {
+                "type": "string",
+                "description": "Street address with multiple lines separated by newline characters (\\n)"
+              },
+              "city": {
+                "type": "string",
+                "description": "City or town name"
+              },
+              "region": {
+                "type": "string",
+                "description": "State, county, province, or region within the country"
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Postal or ZIP code"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
+              },
+              "country": {
+                "type": "string",
+                "description": "Full country name (optional, countryCode is preferred)"
+              }
+            }
+          },
           "workLocation": {
             "type": "string",
-            "description": "Geographic location of the workplace"
+            "description": "Geographic location of the workplace (legacy field, use 'location' object for structured data)"
+          },
+          "contactDetails": {
+            "type": "object",
+            "description": "Organization contact information",
+            "additionalProperties": true,
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "Organization contact email address",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Organization contact telephone number"
+              },
+              "fax": {
+                "type": "string",
+                "description": "Organization fax number (optional)"
+              }
+            }
           },
           "description": {
             "type": "string",

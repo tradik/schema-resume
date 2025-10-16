@@ -117,6 +117,16 @@ Create a JSON file with your resume data and reference the schema:
   "work": [
     {
       "name": "Tech Corp",
+      "industry": "Information Technology",
+      "location": {
+        "city": "San Francisco",
+        "region": "California",
+        "countryCode": "US"
+      },
+      "contactDetails": {
+        "email": "careers@techcorp.com",
+        "phone": "+1-555-987-6543"
+      },
       "position": "Senior Software Engineer",
       "startDate": "2020-03",
       "summary": "Lead development of microservices architecture",
@@ -174,6 +184,16 @@ Create an XML file with your resume data and reference the XSD schema:
   
   <work>
     <name>Tech Corp</name>
+    <industry>Information Technology</industry>
+    <location>
+      <city>San Francisco</city>
+      <region>California</region>
+      <countryCode>US</countryCode>
+    </location>
+    <contactDetails>
+      <email>careers@techcorp.com</email>
+      <phone>+1-555-987-6543</phone>
+    </contactDetails>
     <position>Senior Software Engineer</position>
     <startDate>2020-03</startDate>
     <summary>Lead development of microservices architecture</summary>
@@ -327,7 +347,10 @@ public class ResumeValidator {
 | Field | Type | Description |
 |-------|------|-------------|
 | `name` | string | Company name |
-| `location` | string | Work location |
+| `industry` | string | Industry sector or business domain (e.g., 'Financial Technology', 'Healthcare') |
+| `location` | object | Structured address with address, city, region, postalCode, countryCode, country |
+| `workLocation` | string | Work location (legacy field, use `location` object for structured data) |
+| `contactDetails` | object | Organization contact information with email, phone, fax |
 | `description` | string | Company description |
 | `position` | string | Job title |
 | `workType` | string | Work arrangement type (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary) |

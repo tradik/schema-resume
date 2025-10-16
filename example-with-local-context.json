@@ -105,7 +105,21 @@
     {
       "@type": "schema:Organization",
       "name": "TechFlow Inc.",
+      "industry": "Software as a Service (SaaS)",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "548 Market Street\nFloor 8",
+        "city": "San Francisco",
+        "region": "California",
+        "postalCode": "94104",
+        "countryCode": "US",
+        "country": "United States"
+      },
       "workLocation": "San Francisco, CA",
+      "contactDetails": {
+        "email": "careers@techflow.io",
+        "phone": "+1 (415) 555-0199"
+      },
       "description": "B2B SaaS platform for workflow automation",
       "position": "Senior Full Stack Engineer",
       "workType": "hybrid",
@@ -123,7 +137,21 @@
     {
       "@type": "schema:Organization",
       "name": "DataViz Solutions",
+      "industry": "Data Analytics & Business Intelligence",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "Remote - Headquarters: 1201 3rd Avenue\nSuite 3200",
+        "city": "Seattle",
+        "region": "Washington",
+        "postalCode": "98101",
+        "countryCode": "US",
+        "country": "United States"
+      },
       "workLocation": "Remote",
+      "contactDetails": {
+        "email": "info@dataviz-solutions.com",
+        "phone": "+1 (206) 555-0177"
+      },
       "description": "Data visualization and analytics platform",
       "position": "Full Stack Engineer",
       "workType": "remote",
@@ -141,7 +169,22 @@
     {
       "@type": "schema:Organization",
       "name": "WebCraft Studios",
+      "industry": "Digital Marketing & Web Development",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "2033 6th Avenue\nSuite 804",
+        "city": "Seattle",
+        "region": "Washington",
+        "postalCode": "98121",
+        "countryCode": "US",
+        "country": "United States"
+      },
       "workLocation": "Seattle, WA",
+      "contactDetails": {
+        "email": "hello@webcraft-studios.com",
+        "phone": "+1 (206) 555-0145",
+        "fax": "+1 (206) 555-0146"
+      },
       "description": "Digital agency specializing in web applications",
       "position": "Frontend Developer",
       "workType": "onsite",

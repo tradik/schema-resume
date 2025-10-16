@@ -92,7 +92,21 @@
   
   <work>
     <name>CloudScale Technologies Ltd</name>
+    <industry>Cloud Computing &amp; Enterprise Software</industry>
+    <location>
+      <address>15 Deansgate Square, Suite 400</address>
+      <city>Manchester</city>
+      <region>Greater Manchester</region>
+      <postalCode>M3 1BJ</postalCode>
+      <countryCode>GB</countryCode>
+      <country>United Kingdom</country>
+    </location>
     <workLocation>Manchester, UK</workLocation>
+    <contactDetails>
+      <email>careers@cloudscale.tech</email>
+      <phone>+44 161 123 4567</phone>
+      <fax>+44 161 123 4568</fax>
+    </contactDetails>
     <description>Enterprise cloud solutions provider</description>
     <position>Lead DevOps Engineer</position>
     <workType>full-time</workType>
@@ -109,7 +123,20 @@
   
   <work>
     <name>FinTech Innovations plc</name>
+    <industry>Financial Technology</industry>
+    <location>
+      <address>22 George Street</address>
+      <city>Edinburgh</city>
+      <region>Scotland</region>
+      <postalCode>EH2 2PQ</postalCode>
+      <countryCode>GB</countryCode>
+      <country>United Kingdom</country>
+    </location>
     <workLocation>Edinburgh, Scotland</workLocation>
+    <contactDetails>
+      <email>info@fintechinnovations.co.uk</email>
+      <phone>+44 131 555 7890</phone>
+    </contactDetails>
     <description>Financial technology startup</description>
     <position>Senior DevOps Engineer</position>
     <workType>remote</workType>

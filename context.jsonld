@@ -178,8 +178,23 @@
       "@type": "xsd:string"
     },
     
+    "industry": {
+      "@id": "schema:industry",
+      "@type": "xsd:string"
+    },
+    
     "workLocation": {
       "@id": "schema:workLocation",
+      "@type": "xsd:string"
+    },
+    
+    "contactDetails": {
+      "@id": "schema:contactPoint",
+      "@type": "@id"
+    },
+    
+    "fax": {
+      "@id": "schema:faxNumber",
       "@type": "xsd:string"
     },
     

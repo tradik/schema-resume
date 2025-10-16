@@ -82,6 +82,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `category` field (alias for `group`)
   - `level` field for proficiency level with the tool
 - **Work experience enhancements**:
+  - `industry` field for industry sector or business domain (e.g., 'Financial Technology', 'Healthcare', 'E-commerce')
+  - `location` object for structured workplace address with:
+    - `address` - Street address
+    - `city` - City name
+    - `region` - State/province/region
+    - `postalCode` - Postal/ZIP code
+    - `countryCode` - ISO-3166-1 ALPHA-2 country code
+    - `country` - Full country name (optional)
+    - `@type` - Schema.org type (schema:PostalAddress)
+  - `contactDetails` object for organization contact information with:
+    - `email` - Organization contact email
+    - `phone` - Organization contact phone
+    - `fax` - Organization fax number (optional)
+  - `workLocation` field retained for backward compatibility (use `location` object for structured data)
   - `workType` field for work arrangement type with multiple options:
     - Location: remote, hybrid, onsite
     - Employment: full-time, part-time, contract, freelance, internship, temporary
