@@ -385,16 +385,20 @@
             
             <h3>JSON Schema</h3>
             <div class="schema-url">
-                <strong>Main Schema:</strong> https://tradik.github.io/schema-resume/schema.json<br>
-                <strong>Meta Schema:</strong> https://tradik.github.io/schema-resume/meta-schema.json<br>
-                <strong>JSON-LD Context:</strong> https://tradik.github.io/schema-resume/context.jsonld
+                <strong>Main Schema:</strong> https://schema-resume.org/schema.json<br>
+                <strong>Meta Schema:</strong> https://schema-resume.org/meta-schema.json<br>
+                <strong>JSON-LD Context:</strong> https://schema-resume.org/context.jsonld
             </div>
             
             <h3>XML Schema (XSD)</h3>
             <div class="schema-url">
-                <strong>XSD Schema:</strong> https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd<br>
-                <strong>XML Example:</strong> https://tradik.github.io/schema-resume/xml/1.0/example.xml
+                <strong>XSD Schema:</strong> https://schema-resume.org/xml/1.0/schema-resume.xsd<br>
+                <strong>XML Example:</strong> https://schema-resume.org/xml/1.0/example.xml
             </div>
+            
+            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Note:</strong> Also available at <code>https://tradik.github.io/schema-resume/</code> for backward compatibility.
+            </p>
         </section>
 
         <section id="quick-start">
@@ -402,8 +406,8 @@
             <h3>JSON Example</h3>
             <div class="code-block">
 <code>{
-  "@context": "https://tradik.github.io/schema-resume/schema.json",
-  "$schema": "https://tradik.github.io/schema-resume/schema.json",
+  "@context": "https://schema-resume.org/schema.json",
+  "$schema": "https://schema-resume.org/schema.json",
   "basics": {
     "name": "John Doe",
     "label": "Software Engineer",
@@ -426,10 +430,10 @@
             <h3>XML Example</h3>
             <div class="code-block">
 <code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;resume xmlns="https://tradik.github.io/schema-resume/xml/1.0"
+&lt;resume xmlns="https://schema-resume.org/xml/1.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="https://tradik.github.io/schema-resume/xml/1.0
-                            https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd"&gt;
+        xsi:schemaLocation="https://schema-resume.org/xml/1.0
+                            https://schema-resume.org/xml/1.0/schema-resume.xsd"&gt;
   &lt;basics&gt;
     &lt;name&gt;John Doe&lt;/name&gt;
     &lt;label&gt;Software Engineer&lt;/label&gt;
@@ -460,10 +464,10 @@ ajv validate -s schema.json -d your-resume.json</code>
             <p><strong>XML Validation:</strong></p>
             <div class="code-block">
 <code># Using xmllint (Linux/Mac)
-xmllint --schema https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd your-resume.xml --noout
+xmllint --schema https://schema-resume.org/xml/1.0/schema-resume.xsd your-resume.xml --noout
 
 # Using Python (lxml)
-python -c "from lxml import etree; import requests; xsd = etree.XMLSchema(etree.parse(requests.get('https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd', stream=True).raw)); print('Valid!' if xsd.validate(etree.parse('your-resume.xml')) else xsd.error_log)"</code>
+python -c "from lxml import etree; import requests; xsd = etree.XMLSchema(etree.parse(requests.get('https://schema-resume.org/xml/1.0/schema-resume.xsd', stream=True).raw)); print('Valid!' if xsd.validate(etree.parse('your-resume.xml')) else xsd.error_log)"</code>
             </div>
         </section>
 

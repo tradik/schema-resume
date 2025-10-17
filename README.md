@@ -1,9 +1,9 @@
 # Schema Resume
 
-[![Schema Version](https://img.shields.io/badge/Schema-v1.1.0-blue.svg)](https://tradik.github.io/schema-resume/schema.json)
+[![Schema Version](https://img.shields.io/badge/Schema-v1.1.0-blue.svg)](https://schema-resume.org/schema.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success.svg)](https://tradik.github.io/schema-resume/)
-[![Self Hosted](https://img.shields.io/badge/Self--Hosted-Yes-brightgreen.svg)](https://tradik.github.io/schema-resume/meta-schema.json)
+[![Website](https://img.shields.io/badge/Website-Live-success.svg)](https://schema-resume.org/)
+[![Self Hosted](https://img.shields.io/badge/Self--Hosted-Yes-brightgreen.svg)](https://schema-resume.org/meta-schema.json)
 
 A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation. This schema provides a standardized format for representing professional resumes in JSON format with semantic web integration, making it easy to parse, validate, and exchange resume data between systems without relying on external schema definitions.
 
@@ -38,22 +38,24 @@ The schema includes the following main sections:
 
 ## 🔗 Schema URLs
 
-The schema and related files are hosted on GitHub Pages:
+The schema and related files are hosted at **https://schema-resume.org/**:
 
 ### JSON Schema
-- **Main Schema**: `https://tradik.github.io/schema-resume/schema.json`
-- **Meta Schema**: `https://tradik.github.io/schema-resume/meta-schema.json`
-- **JSON-LD Context**: `https://tradik.github.io/schema-resume/context.jsonld`
+- **Main Schema**: `https://schema-resume.org/schema.json`
+- **Meta Schema**: `https://schema-resume.org/meta-schema.json`
+- **JSON-LD Context**: `https://schema-resume.org/context.jsonld`
 
 ### XML Schema (XSD)
-- **XSD Schema**: `https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd`
-- **XML Example**: `https://tradik.github.io/schema-resume/xml/1.0/example.xml`
+- **XSD Schema**: `https://schema-resume.org/xml/1.0/schema-resume.xsd`
+- **XML Example**: `https://schema-resume.org/xml/1.0/example.xml`
+
+> **Note**: The schema is also available at the alternate domain `https://tradik.github.io/schema-resume/` for backward compatibility.
 
 The schema is **self-contained** and does not rely on external JSON Schema definitions.
 
 ## 🎯 Online Validator
 
-**Try the live validator**: [validator.html](https://tradik.github.io/schema-resume/validator.html)
+**Try the live validator**: [validator.html](https://schema-resume.org/validator.html)
 
 The online validator provides:
 - **Real-time validation** against Schema Resume v1.1.0
@@ -67,7 +69,7 @@ Simply paste your JSON-LD CV and click "Validate" to check for errors and warnin
 
 ## 🔄 Converter Tool
 
-**Try the live converter**: [converter.html](https://tradik.github.io/schema-resume/converter.html)
+**Try the live converter**: [converter.html](https://schema-resume.org/converter.html)
 
 The converter tool provides:
 - **Real-time conversion** from JSON to JSON-LD or XML format
@@ -92,8 +94,8 @@ Create a JSON file with your resume data and reference the schema:
 
 ```json
 {
-  "@context": "https://tradik.github.io/schema-resume/schema.json",
-  "$schema": "https://tradik.github.io/schema-resume/schema.json",
+  "@context": "https://schema-resume.org/schema.json",
+  "$schema": "https://schema-resume.org/schema.json",
   "basics": {
     "name": "John Doe",
     "label": "Software Engineer",
@@ -154,10 +156,10 @@ Create an XML file with your resume data and reference the XSD schema:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<resume xmlns="https://tradik.github.io/schema-resume/xml/1.0"
+<resume xmlns="https://schema-resume.org/xml/1.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="https://tradik.github.io/schema-resume/xml/1.0
-                            https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd">
+        xsi:schemaLocation="https://schema-resume.org/xml/1.0
+                            https://schema-resume.org/xml/1.0/schema-resume.xsd">
   
   <basics>
     <name>John Doe</name>
@@ -232,7 +234,7 @@ npm install -g ajv-cli ajv-formats
 ajv validate -s schema.json -d your-resume.json --strict=false
 
 # Validate against hosted schema
-ajv validate -s https://tradik.github.io/schema-resume/schema.json -d your-resume.json --strict=false
+ajv validate -s https://schema-resume.org/schema.json -d your-resume.json --strict=false
 ```
 
 #### Using Python
@@ -243,7 +245,7 @@ import jsonschema
 import requests
 
 # Load schema
-schema_url = "https://tradik.github.io/schema-resume/schema.json"
+schema_url = "https://schema-resume.org/schema.json"
 schema = requests.get(schema_url).json()
 
 # Load your resume
@@ -257,7 +259,7 @@ print("Resume is valid!")
 
 #### Using Online Validators
 
-- **[Schema Resume Validator](https://tradik.github.io/schema-resume/validator.html)** - Recommended, specifically designed for this schema
+- **[Schema Resume Validator](https://schema-resume.org/validator.html)** - Recommended, specifically designed for this schema
 - [JSON Schema Validator](https://www.jsonschemavalidator.net/)
 - [JSON Schema Lint](https://jsonschemalint.com/)
 
@@ -272,7 +274,7 @@ You can validate your XML resume against the XSD schema using various tools:
 xmllint --schema xml/1.0/schema-resume.xsd your-resume.xml --noout
 
 # Validate against hosted XSD
-xmllint --schema https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd your-resume.xml --noout
+xmllint --schema https://schema-resume.org/xml/1.0/schema-resume.xsd your-resume.xml --noout
 ```
 
 **Using Python:**
@@ -282,7 +284,7 @@ from lxml import etree
 import requests
 
 # Load XSD schema
-xsd_url = "https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd"
+xsd_url = "https://schema-resume.org/xml/1.0/schema-resume.xsd"
 xsd_doc = etree.parse(requests.get(xsd_url, stream=True).raw)
 xsd_schema = etree.XMLSchema(xsd_doc)
 
@@ -307,7 +309,7 @@ public class ResumeValidator {
     public static void main(String[] args) throws Exception {
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = factory.newSchema(
-            new URL("https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd")
+            new URL("https://schema-resume.org/xml/1.0/schema-resume.xsd")
         );
         
         Validator validator = schema.newValidator();
