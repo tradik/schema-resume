@@ -53,6 +53,23 @@
           "type": "string",
           "description": "Professional title or role, such as 'Senior Software Engineer' or 'Product Designer'"
         },
+        "title": {
+          "type": "string",
+          "description": "Job title or professional title of the person"
+        },
+        "age": {
+          "type": "integer",
+          "description": "Age of the person in years",
+          "minimum": 0
+        },
+        "birthDate": {
+          "$ref": "#/definitions/iso8601",
+          "description": "Date of birth in ISO 8601 format"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Gender identity of the person"
+        },
         "image": {
           "type": "string",
           "description": "Web address pointing to a profile photograph in JPEG or PNG format"
@@ -782,6 +799,16 @@
         "dateCreated": {
           "type": "string",
           "description": "Timestamp when the document was created in ISO 8601 format",
+          "format": "date-time"
+        },
+        "dateModified": {
+          "type": "string",
+          "description": "Timestamp when the document was last modified in ISO 8601 format",
+          "format": "date-time"
+        },
+        "datePublished": {
+          "type": "string",
+          "description": "Timestamp when the document was published in ISO 8601 format",
           "format": "date-time"
         }
       }

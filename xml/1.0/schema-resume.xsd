@@ -353,6 +353,8 @@
       <xs:element name="version" type="xs:string" minOccurs="0"/>
       <xs:element name="lastModified" type="xs:dateTime" minOccurs="0"/>
       <xs:element name="dateCreated" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="dateModified" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="datePublished" type="xs:dateTime" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
