@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://tradik.github.io/schema-resume/</loc>
-    <lastmod>2024-10-15</lastmod>
+    <loc>https://schema-resume.org/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tradik.github.io/schema-resume/"/>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tradik.github.io/schema-resume/validator.html</loc>
-    <lastmod>2024-10-15</lastmod>
+    <loc>https://schema-resume.org/validator.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tradik.github.io/schema-resume/validator.html"/>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tradik.github.io/schema-resume/converter.html</loc>
-    <lastmod>2025-10-15</lastmod>
+    <loc>https://schema-resume.org/converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tradik.github.io/schema-resume/converter.html"/>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tradik.github.io/schema-resume/schema.json</loc>
-    <lastmod>2024-10-15</lastmod>
+    <loc>https://schema-resume.org/schema.json</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tradik.github.io/schema-resume/schema.json"/>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tradik.github.io/schema-resume/example.json</loc>
-    <lastmod>2024-10-15</lastmod>
+    <loc>https://schema-resume.org/example.json</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tradik.github.io/schema-resume/example.json"/>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd</loc>
-    <lastmod>2025-10-15</lastmod>
+    <loc>https://schema-resume.org/xml/1.0/schema-resume.xsd</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tradik.github.io/schema-resume/xml/1.0/schema-resume.xsd"/>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tradik.github.io/schema-resume/xml/1.0/example.xml</loc>
-    <lastmod>2025-10-15</lastmod>
+    <loc>https://schema-resume.org/xml/1.0/example.xml</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tradik.github.io/schema-resume/xml/1.0/example.xml"/>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

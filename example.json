@@ -1,6 +1,6 @@
 {
-  "@context": "https://tradik.github.io/schema-resume/schema.json",
-  "$schema": "https://tradik.github.io/schema-resume/schema.json",
+  "@context": "https://schema-resume.org/schema.json",
+  "$schema": "https://schema-resume.org/schema.json",
   "basics": {
     "@type": "schema:Person",
     "name": "Eleanor Fitzwilliam",

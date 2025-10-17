@@ -1,6 +1,7 @@
 {
-  "$schema": "https://tradik.github.io/schema-resume/meta-schema.json",
-  "$id": "https://tradik.github.io/schema-resume/meta-schema.json",
+  "$schema": "https://schema-resume.org/meta-schema.json",
+  "$id": "https://schema-resume.org/meta-schema.json",
+  "$comment": "Primary domain: https://schema-resume.org/ | Alternate domain: https://tradik.github.io/schema-resume/",
   "title": "Schema Resume Meta-Schema v1.1.0",
   "description": "Self-hosted meta-schema providing validation rules for resume documents without external dependencies",
   "type": "object",

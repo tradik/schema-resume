@@ -7,7 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Google Analytics tracking**:
+  - Added Google Analytics (gtag.js) tracking code to all HTML pages
+  - Tracking ID: G-NG0TH0GXV1
+  - Implemented on index.html, validator.html, and converter.html
+
 ### Changed
+- **Primary domain migration**:
+  - Changed primary domain from `https://tradik.github.io/schema-resume/` to `https://schema-resume.org/`
+  - Updated all HTML files (index.html, validator.html, converter.html) with new canonical URLs and Open Graph metadata
+  - Updated schema.json and meta-schema.json to use new primary domain in $id, $schema, and @context
+  - Updated example files (example.json, example-with-local-context.json) to reference new domain
+  - Updated XML schema (schema-resume.xsd) and example (example.xml) to use new namespace `https://schema-resume.org/xml/1.0`
+  - Updated sitemap.xml with new primary URLs and xhtml:link alternate references to GitHub Pages
+  - Updated robots.txt to reference both domains (primary and alternate)
+  - GitHub Pages domain (`https://tradik.github.io/schema-resume/`) maintained as alternate/secondary domain
+  - All files include $comment or annotations noting both domains for backward compatibility
 - **workAuthorization structure** in basics section:
   - Changed from object to array to support multiple countries
   - Each entry now includes: country, status, rightToWork flag, visaType, validFrom, validTo, and notes

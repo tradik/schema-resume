@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+
+# Primary domain
+Sitemap: https://schema-resume.org/sitemap.xml
+
+# Alternate domain
 Sitemap: https://tradik.github.io/schema-resume/sitemap.xml

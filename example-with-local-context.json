@@ -1,6 +1,6 @@
 {
   "@context": {
-    "@vocab": "https://tradik.github.io/schema-resume/",
+    "@vocab": "https://schema-resume.org/",
     "schema": "http://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "foaf": "http://xmlns.com/foaf/0.1/",
@@ -22,7 +22,7 @@
     "modified": "dc:modified",
     "creator": "dc:creator"
   },
-  "$schema": "https://tradik.github.io/schema-resume/schema.json",
+  "$schema": "https://schema-resume.org/schema.json",
   "@type": "DigitalDocument",
   "additionalType": "https://tradik.github.io/schema-resume/Person",
   "basics": {

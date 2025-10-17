@@ -1,6 +1,6 @@
 {
   "@context": {
-    "@vocab": "https://tradik.github.io/schema-resume/",
+    "@vocab": "https://schema-resume.org/",
     "schema": "http://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "name": "schema:name",
@@ -15,8 +15,9 @@
     "knowsAbout": "schema:knowsAbout",
     "knowsLanguage": "schema:knowsLanguage"
   },
-  "$schema": "https://tradik.github.io/schema-resume/meta-schema.json",
-  "$id": "https://tradik.github.io/schema-resume/schema.json",
+  "$schema": "https://schema-resume.org/meta-schema.json",
+  "$id": "https://schema-resume.org/schema.json",
+  "$comment": "Primary domain: https://schema-resume.org/ | Alternate domain: https://tradik.github.io/schema-resume/",
   "additionalProperties": true,
   "definitions": {
     "iso8601": {

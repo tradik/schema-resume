@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="https://tradik.github.io/schema-resume/xml/1.0"
-           xmlns:sr="https://tradik.github.io/schema-resume/xml/1.0"
+           xmlns:sr="https://schema-resume.org/xml/1.0"
+           targetNamespace="https://schema-resume.org/xml/1.0"
            elementFormDefault="qualified"
-           version="1.0">
+           version="1.1.0">
 
   <xs:annotation>
     <xs:documentation>
-      Schema Resume XSD v1.0
-      A comprehensive XML Schema for CV/Resume parsing and validation.
-      Based on Schema Resume JSON Schema v1.1.0
+      Schema Resume XML Schema Definition (XSD) v1.1.0
+      Self-hosted XML schema for CV/Resume validation with work authorization and tools tracking
       
-      Homepage: https://tradik.github.io/schema-resume/
+      This schema provides comprehensive validation for resume/CV documents in XML format.
+      It includes support for personal information, work history, education, skills, projects,
+      and more, with semantic web integration through Schema.org types.
+      
+      Primary domain: https://schema-resume.org/
+      Alternate domain: https://tradik.github.io/schema-resume/
+      
+      Version: 1.1.0
       License: MIT
+      Repository: https://github.com/tradik/schema-resume
     </xs:documentation>
   </xs:annotation>
 
