@@ -67,9 +67,45 @@
       "type": "string",
       "description": "Additional type information for semantic web compatibility, can be a URL or Schema.org type"
     },
-    "title": {
+    "label": {
       "type": "string",
       "description": "Human-readable title for the schema"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the person or entity"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL or web address"
+    },
+    "image": {
+      "type": "string",
+      "description": "Image URL"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Summary or description text"
+    },
+    "location": {
+      "type": "object",
+      "description": "Location or address information"
+    },
+    "profiles": {
+      "type": "array",
+      "description": "Social media and professional profiles"
+    },
+    "nationalities": {
+      "type": "array",
+      "description": "Citizenship and nationality information"
     },
     "description": {
       "type": "string",
@@ -223,9 +259,9 @@
       "type": "object",
       "description": "Location where the person was born"
     },
-    "sex": {
+    "gender": {
       "type": "string",
-      "description": "Biological sex or gender identity"
+      "description": "Gender identity of the person"
     },
     "legalNote": {
       "type": "object",
@@ -266,6 +302,50 @@
     "fax": {
       "type": "string",
       "description": "Fax number"
+    },
+    "address": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "streetAddress": {
+      "type": "string",
+      "description": "Street address line"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name"
+    },
+    "region": {
+      "type": "string",
+      "description": "Region, state, or province"
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal or ZIP code"
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "Country code (ISO-3166-1 ALPHA-2)"
+    },
+    "canonical": {
+      "type": "string",
+      "description": "Canonical URL"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version number"
+    },
+    "lastModified": {
+      "type": "string",
+      "description": "Last modification timestamp"
+    },
+    "dateModified": {
+      "type": "string",
+      "description": "Date modified timestamp"
+    },
+    "datePublished": {
+      "type": "string",
+      "description": "Date published timestamp"
     },
     "patternProperties": {
       "type": "object",

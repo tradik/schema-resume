@@ -1,0 +1,37 @@
+name: Quick Schema Check
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  quick-lint:
+    name: Quick Lint
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Lint all schemas
+        run: |
+          chmod +x lint-schemas.py
+          python3 lint-schemas.py || exit 1
+      
+      - name: Compare schemas
+        run: |
+          chmod +x compare-schemas.py
+          python3 compare-schemas.py
+      
+      - name: Check JSON syntax
+        run: |
+          python3 -m json.tool schema.json > /dev/null && echo "✅ schema.json OK"
+          python3 -m json.tool context.jsonld > /dev/null && echo "✅ context.jsonld OK"
+          python3 -m json.tool meta-schema.json > /dev/null && echo "✅ meta-schema.json OK"

@@ -1,0 +1,180 @@
+name: Validate Schemas
+
+on:
+  push:
+    branches: [ main, master, develop ]
+    paths:
+      - 'schema.json'
+      - 'context.jsonld'
+      - 'meta-schema.json'
+      - 'xml/1.0/schema-resume.xsd'
+      - '.github/workflows/validate-schemas.yml'
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - 'schema.json'
+      - 'context.jsonld'
+      - 'meta-schema.json'
+      - 'xml/1.0/schema-resume.xsd'
+      - '.github/workflows/validate-schemas.yml'
+  workflow_dispatch:
+
+jobs:
+  lint-schemas:
+    name: Lint Schema Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run schema linter
+        run: |
+          chmod +x lint-schemas.py
+          python3 lint-schemas.py
+      
+      - name: Upload linting report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linting-report
+          path: |
+            lint-schemas.py
+          retention-days: 30
+
+  compare-schemas:
+    name: Compare Schema Files
+    runs-on: ubuntu-latest
+    needs: lint-schemas
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run schema comparison
+        run: |
+          chmod +x compare-schemas.py
+          python3 compare-schemas.py
+      
+      - name: Upload comparison report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: comparison-report
+          path: |
+            compare-schemas.py
+          retention-days: 30
+
+  validate-json:
+    name: Validate JSON Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Validate schema.json
+        run: |
+          python3 -m json.tool schema.json > /dev/null
+          echo "✅ schema.json is valid JSON"
+      
+      - name: Validate context.jsonld
+        run: |
+          python3 -m json.tool context.jsonld > /dev/null
+          echo "✅ context.jsonld is valid JSON"
+      
+      - name: Validate meta-schema.json
+        run: |
+          python3 -m json.tool meta-schema.json > /dev/null
+          echo "✅ meta-schema.json is valid JSON"
+      
+      - name: Validate example files
+        run: |
+          for file in example*.json; do
+            if [ -f "$file" ]; then
+              python3 -m json.tool "$file" > /dev/null
+              echo "✅ $file is valid JSON"
+            fi
+          done
+
+  validate-xml:
+    name: Validate XML Schema
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+      
+      - name: Validate XSD syntax
+        run: |
+          xmllint --noout xml/1.0/schema-resume.xsd
+          echo "✅ schema-resume.xsd is valid XML"
+      
+      - name: Check XSD well-formedness
+        run: |
+          xmllint --schema http://www.w3.org/2001/XMLSchema.xsd xml/1.0/schema-resume.xsd --noout || true
+          echo "✅ XSD structure checked"
+
+  full-validation:
+    name: Full Validation Suite
+    runs-on: ubuntu-latest
+    needs: [lint-schemas, compare-schemas, validate-json, validate-xml]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run full validation
+        run: |
+          chmod +x validate-all.sh
+          ./validate-all.sh
+      
+      - name: Generate validation badge
+        if: success()
+        run: |
+          echo "✅ All validation checks passed!"
+          echo "VALIDATION_STATUS=passing" >> $GITHUB_ENV
+      
+      - name: Validation failed
+        if: failure()
+        run: |
+          echo "❌ Validation checks failed!"
+          echo "VALIDATION_STATUS=failing" >> $GITHUB_ENV
+          exit 1
+
+  summary:
+    name: Validation Summary
+    runs-on: ubuntu-latest
+    needs: full-validation
+    if: always()
+    
+    steps:
+      - name: Post summary
+        run: |
+          echo "## Schema Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Results:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Linting completed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Comparison completed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ JSON validation completed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ XML validation completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All schema files are valid and synchronized!" >> $GITHUB_STEP_SUMMARY

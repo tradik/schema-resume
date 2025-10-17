@@ -110,6 +110,10 @@
     <xs:sequence>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
       <xs:element name="label" type="xs:string" minOccurs="0"/>
+      <xs:element name="title" type="xs:string" minOccurs="0"/>
+      <xs:element name="age" type="xs:integer" minOccurs="0"/>
+      <xs:element name="dateOfBirth" type="sr:iso8601DateType" minOccurs="0"/>
+      <xs:element name="gender" type="xs:string" minOccurs="0"/>
       <xs:element name="image" type="xs:anyURI" minOccurs="0"/>
       <xs:element name="email" type="xs:string" minOccurs="0"/>
       <xs:element name="phone" type="xs:string" minOccurs="0"/>
