@@ -44,27 +44,51 @@
     <script src="https://cdn.jsdelivr.net/npm/ajv@6.12.6/dist/ajv.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#990000',
+                        secondary: '#7a0000',
+                        accent: '#facc2e',
+                    },
+                    fontFamily: {
+                        sans: ['Verdana', 'Geneva', 'DejaVu Sans', 'sans-serif'],
+                        mono: ['monospace'],
+                    },
+                    borderRadius: {
+                        'freebsd': '10px',
+                    }
+                }
+            }
+        }
+    </script>
     
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
+            --primary-color: #990000;
+            --secondary-color: #7a0000;
+            --accent-color: #facc2e;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-tertiary: #737373;
             --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-            --border-color: #e5e7eb;
+            --bg-secondary: #eeeeee;
+            --border-color: #cccccc;
+            --border-light: #dadada;
             --success-color: #10b981;
-            --error-color: #ef4444;
+            --error-color: #9f1313;
             --warning-color: #f59e0b;
+            --code-bg: #eeddcc;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-secondary);
+            font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;
+            background-color: var(--bg-primary);
             margin: 0;
             padding: 0;
+            line-height: 1.2;
         }
         
         .editor-container {
@@ -79,16 +103,16 @@
             display: flex;
             flex-direction: column;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
             overflow: hidden;
         }
         
         .editor-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background-color: var(--primary-color);
             color: white;
             padding: 16px 20px;
-            font-weight: 600;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -96,10 +120,11 @@
         
         .editor-header h3 {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 110%;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: bold;
         }
         
         .editor-content {
@@ -113,11 +138,11 @@
             height: 100%;
             border: none;
             padding: 20px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 14px;
-            line-height: 1.6;
+            font-family: monospace;
+            font-size: 1.1em;
+            line-height: 1.2;
             resize: none;
-            background-color: #f8f9fa;
+            background-color: var(--code-bg);
             color: var(--text-primary);
         }
         
@@ -202,32 +227,46 @@
                 min-height: 400px;
             }
         }
+        
+        .status-bar .status-item:last-child {
+            border-right: none;
+        }
+        
+        header a:hover {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        footer a:hover {
+            text-decoration: underline !important;
+        }
     </style>
 </head>
 <body>
-    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-3xl font-bold mb-2 flex items-center gap-3">
-                        <i data-lucide="repeat" size="32"></i>
-                        JSON Resume Converter
-                    </h1>
-                    <p class="text-blue-100 text-lg">Real-time conversion to JSON-LD and XML with validation</p>
+    <!-- Header -->
+    <header style="background-color: #990000; color: white; padding: 20px 0; border-bottom: 3px solid #7a0000;">
+        <div class="max-w-7xl mx-auto px-4">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span role="img" aria-label="Document" style="font-size: 32px;">📄</span>
+                    <h1 style="margin: 0; font-size: 140%; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; font-weight: bold;">Schema Resume</h1>
                 </div>
-                <div class="flex gap-3">
-                    <a href="./index.html" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
-                        <i data-lucide="home" size="18"></i>
-                        Home
-                    </a>
-                    <a href="./validator.html" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
-                        <i data-lucide="check-circle" size="18"></i>
-                        Validator
-                    </a>
+                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <a href="./index.html" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; transition: background-color 0.2s;">Home</a>
+                    <a href="./validator.html" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; transition: background-color 0.2s;">Validator</a>
+                    <a href="./converter.html" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; background-color: rgba(255, 255, 255, 0.2);">Converter</a>
+                    <a href="https://github.com/tradik/schema-resume" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; transition: background-color 0.2s;">GitHub</a>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Page Title -->
+    <div style="background-color: #eeeeee; border-bottom: 1px solid #cccccc; padding: 20px 0;">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 style="margin: 0; font-size: 140%; color: #000000; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; font-weight: bold;">Converter</h2>
+            <p style="margin: 5px 0 0 0; color: #666666; font-size: 95%; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;">Real-time conversion to JSON-LD and XML with validation</p>
+        </div>
+    </div>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Controls -->
@@ -358,23 +397,18 @@
         </div>
     </main>
 
-    <footer class="mt-12 border-t border-slate-200 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-600">
-            <p>&copy; 2025 Schema Resume. Licensed under MIT.</p>
-            <div class="mt-4 flex justify-center gap-6 text-sm">
-                <a href="https://github.com/tradik/schema-resume" class="text-blue-600 hover:underline flex items-center gap-1">
-                    <i data-lucide="github" size="16"></i>
-                    GitHub
-                </a>
-                <a href="./JSON-LD.md" class="text-blue-600 hover:underline flex items-center gap-1">
-                    <i data-lucide="book-open" size="16"></i>
-                    Documentation
-                </a>
-                <a href="https://github.com/tradik/schema-resume/issues" class="text-blue-600 hover:underline flex items-center gap-1">
-                    <i data-lucide="message-circle" size="16"></i>
-                    Report Issue
-                </a>
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 40px 20px; color: #737373; border-top: 1px solid #cccccc; margin-top: 40px; font-size: 0.9em; line-height: 1.3em; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2025 Schema Resume. Released under the MIT License.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+                <a href="https://github.com/tradik/schema-resume" style="color: #990000; text-decoration: none;">GitHub</a>
+                <a href="https://github.com/tradik/schema-resume/issues" style="color: #990000; text-decoration: none;">Issues</a>
+                <a href="https://github.com/tradik/schema-resume/blob/main/LICENSE" style="color: #990000; text-decoration: none;">License</a>
+                <a href="./validator.html" style="color: #990000; text-decoration: none;">Validator</a>
+                <a href="./converter.html" style="color: #990000; text-decoration: none;">Converter</a>
             </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Made with <span role="img" aria-label="love">❤️</span> for the developer community</p>
         </div>
     </footer>
 

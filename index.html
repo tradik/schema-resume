@@ -103,24 +103,125 @@
             padding: 0 20px;
         }
         
+        .content-wrapper {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .sidebar {
+            width: 220px;
+            flex-shrink: 0;
+        }
+        
+        .sidebar nav {
+            position: sticky;
+            top: 20px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px 0;
+        }
+        
+        .sidebar nav h3 {
+            font-size: 100%;
+            margin: 0 0 10px 15px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar nav li {
+            margin: 0;
+        }
+        
+        .sidebar nav a {
+            display: block;
+            padding: 8px 15px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            background-color: rgba(153, 0, 0, 0.05);
+            border-left-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
         header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background-color: var(--primary-color);
             color: white;
-            padding: 60px 0;
-            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid var(--secondary-color);
         }
         
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
-        header p {
-            font-size: 1.25rem;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        header .logo h1 {
+            margin: 0;
+            font-size: 140%;
+        }
+        
+        header .header-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        header .header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 90%;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        header .header-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .page-title {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            margin-bottom: 0;
+        }
+        
+        .page-title h2 {
+            margin: 0;
+            font-size: 140%;
+            color: var(--text-primary);
+        }
+        
+        .page-title p {
+            margin: 5px 0 0 0;
+            color: var(--text-secondary);
+            font-size: 95%;
         }
         
         .badges {
@@ -149,15 +250,27 @@
         }
         
         section {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        
+        section:not(:last-child) {
+            border-bottom: 1px solid var(--border-color);
         }
         
         h2 {
             color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-color);
+            font-size: 130%;
+            margin: 0 0 0.8em 0;
+            font-weight: bold;
+        }
+        
+        h2:target {
+            background-color: rgba(153, 0, 0, 0.05);
+            padding: 10px;
+            margin-left: -10px;
+            margin-right: -10px;
+            border-radius: 4px;
         }
         
         h3 {
@@ -273,22 +386,76 @@
             text-decoration: underline;
         }
         
+        .info-box {
+            background-color: #fffacd;
+            border: 1px solid #e5d700;
+            border-left: 4px solid #e5d700;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #856404;
+            font-size: 105%;
+        }
+        
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 95%;
+        }
+        
+        .property-table th,
+        .property-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        
+        .property-table th {
+            background-color: var(--bg-secondary);
+            font-weight: bold;
+        }
+        
+        .property-table tr:hover {
+            background-color: rgba(153, 0, 0, 0.02);
+        }
+        
+        @media (max-width: 968px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .sidebar nav {
+                position: static;
+            }
+            
+            header .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            header .header-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            header p {
-                font-size: 1rem;
-            }
-            
             main {
                 padding: 20px;
-                margin: 20px 10px;
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 120%;
             }
             
             .feature-grid {
@@ -300,45 +467,83 @@
 <body>
     <header>
         <div class="container">
-            <h1><span role="img" aria-label="Document">📄</span> Schema Resume</h1>
-            <p>A comprehensive JSON Schema for CV/Resume parsing and validation</p>
-            <div class="badges">
-                <span class="badge">Schema v1.1.0</span>
-                <span class="badge">Self-Hosted</span>
-                <span class="badge">MIT License</span>
+            <div class="logo">
+                <span role="img" aria-label="Document" style="font-size: 32px;">📄</span>
+                <h1>Schema Resume</h1>
+            </div>
+            <div class="header-links">
+                <a href="./validator.html">Validator</a>
+                <a href="./converter.html">Converter</a>
+                <a href="https://github.com/tradik/schema-resume">GitHub</a>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        <section id="validator" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 30px; border-radius: 12px; margin-bottom: 40px; color: white; text-align: center;">
-            <h2 style="color: white; border: none; margin-bottom: 15px; font-size: 1.75rem;"><span role="img" aria-label="Sparkles">✨</span> Try the Online Validator</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1rem; opacity: 0.95;">
-                Validate your JSON-LD CV instantly with our online validator. Get real-time feedback, detailed error messages, and helpful suggestions.
-            </p>
-            <a href="./validator.html" class="btn" style="background-color: white; color: var(--primary-color); font-size: 1.1rem; padding: 14px 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" aria-label="Launch online validator">
-                <span role="img" aria-label="Rocket">🚀</span> Launch Validator
-            </a>
-        </section>
+    <div class="page-title">
+        <div class="container">
+            <h2>Schema Resume v1.1.0</h2>
+            <p>A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation</p>
+        </div>
+    </div>
 
-        <section id="converter" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 30px; border-radius: 12px; margin-bottom: 40px; color: white; text-align: center;">
-            <h2 style="color: white; border: none; margin-bottom: 15px; font-size: 1.75rem;"><span role="img" aria-label="Repeat">🔄</span> JSON to JSON-LD/XML Converter</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1rem; opacity: 0.95;">
-                Convert your JSON resume to JSON-LD or XML format in real-time. Choose between remote schema reference or inline context.
+    <div class="container">
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <nav>
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#schema-url">Schema URLs</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#quick-start">Quick Start</a></li>
+                        <li><a href="#validation">Validation</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+        <div class="info-box">
+            <h3>🚀 Online Tools Available</h3>
+            <p style="margin: 10px 0;">
+                <strong><a href="./validator.html" style="color: var(--primary-color);">Validator</a></strong> - 
+                Validate your JSON-LD CV instantly with real-time feedback and detailed error messages.
             </p>
-            <a href="./converter.html" class="btn" style="background-color: white; color: #059669; font-size: 1.1rem; padding: 14px 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" aria-label="Launch converter tool">
-                <span role="img" aria-label="Tools">🛠️</span> Launch Converter
-            </a>
-        </section>
+            <p style="margin: 10px 0 0 0;">
+                <strong><a href="./converter.html" style="color: var(--primary-color);">Converter</a></strong> - 
+                Convert JSON resume to JSON-LD or XML format with remote or inline context support.
+            </p>
+        </div>
 
         <section id="overview">
             <h2>Overview</h2>
             <p>
-                Schema Resume provides a self-hosted, comprehensive JSON-LD schema for representing professional 
+                Schema Resume provides a <strong>self-hosted, comprehensive JSON-LD schema</strong> for representing professional 
                 resumes and CVs. It enables easy parsing, validation, and exchange of resume data between systems 
-                with semantic web integration, making it perfect for job boards, applicant tracking systems, and 
-                resume builders. <strong>No external dependencies required.</strong>
+                with semantic web integration.
             </p>
+            <p>
+                Perfect for job boards, applicant tracking systems, resume builders, and HR platforms. 
+                <strong>No external dependencies required</strong> - all schema definitions are self-contained.
+            </p>
+        </section>
+
+        <section id="getting-started">
+            <h2>Getting Started</h2>
+            <p>To use Schema Resume in your application, reference the schema URL in your JSON document:</p>
+            <div class="code-block">
+<code>{
+  "@context": "https://schema-resume.org/schema.json",
+  "$schema": "https://schema-resume.org/schema.json",
+  "basics": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  }
+}</code>
+            </div>
+            <p>The schema includes comprehensive validation rules and semantic web integration with Schema.org vocabulary.</p>
         </section>
 
         <section id="features">
@@ -520,20 +725,135 @@ python -c "from lxml import etree; import requests; xsd = etree.XMLSchema(etree.
                 for detailed integration examples.
             </p>
         </section>
-    </main>
 
+            <section id="properties">
+                <h2>Schema Properties</h2>
+                <p>The schema includes the following main sections:</p>
+                <table class="property-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>basics</code></td>
+                            <td>Object</td>
+                            <td>Personal information, contact details, social profiles, nationalities, and work authorization</td>
+                        </tr>
+                        <tr>
+                            <td><code>work</code></td>
+                            <td>Array</td>
+                            <td>Work experience and employment history</td>
+                        </tr>
+                        <tr>
+                            <td><code>volunteer</code></td>
+                            <td>Array</td>
+                            <td>Volunteer work and community involvement</td>
+                        </tr>
+                        <tr>
+                            <td><code>education</code></td>
+                            <td>Array</td>
+                            <td>Academic background and qualifications</td>
+                        </tr>
+                        <tr>
+                            <td><code>awards</code></td>
+                            <td>Array</td>
+                            <td>Professional awards and recognitions</td>
+                        </tr>
+                        <tr>
+                            <td><code>certificates</code></td>
+                            <td>Array</td>
+                            <td>Professional certifications</td>
+                        </tr>
+                        <tr>
+                            <td><code>publications</code></td>
+                            <td>Array</td>
+                            <td>Published works and articles</td>
+                        </tr>
+                        <tr>
+                            <td><code>skills</code></td>
+                            <td>Array</td>
+                            <td>Technical and professional skills with experience levels</td>
+                        </tr>
+                        <tr>
+                            <td><code>tools</code></td>
+                            <td>Array</td>
+                            <td>Specific software and tools used professionally</td>
+                        </tr>
+                        <tr>
+                            <td><code>languages</code></td>
+                            <td>Array</td>
+                            <td>Language proficiencies</td>
+                        </tr>
+                        <tr>
+                            <td><code>interests</code></td>
+                            <td>Array</td>
+                            <td>Personal interests and hobbies</td>
+                        </tr>
+                        <tr>
+                            <td><code>references</code></td>
+                            <td>Array</td>
+                            <td>Professional references</td>
+                        </tr>
+                        <tr>
+                            <td><code>projects</code></td>
+                            <td>Array</td>
+                            <td>Personal and professional projects</td>
+                        </tr>
+                        <tr>
+                            <td><code>meta</code></td>
+                            <td>Object</td>
+                            <td>Schema metadata and versioning</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
     <footer>
         <div class="container">
             <p>&copy; 2025 Schema Resume. Released under the MIT License.</p>
             <div class="links">
-                <a href="./validator.html">Validator</a>
                 <a href="https://github.com/tradik/schema-resume">GitHub</a>
                 <a href="https://github.com/tradik/schema-resume/issues">Issues</a>
-                <a href="https://github.com/tradik/schema-resume/blob/main/CHANGELOG.md">Changelog</a>
                 <a href="https://github.com/tradik/schema-resume/blob/main/LICENSE">License</a>
+                <a href="./validator.html">Validator</a>
+                <a href="./converter.html">Converter</a>
             </div>
             <p style="margin-top: 20px; font-size: 0.9rem;">Made with <span role="img" aria-label="love">❤️</span> for the developer community</p>
         </div>
     </footer>
+
+    <script>
+        // Highlight active section in sidebar navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar nav a');
+            
+            function highlightNav() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightNav);
+            highlightNav();
+        });
+    </script>
 </body>
 </html>

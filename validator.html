@@ -96,37 +96,51 @@
             border-left: 3px solid #22c55e;
         }
         .code-editor {
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+            font-family: monospace;
+        }
+        
+        header a:hover {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        footer a:hover {
+            text-decoration: underline !important;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+<body class="bg-white min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-slate-200">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-lg">
-                        <i data-lucide="file-check-2" class="text-white" size="24"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-slate-900">Schema Resume Validator</h1>
-                        <p class="text-sm text-slate-600">JSON-LD CV/Resume Linter & Validator</p>
-                    </div>
+    <header style="background-color: #990000; color: white; padding: 20px 0; border-bottom: 3px solid #7a0000;">
+        <div class="container mx-auto px-4">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span role="img" aria-label="Document" style="font-size: 32px;">📄</span>
+                    <h1 style="margin: 0; font-size: 140%; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; font-weight: bold;">Schema Resume</h1>
                 </div>
-                <div class="flex items-center gap-2">
-                    <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">v1.1.0</span>
+                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <a href="./index.html" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; transition: background-color 0.2s;">Home</a>
+                    <a href="./validator.html" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; background-color: rgba(255, 255, 255, 0.2);">Validator</a>
+                    <a href="./converter.html" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; transition: background-color 0.2s;">Converter</a>
+                    <a href="https://github.com/tradik/schema-resume" style="color: white; text-decoration: none; font-size: 90%; padding: 6px 12px; border-radius: 4px; transition: background-color 0.2s;">GitHub</a>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Page Title -->
+    <div style="background-color: #eeeeee; border-bottom: 1px solid #cccccc; padding: 20px 0;">
+        <div class="container mx-auto px-4">
+            <h2 style="margin: 0; font-size: 140%; color: #000000; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; font-weight: bold;">Validator</h2>
+            <p style="margin: 5px 0 0 0; color: #666666; font-size: 95%; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;">JSON-LD CV/Resume Linter & Validator</p>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Input Section -->
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
-                <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4">
+                <div class="bg-primary px-6 py-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2 text-white">
                             <i data-lucide="code" size="20"></i>
@@ -163,7 +177,7 @@ Example:
                     ></textarea>
                     
                     <div class="mt-4 flex gap-3">
-                        <button id="validateBtn" class="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                        <button id="validateBtn" class="flex-1 bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-freebsd transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
                             <i data-lucide="check-circle" size="20"></i>
                             Validate JSON-LD
                         </button>
@@ -177,7 +191,7 @@ Example:
 
             <!-- Results Section -->
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
-                <div class="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4">
+                <div class="bg-gray-700 px-6 py-4">
                     <div class="flex items-center gap-2 text-white">
                         <i data-lucide="list-checks" size="20"></i>
                         <h2 class="text-lg font-semibold">Validation Results</h2>
@@ -234,10 +248,10 @@ Example:
         </div>
 
         <!-- Documentation Link -->
-        <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-6">
+        <div class="mt-8 bg-gray-100 rounded-freebsd border border-gray-300 p-6">
             <div class="flex items-start gap-4">
-                <div class="bg-blue-100 p-3 rounded-lg">
-                    <i data-lucide="book-open" class="text-blue-600" size="28"></i>
+                <div class="bg-gray-200 p-3 rounded-freebsd">
+                    <i data-lucide="book-open" class="text-primary" size="28"></i>
                 </div>
                 <div class="flex-1">
                     <h3 class="text-lg font-semibold text-slate-900 mb-2">Need Help?</h3>
@@ -258,14 +272,17 @@ Example:
     </main>
 
     <!-- Footer -->
-    <footer class="container mx-auto px-4 py-8 mt-12 border-t border-slate-200">
-        <div class="text-center text-slate-600 text-sm">
-            <p>Schema Resume Validator v1.1.0 | Made with ❤️ for the developer community</p>
-            <p class="mt-2">
-                <a href="https://github.com/tradik/schema-resume" class="text-blue-600 hover:text-blue-700 underline">GitHub</a> • 
-                <a href="./schema.json" class="text-blue-600 hover:text-blue-700 underline">Schema</a> • 
-                <a href="./JSON-LD.md" class="text-blue-600 hover:text-blue-700 underline">Documentation</a>
-            </p>
+    <footer style="text-align: center; padding: 40px 20px; color: #737373; border-top: 1px solid #cccccc; margin-top: 40px; font-size: 0.9em; line-height: 1.3em; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Schema Resume. Released under the MIT License.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+                <a href="https://github.com/tradik/schema-resume" style="color: #990000; text-decoration: none;">GitHub</a>
+                <a href="https://github.com/tradik/schema-resume/issues" style="color: #990000; text-decoration: none;">Issues</a>
+                <a href="https://github.com/tradik/schema-resume/blob/main/LICENSE" style="color: #990000; text-decoration: none;">License</a>
+                <a href="./validator.html" style="color: #990000; text-decoration: none;">Validator</a>
+                <a href="./converter.html" style="color: #990000; text-decoration: none;">Converter</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Made with <span role="img" aria-label="love">❤️</span> for the developer community</p>
         </div>
     </footer>
 
@@ -592,7 +609,7 @@ Example:
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200 mb-6">
+                <div class="bg-green-50 p-6 rounded-freebsd border border-green-200 mb-6">
                     <h4 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
                         <i data-lucide="bar-chart-3" size="20"></i>
                         CV Statistics

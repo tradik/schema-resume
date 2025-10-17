@@ -8,31 +8,38 @@ This document defines the design system, color palette, and accessibility guidel
 
 | Color Name | Hex Code | RGB | Usage |
 |------------|----------|-----|-------|
-| **Primary Blue** | `#2563eb` | `rgb(37, 99, 235)` | Primary actions, links, headings |
-| **Secondary Blue** | `#1e40af` | `rgb(30, 64, 175)` | Hover states, gradients |
-| **Accent Blue** | `#3b82f6` | `rgb(59, 130, 246)` | Highlights, active states |
+| **Primary Red** | `#990000` | `rgb(153, 0, 0)` | Primary actions, links, headings, accents |
+| **Dark Red** | `#7a0000` | `rgb(122, 0, 0)` | Hover states, darker accents |
+| **Gold/Yellow** | `#facc2e` | `rgb(250, 204, 46)` | Call-to-action buttons, highlights |
 
 ### Text Colors
 
 | Color Name | Hex Code | RGB | Usage | WCAG Contrast |
 |------------|----------|-----|-------|---------------|
-| **Text Primary** | `#1f2937` | `rgb(31, 41, 55)` | Body text, headings | AAA on white |
-| **Text Secondary** | `#6b7280` | `rgb(107, 114, 128)` | Secondary text, captions | AA on white |
+| **Text Primary** | `#000000` | `rgb(0, 0, 0)` | Body text, headings | AAA on white |
+| **Text Secondary** | `#666666` | `rgb(102, 102, 102)` | Secondary text, captions, labels | AA on white |
+| **Text Tertiary** | `#737373` | `rgb(115, 115, 115)` | Footer text, metadata | AA on white |
 
 ### Background Colors
 
 | Color Name | Hex Code | RGB | Usage |
 |------------|----------|-----|-------|
-| **Background Primary** | `#ffffff` | `rgb(255, 255, 255)` | Main content areas |
-| **Background Secondary** | `#f9fafb` | `rgb(249, 250, 251)` | Page background, cards |
-| **Code Background** | `#f3f4f6` | `rgb(243, 244, 246)` | Code blocks, inline code |
+| **Background Primary** | `#ffffff` | `rgb(255, 255, 255)` | Main content areas, page background |
+| **Background Secondary** | `#eeeeee` | `rgb(238, 238, 238)` | Cards, sections, alternating backgrounds |
+| **Background Light Gray** | `#d8d8d8` | `rgb(216, 216, 216)` | Subtle boxes, inactive elements |
+| **Code Background** | `#eeddcc` | `rgb(238, 221, 204)` | Code blocks (tan/beige) |
+| **Programlisting Background** | `#eeeeee` | `rgb(238, 238, 238)` | Alternative code blocks |
 
 ### Utility Colors
 
 | Color Name | Hex Code | RGB | Usage |
 |------------|----------|-----|-------|
-| **Success Green** | `#10b981` | `rgb(16, 185, 129)` | Success messages, badges |
-| **Border Color** | `#e5e7eb` | `rgb(229, 231, 235)` | Borders, dividers |
+| **Success Green** | `#10b981` | `rgb(16, 185, 129)` | Success messages, validation |
+| **Warning Red** | `#9f1313` | `rgb(159, 19, 19)` | Warnings, errors |
+| **Warning Background** | `#f8e8e8` | `rgb(248, 232, 232)` | Warning box backgrounds |
+| **Border Light** | `#dadada` | `rgb(218, 218, 218)` | Light borders, input fields |
+| **Border Medium** | `#cccccc` | `rgb(204, 204, 204)` | Standard borders, dividers |
+| **Border Dark** | `#b6b6b6` | `rgb(182, 182, 182)` | Darker borders, separators |
 
 ## ♿ WCAG 2.2 Accessibility Compliance
 
@@ -66,20 +73,20 @@ All color combinations meet **WCAG 2.2 Level AA** standards (minimum 4.5:1 for n
 ### Font Stack
 
 ```css
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
-             'Helvetica Neue', Arial, sans-serif;
+font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;
 ```
+
 
 ### Font Sizes
 
 | Element | Size | Line Height | Weight |
 |---------|------|-------------|--------|
-| **H1** | 3rem (48px) | 1.2 | 700 |
-| **H2** | 2rem (32px) | 1.3 | 600 |
-| **H3** | 1.5rem (24px) | 1.4 | 600 |
-| **Body** | 1rem (16px) | 1.6 | 400 |
-| **Small** | 0.875rem (14px) | 1.5 | 400 |
-| **Code** | 0.9rem (14.4px) | 1.5 | 400 |
+| **H1** | 120% (19.2px) | 1.2 | 700 (bold) |
+| **H2** | 115% (18.4px) | 1.2 | 700 (bold) |
+| **H3** | 110% (17.6px) | 1.2 | 700 (bold) |
+| **Body** | 1em (16px) | 1.2 | 400 |
+| **Small** | 0.9em (14.4px) | 1.3 | 400 |
+| **Code** | 1.1em (17.6px) | 1.2 | 400 (monospace) |
 
 ### Responsive Typography
 
@@ -113,20 +120,30 @@ Based on 4px base unit:
 ```css
 .btn {
   padding: 12px 24px;
-  background-color: #2563eb;
+  background-color: #990000;
   color: white;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 10px;
+  font-weight: bold;
   transition: background-color 0.2s;
+  text-decoration: none;
 }
 
 .btn:hover {
-  background-color: #1e40af;
+  background-color: #7a0000;
 }
 
 .btn:focus {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #990000;
   outline-offset: 2px;
+}
+
+.btn-primary {
+  background-color: #facc2e;
+  color: #990000;
+}
+
+.btn-primary:hover {
+  background-color: #e5b829;
 }
 ```
 
@@ -134,10 +151,10 @@ Based on 4px base unit:
 
 ```css
 .card {
-  background-color: #f9fafb;
+  background-color: #eeeeee;
   padding: 24px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -151,12 +168,22 @@ Based on 4px base unit:
 
 ```css
 .code-block {
-  background-color: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 20px;
+  background-color: #eeddcc;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 1ex;
   overflow-x: auto;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: monospace;
+  font-size: 1.1em;
+}
+
+.programlisting {
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 1ex;
+  overflow-x: auto;
+  font-family: monospace;
 }
 ```
 
@@ -198,21 +225,22 @@ Based on 4px base unit:
 
 ```css
 a {
-  color: #2563eb;
+  color: #990000;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #990000;
 }
 
 a:focus {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #990000;
   outline-offset: 2px;
 }
 
 a:visited {
-  color: #1e40af;
+  color: #7a0000;
 }
 ```
 
@@ -252,8 +280,9 @@ a:visited {
 ### Header Gradient
 
 ```css
-background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+background: linear-gradient(135deg, #990000 0%, #7a0000 100%);
 ```
+
 
 ### Hover Gradients
 
@@ -323,6 +352,7 @@ When creating new components, ensure:
 
 ---
 
-**Last Updated**: 2025-10-09  
-**Version**: 1.0.0  
-**Maintained by**: Tradik
+**Last Updated**: 2025-10-17  
+**Version**: 2.0.0 
+**Maintained by**: Tradik  
+

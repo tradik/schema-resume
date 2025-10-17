@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Implemented on index.html, validator.html, and converter.html
 
 ### Changed
+- **Design system update:
+  - Updated color scheme to red (#990000) from blue
+  - Changed primary font to Verdana 
+  - Updated all HTML pages (index.html, validator.html, converter.html) with new design
+  - Modified button styles with 10px border-radius and bold fonts
+  - Updated code blocks to use tan/beige background (#eeddcc)
+  - Changed card backgrounds to light gray (#eeeeee)
+  - Updated STYLE_GUIDE.md to reflect design system
+  - Maintained WCAG 2.2 accessibility compliance
+  - Added Tailwind CSS configuration for colors in validator and converter pages
 - **Primary domain migration**:
   - Changed primary domain from `https://tradik.github.io/schema-resume/` to `https://schema-resume.org/`
   - Updated all HTML files (index.html, validator.html, converter.html) with new canonical URLs and Open Graph metadata
@@ -139,6 +149,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Modern UI with TailwindCSS and Lucide icons
   - Responsive design for mobile and desktop
   - Hosted at: `https://tradik.github.io/schema-resume/validator.html`
+- **Unified header across all pages**:
+  - Updated validator.html and converter.html with same header design as index.html
+  - Consistent red header with logo and navigation links
+  - Active page highlighting in navigation
+  - Page title section below header on all pages
+  - Improved navigation consistency across the site
+- **Unified footer across all pages**:
+  - Updated validator.html and converter.html with same footer design as index.html
+  - Consistent styling with red links (#990000)
+  - Same link structure: GitHub, Issues, License, Validator, Converter
+  - Verdana font and gray text (#737373)
+  - Hover effects on footer links
+  - Complete visual consistency across all pages
 
 ### Changed
 - Updated README.md with online validator section
