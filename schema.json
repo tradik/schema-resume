@@ -62,7 +62,7 @@
           "description": "Age of the person in years",
           "minimum": 0
         },
-        "birthDate": {
+        "dateOfBirth": {
           "$ref": "#/definitions/iso8601",
           "description": "Date of birth in ISO 8601 format"
         },
@@ -117,6 +117,10 @@
             "address": {
               "type": "string",
               "description": "Street address with multiple lines separated by newline characters (\\n)"
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Street address line"
             },
             "postalCode": {
               "type": "string",

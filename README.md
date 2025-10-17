@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Website](https://img.shields.io/badge/Website-Live-success.svg)](https://schema-resume.org/)
 [![Self Hosted](https://img.shields.io/badge/Self--Hosted-Yes-brightgreen.svg)](https://schema-resume.org/meta-schema.json)
+[![Validate Schemas](https://github.com/tradik/schema-resume/actions/workflows/validate-schemas.yml/badge.svg)](https://github.com/tradik/schema-resume/actions/workflows/validate-schemas.yml)
+[![Quick Check](https://github.com/tradik/schema-resume/actions/workflows/quick-check.yml/badge.svg)](https://github.com/tradik/schema-resume/actions/workflows/quick-check.yml)
 
 A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation. This schema provides a standardized format for representing professional resumes in JSON format with semantic web integration, making it easy to parse, validate, and exchange resume data between systems without relying on external schema definitions.
 
@@ -524,6 +526,45 @@ When validating with **validator.schema.org**, you need to include `@type` prope
 - Common Schema.org types for projects, work, education
 - Troubleshooting validation errors
 - Best practices for semantic web integration
+
+## 🔍 Validation Tools
+
+This repository includes automated validation tools to ensure schema consistency:
+
+### Local Validation
+
+```bash
+# Lint all schema files
+./run-lint.sh
+
+# Compare schemas for consistency
+./run-comparison.sh
+
+# Run complete validation suite
+./validate-all.sh
+```
+
+### Validation Scripts
+
+- **`lint-schemas.py`** - Validates syntax and structure of all 4 schema files:
+  - `schema.json` - Main JSON Schema
+  - `context.jsonld` - JSON-LD context mappings
+  - `meta-schema.json` - Meta-schema definitions
+  - `schema-resume.xsd` - XML Schema
+
+- **`compare-schemas.py`** - Compares fields across all schema files to ensure consistency
+
+### CI/CD Integration
+
+GitHub Actions automatically validates all schema files on every push and pull request:
+
+- ✅ JSON syntax validation
+- ✅ XML schema validation
+- ✅ Field consistency checks
+- ✅ Structure validation
+- ✅ Cross-schema comparison
+
+See [`.github/workflows/`](.github/workflows/) for workflow details.
 
 ## 📞 Support
 

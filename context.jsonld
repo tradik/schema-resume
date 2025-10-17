@@ -1,7 +1,7 @@
 {
   "@context": {
     "@version": 1.1,
-    "@vocab": "https://tradik.github.io/schema-resume/",
+    "@vocab": "https://schema-resume.org/",
     "schema": "http://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -24,6 +24,21 @@
     
     "label": {
       "@id": "schema:jobTitle",
+      "@type": "xsd:string"
+    },
+    
+    "age": {
+      "@id": "schema:age",
+      "@type": "xsd:integer"
+    },
+    
+    "dateOfBirth": {
+      "@id": "schema:birthDate",
+      "@type": "xsd:date"
+    },
+    
+    "gender": {
+      "@id": "schema:gender",
       "@type": "xsd:string"
     },
     
@@ -460,6 +475,16 @@
     
     "dateCreated": {
       "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    
+    "dateModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    
+    "datePublished": {
+      "@id": "schema:datePublished",
       "@type": "xsd:dateTime"
     }
   }
