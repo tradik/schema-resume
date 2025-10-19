@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **legalNote field implementation**:
+  - Added `legalNote` object to basics section in schema.json with properties: text, country, type, and url
+  - Added `LegalNoteType` complex type to XSD schema (schema-resume.xsd)
+  - Added JSON-LD mapping for legalNote in context.jsonld
+  - Added legalNote examples to both example.json and example-with-local-context.json
+  - Supports legal disclaimers, GDPR consent statements, and data processing notes with optional country-specific context
 - **Google Analytics tracking**:
   - Added Google Analytics (gtag.js) tracking code to all HTML pages
   - Tracking ID: G-NG0TH0GXV1
