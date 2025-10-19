@@ -52,6 +52,12 @@
       "UI/UX Design Principles",
       "Test-Driven Development"
     ],
+    "legalNote": {
+      "text": "I authorize the processing of my personal data for recruitment purposes in accordance with applicable privacy laws.",
+      "country": "US",
+      "type": "data_processing",
+      "url": "https://marcuschen.dev/privacy"
+    },
     "location": {
       "@type": "schema:PostalAddress",
       "streetAddress": "1234 Market Street\nApt 567",

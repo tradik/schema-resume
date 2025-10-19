@@ -42,6 +42,16 @@
       "@type": "xsd:string"
     },
     
+    "legalNote": {
+      "@id": "schema:termsOfService",
+      "@type": "@id"
+    },
+    
+    "text": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    
     "image": {
       "@id": "schema:image",
       "@type": "@id"

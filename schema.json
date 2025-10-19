@@ -70,6 +70,30 @@
           "type": "string",
           "description": "Gender identity of the person"
         },
+        "legalNote": {
+          "type": "object",
+          "description": "Legal disclaimers, consent statements, or data processing notes with optional country-specific context",
+          "additionalProperties": true,
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "The legal note or disclaimer text"
+            },
+            "country": {
+              "type": "string",
+              "description": "Country code (ISO-3166-1 ALPHA-2) if the legal note is country-specific"
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of legal note (e.g., 'gdpr_consent', 'data_processing', 'disclaimer')"
+            },
+            "url": {
+              "type": "string",
+              "description": "URL to full legal text or privacy policy",
+              "format": "uri"
+            }
+          }
+        },
         "image": {
           "type": "string",
           "description": "Web address pointing to a profile photograph in JPEG or PNG format"
