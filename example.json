@@ -329,101 +329,142 @@
   "skills": [
     {
       "@type": "schema:DefinedTerm",
-      "name": "Cloud Platforms",
+      "name": "Project Management",
+      "level": "Advanced",
+      "yearsOfExperience": 6,
+      "comment": "Led multiple cross-functional teams using Agile methodologies",
+      "keywords": [
+        "Scrum",
+        "Agile Project Management",
+        "Sprint Planning",
+        "Backlog Management",
+        "Risk Management"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Financial Management",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Managed infrastructure budgets and cost optimization initiatives",
+      "keywords": [
+        "Budget Planning",
+        "Cost Optimization",
+        "Resource Allocation",
+        "Financial Forecasting",
+        "ROI Analysis"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Strategic Planning",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Developed long-term technical roadmaps and infrastructure strategies",
+      "keywords": [
+        "Technical Roadmap Development",
+        "Capacity Planning",
+        "Technology Evaluation",
+        "Strategic Decision Making",
+        "Vendor Management"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Documentation",
       "level": "Expert",
       "yearsOfExperience": 8,
-      "comment": "Extensive experience architecting and managing multi-cloud environments for enterprise applications",
+      "comment": "Created comprehensive technical documentation and knowledge bases",
       "keywords": [
-        "AWS",
-        "Google Cloud Platform",
-        "Microsoft Azure",
-        "DigitalOcean",
-        "Cloudflare"
+        "Technical Writing",
+        "API Documentation",
+        "Architecture Diagrams",
+        "Runbooks",
+        "Knowledge Base Management"
       ]
     },
     {
       "@type": "schema:DefinedTerm",
-      "name": "Container Orchestration",
-      "level": "Expert",
-      "yearsOfExperience": 6,
-      "comment": "Led multiple Kubernetes migrations and manage clusters serving millions of requests daily",
-      "keywords": [
-        "Kubernetes",
-        "Docker",
-        "Helm",
-        "Docker Compose",
-        "Rancher"
-      ]
-    },
-    {
-      "@type": "schema:DefinedTerm",
-      "name": "Infrastructure as Code",
-      "level": "Expert",
-      "yearsOfExperience": 7,
-      "comment": "Designed and implemented IaC standards across multiple organizations",
-      "keywords": [
-        "Terraform",
-        "Ansible",
-        "CloudFormation",
-        "Pulumi",
-        "AWS CDK"
-      ]
-    },
-    {
-      "@type": "schema:DefinedTerm",
-      "name": "CI/CD",
-      "level": "Advanced",
-      "yearsOfExperience": 7,
-      "comment": "Built and maintained CI/CD pipelines for 50+ projects",
-      "keywords": [
-        "GitHub Actions",
-        "GitLab CI",
-        "Jenkins",
-        "ArgoCD",
-        "CircleCI"
-      ]
-    },
-    {
-      "@type": "schema:DefinedTerm",
-      "name": "Monitoring & Observability",
+      "name": "Mentoring & Coaching",
       "level": "Advanced",
       "yearsOfExperience": 6,
-      "comment": "Implemented comprehensive monitoring solutions with custom dashboards and alerting",
+      "comment": "Mentored junior engineers and led technical training programs",
       "keywords": [
-        "Prometheus",
-        "Grafana",
-        "ELK Stack",
-        "Datadog",
-        "New Relic",
-        "Jaeger"
+        "Technical Mentoring",
+        "Career Development",
+        "Knowledge Transfer",
+        "Training Program Development",
+        "Performance Coaching"
       ]
     },
     {
       "@type": "schema:DefinedTerm",
-      "name": "Programming",
+      "name": "Stakeholder Communication",
       "level": "Advanced",
-      "yearsOfExperience": 9,
-      "comment": "Proficient in multiple languages for automation, tooling, and infrastructure management",
+      "yearsOfExperience": 6,
+      "comment": "Effectively communicated technical concepts to non-technical stakeholders",
       "keywords": [
-        "Python",
-        "Go",
-        "Bash",
-        "JavaScript",
-        "YAML"
+        "Executive Presentations",
+        "Technical Communication",
+        "Requirement Gathering",
+        "Status Reporting",
+        "Conflict Resolution"
       ]
     },
     {
       "@type": "schema:DefinedTerm",
-      "name": "Databases",
-      "level": "Intermediate",
+      "name": "Team Leadership",
+      "level": "Advanced",
+      "yearsOfExperience": 4,
+      "comment": "Led engineering teams and fostered collaborative work environments",
+      "keywords": [
+        "Team Building",
+        "Performance Management",
+        "Delegation",
+        "Motivation",
+        "Cross-functional Collaboration"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Stress Management",
+      "level": "Advanced",
+      "yearsOfExperience": 8,
+      "comment": "Maintained high performance during critical incidents and high-pressure situations",
+      "keywords": [
+        "Incident Response",
+        "Crisis Management",
+        "Time Management",
+        "Prioritization",
+        "Resilience"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Problem Solving",
+      "level": "Expert",
+      "yearsOfExperience": 8,
+      "comment": "Analytical approach to complex technical and organizational challenges",
+      "keywords": [
+        "Root Cause Analysis",
+        "Critical Thinking",
+        "Troubleshooting",
+        "Decision Making",
+        "Innovation"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Change Management",
+      "level": "Advanced",
       "yearsOfExperience": 5,
-      "comment": "Experience with database administration, optimization, and migration",
+      "comment": "Successfully led organizational and technical transformation initiatives",
       "keywords": [
-        "PostgreSQL",
-        "MySQL",
-        "MongoDB",
-        "Redis",
-        "DynamoDB"
+        "Process Improvement",
+        "Organizational Change",
+        "Adoption Strategy",
+        "Risk Mitigation",
+        "Continuous Improvement"
       ]
     }
   ],
@@ -432,6 +473,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "Terraform",
       "group": "Infrastructure as Code",
+      "category": "Infrastructure as Code",
       "yearsOfExperience": 7,
       "level": "Expert",
       "comment": "Primary IaC tool, authored 50+ reusable modules and contributed to open source",
@@ -441,6 +483,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "Kubernetes",
       "group": "Container Orchestration",
+      "category": "Container Orchestration",
       "yearsOfExperience": 6,
       "level": "Expert",
       "comment": "CKA certified, manage production clusters with 100+ nodes",
@@ -450,6 +493,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "AWS",
       "group": "Cloud Platforms",
+      "category": "Cloud Platforms",
       "yearsOfExperience": 8,
       "level": "Expert",
       "comment": "Solutions Architect Professional certified, extensive experience across 30+ services",
@@ -459,6 +503,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "Docker",
       "group": "Container Orchestration",
+      "category": "Container Orchestration",
       "yearsOfExperience": 7,
       "level": "Expert",
       "comment": "Containerized 100+ applications, optimized images for production use",
@@ -468,6 +513,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "Prometheus",
       "group": "Monitoring & Logging",
+      "category": "Monitoring & Logging",
       "yearsOfExperience": 5,
       "level": "Advanced",
       "comment": "Designed monitoring architecture for large-scale distributed systems",
@@ -477,6 +523,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "Grafana",
       "group": "Monitoring & Logging",
+      "category": "Monitoring & Logging",
       "yearsOfExperience": 5,
       "level": "Advanced",
       "comment": "Created custom dashboards and alerting rules for infrastructure monitoring",
@@ -486,6 +533,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "ELK Stack",
       "group": "Monitoring & Logging",
+      "category": "Monitoring & Logging",
       "yearsOfExperience": 4,
       "level": "Intermediate",
       "comment": "Implemented centralized logging for microservices architecture",
@@ -495,6 +543,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "Nginx",
       "group": "Web & Servers",
+      "category": "Web & Servers",
       "yearsOfExperience": 8,
       "level": "Advanced",
       "comment": "Configured as reverse proxy, load balancer, and API gateway",
@@ -504,6 +553,7 @@
       "@type": "schema:SoftwareApplication",
       "name": "GitHub Actions",
       "group": "CI/CD",
+      "category": "CI/CD",
       "yearsOfExperience": 4,
       "level": "Advanced",
       "comment": "Created custom actions and workflows for complex deployment scenarios",
@@ -512,30 +562,132 @@
     {
       "@type": "schema:SoftwareApplication",
       "name": "Ansible",
+      "group": "Infrastructure as Code",
+      "category": "Infrastructure as Code",
       "yearsOfExperience": 6,
+      "level": "Advanced",
       "comment": "Configuration management and automation for infrastructure provisioning",
       "url": "https://www.ansible.com"
     },
     {
       "@type": "schema:SoftwareApplication",
-      "name": "Grafana",
-      "yearsOfExperience": 5,
-      "comment": "Built 50+ dashboards for infrastructure and application monitoring",
-      "url": "https://grafana.com"
-    },
-    {
-      "@type": "schema:SoftwareApplication",
       "name": "ArgoCD",
+      "group": "CI/CD",
+      "category": "CI/CD",
       "yearsOfExperience": 3,
+      "level": "Intermediate",
       "comment": "Implemented GitOps workflows for Kubernetes deployments",
       "url": "https://argo-cd.readthedocs.io"
     },
     {
       "@type": "schema:SoftwareApplication",
       "name": "Helm",
+      "group": "Container Orchestration",
+      "category": "Container Orchestration",
       "yearsOfExperience": 5,
+      "level": "Advanced",
       "comment": "Package management for Kubernetes, created 20+ charts",
       "url": "https://helm.sh"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Python",
+      "group": "Programming Languages",
+      "category": "Programming Languages",
+      "yearsOfExperience": 9,
+      "level": "Advanced",
+      "comment": "Primary language for automation scripts and infrastructure tooling",
+      "url": "https://www.python.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Go",
+      "group": "Programming Languages",
+      "category": "Programming Languages",
+      "yearsOfExperience": 5,
+      "level": "Intermediate",
+      "comment": "Used for building cloud-native applications and CLI tools",
+      "url": "https://golang.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "JavaScript",
+      "group": "Programming Languages",
+      "category": "Programming Languages",
+      "yearsOfExperience": 15,
+      "level": "Expert",
+      "comment": "Full-stack development, automation, and tooling",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "JSON",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 8,
+      "level": "Expert",
+      "comment": "API design, configuration management, and data interchange",
+      "url": "https://www.json.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "XML",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 10,
+      "level": "Expert",
+      "comment": "Schema design, data transformation, and enterprise integration",
+      "url": "https://www.w3.org/XML/"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "XSLT",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 10,
+      "level": "Advanced",
+      "comment": "XML transformations and data processing pipelines",
+      "url": "https://www.w3.org/TR/xslt"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "XSD",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 8,
+      "level": "Advanced",
+      "comment": "XML Schema design and validation for structured data",
+      "url": "https://www.w3.org/XML/Schema"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "PostgreSQL",
+      "group": "Databases",
+      "category": "Databases",
+      "yearsOfExperience": 6,
+      "level": "Intermediate",
+      "comment": "Database administration, query optimization, and replication",
+      "url": "https://www.postgresql.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Redis",
+      "group": "Databases",
+      "category": "Databases",
+      "yearsOfExperience": 5,
+      "level": "Intermediate",
+      "comment": "Caching strategies and session management",
+      "url": "https://redis.io"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Git",
+      "group": "Version Control",
+      "category": "Version Control",
+      "yearsOfExperience": 10,
+      "level": "Expert",
+      "comment": "Version control, branching strategies, and GitOps workflows",
+      "url": "https://git-scm.com"
     }
   ],
   "languages": [
@@ -679,6 +831,35 @@
       "url": "https://github.com/efitzdev/terraform-aws-modules",
       "roles": [
         "Creator",
+        "Maintainer"
+      ],
+      "entity": "Personal Project",
+      "type": "application"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Schema Resume",
+      "description": "Self-hosted JSON-LD and XML schema for CV/Resume parsing and validation with semantic web integration",
+      "highlights": [
+        "Comprehensive resume schema with Schema.org compatibility",
+        "Support for JSON, XML, and JSON-LD formats",
+        "Includes work authorization and tools tracking",
+        "Open-source MIT licensed project"
+      ],
+      "keywords": [
+        "JSON Schema",
+        "XML",
+        "XSD",
+        "JSON-LD",
+        "Resume",
+        "CV",
+        "Schema.org"
+      ],
+      "startDate": "2024-01",
+      "url": "https://schema-resume.org",
+      "roles": [
+        "Creator",
+        "Lead Developer",
         "Maintainer"
       ],
       "entity": "Personal Project",

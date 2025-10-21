@@ -223,36 +223,149 @@
   </publications>
   
   <skills>
-    <name>Cloud Platforms</name>
-    <level>Expert</level>
-    <yearsOfExperience>8</yearsOfExperience>
-    <comment>Extensive experience architecting and managing multi-cloud environments for enterprise applications</comment>
+    <name>Project Management</name>
+    <level>Advanced</level>
+    <yearsOfExperience>6</yearsOfExperience>
+    <comment>Led multiple cross-functional teams using Agile methodologies</comment>
     <keywords>
-      <item>AWS</item>
-      <item>Google Cloud Platform</item>
-      <item>Microsoft Azure</item>
-      <item>DigitalOcean</item>
-      <item>Cloudflare</item>
+      <item>Scrum</item>
+      <item>Agile Project Management</item>
+      <item>Sprint Planning</item>
+      <item>Backlog Management</item>
+      <item>Risk Management</item>
     </keywords>
   </skills>
   
   <skills>
-    <name>Container Orchestration</name>
-    <level>Expert</level>
-    <yearsOfExperience>6</yearsOfExperience>
-    <comment>Led multiple Kubernetes migrations and manage clusters serving millions of requests daily</comment>
+    <name>Financial Management</name>
+    <level>Advanced</level>
+    <yearsOfExperience>5</yearsOfExperience>
+    <comment>Managed infrastructure budgets and cost optimization initiatives</comment>
     <keywords>
-      <item>Kubernetes</item>
-      <item>Docker</item>
-      <item>Helm</item>
-      <item>Docker Compose</item>
-      <item>Rancher</item>
+      <item>Budget Planning</item>
+      <item>Cost Optimization</item>
+      <item>Resource Allocation</item>
+      <item>Financial Forecasting</item>
+      <item>ROI Analysis</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Strategic Planning</name>
+    <level>Advanced</level>
+    <yearsOfExperience>5</yearsOfExperience>
+    <comment>Developed long-term technical roadmaps and infrastructure strategies</comment>
+    <keywords>
+      <item>Technical Roadmap Development</item>
+      <item>Capacity Planning</item>
+      <item>Technology Evaluation</item>
+      <item>Strategic Decision Making</item>
+      <item>Vendor Management</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Documentation</name>
+    <level>Expert</level>
+    <yearsOfExperience>8</yearsOfExperience>
+    <comment>Created comprehensive technical documentation and knowledge bases</comment>
+    <keywords>
+      <item>Technical Writing</item>
+      <item>API Documentation</item>
+      <item>Architecture Diagrams</item>
+      <item>Runbooks</item>
+      <item>Knowledge Base Management</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Mentoring &amp; Coaching</name>
+    <level>Advanced</level>
+    <yearsOfExperience>6</yearsOfExperience>
+    <comment>Mentored junior engineers and led technical training programs</comment>
+    <keywords>
+      <item>Technical Mentoring</item>
+      <item>Career Development</item>
+      <item>Knowledge Transfer</item>
+      <item>Training Program Development</item>
+      <item>Performance Coaching</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Stakeholder Communication</name>
+    <level>Advanced</level>
+    <yearsOfExperience>6</yearsOfExperience>
+    <comment>Effectively communicated technical concepts to non-technical stakeholders</comment>
+    <keywords>
+      <item>Executive Presentations</item>
+      <item>Technical Communication</item>
+      <item>Requirement Gathering</item>
+      <item>Status Reporting</item>
+      <item>Conflict Resolution</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Team Leadership</name>
+    <level>Advanced</level>
+    <yearsOfExperience>4</yearsOfExperience>
+    <comment>Led engineering teams and fostered collaborative work environments</comment>
+    <keywords>
+      <item>Team Building</item>
+      <item>Performance Management</item>
+      <item>Delegation</item>
+      <item>Motivation</item>
+      <item>Cross-functional Collaboration</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Stress Management</name>
+    <level>Advanced</level>
+    <yearsOfExperience>8</yearsOfExperience>
+    <comment>Maintained high performance during critical incidents and high-pressure situations</comment>
+    <keywords>
+      <item>Incident Response</item>
+      <item>Crisis Management</item>
+      <item>Time Management</item>
+      <item>Prioritization</item>
+      <item>Resilience</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Problem Solving</name>
+    <level>Expert</level>
+    <yearsOfExperience>8</yearsOfExperience>
+    <comment>Analytical approach to complex technical and organizational challenges</comment>
+    <keywords>
+      <item>Root Cause Analysis</item>
+      <item>Critical Thinking</item>
+      <item>Troubleshooting</item>
+      <item>Decision Making</item>
+      <item>Innovation</item>
+    </keywords>
+  </skills>
+  
+  <skills>
+    <name>Change Management</name>
+    <level>Advanced</level>
+    <yearsOfExperience>5</yearsOfExperience>
+    <comment>Successfully led organizational and technical transformation initiatives</comment>
+    <keywords>
+      <item>Process Improvement</item>
+      <item>Organizational Change</item>
+      <item>Adoption Strategy</item>
+      <item>Risk Mitigation</item>
+      <item>Continuous Improvement</item>
     </keywords>
   </skills>
   
   <tools>
     <name>Terraform</name>
     <group>Infrastructure as Code</group>
+    <category>Infrastructure as Code</category>
     <yearsOfExperience>7</yearsOfExperience>
     <level>Expert</level>
     <comment>Primary IaC tool, authored 50+ reusable modules and contributed to open source</comment>
@@ -262,10 +375,211 @@
   <tools>
     <name>Kubernetes</name>
     <group>Container Orchestration</group>
+    <category>Container Orchestration</category>
     <yearsOfExperience>6</yearsOfExperience>
     <level>Expert</level>
     <comment>CKA certified, manage production clusters with 100+ nodes</comment>
     <url>https://kubernetes.io</url>
+  </tools>
+  
+  <tools>
+    <name>AWS</name>
+    <group>Cloud Platforms</group>
+    <category>Cloud Platforms</category>
+    <yearsOfExperience>8</yearsOfExperience>
+    <level>Expert</level>
+    <comment>Solutions Architect Professional certified, extensive experience across 30+ services</comment>
+    <url>https://aws.amazon.com</url>
+  </tools>
+  
+  <tools>
+    <name>Docker</name>
+    <group>Container Orchestration</group>
+    <category>Container Orchestration</category>
+    <yearsOfExperience>7</yearsOfExperience>
+    <level>Expert</level>
+    <comment>Containerized 100+ applications, optimized images for production use</comment>
+    <url>https://www.docker.com</url>
+  </tools>
+  
+  <tools>
+    <name>Prometheus</name>
+    <group>Monitoring &amp; Logging</group>
+    <category>Monitoring &amp; Logging</category>
+    <yearsOfExperience>5</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>Designed monitoring architecture for large-scale distributed systems</comment>
+    <url>https://prometheus.io</url>
+  </tools>
+  
+  <tools>
+    <name>Grafana</name>
+    <group>Monitoring &amp; Logging</group>
+    <category>Monitoring &amp; Logging</category>
+    <yearsOfExperience>5</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>Created custom dashboards and alerting rules for infrastructure monitoring</comment>
+    <url>https://grafana.com</url>
+  </tools>
+  
+  <tools>
+    <name>ELK Stack</name>
+    <group>Monitoring &amp; Logging</group>
+    <category>Monitoring &amp; Logging</category>
+    <yearsOfExperience>4</yearsOfExperience>
+    <level>Intermediate</level>
+    <comment>Implemented centralized logging for microservices architecture</comment>
+    <url>https://www.elastic.co/elastic-stack</url>
+  </tools>
+  
+  <tools>
+    <name>Nginx</name>
+    <group>Web &amp; Servers</group>
+    <category>Web &amp; Servers</category>
+    <yearsOfExperience>8</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>Configured as reverse proxy, load balancer, and API gateway</comment>
+    <url>https://nginx.org</url>
+  </tools>
+  
+  <tools>
+    <name>GitHub Actions</name>
+    <group>CI/CD</group>
+    <category>CI/CD</category>
+    <yearsOfExperience>4</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>Created custom actions and workflows for complex deployment scenarios</comment>
+    <url>https://github.com/features/actions</url>
+  </tools>
+  
+  <tools>
+    <name>Ansible</name>
+    <group>Infrastructure as Code</group>
+    <category>Infrastructure as Code</category>
+    <yearsOfExperience>6</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>Configuration management and automation for infrastructure provisioning</comment>
+    <url>https://www.ansible.com</url>
+  </tools>
+  
+  <tools>
+    <name>ArgoCD</name>
+    <group>CI/CD</group>
+    <category>CI/CD</category>
+    <yearsOfExperience>3</yearsOfExperience>
+    <level>Intermediate</level>
+    <comment>Implemented GitOps workflows for Kubernetes deployments</comment>
+    <url>https://argo-cd.readthedocs.io</url>
+  </tools>
+  
+  <tools>
+    <name>Helm</name>
+    <group>Container Orchestration</group>
+    <category>Container Orchestration</category>
+    <yearsOfExperience>5</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>Package management for Kubernetes, created 20+ charts</comment>
+    <url>https://helm.sh</url>
+  </tools>
+  
+  <tools>
+    <name>Python</name>
+    <group>Programming Languages</group>
+    <category>Programming Languages</category>
+    <yearsOfExperience>9</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>Primary language for automation scripts and infrastructure tooling</comment>
+    <url>https://www.python.org</url>
+  </tools>
+  
+  <tools>
+    <name>Go</name>
+    <group>Programming Languages</group>
+    <category>Programming Languages</category>
+    <yearsOfExperience>5</yearsOfExperience>
+    <level>Intermediate</level>
+    <comment>Used for building cloud-native applications and CLI tools</comment>
+    <url>https://golang.org</url>
+  </tools>
+  
+  <tools>
+    <name>JavaScript</name>
+    <group>Programming Languages</group>
+    <category>Programming Languages</category>
+    <yearsOfExperience>15</yearsOfExperience>
+    <level>Expert</level>
+    <comment>Full-stack development, automation, and tooling</comment>
+    <url>https://developer.mozilla.org/en-US/docs/Web/JavaScript</url>
+  </tools>
+  
+  <tools>
+    <name>JSON</name>
+    <group>Data Formats</group>
+    <category>Data Formats</category>
+    <yearsOfExperience>8</yearsOfExperience>
+    <level>Expert</level>
+    <comment>API design, configuration management, and data interchange</comment>
+    <url>https://www.json.org</url>
+  </tools>
+  
+  <tools>
+    <name>XML</name>
+    <group>Data Formats</group>
+    <category>Data Formats</category>
+    <yearsOfExperience>10</yearsOfExperience>
+    <level>Expert</level>
+    <comment>Schema design, data transformation, and enterprise integration</comment>
+    <url>https://www.w3.org/XML/</url>
+  </tools>
+  
+  <tools>
+    <name>XSLT</name>
+    <group>Data Formats</group>
+    <category>Data Formats</category>
+    <yearsOfExperience>10</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>XML transformations and data processing pipelines</comment>
+    <url>https://www.w3.org/TR/xslt</url>
+  </tools>
+  
+  <tools>
+    <name>XSD</name>
+    <group>Data Formats</group>
+    <category>Data Formats</category>
+    <yearsOfExperience>8</yearsOfExperience>
+    <level>Advanced</level>
+    <comment>XML Schema design and validation for structured data</comment>
+    <url>https://www.w3.org/XML/Schema</url>
+  </tools>
+  
+  <tools>
+    <name>PostgreSQL</name>
+    <group>Databases</group>
+    <category>Databases</category>
+    <yearsOfExperience>6</yearsOfExperience>
+    <level>Intermediate</level>
+    <comment>Database administration, query optimization, and replication</comment>
+    <url>https://www.postgresql.org</url>
+  </tools>
+  
+  <tools>
+    <name>Redis</name>
+    <group>Databases</group>
+    <category>Databases</category>
+    <yearsOfExperience>5</yearsOfExperience>
+    <level>Intermediate</level>
+    <comment>Caching strategies and session management</comment>
+    <url>https://redis.io</url>
+  </tools>
+  
+  <tools>
+    <name>Git</name>
+    <group>Version Control</group>
+    <category>Version Control</category>
+    <yearsOfExperience>10</yearsOfExperience>
+    <level>Expert</level>
+    <comment>Version control, branching strategies, and GitOps workflows</comment>
+    <url>https://git-scm.com</url>
   </tools>
   
   <languages>
@@ -322,6 +636,35 @@
     <roles>
       <item>Creator</item>
       <item>Lead Maintainer</item>
+    </roles>
+    <entity>Personal Project</entity>
+    <type>application</type>
+  </projects>
+  
+  <projects>
+    <name>Schema Resume</name>
+    <description>Self-hosted JSON-LD and XML schema for CV/Resume parsing and validation with semantic web integration</description>
+    <highlights>
+      <item>Comprehensive resume schema with Schema.org compatibility</item>
+      <item>Support for JSON, XML, and JSON-LD formats</item>
+      <item>Includes work authorization and tools tracking</item>
+      <item>Open-source MIT licensed project</item>
+    </highlights>
+    <keywords>
+      <item>JSON Schema</item>
+      <item>XML</item>
+      <item>XSD</item>
+      <item>JSON-LD</item>
+      <item>Resume</item>
+      <item>CV</item>
+      <item>Schema.org</item>
+    </keywords>
+    <startDate>2024-01</startDate>
+    <url>https://schema-resume.org</url>
+    <roles>
+      <item>Creator</item>
+      <item>Lead Developer</item>
+      <item>Maintainer</item>
     </roles>
     <entity>Personal Project</entity>
     <type>application</type>
