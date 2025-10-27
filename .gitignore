@@ -158,3 +158,18 @@ site/
 # package-lock.json
 # yarn.lock
 # composer.lock
+
+# Package schema files - DO NOT IGNORE
+# These are synced copies, not symlinks
+!packages/*/schema.json
+!packages/*/meta-schema.json
+!packages/*/context.jsonld
+!packages/*/schema-resume.xsd
+!packages/*/schemas/schema.json
+!packages/*/schemas/meta-schema.json
+!packages/*/schemas/context.jsonld
+!packages/*/schemas/schema-resume.xsd
+!packages/*/*/schemas/schema.json
+!packages/*/*/schemas/meta-schema.json
+!packages/*/*/schemas/context.jsonld
+!packages/*/*/schemas/schema-resume.xsd
