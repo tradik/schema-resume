@@ -1,1 +1,435 @@
-../../meta-schema.json
+{
+  "$schema": "https://schema-resume.org/meta-schema.json",
+  "$id": "https://schema-resume.org/meta-schema.json",
+  "$comment": "Primary domain: https://schema-resume.org/ | Alternate domain: https://tradik.github.io/schema-resume/",
+  "title": "Schema Resume Meta-Schema v1.1.0",
+  "description": "Self-hosted meta-schema providing validation rules for resume documents without external dependencies",
+  "type": "object",
+  "version": "1.1.0",
+  "definitions": {
+    "schemaArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#" }
+    },
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonNegativeIntegerDefault0": {
+      "allOf": [
+        { "$ref": "#/definitions/nonNegativeInteger" },
+        { "default": 0 }
+      ]
+    },
+    "simpleTypes": {
+      "enum": [
+        "array",
+        "boolean",
+        "integer",
+        "null",
+        "number",
+        "object",
+        "string"
+      ]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "default": []
+    }
+  },
+  "properties": {
+    "$id": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "$ref": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "$comment": {
+      "type": "string"
+    },
+    "@context": {
+      "description": "JSON-LD context for semantic web integration"
+    },
+    "@type": {
+      "type": "string",
+      "description": "JSON-LD type annotation for semantic web compatibility (e.g., 'schema:Person', 'schema:Organization')"
+    },
+    "additionalType": {
+      "type": "string",
+      "description": "Additional type information for semantic web compatibility, can be a URL or Schema.org type"
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable title for the schema"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the person or entity"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL or web address"
+    },
+    "image": {
+      "type": "string",
+      "description": "Image URL"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Summary or description text"
+    },
+    "location": {
+      "type": "object",
+      "description": "Location or address information"
+    },
+    "profiles": {
+      "type": "array",
+      "description": "Social media and professional profiles"
+    },
+    "nationalities": {
+      "type": "array",
+      "description": "Citizenship and nationality information"
+    },
+    "description": {
+      "type": "string",
+      "description": "Explanatory text describing the purpose or usage"
+    },
+    "default": {
+      "description": "Default value for this property"
+    },
+    "readOnly": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indicates if the property is read-only"
+    },
+    "examples": {
+      "type": "array",
+      "items": {},
+      "description": "Example values demonstrating valid data"
+    },
+    "multipleOf": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Value must be divisible by this number"
+    },
+    "maximum": {
+      "type": "number",
+      "description": "Maximum allowed value (inclusive)"
+    },
+    "exclusiveMaximum": {
+      "type": "number",
+      "description": "Maximum allowed value (exclusive)"
+    },
+    "minimum": {
+      "type": "number",
+      "description": "Minimum allowed value (inclusive)"
+    },
+    "exclusiveMinimum": {
+      "type": "number",
+      "description": "Minimum allowed value (exclusive)"
+    },
+    "maxLength": { 
+      "$ref": "#/definitions/nonNegativeInteger",
+      "description": "Maximum length for string values"
+    },
+    "minLength": { 
+      "$ref": "#/definitions/nonNegativeIntegerDefault0",
+      "description": "Minimum length for string values"
+    },
+    "pattern": {
+      "type": "string",
+      "format": "regex",
+      "description": "Regular expression pattern that string must match"
+    },
+    "additionalItems": {
+      "anyOf": [
+        { "type": "boolean" },
+        { "$ref": "#" }
+      ],
+      "default": true,
+      "description": "Schema for additional array items beyond defined positions, or boolean to allow/disallow them"
+    },
+    "items": {
+      "anyOf": [
+        { "$ref": "#" },
+        { "$ref": "#/definitions/schemaArray" }
+      ],
+      "default": true,
+      "description": "Schema for array items"
+    },
+    "maxItems": { 
+      "$ref": "#/definitions/nonNegativeInteger",
+      "description": "Maximum number of items allowed in array"
+    },
+    "minItems": { 
+      "$ref": "#/definitions/nonNegativeIntegerDefault0",
+      "description": "Minimum number of items required in array"
+    },
+    "uniqueItems": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether all array items must be unique"
+    },
+    "contains": { 
+      "$ref": "#",
+      "description": "Schema that at least one array item must match"
+    },
+    "maxProperties": { 
+      "$ref": "#/definitions/nonNegativeInteger",
+      "description": "Maximum number of properties allowed in object"
+    },
+    "minProperties": { 
+      "$ref": "#/definitions/nonNegativeIntegerDefault0",
+      "description": "Minimum number of properties required in object"
+    },
+    "required": { 
+      "$ref": "#/definitions/stringArray",
+      "description": "List of property names that must be present"
+    },
+    "additionalProperties": {
+      "anyOf": [
+        { "type": "boolean" },
+        { "$ref": "#" }
+      ],
+      "default": true,
+      "description": "Schema for properties not explicitly defined, or boolean to allow/disallow them"
+    },
+    "definitions": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#" },
+      "default": {},
+      "description": "Reusable schema definitions referenced elsewhere"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#" },
+      "default": {},
+      "description": "Schema definitions for object properties"
+    },
+    "group": {
+      "type": "string",
+      "description": "Grouping or categorization field"
+    },
+    "category": {
+      "type": "string",
+      "description": "Category or classification field"
+    },
+    "workType": {
+      "type": "string",
+      "description": "Type of work arrangement"
+    },
+    "keyAchievements": {
+      "type": "array",
+      "description": "Notable achievements"
+    },
+    "coreCompetencies": {
+      "type": "array",
+      "description": "Core professional competencies"
+    },
+    "title": {
+      "type": "string",
+      "description": "Honorific title or prefix"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "description": "Date of birth"
+    },
+    "age": {
+      "type": "integer",
+      "description": "Current age in years"
+    },
+    "placeOfBirth": {
+      "type": "object",
+      "description": "Location where the person was born"
+    },
+    "gender": {
+      "type": "string",
+      "description": "Gender identity of the person"
+    },
+    "legalNote": {
+      "type": "object",
+      "description": "Legal disclaimers or notes"
+    },
+    "dateCreated": {
+      "type": "string",
+      "description": "Document creation timestamp"
+    },
+    "workAuthorization": {
+      "type": "array",
+      "description": "Work authorization information for multiple countries"
+    },
+    "status": {
+      "type": "string",
+      "description": "Work authorization status"
+    },
+    "visaType": {
+      "type": "string",
+      "description": "Type or category of visa"
+    },
+    "validFrom": {
+      "type": "string",
+      "description": "Start date of validity"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or information"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry sector or business domain"
+    },
+    "contactDetails": {
+      "type": "object",
+      "description": "Organization contact information"
+    },
+    "fax": {
+      "type": "string",
+      "description": "Fax number"
+    },
+    "address": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "streetAddress": {
+      "type": "string",
+      "description": "Street address line"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name"
+    },
+    "region": {
+      "type": "string",
+      "description": "Region, state, or province"
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal or ZIP code"
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "Country code (ISO-3166-1 ALPHA-2)"
+    },
+    "canonical": {
+      "type": "string",
+      "description": "Canonical URL"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version number"
+    },
+    "lastModified": {
+      "type": "string",
+      "description": "Last modification timestamp"
+    },
+    "dateModified": {
+      "type": "string",
+      "description": "Date modified timestamp"
+    },
+    "datePublished": {
+      "type": "string",
+      "description": "Date published timestamp"
+    },
+    "patternProperties": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#" },
+      "propertyNames": { "format": "regex" },
+      "default": {},
+      "description": "Schema for properties matching regex patterns"
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          { "$ref": "#" },
+          { "$ref": "#/definitions/stringArray" }
+        ]
+      },
+      "description": "Property dependencies and requirements"
+    },
+    "propertyNames": { 
+      "$ref": "#",
+      "description": "Schema that all property names must match"
+    },
+    "const": {
+      "description": "Exact value that must match"
+    },
+    "enum": {
+      "type": "array",
+      "items": {},
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "List of allowed values"
+    },
+    "type": {
+      "anyOf": [
+        { "$ref": "#/definitions/simpleTypes" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/definitions/simpleTypes" },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      ],
+      "description": "Expected data type or types"
+    },
+    "format": { 
+      "type": "string",
+      "description": "Semantic format for string validation (email, uri, date, etc.)"
+    },
+    "contentMediaType": { 
+      "type": "string",
+      "description": "Media type of string content"
+    },
+    "contentEncoding": { 
+      "type": "string",
+      "description": "Encoding used for string content"
+    },
+    "if": { 
+      "$ref": "#",
+      "description": "Conditional schema - if this matches, then 'then' applies"
+    },
+    "then": { 
+      "$ref": "#",
+      "description": "Schema to apply when 'if' condition is met"
+    },
+    "else": { 
+      "$ref": "#",
+      "description": "Schema to apply when 'if' condition is not met"
+    },
+    "allOf": { 
+      "$ref": "#/definitions/schemaArray",
+      "description": "Value must match all of these schemas"
+    },
+    "anyOf": { 
+      "$ref": "#/definitions/schemaArray",
+      "description": "Value must match at least one of these schemas"
+    },
+    "oneOf": { 
+      "$ref": "#/definitions/schemaArray",
+      "description": "Value must match exactly one of these schemas"
+    },
+    "not": { 
+      "$ref": "#",
+      "description": "Value must not match this schema"
+    }
+  },
+  "default": true
+}

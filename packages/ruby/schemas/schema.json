@@ -1,1 +1,849 @@
-../../schema.json
+{
+  "@context": {
+    "@vocab": "https://schema-resume.org/",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "name": "schema:name",
+    "email": "schema:email",
+    "url": "schema:url",
+    "telephone": "schema:telephone",
+    "address": "schema:address",
+    "jobTitle": "schema:jobTitle",
+    "worksFor": "schema:worksFor",
+    "alumniOf": "schema:alumniOf",
+    "award": "schema:award",
+    "knowsAbout": "schema:knowsAbout",
+    "knowsLanguage": "schema:knowsLanguage"
+  },
+  "$schema": "https://schema-resume.org/meta-schema.json",
+  "$id": "https://schema-resume.org/schema.json",
+  "$comment": "Primary domain: https://schema-resume.org/ | Alternate domain: https://tradik.github.io/schema-resume/",
+  "additionalProperties": true,
+  "definitions": {
+    "iso8601": {
+      "type": "string",
+      "description": "Date in ISO 8601 format with flexible precision - full date (2024-03-15), year-month (2024-03), or year only (2024)",
+      "pattern": "^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+    }
+  },
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "link to the version of the schema that can validate the resume",
+      "format": "uri"
+    },
+    "@type": {
+      "type": "string",
+      "description": "JSON-LD type for the document, typically 'DigitalDocument' for Schema.org compatibility"
+    },
+    "additionalType": {
+      "type": "string",
+      "description": "Additional type information for the document, can be a URL or Schema.org type",
+      "format": "uri"
+    },
+    "basics": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name of the person"
+        },
+        "label": {
+          "type": "string",
+          "description": "Professional title or role, such as 'Senior Software Engineer' or 'Product Designer'"
+        },
+        "title": {
+          "type": "string",
+          "description": "Job title or professional title of the person"
+        },
+        "age": {
+          "type": "integer",
+          "description": "Age of the person in years",
+          "minimum": 0
+        },
+        "dateOfBirth": {
+          "$ref": "#/definitions/iso8601",
+          "description": "Date of birth in ISO 8601 format"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Gender identity of the person"
+        },
+        "legalNote": {
+          "type": "object",
+          "description": "Legal disclaimers, consent statements, or data processing notes with optional country-specific context",
+          "additionalProperties": true,
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "The legal note or disclaimer text"
+            },
+            "country": {
+              "type": "string",
+              "description": "Country code (ISO-3166-1 ALPHA-2) if the legal note is country-specific"
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of legal note (e.g., 'gdpr_consent', 'data_processing', 'disclaimer')"
+            },
+            "url": {
+              "type": "string",
+              "description": "URL to full legal text or privacy policy",
+              "format": "uri"
+            }
+          }
+        },
+        "image": {
+          "type": "string",
+          "description": "Web address pointing to a profile photograph in JPEG or PNG format"
+        },
+        "email": {
+          "type": "string",
+          "description": "Primary email address for professional contact",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact telephone number in any preferred format"
+        },
+        "url": {
+          "type": "string",
+          "description": "Personal website or portfolio URL",
+          "format": "uri"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Brief professional summary highlighting key experience and expertise"
+        },
+        "keyAchievements": {
+          "type": "array",
+          "description": "Notable career achievements and accomplishments",
+          "additionalItems": false,
+          "items": {
+            "type": "string",
+            "description": "Individual achievement"
+          }
+        },
+        "coreCompetencies": {
+          "type": "array",
+          "description": "Core professional competencies and areas of expertise",
+          "additionalItems": false,
+          "items": {
+            "type": "string",
+            "description": "Competency or area of expertise"
+          }
+        },
+        "location": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "Street address with multiple lines separated by newline characters (\\n)"
+            },
+            "streetAddress": {
+              "type": "string",
+              "description": "Street address line"
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Postal or ZIP code"
+            },
+            "city": {
+              "type": "string",
+              "description": "City or town name"
+            },
+            "countryCode": {
+              "type": "string",
+              "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
+            },
+            "region": {
+              "type": "string",
+              "description": "State, county, province, or region within the country"
+            }
+          }
+        },
+        "profiles": {
+          "type": "array",
+          "description": "List of social media and professional network profiles",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "network": {
+                "type": "string",
+                "description": "Name of the social network or platform (LinkedIn, GitHub, Twitter, etc.)"
+              },
+              "username": {
+                "type": "string",
+                "description": "Username or handle on the platform"
+              },
+              "url": {
+                "type": "string",
+                "description": "Direct link to the profile page",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "nationalities": {
+          "type": "array",
+          "description": "Citizenship and nationality information",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "@type": {
+                "type": "string",
+                "description": "Schema.org type, should be 'schema:Country' for validator.schema.org compatibility"
+              },
+              "country": {
+                "type": "string",
+                "description": "Country of citizenship using ISO-3166-1 ALPHA-2 code (GB, US, FR, etc.)"
+              },
+              "born": {
+                "type": "boolean",
+                "description": "Whether this is the country of birth"
+              }
+            }
+          }
+        },
+        "workAuthorization": {
+          "type": "array",
+          "description": "Work authorization information for multiple countries",
+          "additionalItems": false,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "country": {
+                "type": "string",
+                "description": "Country code using ISO-3166-1 ALPHA-2 standard (e.g., GB, US, FR)"
+              },
+              "status": {
+                "type": "string",
+                "description": "Work authorization status (e.g., 'Citizen', 'Permanent Resident', 'Work Visa', 'No Authorization')"
+              },
+              "rightToWork": {
+                "type": "boolean",
+                "description": "Whether person has unrestricted right to work in this country"
+              },
+              "visaType": {
+                "type": "string",
+                "description": "Type or category of visa if applicable (e.g., 'H-1B', 'Skilled Worker', 'Temporary', 'Permanent Residence')"
+              },
+              "validFrom": {
+                "$ref": "#/definitions/iso8601",
+                "description": "Start date of work authorization or visa validity"
+              },
+              "validTo": {
+                "$ref": "#/definitions/iso8601",
+                "description": "Expiration date of work authorization or visa (omit if permanent)"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Additional notes or restrictions on work authorization"
+              }
+            },
+            "required": ["country"]
+          }
+        }
+      }
+    },
+    "work": {
+      "type": "array",
+      "description": "Employment history including current and previous positions",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Organization' for validator.schema.org compatibility"
+          },
+          "name": {
+            "type": "string",
+            "description": "Company or organization name"
+          },
+          "industry": {
+            "type": "string",
+            "description": "Industry sector or business domain of the organization (e.g., 'Financial Technology', 'Healthcare', 'E-commerce', 'Manufacturing')"
+          },
+          "location": {
+            "type": "object",
+            "description": "Structured address of the organization's workplace location",
+            "additionalProperties": true,
+            "properties": {
+              "@type": {
+                "type": "string",
+                "description": "Schema.org type, should be 'schema:PostalAddress' for validator.schema.org compatibility"
+              },
+              "address": {
+                "type": "string",
+                "description": "Street address with multiple lines separated by newline characters (\\n)"
+              },
+              "city": {
+                "type": "string",
+                "description": "City or town name"
+              },
+              "region": {
+                "type": "string",
+                "description": "State, county, province, or region within the country"
+              },
+              "postalCode": {
+                "type": "string",
+                "description": "Postal or ZIP code"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
+              },
+              "country": {
+                "type": "string",
+                "description": "Full country name (optional, countryCode is preferred)"
+              }
+            }
+          },
+          "workLocation": {
+            "type": "string",
+            "description": "Geographic location of the workplace (legacy field, use 'location' object for structured data)"
+          },
+          "contactDetails": {
+            "type": "object",
+            "description": "Organization contact information",
+            "additionalProperties": true,
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "Organization contact email address",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "Organization contact telephone number"
+              },
+              "fax": {
+                "type": "string",
+                "description": "Organization fax number (optional)"
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief description of the company or its industry"
+          },
+          "position": {
+            "type": "string",
+            "description": "Job title or role held at the organization"
+          },
+          "workType": {
+            "type": "string",
+            "description": "Type of work arrangement (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary)",
+            "enum": ["remote", "hybrid", "onsite", "full-time", "part-time", "contract", "freelance", "internship", "temporary"]
+          },
+          "url": {
+            "type": "string",
+            "description": "Company website address",
+            "format": "uri"
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when employment began"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when employment ended (omit if currently employed)"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Overview of responsibilities and role within the organization"
+          },
+          "highlights": {
+            "type": "array",
+            "description": "Notable achievements and accomplishments in this role",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Individual achievement or accomplishment"
+            }
+          }
+        }
+      }
+    },
+    "volunteer": {
+      "type": "array",
+      "description": "Volunteer work and community involvement activities",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Organization' for validator.schema.org compatibility"
+          },
+          "organization": {
+            "type": "string",
+            "description": "Name of the charitable organization or community group"
+          },
+          "position": {
+            "type": "string",
+            "description": "Role or title held within the organization"
+          },
+          "url": {
+            "type": "string",
+            "description": "Website of the organization",
+            "format": "uri"
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when volunteer work began"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when volunteer work ended (omit if ongoing)"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Description of volunteer responsibilities and contributions"
+          },
+          "highlights": {
+            "type": "array",
+            "description": "Key accomplishments and impact made through volunteer work",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Specific achievement or contribution"
+            }
+          }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "description": "Academic qualifications and educational background",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "institution": {
+            "type": "string",
+            "description": "Name of the educational institution or university"
+          },
+          "school": {
+            "type": "string",
+            "description": "Name of the educational institution or university (alias for institution)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Website address of the institution",
+            "format": "uri"
+          },
+          "area": {
+            "type": "string",
+            "description": "Field of study or academic discipline"
+          },
+          "studyType": {
+            "type": "string",
+            "description": "Type of qualification (Bachelor, Master, PhD, etc.)"
+          },
+          "degree": {
+            "type": "string",
+            "description": "Type of degree or qualification obtained (alias for studyType)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Additional details about the educational experience, achievements, or focus areas"
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when studies commenced"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when studies concluded or expected completion date"
+          },
+          "score": {
+            "type": "string",
+            "description": "Final grade, GPA, or classification achieved"
+          },
+          "gpa": {
+            "type": "string",
+            "description": "Grade Point Average or equivalent scoring (alias for score)"
+          },
+          "location": {
+            "type": "string",
+            "description": "Geographic location of the educational institution (city, state/region)"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country where the institution is located, preferably using ISO-3166-1 ALPHA-2 code"
+          },
+          "courses": {
+            "type": "array",
+            "description": "Relevant modules, courses, or subjects studied",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Course name or code"
+            }
+          }
+        }
+      }
+    },
+    "awards": {
+      "type": "array",
+      "description": "Professional awards, honours, and recognitions received",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Award' for validator.schema.org compatibility"
+          },
+          "title": {
+            "type": "string",
+            "description": "Name or title of the award"
+          },
+          "date": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date the award was received"
+          },
+          "awarder": {
+            "type": "string",
+            "description": "Organization or entity that presented the award"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Reason for receiving the award or context"
+          }
+        }
+      }
+    },
+    "certificates": {
+      "type": "array",
+      "description": "Professional certifications and accreditations obtained",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Full name of the certification"
+          },
+          "date": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date the certification was obtained"
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to certificate verification or details",
+            "format": "uri"
+          },
+          "issuer": {
+            "type": "string",
+            "description": "Organization that issued the certification"
+          }
+        }
+      }
+    },
+    "publications": {
+      "type": "array",
+      "description": "Published works including papers, articles, and books",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Title of the publication"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Name of the publisher or journal"
+          },
+          "releaseDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date of publication"
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to the published work",
+            "format": "uri"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Brief abstract or description of the publication content"
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "description": "Technical and professional competencies",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Skill category or domain"
+          },
+          "level": {
+            "type": "string",
+            "description": "Proficiency level (Beginner, Intermediate, Advanced, Expert)"
+          },
+          "yearsOfExperience": {
+            "type": "number",
+            "description": "Number of years of practical experience with this skill",
+            "minimum": 0
+          },
+          "comment": {
+            "type": "string",
+            "description": "Additional context or notes about this skill"
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Specific technologies, tools, or techniques within this skill area",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Technology or tool name"
+            }
+          }
+        }
+      }
+    },
+    "tools": {
+      "type": "array",
+      "description": "Specific tools, software, and platforms used professionally",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the tool or software"
+          },
+          "group": {
+            "type": "string",
+            "description": "Category or group for organizing related tools (e.g., 'Monitoring & Logging', 'Web & Servers')"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category or group for organizing related tools (alias for group)"
+          },
+          "yearsOfExperience": {
+            "type": "number",
+            "description": "Number of years using this tool professionally",
+            "minimum": 0
+          },
+          "level": {
+            "type": "string",
+            "description": "Proficiency level with this tool (Beginner, Intermediate, Advanced, Expert)"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Additional details about usage, proficiency, or context"
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to the tool's website or documentation",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "description": "Languages spoken and proficiency levels",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Language' for validator.schema.org compatibility"
+          },
+          "language": {
+            "type": "string",
+            "description": "Name of the language"
+          },
+          "fluency": {
+            "type": "string",
+            "description": "Level of proficiency (Native, Fluent, Intermediate, Basic)"
+          }
+        }
+      }
+    },
+    "interests": {
+      "type": "array",
+      "description": "Personal interests and hobbies outside of work",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type, should be 'schema:Thing' for validator.schema.org compatibility"
+          },
+          "name": {
+            "type": "string",
+            "description": "Interest category or area"
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Specific topics or activities within this interest",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Specific topic or activity"
+            }
+          }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Professional references and testimonials",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the person providing the reference"
+          },
+          "reference": {
+            "type": "string",
+            "description": "The reference statement or testimonial text"
+          }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "description": "Personal and professional projects undertaken",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "@type": {
+            "type": "string",
+            "description": "Schema.org type for the project (e.g., 'schema:SoftwareApplication', 'schema:CreativeWork', 'schema:Event')"
+          },
+          "name": {
+            "type": "string",
+            "description": "Project name or title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief overview of what the project entailed"
+          },
+          "highlights": {
+            "type": "array",
+            "description": "Key features, achievements, or outcomes of the project",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Individual highlight or achievement"
+            }
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Technologies, methodologies, or tools used in the project",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Technology or tool name"
+            }
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when project work began"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601",
+            "description": "Date when project was completed (omit if ongoing)"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to project repository, demo, or documentation"
+          },
+          "roles": {
+            "type": "array",
+            "description": "Roles held or responsibilities taken in the project",
+            "additionalItems": false,
+            "items": {
+              "type": "string",
+              "description": "Role or responsibility"
+            }
+          },
+          "entity": {
+            "type": "string",
+            "description": "Organization or company the project was associated with"
+          },
+          "type": {
+            "type": "string",
+            "description": "Category of project (application, volunteering, presentation, conference, etc.)"
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the resume document itself",
+      "additionalProperties": true,
+      "properties": {
+        "canonical": {
+          "type": "string",
+          "description": "Permanent URL where the latest version of this resume can be found",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version number following semantic versioning format"
+        },
+        "lastModified": {
+          "type": "string",
+          "description": "Timestamp of last modification in ISO 8601 format"
+        },
+        "dateCreated": {
+          "type": "string",
+          "description": "Timestamp when the document was created in ISO 8601 format",
+          "format": "date-time"
+        },
+        "dateModified": {
+          "type": "string",
+          "description": "Timestamp when the document was last modified in ISO 8601 format",
+          "format": "date-time"
+        },
+        "datePublished": {
+          "type": "string",
+          "description": "Timestamp when the document was published in ISO 8601 format",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "title": "Schema Resume v1.1.0",
+  "description": "Self-hosted JSON-LD schema for CV/Resume parsing and validation with work authorization and tools tracking",
+  "type": "object",
+  "version": "1.1.0"
+}

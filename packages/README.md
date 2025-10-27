@@ -130,6 +130,16 @@ The workflow (`.github/workflows/release-packages.yml`) will:
 - **License**: MIT
 - **Version**: 1.1.0
 
+## Schema File Synchronization
+
+**Important**: Schema files in packages are copies, not symlinks. After updating any schema file, run:
+
+```bash
+./sync-schema-files.sh
+```
+
+This ensures all packages have the latest schema files.
+
 ## Testing Packages Locally
 
 Before publishing, test packages locally using the automated script:
@@ -143,6 +153,8 @@ Before publishing, test packages locally using the automated script:
 ```
 
 For detailed testing instructions, see [TESTING.md](./TESTING.md).
+
+For package maintenance and release procedures, see [MAINTENANCE.md](./MAINTENANCE.md).
 
 ## Support
 

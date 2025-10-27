@@ -29,6 +29,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Code examples demonstrating validation in each language
   - API reference documentation for all packages
   - Error handling and troubleshooting guides
+  - TESTING.md with comprehensive local testing instructions
+  - MAINTENANCE.md with package maintenance and release procedures
+- **Package maintenance tools**:
+  - `sync-schema-files.sh` script to copy schema files to all packages
+  - `test-packages.sh` automated testing script for all packages
+  - Schema files are now copies instead of symlinks for better compatibility
+  - Updated .gitignore to track package schema files
 - **legalNote field implementation**:
   - Added `legalNote` object to basics section in schema.json with properties: text, country, type, and url
   - Added `LegalNoteType` complex type to XSD schema (schema-resume.xsd)
