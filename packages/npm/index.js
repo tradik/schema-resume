@@ -1,8 +1,14 @@
 const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
+const fs = require('fs');
+const path = require('path');
+
 const schema = require('./schema.json');
 const metaSchema = require('./meta-schema.json');
-const context = require('./context.jsonld');
+
+// Load JSON-LD context using fs since .jsonld extension isn't recognized by require
+const contextPath = path.join(__dirname, 'context.jsonld');
+const context = JSON.parse(fs.readFileSync(contextPath, 'utf8'));
 
 /**
  * Create a validator instance for Schema Resume

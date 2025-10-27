@@ -2,9 +2,7 @@ module github.com/tradik/schema-resume/validator
 
 go 1.21
 
-require (
-	github.com/xeipuuv/gojsonschema v1.2.0
-)
+require github.com/xeipuuv/gojsonschema v1.2.0
 
 require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
