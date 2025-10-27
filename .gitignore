@@ -22,8 +22,9 @@ Desktop.ini
 *.sublime-project
 *.sublime-workspace
 
-# Node.js
+# Node modules
 node_modules/
+package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -48,10 +49,40 @@ htmlcov/
 *.egg-info/
 dist/
 build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+.installed.cfg
+*.egg
+*.whl
+
+# Go
+go.sum
+vendor/
+
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+mvnw
+mvnw.cmd
+.gradle/
+build/
 
 # Ruby
 *.gem
-*.rbc
+.bundle/
+Gemfile.lock
 /.config
 /coverage/
 /InstalledFiles

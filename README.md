@@ -566,10 +566,67 @@ GitHub Actions automatically validates all schema files on every push and pull r
 
 See [`.github/workflows/`](.github/workflows/) for workflow details.
 
+## 📦 Official Packages
+
+Schema Resume is available as official packages for multiple programming languages:
+
+### NPM (JavaScript/TypeScript)
+```bash
+npm install @schema-resume/validator
+```
+- **Package**: [@schema-resume/validator](https://www.npmjs.com/package/@schema-resume/validator)
+- **Documentation**: [packages/npm/README.md](./packages/npm/README.md)
+
+### Python
+```bash
+pip install schema-resume-validator
+```
+- **Package**: [schema-resume-validator](https://pypi.org/project/schema-resume-validator/)
+- **Documentation**: [packages/python/README.md](./packages/python/README.md)
+
+### Go
+```bash
+go get github.com/tradik/schema-resume/validator
+```
+- **Package**: [github.com/tradik/schema-resume/validator](https://pkg.go.dev/github.com/tradik/schema-resume/validator)
+- **Documentation**: [packages/golang/README.md](./packages/golang/README.md)
+
+### Java (Maven)
+```xml
+<dependency>
+    <groupId>org.schema-resume</groupId>
+    <artifactId>schema-resume-validator</artifactId>
+    <version>1.1.0</version>
+</dependency>
+```
+- **Package**: [Maven Central](https://search.maven.org/artifact/org.schema-resume/schema-resume-validator)
+- **Documentation**: [packages/java/README.md](./packages/java/README.md)
+
+### Ruby
+```bash
+gem install schema-resume-validator
+```
+- **Package**: [schema-resume-validator](https://rubygems.org/gems/schema-resume-validator)
+- **Documentation**: [packages/ruby/README.md](./packages/ruby/README.md)
+
+### PHP (Composer)
+```bash
+composer require schema-resume/validator
+```
+- **Package**: [schema-resume/validator](https://packagist.org/packages/schema-resume/validator)
+- **Documentation**: [packages/php/README.md](./packages/php/README.md)
+
+All packages include:
+- **schema.json** - Main JSON Schema for resume validation
+- **meta-schema.json** - Meta-schema for self-validation
+- **context.jsonld** - JSON-LD context for semantic web integration
+- **schema-resume.xsd** - XML Schema Definition (XSD)
+
 ## 📞 Support
 
 For questions, issues, or suggestions:
 
+- **Email**: info@schema-resume.org or support@tradik.com
 - Open an [issue](https://github.com/tradik/schema-resume/issues)
 - Submit a [pull request](https://github.com/tradik/schema-resume/pulls)
 
@@ -578,8 +635,9 @@ For questions, issues, or suggestions:
 - [x] Add JSON-LD context for semantic web integration
 - [x] Create online validator/linter
 - [x] Add XML Schema (XSD) support with comprehensive validation
+- [x] Create official packages for NPM, Python, Go, Java, Ruby, and PHP
+- [x] Add automated release workflow with GitHub Actions
 - [ ] Create TypeScript type definitions
-- [ ] Add validation examples for more languages
 - [ ] Create resume builder web application
 - [ ] Add support for multiple resume versions
 - [ ] Implement resume comparison tools

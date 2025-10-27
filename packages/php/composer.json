@@ -1,0 +1,60 @@
+{
+    "name": "schema-resume/validator",
+    "description": "JSON Schema validator for Schema Resume - comprehensive CV/Resume validation with JSON-LD support",
+    "type": "library",
+    "keywords": [
+        "json-schema",
+        "resume",
+        "cv",
+        "curriculum-vitae",
+        "validation",
+        "json-ld",
+        "parser"
+    ],
+    "homepage": "https://schema-resume.org/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Schema Resume",
+            "email": "info@schema-resume.org",
+            "homepage": "https://schema-resume.org"
+        },
+        {
+            "name": "Tradik",
+            "email": "support@tradik.com"
+        }
+    ],
+    "support": {
+        "email": "info@schema-resume.org",
+        "issues": "https://github.com/tradik/schema-resume/issues",
+        "source": "https://github.com/tradik/schema-resume"
+    },
+    "require": {
+        "php": ">=8.0",
+        "justinrainbow/json-schema": "^5.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "SchemaResume\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SchemaResume\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpstan": "phpstan analyse src --level=max"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
