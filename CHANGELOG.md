@@ -8,6 +8,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Official packages for multiple programming languages**:
+  - **NPM Package** (@schema-resume/validator): JavaScript/TypeScript validator with full TypeScript definitions
+  - **Python Package** (schema-resume-validator): Python validator with pip installation support
+  - **Go Package** (github.com/tradik/schema-resume/validator): Go module with embedded schemas
+  - **Java Package** (org.schema-resume:schema-resume-validator): Maven/Gradle compatible Java library
+  - **Ruby Gem** (schema-resume-validator): Ruby gem with RubyGems distribution
+  - **PHP Package** (schema-resume/validator): Composer package for PHP 8.0+
+  - All packages include schema.json, meta-schema.json, context.jsonld, and schema-resume.xsd
+  - Each package has comprehensive documentation with usage examples and validation guides
+  - Packages support validation from JSON strings, objects, and files
+- **Automated release workflow**:
+  - GitHub Actions workflow for multi-language package releases (`.github/workflows/release-packages.yml`)
+  - Matrix build strategy for parallel package publishing
+  - Automated tagging and version management
+  - Release to NPM, PyPI, Go modules, Maven Central, RubyGems, and Packagist
+  - Automated GitHub release creation with comprehensive release notes
+- **Package documentation**:
+  - Individual README.md for each package with installation and usage instructions
+  - Code examples demonstrating validation in each language
+  - API reference documentation for all packages
+  - Error handling and troubleshooting guides
 - **legalNote field implementation**:
   - Added `legalNote` object to basics section in schema.json with properties: text, country, type, and url
   - Added `LegalNoteType` complex type to XSD schema (schema-resume.xsd)

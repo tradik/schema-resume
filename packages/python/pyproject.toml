@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "schema-resume-validator"
+version = "1.1.0"
+description = "JSON Schema validator for Schema Resume - comprehensive CV/Resume validation with JSON-LD support"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Schema Resume", email = "info@schema-resume.org"}
+]
+maintainers = [
+    {name = "Tradik", email = "support@tradik.com"}
+]
+keywords = ["json-schema", "resume", "cv", "curriculum-vitae", "validation", "json-ld", "parser"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: JSON",
+]
+dependencies = [
+    "jsonschema>=4.17.0",
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+xml = [
+    "lxml>=4.9.0",
+]
+
+[project.urls]
+Homepage = "https://schema-resume.org/"
+Documentation = "https://github.com/tradik/schema-resume"
+Repository = "https://github.com/tradik/schema-resume"
+Issues = "https://github.com/tradik/schema-resume/issues"
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

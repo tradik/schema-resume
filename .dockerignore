@@ -31,6 +31,43 @@ venv/
 env/
 ENV/
 .venv
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.whl
+
+# Go
+go.sum
+vendor/
+
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+
+# Ruby
+*.gem
+.bundle/
+Gemfile.lock
+
+# PHP
+vendor/
+composer.lock
 
 # IDE
 .vscode/
@@ -50,6 +87,10 @@ Desktop.ini
 coverage/
 .nyc_output/
 test-results/
+test/
+tests/
+*.test.js
+*.spec.js
 
 # Build outputs
 dist/

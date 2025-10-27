@@ -1,0 +1,66 @@
+{
+  "name": "@schema-resume/validator",
+  "version": "1.1.0",
+  "description": "JSON Schema validator for Schema Resume - comprehensive CV/Resume validation with JSON-LD support",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "schema.json",
+    "meta-schema.json",
+    "context.jsonld",
+    "schema-resume.xsd",
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "validate": "ajv compile -s schema.json --strict=false",
+    "validate:example": "node example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tradik/schema-resume.git",
+    "directory": "packages/npm"
+  },
+  "keywords": [
+    "json-schema",
+    "resume",
+    "cv",
+    "curriculum-vitae",
+    "parser",
+    "validation",
+    "json-ld",
+    "schema",
+    "validator",
+    "career",
+    "professional"
+  ],
+  "author": {
+    "name": "Schema Resume",
+    "email": "info@schema-resume.org",
+    "url": "https://schema-resume.org"
+  },
+  "maintainers": [
+    {
+      "name": "Tradik",
+      "email": "support@tradik.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tradik/schema-resume/issues"
+  },
+  "homepage": "https://schema-resume.org/",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "ajv-cli": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
