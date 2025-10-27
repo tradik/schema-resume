@@ -64,8 +64,8 @@ wheels/
 *.whl
 
 # Go
-go.sum
 vendor/
+# Note: go.sum should be committed for reproducible builds
 
 # Java
 target/

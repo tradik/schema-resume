@@ -106,13 +106,13 @@ func main() {
 		fmt.Printf("  Education: %d degree(s)\n", len(education))
 		fmt.Printf("  Skills: %d skill area(s)\n", len(skills))
 	} else {
-		fmt.Println("✗ Validation failed with errors:\n")
+		fmt.Println("✗ Validation failed with errors:")
 		for i, e := range result.Errors {
 			fmt.Printf("Error %d:\n", i+1)
 			fmt.Printf("  Field: %s\n", e.Field)
 			fmt.Printf("  Type: %s\n", e.Type)
 			fmt.Printf("  Description: %s\n", e.Description)
-			fmt.Println()
+			fmt.Println("")
 		}
 	}
 
