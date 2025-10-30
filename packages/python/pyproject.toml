@@ -27,7 +27,8 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Text Processing :: Markup :: JSON",
+    "Topic :: Text Processing",
+    "Topic :: Utilities",
 ]
 dependencies = [
     "jsonschema>=4.17.0",
