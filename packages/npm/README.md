@@ -1,6 +1,6 @@
-# @schema-resume/validator
+# schema-resume-validator
 
-[![npm version](https://img.shields.io/npm/v/@schema-resume/validator.svg)](https://www.npmjs.com/package/@schema-resume/validator)
+[![npm version](https://img.shields.io/npm/v/schema-resume-validator.svg)](https://www.npmjs.com/package/schema-resume-validator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Official NPM package for validating resumes against the [Schema Resume](https://schema-resume.org/) JSON Schema.
@@ -8,7 +8,7 @@ Official NPM package for validating resumes against the [Schema Resume](https://
 ## Installation
 
 ```bash
-npm install @schema-resume/validator
+npm install schema-resume-validator
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ npm install @schema-resume/validator
 ### Basic Validation
 
 ```javascript
-const { createValidator } = require('@schema-resume/validator');
+const { createValidator } = require('schema-resume-validator');
 
 const validator = createValidator();
 
@@ -51,7 +51,7 @@ if (result.valid) {
 ### TypeScript Usage
 
 ```typescript
-import { createValidator, ValidationResult } from '@schema-resume/validator';
+import { createValidator, ValidationResult } from 'schema-resume-validator';
 
 const validator = createValidator();
 
@@ -69,7 +69,7 @@ if (result.valid) {
 ### Accessing Schema Files
 
 ```javascript
-const { schema, metaSchema, context } = require('@schema-resume/validator');
+const { schema, metaSchema, context } = require('schema-resume-validator');
 
 // Get the JSON Schema
 console.log(schema);

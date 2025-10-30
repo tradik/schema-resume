@@ -64,7 +64,7 @@ jobs:
 
       - name: Publish to NPM
         working-directory: packages/npm
-        run: npm publish --access public
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         continue-on-error: true
@@ -229,9 +229,9 @@ jobs:
 
           ### NPM (JavaScript/TypeScript)
           \`\`\`bash
-          npm install @schema-resume/validator
+          npm install schema-resume-validator
           \`\`\`
-          - Package: [@schema-resume/validator](https://www.npmjs.com/package/@schema-resume/validator)
+          - Package: [schema-resume-validator](https://www.npmjs.com/package/schema-resume-validator)
 
           ### Python
           \`\`\`bash

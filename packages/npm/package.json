@@ -1,5 +1,5 @@
 {
-  "name": "@schema-resume/validator",
+  "name": "schema-resume-validator",
   "version": "1.1.0",
   "description": "JSON Schema validator for Schema Resume - comprehensive CV/Resume validation with JSON-LD support",
   "main": "index.js",

@@ -5,9 +5,9 @@ This directory contains official packages for Schema Resume validator in multipl
 ## Available Packages
 
 ### NPM (JavaScript/TypeScript)
-- **Package**: `@schema-resume/validator`
-- **Registry**: [npmjs.com](https://www.npmjs.com/package/@schema-resume/validator)
-- **Installation**: `npm install @schema-resume/validator`
+- **Package**: `schema-resume-validator`
+- **Registry**: [npmjs.com](https://www.npmjs.com/package/schema-resume-validator)
+- **Installation**: `npm install schema-resume-validator`
 - **Documentation**: [npm/README.md](./npm/README.md)
 - **Features**: Full TypeScript support, AJV-based validation, embedded schemas
 
@@ -70,7 +70,7 @@ All packages provide:
 
 ### JavaScript/TypeScript
 ```javascript
-const { createValidator } = require('@schema-resume/validator');
+const { createValidator } = require('schema-resume-validator');
 const validator = createValidator();
 const result = validator.validate(resumeData);
 ```
