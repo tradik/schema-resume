@@ -1,0 +1,11 @@
+# Include documentation and license files
+include README.md
+include LICENSE
+
+# Include schema files
+recursive-include src/schema_resume/schemas *.json *.jsonld *.xsd
+
+# Exclude development and build artifacts
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store

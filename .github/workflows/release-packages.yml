@@ -44,6 +44,8 @@ jobs:
     name: Release NPM Package
     runs-on: ubuntu-latest
     needs: prepare
+    outputs:
+      status: ${{ steps.publish.outcome }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,16 +65,31 @@ jobs:
         run: npm test
 
       - name: Publish to NPM
+        id: publish
         working-directory: packages/npm
-        run: npm publish
+        run: |
+          # Publish to NPM, handle version conflicts gracefully
+          npm publish 2>&1 | tee npm_publish.log || {
+            if grep -q "You cannot publish over the previously published versions" npm_publish.log || \
+               grep -q "cannot modify pre-existing version" npm_publish.log; then
+              echo "⚠️ Version already exists on NPM, skipping"
+              exit 0
+            else
+              echo "❌ NPM publish failed"
+              cat npm_publish.log
+              exit 1
+            fi
+          }
+          echo "✅ Package published to NPM successfully"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        continue-on-error: true
 
   release-python:
     name: Release Python Package
     runs-on: ubuntu-latest
     needs: prepare
+    outputs:
+      status: ${{ steps.publish.outcome }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -92,17 +109,22 @@ jobs:
         run: python -m build
 
       - name: Publish to PyPI
+        id: publish
         working-directory: packages/python
-        run: python -m twine upload dist/*
+        run: |
+          # Upload to PyPI, skip if version already exists
+          python -m twine upload dist/* --skip-existing
+          echo "✅ Package uploaded to PyPI (or already exists)"
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        continue-on-error: true
 
   release-golang:
     name: Release Go Package
     runs-on: ubuntu-latest
     needs: prepare
+    outputs:
+      status: ${{ steps.tag.outcome }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -119,20 +141,27 @@ jobs:
       - name: Run tests
         working-directory: packages/golang
         run: go test -v ./...
-        continue-on-error: true
 
       - name: Tag Go module
+        id: tag
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git tag "packages/golang/${{ needs.prepare.outputs.tag }}" || true
-          git push origin "packages/golang/${{ needs.prepare.outputs.tag }}" || true
-        continue-on-error: true
+          GO_TAG="packages/golang/${{ needs.prepare.outputs.tag }}"
+          if git rev-parse "$GO_TAG" >/dev/null 2>&1; then
+            echo "Tag $GO_TAG already exists, skipping"
+          else
+            git tag "$GO_TAG"
+            git push origin "$GO_TAG"
+            echo "Created and pushed tag $GO_TAG"
+          fi
 
   release-java:
     name: Release Java Package
     runs-on: ubuntu-latest
     needs: prepare
+    outputs:
+      status: ${{ steps.publish.outcome }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -148,17 +177,19 @@ jobs:
         run: mvn clean package
 
       - name: Publish to Maven Central
+        id: publish
         working-directory: packages/java
         run: mvn deploy
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-        continue-on-error: true
 
   release-ruby:
     name: Release Ruby Gem
     runs-on: ubuntu-latest
     needs: prepare
+    outputs:
+      status: ${{ steps.publish.outcome }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -173,18 +204,32 @@ jobs:
         run: gem build schema-resume-validator.gemspec
 
       - name: Publish to RubyGems
+        id: publish
         working-directory: packages/ruby
         run: |
           mkdir -p ~/.gem
           echo ":rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}" > ~/.gem/credentials
           chmod 0600 ~/.gem/credentials
-          gem push schema-resume-validator-*.gem
-        continue-on-error: true
+          # Push gem, handle version conflicts gracefully
+          gem push schema-resume-validator-*.gem 2>&1 | tee gem_push.log || {
+            if grep -q "Repushing of gem versions is not allowed" gem_push.log || \
+               grep -q "version already exists" gem_push.log; then
+              echo "⚠️ Version already exists on RubyGems, skipping"
+              exit 0
+            else
+              echo "❌ RubyGems push failed"
+              cat gem_push.log
+              exit 1
+            fi
+          }
+          echo "✅ Gem published to RubyGems successfully"
 
   release-php:
     name: Release PHP Package
     runs-on: ubuntu-latest
     needs: prepare
+    outputs:
+      status: ${{ steps.validate.outcome }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -196,6 +241,7 @@ jobs:
           tools: composer
 
       - name: Validate composer.json
+        id: validate
         working-directory: packages/php
         run: composer validate
 
@@ -208,11 +254,81 @@ jobs:
           echo "PHP package is published via Packagist automatically when tags are pushed"
           echo "Package will be available at: https://packagist.org/packages/schema-resume/validator"
 
+  release-status:
+    name: Release Status Summary
+    runs-on: ubuntu-latest
+    needs: [prepare, release-npm, release-python, release-golang, release-java, release-ruby, release-php]
+    if: always()
+    steps:
+      - name: Generate Status Report
+        run: |
+          echo "# Release Status for ${{ needs.prepare.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Package Release Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # NPM
+          if [ "${{ needs.release-npm.result }}" == "success" ]; then
+            echo "✅ **NPM**: Published successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **NPM**: Failed (${{ needs.release-npm.result }})" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Python
+          if [ "${{ needs.release-python.result }}" == "success" ]; then
+            echo "✅ **Python**: Published successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Python**: Failed (${{ needs.release-python.result }})" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Go
+          if [ "${{ needs.release-golang.result }}" == "success" ]; then
+            echo "✅ **Go**: Tagged successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Go**: Failed (${{ needs.release-golang.result }})" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Java
+          if [ "${{ needs.release-java.result }}" == "success" ]; then
+            echo "✅ **Java**: Published successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Java**: Failed (${{ needs.release-java.result }})" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Ruby
+          if [ "${{ needs.release-ruby.result }}" == "success" ]; then
+            echo "✅ **Ruby**: Published successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Ruby**: Failed (${{ needs.release-ruby.result }})" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # PHP
+          if [ "${{ needs.release-php.result }}" == "success" ]; then
+            echo "✅ **PHP**: Validated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **PHP**: Failed (${{ needs.release-php.result }})" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Overall status
+          if [ "${{ needs.release-npm.result }}" == "success" ] && \
+             [ "${{ needs.release-python.result }}" == "success" ] && \
+             [ "${{ needs.release-golang.result }}" == "success" ] && \
+             [ "${{ needs.release-java.result }}" == "success" ] && \
+             [ "${{ needs.release-ruby.result }}" == "success" ] && \
+             [ "${{ needs.release-php.result }}" == "success" ]; then
+            echo "✅ **All packages released successfully!**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Some packages failed to release. Check the logs above.**" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
   create-github-release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
     needs: [prepare, release-npm, release-python, release-golang, release-java, release-ruby, release-php]
-    if: always()
+    if: success()
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

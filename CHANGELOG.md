@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Automated tagging and version management
   - Release to NPM, PyPI, Go modules, Maven Central, RubyGems, and Packagist
   - Automated GitHub release creation with comprehensive release notes
+  - Release status summary job that reports success/failure for each package
+  - Proper error handling - workflow now fails on authentication or publishing errors
 - **Package documentation**:
   - Individual README.md for each package with installation and usage instructions
   - Code examples demonstrating validation in each language
@@ -36,6 +38,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `test-packages.sh` automated testing script for all packages
   - Schema files are now copies instead of symlinks for better compatibility
   - Updated .gitignore to track package schema files
+- **Python package improvements**:
+  - Added MANIFEST.in to ensure all schema files are included in distribution
+  - Added `--skip-existing` flag to PyPI upload to handle version conflicts gracefully
+  - Improved package metadata and file inclusion configuration
 - **legalNote field implementation**:
   - Added `legalNote` object to basics section in schema.json with properties: text, country, type, and url
   - Added `LegalNoteType` complex type to XSD schema (schema-resume.xsd)
