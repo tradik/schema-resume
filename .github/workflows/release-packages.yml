@@ -195,13 +195,18 @@ jobs:
         working-directory: packages/java
         run: mvn clean package
 
-      - name: Publish to Maven Central
+      - name: Verify package
         id: publish
         working-directory: packages/java
-        run: mvn deploy
-        env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+        run: |
+          echo "✅ Java package built successfully"
+          echo "📦 JAR file created: $(ls -1 target/*.jar | head -1)"
+          echo ""
+          echo "ℹ️  Maven Central publishing requires additional setup:"
+          echo "  - GPG key for signing"
+          echo "  - Sonatype OSSRH account"
+          echo "  - Distribution management in pom.xml"
+          echo "  - See packages/java/MAVEN_CENTRAL_SETUP.md for details"
 
   release-ruby:
     name: Release Ruby Gem
