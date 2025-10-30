@@ -160,12 +160,19 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           GO_TAG="packages/golang/${{ needs.prepare.outputs.tag }}"
+          
+          # Fetch all tags from remote
+          git fetch --tags
+          
+          # Check if tag exists locally or remotely
           if git rev-parse "$GO_TAG" >/dev/null 2>&1; then
-            echo "Tag $GO_TAG already exists, skipping"
+            echo "✅ Tag $GO_TAG already exists locally, skipping"
+          elif git ls-remote --tags origin | grep -q "refs/tags/$GO_TAG"; then
+            echo "✅ Tag $GO_TAG already exists on remote, skipping"
           else
             git tag "$GO_TAG"
             git push origin "$GO_TAG"
-            echo "Created and pushed tag $GO_TAG"
+            echo "✅ Created and pushed tag $GO_TAG"
           fi
 
   release-java:
