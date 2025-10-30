@@ -112,8 +112,20 @@ jobs:
         id: publish
         working-directory: packages/python
         run: |
-          # Upload to PyPI, skip if version already exists
-          python -m twine upload dist/* --skip-existing
+          # Upload to PyPI with verbose output for debugging
+          echo "Uploading to PyPI..."
+          python -m twine upload dist/* --skip-existing --verbose 2>&1 | tee upload.log
+          
+          # Check for specific errors
+          if grep -q "403" upload.log; then
+            echo "❌ 403 Forbidden Error - Check:"
+            echo "  1. PYPI_TOKEN is valid and not expired"
+            echo "  2. Token has 'Upload packages' permission"
+            echo "  3. You own the 'schema-resume-validator' package on PyPI"
+            echo "  4. Token format is correct (starts with 'pypi-')"
+            exit 1
+          fi
+          
           echo "✅ Package uploaded to PyPI (or already exists)"
         env:
           TWINE_USERNAME: __token__
