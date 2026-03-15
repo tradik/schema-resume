@@ -1,0 +1,63 @@
+{
+  "name": "ui-resume-editor",
+  "version": "1.0.0",
+  "description": "A modern, accessible, single-page resume editor built with vanilla JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "format": "prettier --write \"src/**/*.{js,css}\" \"*.{html,md,json}\"",
+    "format:check": "prettier --check \"src/**/*.{js,css}\" \"*.{html,md,json}\"",
+    "lint": "eslint src/app.js",
+    "lint:css": "stylelint src/styles.css",
+    "validate": "npm run validate:json && npm run validate:html",
+    "validate:json": "node -e \"require('./examples/sample-resume.json')\"",
+    "validate:html": "echo 'HTML validation requires tidy-html5'",
+    "test": "echo 'No tests configured yet'",
+    "docker:build": "docker build -t resume-editor:latest .",
+    "docker:run": "docker-compose up -d",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up -d",
+    "docker:stop": "docker-compose down && docker-compose -f docker-compose.dev.yml down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:clean": "docker-compose down -v && docker rmi resume-editor:latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tradik/ui-resume-editor.git"
+  },
+  "keywords": [
+    "resume",
+    "cv",
+    "editor",
+    "json-resume",
+    "xslt",
+    "single-page-application",
+    "vanilla-javascript",
+    "wcag",
+    "accessible",
+    "a4",
+    "pdf"
+  ],
+  "author": "tradik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tradik/ui-resume-editor/issues"
+  },
+  "homepage": "https://github.com/tradik/ui-resume-editor#readme",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "stylelint": "^16.2.0",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "Chrome >= 90",
+    "Firefox >= 88",
+    "Safari >= 14",
+    "Edge >= 90"
+  ]
+}

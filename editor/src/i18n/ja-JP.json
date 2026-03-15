@@ -1,0 +1,675 @@
+{
+  "_meta": {
+    "language": "ja-JP",
+    "languageName": "日本語",
+    "version": "1.0.0"
+  },
+  "app": {
+    "title": "履歴書エディター",
+    "description": "Visual resume editor based on JSON Resume Schema with XSLT template rendering"
+  },
+  "header": {
+    "templateSelector": {
+      "label": "テンプレートを選択",
+      "classic": "クラシックテンプレート",
+      "professional": "プロフェッショナルテンプレート"
+    },
+    "buttons": {
+      "uploadCV": "CVをアップロード",
+      "import": "インポート",
+      "editJSON": "JSON編集",
+      "export": "エクスポート",
+      "downloadPDF": "PDFダウンロード",
+      "print": "印刷",
+      "timeline": "タイムライン",
+      "tools": "ツール",
+      "language": "言語"
+    },
+    "tooltips": {
+      "uploadCV": "Upload CV PDF",
+      "import": "Import JSON",
+      "editJSON": "Edit Raw JSON",
+      "export": "Export JSON",
+      "downloadPDF": "PDFダウンロード",
+      "print": "Print Resume",
+      "timeline": "View Career Timeline",
+      "tools": "View Tools Experience Chart",
+      "language": "Select Language"
+    }
+  },
+  "sidebar": {
+    "title": "履歴書データ",
+    "togglePanel": "パネル切替",
+    "showSidebar": "サイドバー表示"
+  },
+  "sections": {
+    "basics": "基本情報",
+    "work": "職歴",
+    "volunteer": "ボランティア",
+    "education": "学歴",
+    "awards": "受賞歴",
+    "certificates": "資格",
+    "publications": "出版物",
+    "skills": "スキル",
+    "tools": "ツール",
+    "languages": "言語",
+    "interests": "興味",
+    "references": "推薦状",
+    "projects": "プロジェクト"
+  },
+  "sectionLabels": {
+    "work": "Work Experience",
+    "volunteer": "Volunteer Experience",
+    "education": "学歴",
+    "awards": "Award",
+    "certificates": "Certificate",
+    "publications": "Publication",
+    "skills": "Skill",
+    "tools": "Tool",
+    "languages": "言語",
+    "interests": "Interest",
+    "references": "推薦",
+    "projects": "Project"
+  },
+  "preview": {
+    "zoomOut": "ズームアウト",
+    "zoomIn": "ズームイン",
+    "resetZoom": "リセット",
+    "debug": "デバッグ",
+    "loading": "プレビュー読み込み中...",
+    "error": "Error rendering preview"
+  },
+  "modals": {
+    "jsonEditor": {
+      "title": "Edit Raw JSON",
+      "formatJSON": "Format JSON",
+      "applyChanges": "Apply Changes",
+      "close": "閉じる",
+      "invalidJSON": "Invalid JSON"
+    },
+    "timeline": {
+      "title": "Career Timeline",
+      "copyCode": "Copy Mermaid Code",
+      "generating": "Generating timeline...",
+      "close": "閉じる"
+    },
+    "toolsChart": {
+      "title": "Tools & Technologies Experience",
+      "downloadPNG": "Download PNG",
+      "close": "閉じる"
+    }
+  },
+  "messages": {
+    "schemaLoadError": "Failed to load schema.json from both external and local sources. The editor may not work properly.",
+    "importSuccess": "Resume imported successfully!",
+    "importError": "Error importing file",
+    "exportSuccess": "Resume exported successfully!",
+    "invalidDataURL": "Invalid data parameter: Unable to decode JSON data from URL.",
+    "urlLoadError": "Failed to load resume from URL",
+    "featureError": "Some features may not work properly. Please refresh the page.",
+    "tip": "Tip: For large JSON files, use the ?url= parameter instead",
+    "example": "Example"
+  },
+  "fields": {
+    "basics": {
+      "name": {
+        "label": "名前",
+        "description": "Full name of the person"
+      },
+      "label": {
+        "label": "ラベル",
+        "description": "Professional title or role, such as 'Senior Software Engineer' or 'Product Designer'"
+      },
+      "email": {
+        "label": "メール",
+        "description": "Primary email address for professional contact"
+      },
+      "phone": {
+        "label": "電話",
+        "description": "Contact telephone number in any preferred format"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Personal website or portfolio URL"
+      },
+      "summary": {
+        "label": "概要",
+        "description": "Brief professional summary highlighting key experience and expertise"
+      },
+      "image": {
+        "label": "画像",
+        "description": "Web address pointing to a profile photograph in JPEG or PNG format"
+      },
+      "location": {
+        "label": "場所",
+        "address": {
+          "label": "住所",
+          "description": "Street address with multiple lines separated by newline characters"
+        },
+        "city": {
+          "label": "市区町村",
+          "description": "City or town name"
+        },
+        "region": {
+          "label": "地域",
+          "description": "State, county, province, or region within the country"
+        },
+        "postalCode": {
+          "label": "郵便番号",
+          "description": "Postal or ZIP code"
+        },
+        "countryCode": {
+          "label": "国コード",
+          "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
+        },
+        "streetAddress": {
+          "label": "Streetaddress",
+          "description": "Street address line"
+        }
+      },
+      "title": {
+        "label": "役職",
+        "description": "Job title or professional title of the person"
+      },
+      "age": {
+        "label": "年齢",
+        "description": "Age of the person in years"
+      },
+      "dateOfBirth": {
+        "label": "Dateofbirth",
+        "description": "Date of birth in ISO 8601 format"
+      },
+      "gender": {
+        "label": "性別",
+        "description": "Gender identity of the person"
+      },
+      "keyAchievements": {
+        "label": "Keyachievements",
+        "description": "Notable career achievements and accomplishments"
+      },
+      "coreCompetencies": {
+        "label": "Corecompetencies",
+        "description": "Core professional competencies and areas of expertise"
+      },
+      "profiles": {
+        "label": "プロフィール",
+        "description": "List of social media and professional network profiles",
+        "network": {
+          "label": "ネットワーク",
+          "description": "Name of the social network or platform (LinkedIn, GitHub, Twitter, etc.)"
+        },
+        "username": {
+          "label": "ユーザー名",
+          "description": "Username or handle on the platform"
+        },
+        "url": {
+          "label": "Url",
+          "description": "Direct link to the profile page"
+        }
+      },
+      "nationalities": {
+        "label": "国籍",
+        "description": "Citizenship and nationality information",
+        "country": {
+          "label": "国",
+          "description": "Country of citizenship using ISO-3166-1 ALPHA-2 code (GB, US, FR, etc.)"
+        },
+        "born": {
+          "label": "Born",
+          "description": "Whether this is the country of birth"
+        }
+      },
+      "workAuthorization": {
+        "label": "Workauthorization",
+        "description": "Work authorization information for multiple countries",
+        "country": {
+          "label": "国",
+          "description": "Country code using ISO-3166-1 ALPHA-2 standard (e.g., GB, US, FR)"
+        },
+        "status": {
+          "label": "ステータス",
+          "description": "Work authorization status (e.g., 'Citizen', 'Permanent Resident', 'Work Visa', 'No Authorization')"
+        },
+        "rightToWork": {
+          "label": "Righttowork",
+          "description": "Whether person has unrestricted right to work in this country"
+        },
+        "visaType": {
+          "label": "Visatype",
+          "description": "Type or category of visa if applicable (e.g., 'H-1B', 'Skilled Worker', 'Temporary', 'Permanent Residence')"
+        },
+        "validFrom": {
+          "label": "Validfrom",
+          "description": "Start date of work authorization or visa validity"
+        },
+        "validTo": {
+          "label": "Validto",
+          "description": "Expiration date of work authorization or visa (omit if permanent)"
+        },
+        "notes": {
+          "label": "Notes",
+          "description": "Additional notes or restrictions on work authorization"
+        }
+      },
+      "legalNote": {
+        "label": "法的注記",
+        "description": "Legal consent or disclaimer statement",
+        "text": {
+          "label": "テキスト",
+          "description": "The legal statement or consent text"
+        },
+        "country": {
+          "label": "国",
+          "description": "Country code for which this legal note applies"
+        },
+        "type": {
+          "label": "タイプ",
+          "description": "Type of legal note (e.g., gdpr_consent, disclaimer)"
+        },
+        "url": {
+          "label": "URL",
+          "description": "Link to full privacy policy or legal information"
+        }
+      }
+    },
+    "work": {
+      "name": {
+        "label": "会社名",
+        "description": "Company or organisation name"
+      },
+      "position": {
+        "label": "役職",
+        "description": "Job title or role held at the organisation"
+      },
+      "startDate": {
+        "label": "開始日",
+        "description": "Date when employment began"
+      },
+      "endDate": {
+        "label": "終了日",
+        "description": "Date when employment ended (omit if currently employed)"
+      },
+      "summary": {
+        "label": "概要",
+        "description": "Overview of responsibilities and role within the organisation"
+      },
+      "highlights": {
+        "label": "ハイライト",
+        "description": "Notable achievements and accomplishments in this role"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Company website address"
+      },
+      "location": {
+        "label": "場所",
+        "description": "Geographic location of the workplace",
+        "address": {
+          "label": "住所",
+          "description": "Street address with multiple lines separated by newline characters (\\n)"
+        },
+        "city": {
+          "label": "市区町村",
+          "description": "City or town name"
+        },
+        "region": {
+          "label": "地域",
+          "description": "State, county, province, or region within the country"
+        },
+        "postalCode": {
+          "label": "Postalcode",
+          "description": "Postal or ZIP code"
+        },
+        "countryCode": {
+          "label": "Countrycode",
+          "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
+        },
+        "country": {
+          "label": "国",
+          "description": "Full country name (optional, countryCode is preferred)"
+        }
+      },
+      "industry": {
+        "label": "業界",
+        "description": "Industry sector or business domain of the organization (e.g., 'Financial Technology', 'Healthcare', 'E-commerce', 'Manufacturing')"
+      },
+      "workLocation": {
+        "label": "Worklocation",
+        "description": "Geographic location of the workplace (legacy field, use 'location' object for structured data)"
+      },
+      "contactDetails": {
+        "label": "Contactdetails",
+        "description": "Organization contact information",
+        "email": {
+          "label": "メール",
+          "description": "Organization contact email address"
+        },
+        "phone": {
+          "label": "電話",
+          "description": "Organization contact telephone number"
+        },
+        "fax": {
+          "label": "Fax",
+          "description": "Organization fax number (optional)"
+        }
+      },
+      "description": {
+        "label": "説明",
+        "description": "Brief description of the company or its industry"
+      },
+      "workType": {
+        "label": "Worktype",
+        "description": "Type of work arrangement (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary)"
+      }
+    },
+    "volunteer": {
+      "organization": {
+        "label": "Organisation",
+        "description": "Name of the charitable organisation or community group"
+      },
+      "position": {
+        "label": "役職",
+        "description": "Role or title held within the organisation"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Website of the organisation"
+      },
+      "startDate": {
+        "label": "開始日",
+        "description": "Date when volunteer work began"
+      },
+      "endDate": {
+        "label": "終了日",
+        "description": "Date when volunteer work ended (omit if ongoing)"
+      },
+      "summary": {
+        "label": "概要",
+        "description": "Description of volunteer responsibilities and contributions"
+      },
+      "highlights": {
+        "label": "ハイライト",
+        "description": "Key accomplishments and impact made through volunteer work"
+      }
+    },
+    "education": {
+      "institution": {
+        "label": "機関",
+        "description": "Name of the educational institution or university"
+      },
+      "area": {
+        "label": "分野",
+        "description": "Field of study or academic discipline"
+      },
+      "studyType": {
+        "label": "学位種別",
+        "description": "Type of qualification (Bachelor, Master, PhD, etc.)"
+      },
+      "startDate": {
+        "label": "開始日",
+        "description": "Date when studies commenced"
+      },
+      "endDate": {
+        "label": "終了日",
+        "description": "Date when studies concluded or expected completion date"
+      },
+      "score": {
+        "label": "成績",
+        "description": "Final grade, GPA, or classification achieved"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Website address of the institution"
+      },
+      "courses": {
+        "label": "コース",
+        "description": "Relevant modules, courses, or subjects studied"
+      },
+      "school": {
+        "label": "学校",
+        "description": "Name of the educational institution or university (alias for institution)"
+      },
+      "degree": {
+        "label": "学位",
+        "description": "Type of degree or qualification obtained (alias for studyType)"
+      },
+      "description": {
+        "label": "説明",
+        "description": "Additional details about the educational experience, achievements, or focus areas"
+      },
+      "gpa": {
+        "label": "GPA",
+        "description": "Grade Point Average or equivalent scoring (alias for score)"
+      },
+      "location": {
+        "label": "場所",
+        "description": "Geographic location of the educational institution (city, state/region)"
+      },
+      "country": {
+        "label": "国",
+        "description": "Country where the institution is located, preferably using ISO-3166-1 ALPHA-2 code"
+      }
+    },
+    "awards": {
+      "title": {
+        "label": "役職",
+        "description": "Name or title of the award"
+      },
+      "date": {
+        "label": "日付",
+        "description": "Date the award was received"
+      },
+      "awarder": {
+        "label": "授与者",
+        "description": "Organisation or entity that presented the award"
+      },
+      "summary": {
+        "label": "概要",
+        "description": "Reason for receiving the award or context"
+      }
+    },
+    "certificates": {
+      "name": {
+        "label": "名前",
+        "description": "Full name of the certification"
+      },
+      "date": {
+        "label": "日付",
+        "description": "Date the certification was obtained"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Link to certificate verification or details"
+      },
+      "issuer": {
+        "label": "発行者",
+        "description": "Organisation that issued the certification"
+      }
+    },
+    "publications": {
+      "name": {
+        "label": "名前",
+        "description": "Title of the publication"
+      },
+      "publisher": {
+        "label": "出版社",
+        "description": "Name of the publisher or journal"
+      },
+      "releaseDate": {
+        "label": "発行日",
+        "description": "Date of publication"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Link to the published work"
+      },
+      "summary": {
+        "label": "概要",
+        "description": "Brief abstract or description of the publication content"
+      }
+    },
+    "skills": {
+      "name": {
+        "label": "名前",
+        "description": "Skill category or domain"
+      },
+      "level": {
+        "label": "レベル",
+        "description": "Proficiency level (Beginner, Intermediate, Advanced, Expert)"
+      },
+      "keywords": {
+        "label": "キーワード",
+        "description": "Specific technologies, tools, or techniques within this skill area"
+      },
+      "yearsOfExperience": {
+        "label": "Yearsofexperience",
+        "description": "Number of years of practical experience with this skill"
+      },
+      "comment": {
+        "label": "コメント",
+        "description": "Additional context or notes about this skill"
+      }
+    },
+    "tools": {
+      "name": {
+        "label": "名前",
+        "description": "Name of the tool or software"
+      },
+      "level": {
+        "label": "レベル",
+        "description": "Proficiency level with this tool (Beginner, Intermediate, Advanced, Expert)"
+      },
+      "yearsOfExperience": {
+        "label": "Years of Experience",
+        "description": "Number of years using this tool professionally"
+      },
+      "group": {
+        "label": "グループ",
+        "description": "Category or group for organizing related tools (e.g., 'Monitoring & Logging', 'Web & Servers')"
+      },
+      "category": {
+        "label": "カテゴリー",
+        "description": "Category or group for organizing related tools (alias for group)"
+      },
+      "comment": {
+        "label": "コメント",
+        "description": "Additional details about usage, proficiency, or context"
+      },
+      "url": {
+        "label": "Url",
+        "description": "Link to the tool's website or documentation"
+      }
+    },
+    "languages": {
+      "language": {
+        "label": "言語",
+        "description": "Name of the language"
+      },
+      "fluency": {
+        "label": "流暢さ",
+        "description": "Level of proficiency (Native, Fluent, Intermediate, Basic)"
+      }
+    },
+    "interests": {
+      "name": {
+        "label": "名前",
+        "description": "Interest category or area"
+      },
+      "keywords": {
+        "label": "キーワード",
+        "description": "Specific topics or activities within this interest"
+      }
+    },
+    "references": {
+      "name": {
+        "label": "名前",
+        "description": "Name of the person providing the reference"
+      },
+      "reference": {
+        "label": "推薦",
+        "description": "The reference statement or testimonial text"
+      }
+    },
+    "projects": {
+      "name": {
+        "label": "名前",
+        "description": "Project name or title"
+      },
+      "description": {
+        "label": "説明",
+        "description": "Brief overview of what the project entailed"
+      },
+      "highlights": {
+        "label": "ハイライト",
+        "description": "Key features, achievements, or outcomes of the project"
+      },
+      "keywords": {
+        "label": "キーワード",
+        "description": "Technologies, methodologies, or tools used in the project"
+      },
+      "startDate": {
+        "label": "開始日",
+        "description": "Date when project work began"
+      },
+      "endDate": {
+        "label": "終了日",
+        "description": "Date when project was completed (omit if ongoing)"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Link to project repository, demo, or documentation"
+      },
+      "roles": {
+        "label": "役割",
+        "description": "Roles held or responsibilities taken in the project"
+      },
+      "entity": {
+        "label": "エンティティ",
+        "description": "Organization or company the project was associated with"
+      },
+      "type": {
+        "label": "タイプ",
+        "description": "Category of project (application, volunteering, presentation, conference, etc.)"
+      }
+    },
+    "meta": {
+      "canonical": {
+        "label": "Canonical",
+        "description": "Permanent URL where the latest version of this resume can be found"
+      },
+      "version": {
+        "label": "Version",
+        "description": "Version number following semantic versioning format"
+      },
+      "lastModified": {
+        "label": "Lastmodified",
+        "description": "Timestamp of last modification in ISO 8601 format"
+      },
+      "dateCreated": {
+        "label": "Datecreated",
+        "description": "Timestamp when the document was created in ISO 8601 format"
+      },
+      "dateModified": {
+        "label": "Datemodified",
+        "description": "Timestamp when the document was last modified in ISO 8601 format"
+      },
+      "datePublished": {
+        "label": "Datepublished",
+        "description": "Timestamp when the document was published in ISO 8601 format"
+      }
+    }
+  },
+  "common": {
+    "add": "追加",
+    "remove": "削除",
+    "edit": "編集",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "close": "閉じる",
+    "select": "選択...",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功"
+  }
+}
