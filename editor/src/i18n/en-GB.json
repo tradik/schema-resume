@@ -1,0 +1,677 @@
+{
+  "_meta": {
+    "language": "en-GB",
+    "languageName": "English (UK)",
+    "version": "1.0.0"
+  },
+  "app": {
+    "title": "Resume Editor",
+    "description": "Visual resume editor based on JSON Resume Schema with XSLT template rendering"
+  },
+  "header": {
+    "templateSelector": {
+      "label": "Select Template",
+      "classic": "Classic Template",
+      "professional": "Professional Template"
+    },
+    "buttons": {
+      "uploadCV": "Upload my CV",
+      "importLinkedIn": "Import from LinkedIn",
+      "import": "Import",
+      "editJSON": "Edit JSON",
+      "export": "Export",
+      "downloadPDF": "Download PDF",
+      "print": "Print",
+      "timeline": "Timeline",
+      "tools": "Tools",
+      "language": "Language"
+    },
+    "tooltips": {
+      "uploadCV": "Upload CV PDF",
+      "importLinkedIn": "Import your profile from LinkedIn",
+      "import": "Import JSON",
+      "editJSON": "Edit Raw JSON",
+      "export": "Export JSON",
+      "downloadPDF": "Download PDF",
+      "print": "Print Resume",
+      "timeline": "View Career Timeline",
+      "tools": "View Tools Experience Chart",
+      "language": "Select Language"
+    }
+  },
+  "sidebar": {
+    "title": "Resume Data",
+    "togglePanel": "Toggle Panel",
+    "showSidebar": "Show Sidebar"
+  },
+  "sections": {
+    "basics": "Basics",
+    "work": "Work",
+    "volunteer": "Volunteer",
+    "education": "Education",
+    "awards": "Awards",
+    "certificates": "Certificates",
+    "publications": "Publications",
+    "skills": "Skills",
+    "tools": "Tools",
+    "languages": "Languages",
+    "interests": "Interests",
+    "references": "References",
+    "projects": "Projects"
+  },
+  "sectionLabels": {
+    "work": "Work Experience",
+    "volunteer": "Volunteer Experience",
+    "education": "Education",
+    "awards": "Award",
+    "certificates": "Certificate",
+    "publications": "Publication",
+    "skills": "Skill",
+    "tools": "Tool",
+    "languages": "Language",
+    "interests": "Interest",
+    "references": "Reference",
+    "projects": "Project"
+  },
+  "preview": {
+    "zoomOut": "Zoom Out",
+    "zoomIn": "Zoom In",
+    "resetZoom": "Reset",
+    "debug": "Debug",
+    "loading": "Loading preview...",
+    "error": "Error rendering preview"
+  },
+  "modals": {
+    "jsonEditor": {
+      "title": "Edit Raw JSON",
+      "formatJSON": "Format JSON",
+      "applyChanges": "Apply Changes",
+      "close": "Close",
+      "invalidJSON": "Invalid JSON"
+    },
+    "timeline": {
+      "title": "Career Timeline",
+      "copyCode": "Copy Mermaid Code",
+      "generating": "Generating timeline...",
+      "close": "Close"
+    },
+    "toolsChart": {
+      "title": "Tools & Technologies Experience",
+      "downloadPNG": "Download PNG",
+      "close": "Close"
+    }
+  },
+  "messages": {
+    "schemaLoadError": "Failed to load schema.json from both external and local sources. The editor may not work properly.",
+    "importSuccess": "Resume imported successfully!",
+    "importError": "Error importing file",
+    "exportSuccess": "Resume exported successfully!",
+    "invalidDataURL": "Invalid data parameter: Unable to decode JSON data from URL.",
+    "urlLoadError": "Failed to load resume from URL",
+    "featureError": "Some features may not work properly. Please refresh the page.",
+    "tip": "Tip: For large JSON files, use the ?url= parameter instead",
+    "example": "Example"
+  },
+  "fields": {
+    "basics": {
+      "name": {
+        "label": "Name",
+        "description": "Full name of the person"
+      },
+      "label": {
+        "label": "Label",
+        "description": "Professional title or role, such as 'Senior Software Engineer' or 'Product Designer'"
+      },
+      "email": {
+        "label": "Email",
+        "description": "Primary email address for professional contact"
+      },
+      "phone": {
+        "label": "Phone",
+        "description": "Contact telephone number in any preferred format"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Personal website or portfolio URL"
+      },
+      "summary": {
+        "label": "Summary",
+        "description": "Brief professional summary highlighting key experience and expertise"
+      },
+      "image": {
+        "label": "Image",
+        "description": "Web address pointing to a profile photograph in JPEG or PNG format"
+      },
+      "location": {
+        "label": "Location",
+        "address": {
+          "label": "Address",
+          "description": "Street address with multiple lines separated by newline characters"
+        },
+        "city": {
+          "label": "City",
+          "description": "City or town name"
+        },
+        "region": {
+          "label": "Region",
+          "description": "State, county, province, or region within the country"
+        },
+        "postalCode": {
+          "label": "Postal Code",
+          "description": "Postal or ZIP code"
+        },
+        "countryCode": {
+          "label": "Country Code",
+          "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
+        },
+        "streetAddress": {
+          "label": "Streetaddress",
+          "description": "Street address line"
+        }
+      },
+      "title": {
+        "label": "Title",
+        "description": "Job title or professional title of the person"
+      },
+      "age": {
+        "label": "Age",
+        "description": "Age of the person in years"
+      },
+      "dateOfBirth": {
+        "label": "Dateofbirth",
+        "description": "Date of birth in ISO 8601 format"
+      },
+      "gender": {
+        "label": "Gender",
+        "description": "Gender identity of the person"
+      },
+      "keyAchievements": {
+        "label": "Keyachievements",
+        "description": "Notable career achievements and accomplishments"
+      },
+      "coreCompetencies": {
+        "label": "Corecompetencies",
+        "description": "Core professional competencies and areas of expertise"
+      },
+      "profiles": {
+        "label": "Profiles",
+        "description": "List of social media and professional network profiles",
+        "network": {
+          "label": "Network",
+          "description": "Name of the social network or platform (LinkedIn, GitHub, Twitter, etc.)"
+        },
+        "username": {
+          "label": "Username",
+          "description": "Username or handle on the platform"
+        },
+        "url": {
+          "label": "Url",
+          "description": "Direct link to the profile page"
+        }
+      },
+      "nationalities": {
+        "label": "Nationalities",
+        "description": "Citizenship and nationality information",
+        "country": {
+          "label": "Country",
+          "description": "Country of citizenship using ISO-3166-1 ALPHA-2 code (GB, US, FR, etc.)"
+        },
+        "born": {
+          "label": "Born",
+          "description": "Whether this is the country of birth"
+        }
+      },
+      "workAuthorization": {
+        "label": "Workauthorization",
+        "description": "Work authorization information for multiple countries",
+        "country": {
+          "label": "Country",
+          "description": "Country code using ISO-3166-1 ALPHA-2 standard (e.g., GB, US, FR)"
+        },
+        "status": {
+          "label": "Status",
+          "description": "Work authorization status (e.g., 'Citizen', 'Permanent Resident', 'Work Visa', 'No Authorization')"
+        },
+        "rightToWork": {
+          "label": "Righttowork",
+          "description": "Whether person has unrestricted right to work in this country"
+        },
+        "visaType": {
+          "label": "Visatype",
+          "description": "Type or category of visa if applicable (e.g., 'H-1B', 'Skilled Worker', 'Temporary', 'Permanent Residence')"
+        },
+        "validFrom": {
+          "label": "Validfrom",
+          "description": "Start date of work authorization or visa validity"
+        },
+        "validTo": {
+          "label": "Validto",
+          "description": "Expiration date of work authorization or visa (omit if permanent)"
+        },
+        "notes": {
+          "label": "Notes",
+          "description": "Additional notes or restrictions on work authorization"
+        }
+      },
+      "legalNote": {
+        "label": "Legal Note",
+        "description": "Legal consent or disclaimer statement",
+        "text": {
+          "label": "Text",
+          "description": "The legal statement or consent text"
+        },
+        "country": {
+          "label": "Country",
+          "description": "Country code for which this legal note applies"
+        },
+        "type": {
+          "label": "Type",
+          "description": "Type of legal note (e.g., gdpr_consent, disclaimer)"
+        },
+        "url": {
+          "label": "URL",
+          "description": "Link to full privacy policy or legal information"
+        }
+      }
+    },
+    "work": {
+      "name": {
+        "label": "Company Name",
+        "description": "Company or organisation name"
+      },
+      "position": {
+        "label": "Position",
+        "description": "Job title or role held at the organisation"
+      },
+      "startDate": {
+        "label": "Start Date",
+        "description": "Date when employment began"
+      },
+      "endDate": {
+        "label": "End Date",
+        "description": "Date when employment ended (omit if currently employed)"
+      },
+      "summary": {
+        "label": "Summary",
+        "description": "Overview of responsibilities and role within the organisation"
+      },
+      "highlights": {
+        "label": "Highlights",
+        "description": "Notable achievements and accomplishments in this role"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Company website address"
+      },
+      "location": {
+        "label": "Location",
+        "description": "Geographic location of the workplace",
+        "address": {
+          "label": "Address",
+          "description": "Street address with multiple lines separated by newline characters (\\n)"
+        },
+        "city": {
+          "label": "City",
+          "description": "City or town name"
+        },
+        "region": {
+          "label": "Region",
+          "description": "State, county, province, or region within the country"
+        },
+        "postalCode": {
+          "label": "Postalcode",
+          "description": "Postal or ZIP code"
+        },
+        "countryCode": {
+          "label": "Countrycode",
+          "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
+        },
+        "country": {
+          "label": "Country",
+          "description": "Full country name (optional, countryCode is preferred)"
+        }
+      },
+      "industry": {
+        "label": "Industry",
+        "description": "Industry sector or business domain of the organization (e.g., 'Financial Technology', 'Healthcare', 'E-commerce', 'Manufacturing')"
+      },
+      "workLocation": {
+        "label": "Worklocation",
+        "description": "Geographic location of the workplace (legacy field, use 'location' object for structured data)"
+      },
+      "contactDetails": {
+        "label": "Contactdetails",
+        "description": "Organization contact information",
+        "email": {
+          "label": "Email",
+          "description": "Organization contact email address"
+        },
+        "phone": {
+          "label": "Phone",
+          "description": "Organization contact telephone number"
+        },
+        "fax": {
+          "label": "Fax",
+          "description": "Organization fax number (optional)"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "description": "Brief description of the company or its industry"
+      },
+      "workType": {
+        "label": "Worktype",
+        "description": "Type of work arrangement (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary)"
+      }
+    },
+    "volunteer": {
+      "organization": {
+        "label": "Organisation",
+        "description": "Name of the charitable organisation or community group"
+      },
+      "position": {
+        "label": "Position",
+        "description": "Role or title held within the organisation"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Website of the organisation"
+      },
+      "startDate": {
+        "label": "Start Date",
+        "description": "Date when volunteer work began"
+      },
+      "endDate": {
+        "label": "End Date",
+        "description": "Date when volunteer work ended (omit if ongoing)"
+      },
+      "summary": {
+        "label": "Summary",
+        "description": "Description of volunteer responsibilities and contributions"
+      },
+      "highlights": {
+        "label": "Highlights",
+        "description": "Key accomplishments and impact made through volunteer work"
+      }
+    },
+    "education": {
+      "institution": {
+        "label": "Institution",
+        "description": "Name of the educational institution or university"
+      },
+      "area": {
+        "label": "Area",
+        "description": "Field of study or academic discipline"
+      },
+      "studyType": {
+        "label": "Study Type",
+        "description": "Type of qualification (Bachelor, Master, PhD, etc.)"
+      },
+      "startDate": {
+        "label": "Start Date",
+        "description": "Date when studies commenced"
+      },
+      "endDate": {
+        "label": "End Date",
+        "description": "Date when studies concluded or expected completion date"
+      },
+      "score": {
+        "label": "Score",
+        "description": "Final grade, GPA, or classification achieved"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Website address of the institution"
+      },
+      "courses": {
+        "label": "Courses",
+        "description": "Relevant modules, courses, or subjects studied"
+      },
+      "school": {
+        "label": "School",
+        "description": "Name of the educational institution or university (alias for institution)"
+      },
+      "degree": {
+        "label": "Degree",
+        "description": "Type of degree or qualification obtained (alias for studyType)"
+      },
+      "description": {
+        "label": "Description",
+        "description": "Additional details about the educational experience, achievements, or focus areas"
+      },
+      "gpa": {
+        "label": "Gpa",
+        "description": "Grade Point Average or equivalent scoring (alias for score)"
+      },
+      "location": {
+        "label": "Location",
+        "description": "Geographic location of the educational institution (city, state/region)"
+      },
+      "country": {
+        "label": "Country",
+        "description": "Country where the institution is located, preferably using ISO-3166-1 ALPHA-2 code"
+      }
+    },
+    "awards": {
+      "title": {
+        "label": "Title",
+        "description": "Name or title of the award"
+      },
+      "date": {
+        "label": "Date",
+        "description": "Date the award was received"
+      },
+      "awarder": {
+        "label": "Awarder",
+        "description": "Organisation or entity that presented the award"
+      },
+      "summary": {
+        "label": "Summary",
+        "description": "Reason for receiving the award or context"
+      }
+    },
+    "certificates": {
+      "name": {
+        "label": "Name",
+        "description": "Full name of the certification"
+      },
+      "date": {
+        "label": "Date",
+        "description": "Date the certification was obtained"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Link to certificate verification or details"
+      },
+      "issuer": {
+        "label": "Issuer",
+        "description": "Organisation that issued the certification"
+      }
+    },
+    "publications": {
+      "name": {
+        "label": "Name",
+        "description": "Title of the publication"
+      },
+      "publisher": {
+        "label": "Publisher",
+        "description": "Name of the publisher or journal"
+      },
+      "releaseDate": {
+        "label": "Release Date",
+        "description": "Date of publication"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Link to the published work"
+      },
+      "summary": {
+        "label": "Summary",
+        "description": "Brief abstract or description of the publication content"
+      }
+    },
+    "skills": {
+      "name": {
+        "label": "Name",
+        "description": "Skill category or domain"
+      },
+      "level": {
+        "label": "Level",
+        "description": "Proficiency level (Beginner, Intermediate, Advanced, Expert)"
+      },
+      "keywords": {
+        "label": "Keywords",
+        "description": "Specific technologies, tools, or techniques within this skill area"
+      },
+      "yearsOfExperience": {
+        "label": "Yearsofexperience",
+        "description": "Number of years of practical experience with this skill"
+      },
+      "comment": {
+        "label": "Comment",
+        "description": "Additional context or notes about this skill"
+      }
+    },
+    "tools": {
+      "name": {
+        "label": "Name",
+        "description": "Name of the tool or software"
+      },
+      "level": {
+        "label": "Level",
+        "description": "Proficiency level with this tool (Beginner, Intermediate, Advanced, Expert)"
+      },
+      "yearsOfExperience": {
+        "label": "Years of Experience",
+        "description": "Number of years using this tool professionally"
+      },
+      "group": {
+        "label": "Group",
+        "description": "Category or group for organizing related tools (e.g., 'Monitoring & Logging', 'Web & Servers')"
+      },
+      "category": {
+        "label": "Category",
+        "description": "Category or group for organizing related tools (alias for group)"
+      },
+      "comment": {
+        "label": "Comment",
+        "description": "Additional details about usage, proficiency, or context"
+      },
+      "url": {
+        "label": "Url",
+        "description": "Link to the tool's website or documentation"
+      }
+    },
+    "languages": {
+      "language": {
+        "label": "Language",
+        "description": "Name of the language"
+      },
+      "fluency": {
+        "label": "Fluency",
+        "description": "Level of proficiency (Native, Fluent, Intermediate, Basic)"
+      }
+    },
+    "interests": {
+      "name": {
+        "label": "Name",
+        "description": "Interest category or area"
+      },
+      "keywords": {
+        "label": "Keywords",
+        "description": "Specific topics or activities within this interest"
+      }
+    },
+    "references": {
+      "name": {
+        "label": "Name",
+        "description": "Name of the person providing the reference"
+      },
+      "reference": {
+        "label": "Reference",
+        "description": "The reference statement or testimonial text"
+      }
+    },
+    "projects": {
+      "name": {
+        "label": "Name",
+        "description": "Project name or title"
+      },
+      "description": {
+        "label": "Description",
+        "description": "Brief overview of what the project entailed"
+      },
+      "highlights": {
+        "label": "Highlights",
+        "description": "Key features, achievements, or outcomes of the project"
+      },
+      "keywords": {
+        "label": "Keywords",
+        "description": "Technologies, methodologies, or tools used in the project"
+      },
+      "startDate": {
+        "label": "Start Date",
+        "description": "Date when project work began"
+      },
+      "endDate": {
+        "label": "End Date",
+        "description": "Date when project was completed (omit if ongoing)"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Link to project repository, demo, or documentation"
+      },
+      "roles": {
+        "label": "Roles",
+        "description": "Roles held or responsibilities taken in the project"
+      },
+      "entity": {
+        "label": "Entity",
+        "description": "Organization or company the project was associated with"
+      },
+      "type": {
+        "label": "Type",
+        "description": "Category of project (application, volunteering, presentation, conference, etc.)"
+      }
+    },
+    "meta": {
+      "canonical": {
+        "label": "Canonical",
+        "description": "Permanent URL where the latest version of this resume can be found"
+      },
+      "version": {
+        "label": "Version",
+        "description": "Version number following semantic versioning format"
+      },
+      "lastModified": {
+        "label": "Lastmodified",
+        "description": "Timestamp of last modification in ISO 8601 format"
+      },
+      "dateCreated": {
+        "label": "Datecreated",
+        "description": "Timestamp when the document was created in ISO 8601 format"
+      },
+      "dateModified": {
+        "label": "Datemodified",
+        "description": "Timestamp when the document was last modified in ISO 8601 format"
+      },
+      "datePublished": {
+        "label": "Datepublished",
+        "description": "Timestamp when the document was published in ISO 8601 format"
+      }
+    }
+  },
+  "common": {
+    "add": "Add",
+    "remove": "Remove",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "close": "Close",
+    "select": "Select...",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  }
+}
