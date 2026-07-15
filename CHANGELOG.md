@@ -175,6 +175,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Resume comparison tools
 - Multiple resume versions support
 
+## [1.2.0] - 2026-07-15
+
+### Added
+- **`positions` array in the `work` section** ([#11](https://github.com/tradik/schema-resume/issues/11)):
+  - Represent multiple roles held at the **same** organization over time (career progression / promotions) without repeating organization-level details such as `name`, `location`, `url`, and `industry`
+  - Each position entry supports `@type` (`schema:EmployeeRole`), `position`, `workType`, `startDate`, `endDate`, `summary`, and `highlights`
+  - Fully **additive and backwards compatible**: the singular top-level `position`, `startDate`, `endDate`, `summary`, and `highlights` fields remain valid for single-role entries
+  - Mirrored across all schema representations: `schema.json`, `editor/schema.json`, `context.jsonld` (mapped to `schema:hasOccupation`), and the XSD (`PositionListType` / `PositionType`)
+  - New examples in `example.json`, `example-with-local-context.json`, and `xml/1.0/example.xml`
+- **Positions validation test suite** (`tests/positions/`) with valid and invalid fixtures and a runner script (`run-positions-tests.sh`)
+- **Migration guide** `docs/MIGRATION_v1.2.md` describing how to adopt the `positions` array
+
+### Fixed
+- **XSD `LegalNoteType` was undefined**: the `legalNote` element in `BasicsType` referenced a `sr:LegalNoteType` complex type that did not exist, which prevented `schema-resume.xsd` from compiling as a valid XSD. Added the missing `LegalNoteType` definition so the XSD now compiles and validates cleanly.
+
+### Changed
+- Bumped schema version from **1.1.0 → 1.2.0** across `schema.json`, `meta-schema.json`, `editor/schema.json`, `xml/1.0/schema-resume.xsd`, `package.json`, `index.html`, `validator.html`, and `README.md`
+
 ## [1.1.1] - 2025-10-09
 
 ### Added

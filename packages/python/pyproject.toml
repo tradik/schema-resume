@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "schema-resume-validator"
-version = "1.1.0"
+version = "1.2.0"
 description = "JSON Schema validator for Schema Resume - comprehensive CV/Resume validation with JSON-LD support"
 readme = "README.md"
 requires-python = ">=3.8"

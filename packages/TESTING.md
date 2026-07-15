@@ -41,14 +41,14 @@ node example.js
 npm pack
 
 # Test in another project
-npm install /path/to/schema-resume-validator-1.1.0.tgz
+npm install /path/to/schema-resume-validator-1.2.0.tgz
 ```
 
 **Verify installation:**
 ```javascript
 const { createValidator } = require('@schema-resume/validator');
 const validator = createValidator();
-console.log(validator.getSchema().version); // Should print: 1.1.0
+console.log(validator.getSchema().version); // Should print: 1.2.0
 ```
 
 ### Python
@@ -66,7 +66,7 @@ pip install -e .
 # Or build and install from wheel
 pip install build
 python -m build
-pip install dist/schema_resume_validator-1.1.0-py3-none-any.whl
+pip install dist/schema_resume_validator-1.2.0-py3-none-any.whl
 
 # Run example
 python example.py
@@ -79,7 +79,7 @@ pytest
 **Verify installation:**
 ```python
 from schema_resume import validate_resume, __version__
-print(__version__)  # Should print: 1.1.0
+print(__version__)  # Should print: 1.2.0
 
 result = validate_resume({"basics": {"name": "Test"}})
 print(result['valid'])  # Should print: True
@@ -119,7 +119,7 @@ import "github.com/tradik/schema-resume/validator"
 
 v, _ := validator.NewValidator()
 schema := v.GetSchema()
-fmt.Println(schema["version"]) // Should print: 1.1.0
+fmt.Println(schema["version"]) // Should print: 1.2.0
 ```
 
 ### Java
@@ -140,7 +140,7 @@ mvn package
 mvn install
 ```
 
-The package will be installed to `~/.m2/repository/org/schema-resume/schema-resume-validator/1.1.0/`
+The package will be installed to `~/.m2/repository/org/schema-resume/schema-resume-validator/1.2.0/`
 
 **Test in another project:**
 
@@ -149,7 +149,7 @@ Add to `pom.xml`:
 <dependency>
     <groupId>org.schema-resume</groupId>
     <artifactId>schema-resume-validator</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -159,7 +159,7 @@ import org.schemaresume.validator.ResumeValidator;
 
 ResumeValidator validator = new ResumeValidator();
 JsonNode schema = validator.getSchema();
-System.out.println(schema.get("version").asText()); // Should print: 1.1.0
+System.out.println(schema.get("version").asText()); // Should print: 1.2.0
 ```
 
 ### Ruby
@@ -171,7 +171,7 @@ cd packages/ruby
 gem build schema-resume-validator.gemspec
 
 # Install locally
-gem install ./schema-resume-validator-1.1.0.gem
+gem install ./schema-resume-validator-1.2.0.gem
 
 # Test in irb
 irb
@@ -180,7 +180,7 @@ irb
 **Verify installation:**
 ```ruby
 require 'schema_resume'
-puts SchemaResume::VERSION  # Should print: 1.1.0
+puts SchemaResume::VERSION  # Should print: 1.2.0
 
 result = SchemaResume.validate({"basics" => {"name" => "Test"}})
 puts result[:valid]  # Should print: true
@@ -240,7 +240,7 @@ use SchemaResume\Validator;
 
 $validator = new Validator();
 $schema = $validator->getSchema();
-echo $schema->version; // Should print: 1.1.0
+echo $schema->version; // Should print: 1.2.0
 ```
 
 ## Validation Checklist

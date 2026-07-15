@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schema-resume.org/schema.json",
+  "work": [
+    {
+      "@type": "schema:Organization",
+      "name": "Legacy Corp",
+      "position": "Software Engineer",
+      "workType": "full-time",
+      "startDate": "2018-01",
+      "endDate": "2020-12",
+      "summary": "Single-role entry using the legacy top-level fields — must stay valid in v1.2.0",
+      "highlights": [
+        "Backwards compatibility check: no positions array present"
+      ]
+    }
+  ]
+}

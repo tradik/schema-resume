@@ -204,6 +204,52 @@
         "Introduced React and modern build tools to the development workflow",
         "Collaborated with designers to create pixel-perfect implementations"
       ]
+    },
+    {
+      "@type": "schema:Organization",
+      "name": "BrightPath Software",
+      "industry": "Software Development",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "120 Market Street",
+        "city": "San Francisco",
+        "region": "California",
+        "postalCode": "94105",
+        "countryCode": "US",
+        "country": "United States"
+      },
+      "workLocation": "San Francisco, CA",
+      "description": "SaaS company building collaboration tools for distributed teams",
+      "url": "https://brightpath.example.com",
+      "startDate": "2013-06",
+      "endDate": "2017-07",
+      "summary": "Grew from engineer to team lead over four years while the product scaled from startup to enterprise adoption",
+      "positions": [
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Software Engineer",
+          "workType": "onsite",
+          "startDate": "2013-06",
+          "endDate": "2015-05",
+          "summary": "Built core front-end features for the collaboration platform",
+          "highlights": [
+            "Delivered the real-time editing module used by 100k+ daily users",
+            "Reduced client bundle size by 45% through code splitting"
+          ]
+        },
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Senior Software Engineer",
+          "workType": "hybrid",
+          "startDate": "2015-06",
+          "endDate": "2017-07",
+          "summary": "Led front-end architecture and coordinated cross-team feature delivery",
+          "highlights": [
+            "Established the component library adopted across five product teams",
+            "Mentored three engineers promoted to senior within a year"
+          ]
+        }
+      ]
     }
   ],
   "volunteer": [
