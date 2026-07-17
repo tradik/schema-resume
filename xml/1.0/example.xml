@@ -151,7 +151,61 @@
       <item>Implemented GitOps workflow improving deployment frequency by 400%</item>
     </highlights>
   </work>
-  
+
+  <work>
+    <name>Nexora Digital Ltd</name>
+    <industry>Software Development &amp; Consulting</industry>
+    <location>
+      <address>8 Rutland Square</address>
+      <city>Edinburgh</city>
+      <region>Scotland</region>
+      <postalCode>EH1 2AS</postalCode>
+      <countryCode>GB</countryCode>
+      <country>United Kingdom</country>
+    </location>
+    <workLocation>Edinburgh, UK</workLocation>
+    <description>Product engineering consultancy building platforms for the public sector</description>
+    <url>https://nexora-digital.example.com</url>
+    <startDate>2012-09</startDate>
+    <endDate>2016-01</endDate>
+    <summary>Progressed from junior engineer to engineering lead across four years, delivering cloud platforms for government clients</summary>
+    <positions>
+      <item>
+        <position>Junior Software Engineer</position>
+        <workType>onsite</workType>
+        <startDate>2012-09</startDate>
+        <endDate>2013-12</endDate>
+        <summary>Delivered backend features for public-sector web applications under senior mentorship</summary>
+        <highlights>
+          <item>Shipped 30+ production features across three client platforms</item>
+          <item>Automated regression test suite cutting manual QA time by 40%</item>
+        </highlights>
+      </item>
+      <item>
+        <position>Software Engineer</position>
+        <workType>onsite</workType>
+        <startDate>2014-01</startDate>
+        <endDate>2014-12</endDate>
+        <summary>Owned end-to-end delivery of client-facing services and mentored two interns</summary>
+        <highlights>
+          <item>Led migration of a monolith to a service-oriented architecture</item>
+          <item>Introduced infrastructure-as-code reducing environment setup from days to hours</item>
+        </highlights>
+      </item>
+      <item>
+        <position>Senior Software Engineer</position>
+        <workType>hybrid</workType>
+        <startDate>2015-01</startDate>
+        <endDate>2016-01</endDate>
+        <summary>Led a team of four engineers and set technical direction for the cloud platform practice</summary>
+        <highlights>
+          <item>Designed a multi-tenant platform serving 12 government departments</item>
+          <item>Mentored four engineers, two of whom were promoted to senior roles</item>
+        </highlights>
+      </item>
+    </positions>
+  </work>
+
   <volunteer>
     <organization>Code Club UK</organization>
     <position>Technical Mentor</position>

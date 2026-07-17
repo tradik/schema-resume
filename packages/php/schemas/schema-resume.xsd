@@ -3,11 +3,11 @@
            xmlns:sr="https://schema-resume.org/xml/1.0"
            targetNamespace="https://schema-resume.org/xml/1.0"
            elementFormDefault="qualified"
-           version="1.1.0">
+           version="1.2.0">
 
   <xs:annotation>
     <xs:documentation>
-      Schema Resume XML Schema Definition (XSD) v1.1.0
+      Schema Resume XML Schema Definition (XSD) v1.2.0
       Self-hosted XML schema for CV/Resume validation with work authorization and tools tracking
       
       This schema provides comprehensive validation for resume/CV documents in XML format.
@@ -17,7 +17,7 @@
       Primary domain: https://schema-resume.org/
       Alternate domain: https://tradik.github.io/schema-resume/
       
-      Version: 1.1.0
+      Version: 1.2.0
       License: MIT
       Repository: https://github.com/tradik/schema-resume
     </xs:documentation>
@@ -201,6 +201,25 @@
       <xs:element name="endDate" type="sr:iso8601DateType" minOccurs="0"/>
       <xs:element name="summary" type="xs:string" minOccurs="0"/>
       <xs:element name="highlights" type="sr:StringListType" minOccurs="0"/>
+      <xs:element name="positions" type="sr:PositionListType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Multiple roles held at the same organization over time (career progression) -->
+  <xs:complexType name="PositionListType">
+    <xs:sequence>
+      <xs:element name="item" type="sr:PositionType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PositionType">
+    <xs:sequence>
+      <xs:element name="position" type="xs:string" minOccurs="0"/>
+      <xs:element name="workType" type="sr:workTypeEnum" minOccurs="0"/>
+      <xs:element name="startDate" type="sr:iso8601DateType" minOccurs="0"/>
+      <xs:element name="endDate" type="sr:iso8601DateType" minOccurs="0"/>
+      <xs:element name="summary" type="xs:string" minOccurs="0"/>
+      <xs:element name="highlights" type="sr:StringListType" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -220,6 +239,16 @@
       <xs:element name="email" type="xs:string" minOccurs="0"/>
       <xs:element name="phone" type="xs:string" minOccurs="0"/>
       <xs:element name="fax" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Legal disclaimers, consent statements, or data processing notes -->
+  <xs:complexType name="LegalNoteType">
+    <xs:sequence>
+      <xs:element name="text" type="xs:string" minOccurs="0"/>
+      <xs:element name="country" type="sr:countryCodeType" minOccurs="0"/>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+      <xs:element name="url" type="xs:anyURI" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 

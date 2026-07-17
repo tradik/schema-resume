@@ -113,8 +113,8 @@ $result = $validator->validate($resume);
 Packages are automatically released via GitHub Actions when a version tag is pushed:
 
 ```bash
-git tag v1.1.0
-git push origin v1.1.0
+git tag v1.2.0
+git push origin v1.2.0
 ```
 
 The workflow (`.github/workflows/release-packages.yml`) will:
@@ -128,7 +128,7 @@ The workflow (`.github/workflows/release-packages.yml`) will:
 - **Email**: info@schema-resume.org or support@tradik.com
 - **Repository**: https://github.com/tradik/schema-resume
 - **License**: MIT
-- **Version**: 1.1.0
+- **Version**: 1.2.0
 
 ## Schema File Synchronization
 

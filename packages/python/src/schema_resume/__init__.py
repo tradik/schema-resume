@@ -3,7 +3,7 @@
 from .validator import ResumeValidator, validate_resume
 from .exceptions import ValidationError, SchemaError
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 __author__ = "Schema Resume"
 __email__ = "info@schema-resume.org"
 __url__ = "https://schema-resume.org/"

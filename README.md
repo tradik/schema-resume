@@ -1,6 +1,6 @@
 # Schema Resume
 
-[![Schema Version](https://img.shields.io/badge/Schema-v1.1.0-blue.svg)](https://schema-resume.org/schema.json)
+[![Schema Version](https://img.shields.io/badge/Schema-v1.2.0-blue.svg)](https://schema-resume.org/schema.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Website](https://img.shields.io/badge/Website-Live-success.svg)](https://schema-resume.org/)
 [![Self Hosted](https://img.shields.io/badge/Self--Hosted-Yes-brightgreen.svg)](https://schema-resume.org/meta-schema.json)
@@ -60,7 +60,7 @@ The schema is **self-contained** and does not rely on external JSON Schema defin
 **Try the live validator**: [validator.html](https://schema-resume.org/validator.html)
 
 The online validator provides:
-- **Real-time validation** against Schema Resume v1.1.0
+- **Real-time validation** against Schema Resume v1.2.0
 - **JSON-LD compatibility checks** for @context and Schema.org mapping
 - **Detailed error messages** with suggestions for fixes
 - **Example CV** to get started quickly
@@ -363,6 +363,59 @@ public class ResumeValidator {
 | `endDate` | string | End date (ISO 8601, optional for current position) |
 | `summary` | string | Role overview |
 | `highlights` | array | Key accomplishments |
+| `positions` | array | Multiple roles held at the **same** organization over time (career progression). See below. |
+
+#### Multiple positions at one company (`positions`)
+
+_Added in v1.2.0._ When you have held several roles at the same organization (for
+example after a promotion), use the `positions` array to record each role without
+repeating the organization's details (`name`, `location`, `url`, `industry`, …).
+The organization-level fields stay on the `work` entry, and each role goes into
+`positions`. The singular top-level `position`, `startDate`, `endDate`, `summary`,
+and `highlights` fields remain fully valid for single-role entries — this feature
+is **additive and backwards compatible**. Prefer either the singular fields *or*
+the `positions` array for the same information, not both.
+
+Each item in `positions` accepts:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `@type` | string | Schema.org type, `schema:EmployeeRole` for validator.schema.org compatibility |
+| `position` | string | Job title held during this role |
+| `workType` | string | Work arrangement type (same enum as the parent `workType`) |
+| `startDate` | string | Date this role began (ISO 8601) |
+| `endDate` | string | Date this role ended (ISO 8601, omit if current) |
+| `summary` | string | Overview of responsibilities in this role |
+| `highlights` | array | Notable achievements in this role |
+
+```json
+{
+  "work": [
+    {
+      "@type": "schema:Organization",
+      "name": "Nexora Digital Ltd",
+      "url": "https://nexora-digital.example.com",
+      "startDate": "2012-09",
+      "endDate": "2016-01",
+      "summary": "Progressed from junior engineer to engineering lead across four years",
+      "positions": [
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Junior Software Engineer",
+          "startDate": "2012-09",
+          "endDate": "2013-12"
+        },
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Senior Software Engineer",
+          "startDate": "2015-01",
+          "endDate": "2016-01"
+        }
+      ]
+    }
+  ]
+}
+```
 
 ### Education Section
 
@@ -596,7 +649,7 @@ go get github.com/tradik/schema-resume/validator
 <dependency>
     <groupId>org.schema-resume</groupId>
     <artifactId>schema-resume-validator</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 - **Package**: [Maven Central](https://search.maven.org/artifact/org.schema-resume/schema-resume-validator)

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema-resume.org/schema.json",
+  "work": [
+    {
+      "@type": "schema:Organization",
+      "name": "Nexora Digital Ltd",
+      "url": "https://nexora-digital.example.com",
+      "startDate": "2012-09",
+      "endDate": "2016-01",
+      "summary": "Progressed from junior engineer to engineering lead across four years",
+      "positions": [
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Junior Software Engineer",
+          "workType": "onsite",
+          "startDate": "2012-09",
+          "endDate": "2013-12",
+          "summary": "Delivered backend features under senior mentorship",
+          "highlights": [
+            "Shipped 30+ production features across three client platforms"
+          ]
+        },
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Senior Software Engineer",
+          "workType": "hybrid",
+          "startDate": "2015-01",
+          "endDate": "2016-01"
+        }
+      ]
+    }
+  ]
+}

@@ -47,9 +47,13 @@ Before pushing, you can run the same checks locally:
 # Run comparison
 ./run-comparison.sh
 
-# Run both
+# Run both (linting, comparison, and the work[].positions feature tests)
 ./validate-all.sh
 ```
+
+> **Note:** the `work[].positions` feature tests require the `jsonschema` Python
+> package (`python3 -m pip install jsonschema`). Both the *Quick Schema Check* and
+> *Full Validation Suite* workflows install it automatically.
 
 ## Exit Codes
 

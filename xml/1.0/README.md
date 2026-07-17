@@ -93,7 +93,7 @@ public class ResumeValidator {
 ### Sections Supported
 
 - **basics**: Personal information, contact details, location, profiles, nationalities, work authorization
-- **work**: Employment history with positions, dates, and highlights
+- **work**: Employment history with a single role or a `positions` list of multiple roles at the same organization, dates, and highlights
 - **volunteer**: Volunteer work and community involvement
 - **education**: Academic qualifications and courses
 - **awards**: Professional awards and recognitions
@@ -119,6 +119,7 @@ public class ResumeValidator {
 
 ## Version History
 
+- **v1.2.0** (2026-07-15): Added `<positions>` inside `<work>` for multiple roles at the same organization (`PositionListType` / `PositionType`). Fixed the previously undefined `LegalNoteType`, so the XSD now compiles as a valid schema. Aligned with JSON Schema v1.2.0.
 - **v1.0** (2025-10-15): Initial XSD release based on JSON Schema v1.1.0
 
 ## License

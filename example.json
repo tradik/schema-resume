@@ -188,6 +188,64 @@
         "Containerized 15 legacy applications improving resource utilization",
         "Established monitoring and alerting system across all client projects"
       ]
+    },
+    {
+      "@type": "schema:Organization",
+      "name": "Nexora Digital Ltd",
+      "industry": "Software Development & Consulting",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "8 Rutland Square",
+        "city": "Edinburgh",
+        "region": "Scotland",
+        "postalCode": "EH1 2AS",
+        "countryCode": "GB",
+        "country": "United Kingdom"
+      },
+      "workLocation": "Edinburgh, UK",
+      "description": "Product engineering consultancy building platforms for the public sector",
+      "url": "https://nexora-digital.example.com",
+      "startDate": "2012-09",
+      "endDate": "2016-01",
+      "summary": "Progressed from junior engineer to engineering lead across four years, delivering cloud platforms for government clients",
+      "positions": [
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Junior Software Engineer",
+          "workType": "onsite",
+          "startDate": "2012-09",
+          "endDate": "2013-12",
+          "summary": "Delivered backend features for public-sector web applications under senior mentorship",
+          "highlights": [
+            "Shipped 30+ production features across three client platforms",
+            "Automated regression test suite cutting manual QA time by 40%"
+          ]
+        },
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Software Engineer",
+          "workType": "onsite",
+          "startDate": "2014-01",
+          "endDate": "2014-12",
+          "summary": "Owned end-to-end delivery of client-facing services and mentored two interns",
+          "highlights": [
+            "Led migration of a monolith to a service-oriented architecture",
+            "Introduced infrastructure-as-code reducing environment setup from days to hours"
+          ]
+        },
+        {
+          "@type": "schema:EmployeeRole",
+          "position": "Senior Software Engineer",
+          "workType": "hybrid",
+          "startDate": "2015-01",
+          "endDate": "2016-01",
+          "summary": "Led a team of four engineers and set technical direction for the cloud platform practice",
+          "highlights": [
+            "Designed a multi-tenant platform serving 12 government departments",
+            "Mentored four engineers, two of whom were promoted to senior roles"
+          ]
+        }
+      ]
     }
   ],
   "volunteer": [

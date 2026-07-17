@@ -370,6 +370,51 @@
               "type": "string",
               "description": "Individual achievement or accomplishment"
             }
+          },
+          "positions": {
+            "type": "array",
+            "description": "Multiple roles held at the same organization over time, capturing career progression such as promotions. Use this to avoid repeating organization details (name, location, url) for each role. The top-level 'position', 'startDate', 'endDate', 'summary', and 'highlights' fields remain valid for single-role entries; prefer either the singular fields or this array, not both, for the same information.",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "@type": {
+                  "type": "string",
+                  "description": "Schema.org type, should be 'schema:EmployeeRole' for validator.schema.org compatibility"
+                },
+                "position": {
+                  "type": "string",
+                  "description": "Job title or role held at the organization (e.g., 'Senior Software Engineer')"
+                },
+                "workType": {
+                  "type": "string",
+                  "description": "Type of work arrangement (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary)",
+                  "enum": ["remote", "hybrid", "onsite", "full-time", "part-time", "contract", "freelance", "internship", "temporary"]
+                },
+                "startDate": {
+                  "$ref": "#/definitions/iso8601",
+                  "description": "Date when this role began"
+                },
+                "endDate": {
+                  "$ref": "#/definitions/iso8601",
+                  "description": "Date when this role ended (omit if currently in this role)"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Overview of responsibilities within this specific role"
+                },
+                "highlights": {
+                  "type": "array",
+                  "description": "Notable achievements and accomplishments in this specific role",
+                  "additionalItems": false,
+                  "items": {
+                    "type": "string",
+                    "description": "Individual achievement or accomplishment"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -842,8 +887,8 @@
       }
     }
   },
-  "title": "Schema Resume v1.1.0",
+  "title": "Schema Resume v1.2.0",
   "description": "Self-hosted JSON-LD schema for CV/Resume parsing and validation with work authorization and tools tracking",
   "type": "object",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

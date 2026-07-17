@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schema-resume.org/schema.json",
+  "work": [
+    {
+      "name": "Broken Corp",
+      "positions": [
+        {
+          "position": "Software Engineer",
+          "workType": "astronaut"
+        }
+      ]
+    }
+  ]
+}

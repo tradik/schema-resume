@@ -10,7 +10,7 @@ long_description = readme_file.read_text(encoding="utf-8") if readme_file.exists
 
 setup(
     name="schema-resume-validator",
-    version="1.1.0",
+    version="1.2.0",
     description="JSON Schema validator for Schema Resume - comprehensive CV/Resume validation with JSON-LD support",
     long_description=long_description,
     long_description_content_type="text/markdown",

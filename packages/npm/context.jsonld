@@ -192,7 +192,13 @@
       "@type": "@id",
       "@container": "@list"
     },
-    
+
+    "positions": {
+      "@id": "schema:hasOccupation",
+      "@type": "@id",
+      "@container": "@list"
+    },
+
     "position": {
       "@id": "schema:jobTitle",
       "@type": "xsd:string"

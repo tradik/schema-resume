@@ -35,3 +35,8 @@ jobs:
           python3 -m json.tool schema.json > /dev/null && echo "✅ schema.json OK"
           python3 -m json.tool context.jsonld > /dev/null && echo "✅ context.jsonld OK"
           python3 -m json.tool meta-schema.json > /dev/null && echo "✅ meta-schema.json OK"
+
+      - name: Run feature tests (work[].positions)
+        run: |
+          python3 -m pip install --quiet jsonschema
+          python3 tests/positions/run-positions-tests.py
