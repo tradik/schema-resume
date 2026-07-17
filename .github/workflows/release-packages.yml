@@ -160,9 +160,12 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           GO_TAG="packages/golang/${{ needs.prepare.outputs.tag }}"
-          
-          # Fetch all tags from remote
-          git fetch --tags
+
+          # Fetch all tags from remote.
+          # --force avoids "would clobber existing tag" aborting the step under
+          # `bash -e`: the release-triggering tag (e.g. v1.2.0) is already present
+          # from the tag checkout, so a plain `git fetch --tags` returns non-zero.
+          git fetch --tags --force
           
           # Check if tag exists locally or remotely
           if git rev-parse "$GO_TAG" >/dev/null 2>&1; then
