@@ -68,19 +68,20 @@ jobs:
         id: publish
         working-directory: packages/npm
         run: |
-          # Publish to NPM, handle version conflicts gracefully
-          npm publish 2>&1 | tee npm_publish.log || {
-            if grep -q "You cannot publish over the previously published versions" npm_publish.log || \
+          # pipefail so `npm publish | tee` reports npm's exit code, not tee's.
+          # Without it a failed publish (e.g. E404 auth) is masked and the job
+          # falsely reports success.
+          set -o pipefail
+          if npm publish 2>&1 | tee npm_publish.log; then
+            echo "✅ Package published to NPM successfully"
+          elif grep -q "You cannot publish over the previously published versions" npm_publish.log || \
                grep -q "cannot modify pre-existing version" npm_publish.log; then
-              echo "⚠️ Version already exists on NPM, skipping"
-              exit 0
-            else
-              echo "❌ NPM publish failed"
-              cat npm_publish.log
-              exit 1
-            fi
-          }
-          echo "✅ Package published to NPM successfully"
+            echo "⚠️ Version already exists on NPM, skipping"
+          else
+            echo "❌ NPM publish failed"
+            cat npm_publish.log
+            exit 1
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -112,20 +113,21 @@ jobs:
         id: publish
         working-directory: packages/python
         run: |
-          # Upload to PyPI with verbose output for debugging
+          # pipefail so a failed `twine upload` is not masked by the `| tee` pipe.
+          set -o pipefail
           echo "Uploading to PyPI..."
-          python -m twine upload dist/* --skip-existing --verbose 2>&1 | tee upload.log
-          
-          # Check for specific errors
-          if grep -q "403" upload.log; then
-            echo "❌ 403 Forbidden Error - Check:"
-            echo "  1. PYPI_TOKEN is valid and not expired"
-            echo "  2. Token has 'Upload packages' permission"
-            echo "  3. You own the 'schema-resume-validator' package on PyPI"
-            echo "  4. Token format is correct (starts with 'pypi-')"
+          if ! python -m twine upload dist/* --skip-existing --verbose 2>&1 | tee upload.log; then
+            if grep -q "403" upload.log; then
+              echo "❌ 403 Forbidden Error - Check:"
+              echo "  1. PYPI_TOKEN is valid and not expired"
+              echo "  2. Token has 'Upload packages' permission"
+              echo "  3. You own the 'schema-resume-validator' package on PyPI"
+              echo "  4. Token format is correct (starts with 'pypi-')"
+            fi
+            echo "❌ PyPI upload failed"
             exit 1
           fi
-          
+
           echo "✅ Package uploaded to PyPI (or already exists)"
         env:
           TWINE_USERNAME: __token__
@@ -237,19 +239,19 @@ jobs:
           mkdir -p ~/.gem
           echo ":rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}" > ~/.gem/credentials
           chmod 0600 ~/.gem/credentials
-          # Push gem, handle version conflicts gracefully
-          gem push schema-resume-validator-*.gem 2>&1 | tee gem_push.log || {
-            if grep -q "Repushing of gem versions is not allowed" gem_push.log || \
+          # pipefail so `gem push | tee` reports gem's exit code, not tee's,
+          # otherwise a failed push is masked and the job falsely succeeds.
+          set -o pipefail
+          if gem push schema-resume-validator-*.gem 2>&1 | tee gem_push.log; then
+            echo "✅ Gem published to RubyGems successfully"
+          elif grep -q "Repushing of gem versions is not allowed" gem_push.log || \
                grep -q "version already exists" gem_push.log; then
-              echo "⚠️ Version already exists on RubyGems, skipping"
-              exit 0
-            else
-              echo "❌ RubyGems push failed"
-              cat gem_push.log
-              exit 1
-            fi
-          }
-          echo "✅ Gem published to RubyGems successfully"
+            echo "⚠️ Version already exists on RubyGems, skipping"
+          else
+            echo "❌ RubyGems push failed"
+            cat gem_push.log
+            exit 1
+          fi
 
   release-php:
     name: Release PHP Package
