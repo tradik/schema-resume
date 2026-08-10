@@ -2,8 +2,10 @@
  * XSLT Processor Wrapper
  *
  * This module provides a unified interface for XSLT transformations.
- * It uses native XSLTProcessor when available, and falls back to
- * @tradik/xslt-processor library from CDN when native support is not available.
+ * It uses native XSLTProcessor when available, and falls back to the
+ * @tradik/xslt-processor library — served from our own origin at
+ * vendor/xslt-processor.min.js and loaded on demand by src/lazy-libs.js — when
+ * native support is not available.
  *
  * Background: Chrome and other browsers are deprecating native XSLTProcessor
  * (Chrome 143+, full removal by Chrome 164 in August 2027).
@@ -54,8 +56,8 @@ class XsltProcessorWrapper {
     }
 
     /**
-     * Load the @tradik/xslt-processor library via script tag from CDN
-     * Library exposes XsltProcessorLib global with XSLTProcessor class
+     * Load the @tradik/xslt-processor library on demand from our own origin.
+     * The library exposes an XsltProcessorLib global with an XSLTProcessor class.
      */
     async loadLibrary() {
         if (this.libraryLoaded) {
@@ -69,36 +71,22 @@ class XsltProcessorWrapper {
             return true;
         }
 
-        return new Promise((resolve) => {
-            console.log('Loading @tradik/xslt-processor library from CDN...');
-
-            const script = document.createElement('script');
-            // Use jsDelivr CDN for @tradik/xslt-processor
-            // Version 1.x - library exposes XsltProcessorLib global
-            script.src = 'https://cdn.jsdelivr.net/npm/@tradik/xslt-processor@1.0.3/dist/xslt-processor.browser.min.js';
-            script.async = true;
-
-            script.onload = () => {
-                // Check if XsltProcessorLib is now available
-                if (typeof XsltProcessorLib !== 'undefined' && XsltProcessorLib.XSLTProcessor) {
-                    this.libraryLoaded = true;
-                    console.log('XsltProcessorLib loaded successfully from CDN');
-                    console.log('Available exports:', Object.keys(XsltProcessorLib).join(', '));
-                    resolve(true);
-                } else {
-                    console.error('Script loaded but XsltProcessorLib not found');
-                    console.error('window.XsltProcessorLib:', typeof XsltProcessorLib);
-                    resolve(false);
-                }
-            };
-
-            script.onerror = (error) => {
-                console.error('Failed to load xslt-processor library from CDN:', error);
-                resolve(false);
-            };
-
-            document.head.appendChild(script);
-        });
+        // Served from our own origin (editor/vendor/, pinned in
+        // package-lock.json) instead of jsDelivr, and only fetched when the
+        // browser has no native XSLTProcessor to fall back on.
+        try {
+            const lib = await window.lazyLibs.xslt();
+            if (!lib || !lib.XSLTProcessor) {
+                console.error('xslt-processor loaded but XsltProcessorLib.XSLTProcessor is missing');
+                return false;
+            }
+            this.libraryLoaded = true;
+            console.log('XsltProcessorLib loaded');
+            return true;
+        } catch (error) {
+            console.error('Failed to load the xslt-processor library:', error);
+            return false;
+        }
     }
 
     /**
@@ -248,7 +236,7 @@ class XsltProcessorWrapper {
         if (this.nativeSupported) {
             return 'Using native XSLTProcessor';
         } else if (this.libraryLoaded) {
-            return 'Using @tradik/xslt-processor library (CDN)';
+            return 'Using @tradik/xslt-processor library (self-hosted)';
         } else {
             return 'XSLT processing not available';
         }

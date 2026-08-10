@@ -1,0 +1,44 @@
+{{define "page.html"}}<!DOCTYPE html>
+<html lang="{{ if .Lang }}{{ .Lang }}{{ else }}en{{ end }}">
+<head>
+{{ $title := (printf "%s — Schema Resume" .Page.Title) }}
+    <title>{{ $title }}</title>
+{{ template "sr-head" (dict
+    "Title" $title
+    "Desc" (default .Page.Excerpt .Page.Description)
+    "Keywords" .Page.Keywords
+    "Canonical" (trimSuffix .Page.GetURL ".html")
+    "OgType" "article"
+    "Ctx" .) }}
+</head>
+<body>
+{{ template "sr-header" (dict "Current" (trimSuffix .Page.GetURL ".html") "Ctx" .) }}
+{{ template "sr-page-title" (dict "Heading" .Page.Title "Lead" .Page.Description) }}
+
+<div class="container">
+    <div class="content-wrapper">
+        {{ with .TOC }}
+        <aside class="sidebar">
+            <nav class="toc" aria-labelledby="toc-heading">
+                <h2 id="toc-heading">On this page</h2>
+                {{/* .TOC is already template.HTML — piping it through safeHTML
+                     is a type error, unlike .Content which is raw Markdown. */}}
+                {{ . }}
+            </nav>
+        </aside>
+        {{ end }}
+
+        <main class="main-content surface prose" id="main-content">
+            <article>
+                {{ .Page.Content | safeHTML }}
+            </article>
+            <p class="colophon">
+                <a href="{{ .Vars.repository_url }}/blob/main/docs/">Edit this page on GitHub</a>
+            </p>
+        </main>
+    </div>
+</div>
+
+{{ template "sr-footer" . }}
+</body>
+</html>{{end}}

@@ -1,3 +1,12 @@
+---
+title: "Domain Migration"
+slug: "domain-migration"
+status: "publish"
+type: "page"
+description: "The move from tradik.github.io/schema-resume to schema-resume.org: which URLs changed, which still resolve, and how to update your documents."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Domain Migration Summary
 
 ## Overview

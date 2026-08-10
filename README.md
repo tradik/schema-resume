@@ -1,11 +1,14 @@
 # Schema Resume
 
-[![Schema Version](https://img.shields.io/badge/Schema-v1.2.0-blue.svg)](https://schema-resume.org/schema.json)
+[![Schema Version](https://img.shields.io/badge/Schema-v1.3.0-blue.svg)](https://schema-resume.org/schema.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Website](https://img.shields.io/badge/Website-Live-success.svg)](https://schema-resume.org/)
 [![Self Hosted](https://img.shields.io/badge/Self--Hosted-Yes-brightgreen.svg)](https://schema-resume.org/meta-schema.json)
 [![Validate Schemas](https://github.com/tradik/schema-resume/actions/workflows/validate-schemas.yml/badge.svg)](https://github.com/tradik/schema-resume/actions/workflows/validate-schemas.yml)
 [![Quick Check](https://github.com/tradik/schema-resume/actions/workflows/quick-check.yml/badge.svg)](https://github.com/tradik/schema-resume/actions/workflows/quick-check.yml)
+[![Deploy site](https://github.com/tradik/schema-resume/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/tradik/schema-resume/actions/workflows/deploy-pages.yml)
+[![Built with SSG](https://img.shields.io/badge/Built%20with-SSG-orange.svg)](https://github.com/spagu/ssg)
+[![Zero CDN](https://img.shields.io/badge/Third--party%20CDNs-0-brightgreen.svg)](#-the-website)
 
 A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation. This schema provides a standardized format for representing professional resumes in JSON format with semantic web integration, making it easy to parse, validate, and exchange resume data between systems without relying on external schema definitions.
 
@@ -17,7 +20,7 @@ A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation
 - **Well-Documented**: Detailed descriptions and examples for all fields
 - **Self-Hosted**: Complete validation without external dependencies
 - **JSON-LD Compatible**: Semantic web integration with Schema.org mapping
-- **GitHub Pages Hosted**: Publicly accessible schema URL for validation
+- **Permanently Hosted**: Stable, publicly accessible schema URLs for validation
 
 ## 📋 Schema Sections
 
@@ -50,8 +53,6 @@ The schema and related files are hosted at **https://schema-resume.org/**:
 ### XML Schema (XSD)
 - **XSD Schema**: `https://schema-resume.org/xml/1.0/schema-resume.xsd`
 - **XML Example**: `https://schema-resume.org/xml/1.0/example.xml`
-
-> **Note**: The schema is also available at the alternate domain `https://tradik.github.io/schema-resume/` for backward compatibility.
 
 The schema is **self-contained** and does not rely on external JSON Schema definitions.
 
@@ -550,9 +551,10 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 - Ensure schema remains valid JSON Schema Draft 07
 - Add examples for new fields
 - Update documentation
-- Follow [STYLE_GUIDE.md](./STYLE_GUIDE.md) for design and accessibility
+- Design tokens and their measured WCAG contrast ratios live in
+  `templates/schema-resume/css/tokens.css`
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
+See [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) for detailed guidelines.
 
 ## 📝 License
 
@@ -580,6 +582,43 @@ When validating with **validator.schema.org**, you need to include `@type` prope
 - Troubleshooting validation errors
 - Best practices for semantic web integration
 
+## 🌍 The website
+
+[schema-resume.org](https://schema-resume.org/) is generated from this repository by
+[spagu/ssg](https://github.com/spagu/ssg) and deployed to Cloudflare Pages. The pages come from
+`content/` and `templates/schema-resume/`; the documentation pages are built from `docs/*.md`
+directly, so a guide has one source, not two.
+
+```bash
+brew install spagu/tap/ssg   # or see docs/SETUP.md
+make install                 # npm ci — build dependencies only
+make serve                   # http://127.0.0.1:8888, rebuilds on change
+make site                    # build into output/
+make site-release            # minified and fingerprinted, as CI builds it
+```
+
+**Nothing is loaded from a third-party CDN.** Ajv, Chart.js, Mermaid, the XSLT processor and the
+icon set are pinned in `package-lock.json` and vendored into the build by `tools/build-vendor.mjs`
+and `tools/build-icons.mjs`. The only outbound requests a page makes are Google Analytics — which
+does not run until you accept the cookie banner — and the live version badges on the packages page.
+
+| Path | What it is |
+|---|---|
+| `.ssg.yaml` | Site configuration: URLs, SEO gates, consent, headers |
+| `content/site/pages/` | The tool and legal pages (metadata; markup lives in the theme) |
+| `docs/*.md` | Documentation, published as HTML **and** served raw |
+| `data/packages.yaml` | Drives the packages page — add a language here, not in markup |
+| `templates/schema-resume/` | Theme: templates, CSS, JavaScript, images |
+| `tools/` | Build and validation scripts |
+| `workers/cookie-consent/` | Pages Function backing the consent banner |
+| `versions/` | Frozen past releases, served at `/1.2/`, `/1.3/`… |
+| `output/` | Generated. Not in git |
+
+The specification is published straight from the repository root through `static_sources`, so
+`schema.json` exists once and is served at its permanent URL. Version-pinned copies come from
+the frozen snapshots in `versions/`, never from the live files — that is what makes a pin a
+pin. See [docs/VERSIONING.md](docs/VERSIONING.md).
+
 ## 🔍 Validation Tools
 
 This repository includes automated validation tools to ensure schema consistency:
@@ -588,24 +627,24 @@ This repository includes automated validation tools to ensure schema consistency
 
 ```bash
 # Lint all schema files
-./run-lint.sh
+./tools/run-lint.sh
 
 # Compare schemas for consistency
-./run-comparison.sh
+./tools/run-comparison.sh
 
 # Run complete validation suite
-./validate-all.sh
+./tools/validate-all.sh
 ```
 
 ### Validation Scripts
 
-- **`lint-schemas.py`** - Validates syntax and structure of all 4 schema files:
+- **`tools/lint-schemas.py`** - Validates syntax and structure of all 4 schema files:
   - `schema.json` - Main JSON Schema
   - `context.jsonld` - JSON-LD context mappings
   - `meta-schema.json` - Meta-schema definitions
   - `schema-resume.xsd` - XML Schema
 
-- **`compare-schemas.py`** - Compares fields across all schema files to ensure consistency
+- **`tools/compare-schemas.py`** - Compares fields across all schema files to ensure consistency
 
 ### CI/CD Integration
 
@@ -625,9 +664,9 @@ Schema Resume is available as official packages for multiple programming languag
 
 ### NPM (JavaScript/TypeScript)
 ```bash
-npm install @schema-resume/validator
+npm install schema-resume-validator
 ```
-- **Package**: [@schema-resume/validator](https://www.npmjs.com/package/@schema-resume/validator)
+- **Package**: [schema-resume-validator](https://www.npmjs.com/package/schema-resume-validator)
 - **Documentation**: [packages/npm/README.md](./packages/npm/README.md)
 
 ### Python

@@ -1,0 +1,31 @@
+{
+  "_comment": "Lucide icon names inlined into the site at build time by tools/build-icons.mjs. Keep this list minimal: every name here is inlined into data/icons.json (templates) and templates/schema-resume/js/vendor/icons.js (runtime). The site previously pulled the entire icon set from unpkg.com/lucide@latest on every page load. Note: Lucide carries no `github` glyph — brand marks were removed upstream over trademark, so links to the repository use `external-link`.",
+  "icons": [
+    "align-left",
+    "arrow-left",
+    "book-open",
+    "chart-column",
+    "check",
+    "circle-alert",
+    "circle-check",
+    "circle-help",
+    "circle-x",
+    "code",
+    "copy",
+    "external-link",
+    "file-output",
+    "file-text",
+    "file-type",
+    "info",
+    "lightbulb",
+    "link",
+    "list-checks",
+    "pencil-line",
+    "settings",
+    "shield-check",
+    "trash-2",
+    "triangle-alert",
+    "x",
+    "zap"
+  ]
+}

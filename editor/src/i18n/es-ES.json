@@ -163,7 +163,7 @@
           "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
         },
         "streetAddress": {
-          "label": "Streetaddress",
+          "label": "Street Address",
           "description": "Street address line"
         }
       },
@@ -171,24 +171,28 @@
         "label": "Título",
         "description": "Job title or professional title of the person"
       },
-      "age": {
-        "label": "Edad",
-        "description": "Age of the person in years"
-      },
-      "dateOfBirth": {
-        "label": "Dateofbirth",
-        "description": "Date of birth in ISO 8601 format"
-      },
-      "gender": {
-        "label": "Género",
-        "description": "Gender identity of the person"
+      "demographics": {
+        "label": "Demographics",
+        "description": "Protected characteristics. Omit unless the receiving market expects them — in the UK and most of the EU a CV should not carry age, date of birth or gender.",
+        "age": {
+          "label": "Edad",
+          "description": "Age of the person in years"
+        },
+        "dateOfBirth": {
+          "label": "Date of Birth",
+          "description": "Date of birth in ISO 8601 format"
+        },
+        "gender": {
+          "label": "Género",
+          "description": "Gender identity of the person"
+        }
       },
       "keyAchievements": {
-        "label": "Keyachievements",
+        "label": "Key Achievements",
         "description": "Notable career achievements and accomplishments"
       },
       "coreCompetencies": {
-        "label": "Corecompetencies",
+        "label": "Core Competencies",
         "description": "Core professional competencies and areas of expertise"
       },
       "profiles": {
@@ -220,7 +224,7 @@
         }
       },
       "workAuthorization": {
-        "label": "Workauthorization",
+        "label": "Work Authorization",
         "description": "Work authorization information for multiple countries",
         "country": {
           "label": "País",
@@ -231,19 +235,19 @@
           "description": "Work authorization status (e.g., 'Citizen', 'Permanent Resident', 'Work Visa', 'No Authorization')"
         },
         "rightToWork": {
-          "label": "Righttowork",
+          "label": "Right to Work",
           "description": "Whether person has unrestricted right to work in this country"
         },
         "visaType": {
-          "label": "Visatype",
+          "label": "Visa Type",
           "description": "Type or category of visa if applicable (e.g., 'H-1B', 'Skilled Worker', 'Temporary', 'Permanent Residence')"
         },
         "validFrom": {
-          "label": "Validfrom",
+          "label": "Valid From",
           "description": "Start date of work authorization or visa validity"
         },
         "validTo": {
-          "label": "Validto",
+          "label": "Valid to",
           "description": "Expiration date of work authorization or visa (omit if permanent)"
         },
         "notes": {
@@ -317,11 +321,11 @@
           "description": "State, county, province, or region within the country"
         },
         "postalCode": {
-          "label": "Postalcode",
+          "label": "Postal Code",
           "description": "Postal or ZIP code"
         },
         "countryCode": {
-          "label": "Countrycode",
+          "label": "Country Code",
           "description": "Two-letter country code following ISO-3166-1 ALPHA-2 standard (GB, US, FR, etc.)"
         },
         "country": {
@@ -334,11 +338,11 @@
         "description": "Industry sector or business domain of the organization (e.g., 'Financial Technology', 'Healthcare', 'E-commerce', 'Manufacturing')"
       },
       "workLocation": {
-        "label": "Worklocation",
+        "label": "Work Location",
         "description": "Geographic location of the workplace (legacy field, use 'location' object for structured data)"
       },
       "contactDetails": {
-        "label": "Contactdetails",
+        "label": "Contact Details",
         "description": "Organization contact information",
         "email": {
           "label": "Correo electrónico",
@@ -358,7 +362,7 @@
         "description": "Brief description of the company or its industry"
       },
       "workType": {
-        "label": "Worktype",
+        "label": "Work Type",
         "description": "Type of work arrangement (remote, hybrid, onsite, full-time, part-time, contract, freelance, internship, temporary)"
       }
     },
@@ -522,7 +526,7 @@
         "description": "Specific technologies, tools, or techniques within this skill area"
       },
       "yearsOfExperience": {
-        "label": "Yearsofexperience",
+        "label": "Years of Experience",
         "description": "Number of years of practical experience with this skill"
       },
       "comment": {
@@ -642,19 +646,19 @@
         "description": "Version number following semantic versioning format"
       },
       "lastModified": {
-        "label": "Lastmodified",
+        "label": "Last Modified",
         "description": "Timestamp of last modification in ISO 8601 format"
       },
       "dateCreated": {
-        "label": "Datecreated",
+        "label": "Date Created",
         "description": "Timestamp when the document was created in ISO 8601 format"
       },
       "dateModified": {
-        "label": "Datemodified",
+        "label": "Date Modified",
         "description": "Timestamp when the document was last modified in ISO 8601 format"
       },
       "datePublished": {
-        "label": "Datepublished",
+        "label": "Date Published",
         "description": "Timestamp when the document was published in ISO 8601 format"
       }
     }

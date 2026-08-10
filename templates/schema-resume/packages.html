@@ -1,0 +1,92 @@
+{{define "packages.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+{{ $title := "Packages - Schema Resume Validator for Multiple Languages" }}
+    <title>{{ $title }}</title>
+{{ template "sr-head" (dict
+    "Title" $title
+    "Desc" .Page.Description
+    "Keywords" .Page.Keywords
+    "Canonical" (trimSuffix .Page.GetURL ".html")
+    "Ctx" .) }}
+</head>
+<body>
+{{ template "sr-header" (dict "Current" (trimSuffix .Page.GetURL ".html") "Ctx" .) }}
+{{ template "sr-page-title" (dict "Heading" "Official Packages" "Lead" .Page.Extra.lead) }}
+
+<div class="container">
+    <main class="surface" id="main-content">
+        <section id="overview">
+            <h2>Overview</h2>
+            <div class="prose">{{ .Page.Content | safeHTML }}</div>
+            <ul class="term-list">
+                {{ range .Data.packages.features }}
+                <li><strong>{{ .name }}</strong> — {{ .description }}</li>
+                {{ end }}
+            </ul>
+        </section>
+
+        <section id="packages">
+            <h2>Available Packages</h2>
+            <div class="package-grid">
+                {{ range .Data.packages.languages }}
+                <article class="package-card" id="pkg-{{ .id }}">
+                    <div class="package-header">
+                        <span class="package-icon" role="img" aria-label="{{ .iconLabel }}">{{ .icon }}</span>
+                        <div class="package-title">
+                            <h3>{{ .title }}</h3>
+                            <span class="package-name">{{ .name }}</span>
+                        </div>
+                    </div>
+                    <p class="package-badges">
+                        {{ range .badges }}
+                        <a href="{{ .href }}"><img src="{{ .img }}" alt="{{ .alt }}" height="20" loading="lazy" decoding="async"></a>
+                        {{ end }}
+                    </p>
+                    <p class="package-description">{{ .description }}</p>
+                    <p class="package-install">{{ .install }}</p>
+                    <p class="package-links">
+                        {{ range .links }}
+                        <a href="{{ .url }}">{{ .label }}</a>
+                        {{ end }}
+                    </p>
+                </article>
+                {{ end }}
+            </div>
+        </section>
+
+        <section id="quick-start">
+            <h2>Quick Start Examples</h2>
+            {{ range .Data.packages.languages }}
+            <h3 id="example-{{ .id }}">{{ .example.heading }}</h3>
+            {{ template "sr-terminal" (dict "File" .example.file "Code" .example.code) }}
+            {{ end }}
+        </section>
+
+        <section id="schema-files">
+            <h2>Included Schema Files</h2>
+            <p>All packages embed the following schema files:</p>
+            <ul class="term-list">
+                {{ range .Data.packages.schemaFiles }}
+                <li><strong>{{ .name }}</strong> — {{ .description }}</li>
+                {{ end }}
+            </ul>
+        </section>
+
+        <section id="support">
+            <h2>Support</h2>
+            <div class="callout">
+                <h3>Need help?</h3>
+                <p>
+                    For questions or issues with any package, please open an issue on
+                    <a href="{{ .Vars.repository_url }}/issues">GitHub</a>
+                    or email <a href="mailto:info@schema-resume.org">info@schema-resume.org</a>.
+                </p>
+            </div>
+        </section>
+    </main>
+</div>
+
+{{ template "sr-footer" . }}
+</body>
+</html>{{end}}

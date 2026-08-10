@@ -1,44 +1,94 @@
-name: Deploy to GitHub Pages
+name: Deploy site
+
+# The site is built by spagu/ssg and deployed to Cloudflare Pages. Building it
+# is a real build now, not a copy of the repository: the pages are generated
+# from content/ and templates/, and the browser libraries the tools need are
+# vendored from npm so nothing is fetched from a CDN at runtime.
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: false
 
+env:
+  SSG_VERSION: v1.8.23
+
 jobs:
-  deploy:
-    name: Deploy to GitHub Pages
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
-      
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-      
-      - name: Deployment successful
+          # lastmod_from_git derives each sitemap entry's <lastmod> from the
+          # file's last commit, which needs the history, not a shallow clone.
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install build dependencies
+        run: npm ci
+
+      - name: Vendor browser libraries and inline icons
+        run: npm run build:assets
+
+      - name: Install ssg
         run: |
-          echo "✓ Successfully deployed to GitHub Pages!"
-          echo "Schema URL: https://tradik.github.io/schema-resume/schema.json"
+          set -euo pipefail
+          url="https://github.com/spagu/ssg/releases/download/${SSG_VERSION}/ssg-linux-amd64.tar.gz"
+          echo "Downloading ${url}"
+          curl --proto '=https' --proto-redir =https -sSfL "$url" -o /tmp/ssg.tar.gz
+          mkdir -p /tmp/ssg-bin
+          tar -xzf /tmp/ssg.tar.gz -C /tmp/ssg-bin
+          chmod +x /tmp/ssg-bin/ssg
+          echo /tmp/ssg-bin >> "$GITHUB_PATH"
+
+      - name: Build site
+        run: |
+          ssg --config .ssg.yaml --clean --minify-all --fingerprint \
+              --check-links=strict
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: output/
+          retention-days: 7
+
+  deploy:
+    name: Deploy to Cloudflare Pages
+    # Pull requests get a build, so a broken site is caught, but only main is
+    # published.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: cloudflare-pages
+      url: https://schema-resume.org/
+    steps:
+      - name: Download build
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: output
+
+      - name: Publish
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy output --project-name=schema-resume --branch=main

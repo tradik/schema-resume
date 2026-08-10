@@ -1,0 +1,318 @@
+{{define "index.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+{{ $title := "Schema Resume - JSON Schema for CV/Resume Parsing" }}
+    <title>{{ $title }}</title>
+{{ template "sr-head" (dict
+    "Title" $title
+    "Desc" "A self-hosted JSON-LD schema for CV/Resume parsing and validation. Standardized format with semantic web integration, no external dependencies."
+    "Keywords" "JSON Schema, Resume, CV, Parser, Validation, JSON-LD"
+    "Canonical" "/"
+    "Ctx" .) }}
+</head>
+<body>
+{{ template "sr-header" (dict "Current" "/" "Ctx" .) }}
+{{ template "sr-page-title" (dict
+    "Heading" (printf "Schema Resume v%s" .Vars.schema_version)
+    "Lead" "A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation") }}
+
+<div class="container">
+    <div class="content-wrapper">
+        <aside class="sidebar">
+            <nav aria-labelledby="toc-heading">
+                <h2 id="toc-heading">Contents</h2>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#schema-url">Schema URLs</a></li>
+                    <li><a href="#sections">Schema Sections</a></li>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#properties">Properties</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content surface" id="main-content">
+            <div class="callout">
+                <h3><span role="img" aria-label="Rocket">🚀</span> Online tools</h3>
+                <p>
+                    <strong><a href="/validator">Validator</a></strong> —
+                    validate your JSON-LD CV instantly with real-time feedback and detailed error messages.
+                </p>
+                <p>
+                    <strong><a href="/converter">Converter</a></strong> —
+                    convert JSON resume to JSON-LD or XML format with remote or inline context support.
+                </p>
+                <p>
+                    <strong><a href="/editor/">CV Editor</a></strong> —
+                    visual resume editor with live preview using XSLT templates. Uses the
+                    <a href="https://www.npmjs.com/package/@tradik/xslt-processor">@tradik/xslt-processor</a>
+                    library, as Chrome deprecated native XSLTProcessor support.
+                </p>
+                <p>
+                    <strong><a href="/packages">Packages</a></strong> —
+                    official validator packages for NPM, Python, Go, Java, Ruby and PHP.
+                </p>
+                <p>
+                    Everything runs entirely in your browser. No CV data is ever uploaded — see the
+                    <a href="/privacy">privacy policy</a>.
+                </p>
+            </div>
+
+            <section id="overview">
+                <h2>Overview</h2>
+                <p>
+                    Schema Resume provides a <strong>self-hosted, comprehensive JSON-LD schema</strong> for
+                    representing professional resumes and CVs. It enables easy parsing, validation and exchange
+                    of resume data between systems with semantic web integration.
+                </p>
+                <p>
+                    Perfect for job boards, applicant tracking systems, resume builders and HR platforms.
+                    <strong>No external dependencies required</strong> — all schema definitions are self-contained.
+                </p>
+            </section>
+
+            <section id="getting-started">
+                <h2>Getting Started</h2>
+                <p>
+                    Point a JSON document at the schema and you are done — there is nothing to
+                    install and no service to call:
+                </p>
+                {{ template "sr-terminal" (dict "File" "resume.json" "Code" `{
+  "$schema": "https://schema-resume.org/1.2/schema.json",
+  "@context": "https://schema-resume.org/1.2/context.jsonld",
+  "basics": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  }
+}`) }}
+                <p>
+                    That is a valid Schema Resume document. Everything below is optional detail.
+                </p>
+
+                <h3>A fuller JSON example</h3>
+                {{ template "sr-terminal" (dict "File" "resume.json" "Code" `{
+  "@context": "https://schema-resume.org/schema.json",
+  "$schema": "https://schema-resume.org/schema.json",
+  "basics": {
+    "name": "John Doe",
+    "label": "Software Engineer",
+    "email": "john.doe@example.com",
+    "summary": "Experienced software engineer..."
+  },
+  "work": [
+    {
+      "name": "Tech Corp",
+      "position": "Senior Software Engineer",
+      "startDate": "2020-03",
+      "highlights": [
+        "Reduced API response time by 40%"
+      ]
+    }
+  ]
+}`) }}
+
+                <h3>XML example</h3>
+                {{ template "sr-terminal" (dict "File" "resume.xml" "Code" `<?xml version="1.0" encoding="UTF-8"?>
+<resume xmlns="https://schema-resume.org/xml/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://schema-resume.org/xml/1.0
+                            https://schema-resume.org/xml/1.0/schema-resume.xsd">
+  <basics>
+    <name>John Doe</name>
+    <label>Software Engineer</label>
+    <email>john.doe@example.com</email>
+    <summary>Experienced software engineer...</summary>
+  </basics>
+  <work>
+    <name>Tech Corp</name>
+    <position>Senior Software Engineer</position>
+    <startDate>2020-03</startDate>
+  </work>
+</resume>`) }}
+
+                <h3>Validation</h3>
+                <p>
+                    <strong>JSON, in the browser:</strong> use the
+                    <a href="/validator">online validator</a> for instant validation with detailed
+                    error messages and suggestions.
+                </p>
+
+                <p><strong>JSON, on the command line:</strong></p>
+                {{ template "sr-terminal" (dict "File" "Terminal — bash" "Code" `npm install -g ajv-cli
+ajv validate -s schema.json -d your-resume.json`) }}
+
+                <p><strong>XML:</strong></p>
+                {{ template "sr-terminal" (dict "File" "Terminal — bash" "Code" `# Using xmllint (Linux/macOS)
+xmllint --schema https://schema-resume.org/xml/1.0/schema-resume.xsd your-resume.xml --noout
+
+# Using Python (lxml)
+python -c "from lxml import etree; import requests; xsd = etree.XMLSchema(etree.parse(requests.get('https://schema-resume.org/xml/1.0/schema-resume.xsd', stream=True).raw)); print('Valid!' if xsd.validate(etree.parse('your-resume.xml')) else xsd.error_log)"`) }}
+            </section>
+
+            <section id="features">
+                <h2>Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Target">🎯</span> Comprehensive</h3>
+                        <p>Covers all standard resume sections including work experience, education, skills, certifications and more.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Calendar">📅</span> Flexible Dates</h3>
+                        <p>ISO 8601 date format with optional precision (year, year-month, or full date).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Wrench">🔧</span> Extensible</h3>
+                        <p>Additional properties allowed for custom fields to meet your specific needs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Book">📖</span> Well-Documented</h3>
+                        <p>Detailed descriptions and examples for all fields with comprehensive documentation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Lock">🔒</span> Self-Hosted</h3>
+                        <p>Complete validation without external dependencies. All schema definitions included.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Globe">🌐</span> JSON-LD Compatible</h3>
+                        <p>Semantic web integration with Schema.org vocabulary mapping.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Satellite">📡</span> Publicly Hosted</h3>
+                        <p>Served from a stable, publicly accessible URL with permanent schema addresses.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span role="img" aria-label="Memo">📝</span> XML/XSD Support</h3>
+                        <p>Full XML Schema Definition (XSD) support for XML-based systems and legacy integrations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="schema-url">
+                <h2>Schema URLs</h2>
+                <p>All schema files are self-hosted alongside this documentation:</p>
+
+                <h3>JSON Schema</h3>
+                <div class="schema-url">
+                    <strong>Main Schema:</strong> https://schema-resume.org/schema.json<br>
+                    <strong>Meta Schema:</strong> https://schema-resume.org/meta-schema.json<br>
+                    <strong>JSON-LD Context:</strong> https://schema-resume.org/context.jsonld
+                </div>
+
+                <h3>XML Schema (XSD)</h3>
+                <div class="schema-url">
+                    <strong>XSD Schema:</strong> https://schema-resume.org/xml/1.0/schema-resume.xsd<br>
+                    <strong>XML Example:</strong> https://schema-resume.org/xml/1.0/example.xml
+                </div>
+
+                <h3>Pinning a version</h3>
+                <p>
+                    The URLs above track the current release. Every version is also published at a
+                    permanent address, so a document can pin the specification it was written
+                    against and never be changed underneath it:
+                </p>
+                <div class="schema-url">
+                    <strong>Pinned:</strong> https://schema-resume.org/{{ .Vars.schema_version_minor }}/schema.json<br>
+                    <strong>Latest:</strong> https://schema-resume.org/schema.json
+                </div>
+                <p>
+                    Use the pinned URL in stored documents and in CI; use the latest URL when you
+                    want to follow the specification. See
+                    <a href="/versioning">versioning and stability</a> for what may change
+                    between releases.
+                </p>
+
+            </section>
+
+            <section id="sections">
+                <h2>Schema Sections</h2>
+                <ul class="term-list">
+                    <li><strong>basics</strong> — personal information, contact details, nationalities and work authorization</li>
+                    <li><strong>work</strong> — work experience and employment history</li>
+                    <li><strong>volunteer</strong> — volunteer work and community involvement</li>
+                    <li><strong>education</strong> — academic background and qualifications</li>
+                    <li><strong>awards</strong> — professional awards and recognitions</li>
+                    <li><strong>certificates</strong> — professional certifications</li>
+                    <li><strong>publications</strong> — published works and articles</li>
+                    <li><strong>skills</strong> — technical and professional skills with experience levels</li>
+                    <li><strong>tools</strong> — specific software and platforms used professionally</li>
+                    <li><strong>languages</strong> — language proficiencies</li>
+                    <li><strong>interests</strong> — personal interests and hobbies</li>
+                    <li><strong>references</strong> — professional references</li>
+                    <li><strong>projects</strong> — personal and professional projects</li>
+                    <li><strong>meta</strong> — schema metadata and versioning</li>
+                </ul>
+            </section>
+
+            {{/* Built from this repository's own docs/ folder through
+                 content_sources — the guide list is never hand-maintained. */}}
+            <section id="documentation">
+                <h2>Documentation</h2>
+                <p>Every guide below is generated from the repository's <code>docs/</code> folder.</p>
+                <div class="feature-grid">
+                    {{ range .Site.Pages }}{{ if not .Extra.hide_from_lists }}
+                    <article class="feature-card">
+                        <h3><a href="{{ trimSuffix .GetURL ".html" }}">{{ .Title }}</a></h3>
+                        <p>{{ .Excerpt }}</p>
+                    </article>
+                    {{ end }}{{ end }}
+                </div>
+            </section>
+
+            <section id="resources">
+                <h2>Resources</h2>
+                <div class="btn-row">
+                    <a href="/validator" class="btn btn--success">
+                        <span role="img" aria-label="Magnifying glass">🔍</span> Online Validator
+                    </a>
+                    <a href="/converter" class="btn">
+                        <span role="img" aria-label="Arrows">🔄</span> Converter
+                    </a>
+                    <a href="/schema.json" class="btn">JSON Schema</a>
+                    <a href="/xml/1.0/schema-resume.xsd" class="btn">XSD Schema</a>
+                    <a href="/example.json" class="btn">JSON Example</a>
+                    <a href="/xml/1.0/example.xml" class="btn">XML Example</a>
+                    <a href="{{ .Vars.repository_url }}" class="btn btn--secondary">GitHub Repository</a>
+                </div>
+            </section>
+
+            <section id="properties">
+                <h2>Schema Properties</h2>
+                <p>The schema includes the following main sections:</p>
+                <table class="property-table">
+                    <caption class="visually-hidden">Top-level properties of the Schema Resume specification</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Property</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row"><code>basics</code></th><td>Object</td><td>Personal information, contact details, social profiles, nationalities and work authorization</td></tr>
+                        <tr><th scope="row"><code>work</code></th><td>Array</td><td>Work experience and employment history</td></tr>
+                        <tr><th scope="row"><code>volunteer</code></th><td>Array</td><td>Volunteer work and community involvement</td></tr>
+                        <tr><th scope="row"><code>education</code></th><td>Array</td><td>Academic background and qualifications</td></tr>
+                        <tr><th scope="row"><code>awards</code></th><td>Array</td><td>Professional awards and recognitions</td></tr>
+                        <tr><th scope="row"><code>certificates</code></th><td>Array</td><td>Professional certifications</td></tr>
+                        <tr><th scope="row"><code>publications</code></th><td>Array</td><td>Published works and articles</td></tr>
+                        <tr><th scope="row"><code>skills</code></th><td>Array</td><td>Technical and professional skills with experience levels</td></tr>
+                        <tr><th scope="row"><code>tools</code></th><td>Array</td><td>Specific software and tools used professionally</td></tr>
+                        <tr><th scope="row"><code>languages</code></th><td>Array</td><td>Language proficiencies</td></tr>
+                        <tr><th scope="row"><code>interests</code></th><td>Array</td><td>Personal interests and hobbies</td></tr>
+                        <tr><th scope="row"><code>references</code></th><td>Array</td><td>Professional references</td></tr>
+                        <tr><th scope="row"><code>projects</code></th><td>Array</td><td>Personal and professional projects</td></tr>
+                        <tr><th scope="row"><code>meta</code></th><td>Object</td><td>Schema metadata and versioning</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</div>
+
+{{ template "sr-footer" . }}
+<script src="/js/nav.js" defer></script>
+</body>
+</html>{{end}}

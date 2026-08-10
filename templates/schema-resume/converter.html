@@ -1,0 +1,130 @@
+{{define "converter.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+{{ $title := "JSON Resume Converter - Schema Resume" }}
+    <title>{{ $title }}</title>
+{{ template "sr-head" (dict
+    "Title" $title
+    "Desc" .Page.Description
+    "Keywords" .Page.Keywords
+    "Canonical" (trimSuffix .Page.GetURL ".html")
+    "Ctx" .) }}
+</head>
+<body>
+{{ template "sr-header" (dict "Current" (trimSuffix .Page.GetURL ".html") "Ctx" .) }}
+{{ template "sr-page-title" (dict "Heading" "Converter" "Lead" .Page.Extra.lead) }}
+
+<main class="tool-main" id="main-content">
+    <section class="toolbar" aria-label="Conversion options">
+        <div class="field">
+            <label for="outputFormat">
+                {{ template "icon-file-type" (dict "Size" 16) }}
+                Output format
+            </label>
+            <select id="outputFormat">
+                <option value="jsonld">JSON-LD</option>
+                <option value="xml">XML</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="contextType">
+                {{ template "icon-link" (dict "Size" 16) }}
+                <span id="contextTypeLabel">Context type</span>
+            </label>
+            <select id="contextType">
+                <option value="remote">Remote schema (URL)</option>
+                <option value="inline" id="inlineOption">Inline context</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <span class="label-like" id="actions-label">
+                {{ template "icon-settings" (dict "Size" 16) }}
+                Actions
+            </span>
+            <div class="actions" role="group" aria-labelledby="actions-label">
+                <button type="button" id="loadExample" class="btn btn--grow">
+                    {{ template "icon-file-text" (dict "Size" 16) }}
+                    Load example
+                </button>
+                <button type="button" id="clearBtn" class="btn btn--muted" aria-label="Clear input">
+                    {{ template "icon-x" (dict "Size" 16) }}
+                </button>
+                <button type="button" id="copyOutput" class="btn btn--success" aria-label="Copy output to clipboard">
+                    {{ template "icon-copy" (dict "Size" 16) }}
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="panel-grid">
+        <section class="panel" aria-labelledby="input-heading">
+            <div class="panel-header">
+                <h2 id="input-heading">
+                    {{ template "icon-pencil-line" (dict "Size" 20) }}
+                    Input JSON
+                </h2>
+                <span id="inputChars" class="panel-meta">0 chars</span>
+            </div>
+            <div class="editor-flush">
+                <label for="inputJson" class="visually-hidden">JSON resume to convert</label>
+                <textarea id="inputJson" spellcheck="false" autocapitalize="off" autocorrect="off"
+                          placeholder="Paste your JSON resume here…"></textarea>
+            </div>
+            <div class="status-bar">
+                <span class="status-indicator">
+                    <span id="inputStatus" class="status-dot"></span>
+                    <span id="inputStatusText">Ready</span>
+                </span>
+                <span id="inputLines">0 lines</span>
+            </div>
+        </section>
+
+        <section class="panel" aria-labelledby="output-heading">
+            <div class="panel-header">
+                <h2 id="output-heading">
+                    {{ template "icon-file-output" (dict "Size" 20) }}
+                    Output <span id="outputFormatLabel">(JSON-LD)</span>
+                </h2>
+                <span id="outputChars" class="panel-meta">0 chars</span>
+            </div>
+            <div class="editor-flush">
+                <label for="outputJson" class="visually-hidden">Converted output</label>
+                <textarea id="outputJson" readonly spellcheck="false"
+                          placeholder="Converted output will appear here…"></textarea>
+            </div>
+            <div class="status-bar">
+                <span class="status-indicator">
+                    <span id="outputStatus" class="status-dot"></span>
+                    <span id="outputStatusText">Waiting for input</span>
+                </span>
+                <span id="outputLines">0 lines</span>
+            </div>
+        </section>
+    </div>
+
+    <div id="messages" class="messages" role="status" aria-live="polite"></div>
+
+    <section class="hint" style="margin-top:32px" aria-labelledby="howto-heading">
+        <h2 id="howto-heading">
+            {{ template "icon-info" (dict "Size" 20) }}
+            How to use
+        </h2>
+        <ul class="check-list">
+            <li>{{ template "icon-check" (dict "Size" 16) }}<span><strong>Paste or type</strong> your JSON resume in the left panel</span></li>
+            <li>{{ template "icon-check" (dict "Size" 16) }}<span><strong>Select an output format</strong>: JSON-LD (with Schema.org context) or XML</span></li>
+            <li>{{ template "icon-check" (dict "Size" 16) }}<span><strong>Choose a context type</strong>: remote (URL reference) or inline (embedded context)</span></li>
+            <li>{{ template "icon-check" (dict "Size" 16) }}<span><strong>Conversion is live</strong>: the output updates as you type</span></li>
+            <li>{{ template "icon-check" (dict "Size" 16) }}<span><strong>Validation is instant</strong>: errors and warnings appear below the panels</span></li>
+            <li>{{ template "icon-check" (dict "Size" 16) }}<span><strong>Nothing is uploaded</strong>: the conversion runs entirely in your browser</span></li>
+        </ul>
+    </section>
+</main>
+
+{{ template "sr-footer" . }}
+<script src="/js/vendor/icons.js"></script>
+<script src="/js/vendor/ajv.js"></script>
+<script src="/js/converter.js" defer></script>
+</body>
+</html>{{end}}

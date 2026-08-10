@@ -1,0 +1,11 @@
+# Schema Resume — security contact, per RFC 9116.
+# Served at https://schema-resume.org/.well-known/security.txt
+#
+# Expires must stay in the future or scanners treat this file as stale.
+
+Contact: https://github.com/tradik/schema-resume/security/advisories/new
+Contact: mailto:info@schema-resume.org
+Expires: 2027-08-06T00:00:00.000Z
+Preferred-Languages: en, pl
+Canonical: https://schema-resume.org/.well-known/security.txt
+Policy: https://github.com/tradik/schema-resume/blob/main/SECURITY.md

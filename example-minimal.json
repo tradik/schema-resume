@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schema-resume.org/1.3/schema.json",
+  "@context": "https://schema-resume.org/1.3/context.jsonld",
+  "basics": {
+    "@type": "Person",
+    "name": "Jane Smith",
+    "label": "Senior Software Engineer",
+    "email": "jane.smith@example.com",
+    "phone": "+44 20 7946 0958",
+    "url": "https://janesmith.dev",
+    "summary": "Backend engineer with eight years building payment systems. Comfortable owning a service from schema design through to on-call.",
+    "location": {
+      "@type": "PostalAddress",
+      "city": "London",
+      "region": "England",
+      "countryCode": "GB"
+    },
+    "profiles": [
+      {
+        "@type": "Organization",
+        "network": "GitHub",
+        "username": "janesmith",
+        "url": "https://github.com/janesmith"
+      }
+    ]
+  },
+  "work": [
+    {
+      "@type": "Organization",
+      "name": "Northwind Payments",
+      "position": "Senior Software Engineer",
+      "startDate": "2021-04",
+      "url": "https://example.com",
+      "summary": "Payment authorisation platform handling card and open-banking flows.",
+      "highlights": [
+        "Cut authorisation latency from 380 ms to 90 ms at the 99th percentile",
+        "Led the migration from a single Postgres instance to partitioned storage"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "@type": "EducationalOrganization",
+      "institution": "University of Bristol",
+      "area": "Computer Science",
+      "studyType": "BSc",
+      "startDate": "2014-09",
+      "endDate": "2017-06"
+    }
+  ],
+  "skills": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Backend development",
+      "level": "Expert",
+      "yearsOfExperience": 8,
+      "keywords": ["Go", "PostgreSQL", "gRPC"]
+    }
+  ],
+  "languages": [
+    {
+      "@type": "Language",
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "meta": {
+    "version": "1.3.0",
+    "lastModified": "2026-08-06"
+  }
+}

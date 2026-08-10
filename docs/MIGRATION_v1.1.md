@@ -1,3 +1,12 @@
+---
+title: "Migration Guide: v1.0 to v1.1"
+slug: "migration-v1-1"
+status: "publish"
+type: "page"
+description: "Upgrade a resume document from Schema Resume v1.0.0 to v1.1.0: the new fields, the changed constraints, and what to check after migrating."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Migration Guide: v1.0.0 to v1.1.0
 
 This guide helps you upgrade your resume JSON from version 1.0.0 to 1.1.0.

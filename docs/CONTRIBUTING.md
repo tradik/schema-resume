@@ -1,3 +1,12 @@
+---
+title: "Contributing"
+slug: "contributing"
+status: "publish"
+type: "page"
+description: "How to propose changes to the Schema Resume specification: development setup, schema conventions, testing and the pull request process."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Contributing to Schema Resume
 
 Thank you for your interest in contributing to Schema Resume! This document provides guidelines and instructions for contributing to the project.

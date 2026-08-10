@@ -1,0 +1,250 @@
+# Official validator packages, exposed to templates as .Data.packages.
+#
+# The packages page is generated from this file — one entry per language, one
+# card and one quick-start block each. Adding a language means adding an entry
+# here, not editing markup.
+
+languages:
+  - id: npm
+    icon: "📦"
+    iconLabel: "Package"
+    title: "NPM (JavaScript/TypeScript)"
+    name: "schema-resume-validator"
+    description: "Full TypeScript support, AJV-based validation, embedded schemas"
+    install: "npm install schema-resume-validator"
+    badges:
+      - href: "https://www.npmjs.com/package/schema-resume-validator"
+        img: "https://img.shields.io/npm/v/schema-resume-validator.svg"
+        alt: "npm version"
+    links:
+      - label: "NPM Registry"
+        url: "https://www.npmjs.com/package/schema-resume-validator"
+      - label: "Documentation"
+        url: "https://github.com/tradik/schema-resume/tree/main/packages/npm"
+    example:
+      heading: "JavaScript/TypeScript"
+      file: "validate.js — node"
+      code: |
+        const { createValidator } = require('schema-resume-validator');
+        const validator = createValidator();
+
+        const resume = {
+          "$schema": "https://schema-resume.org/schema.json",
+          "basics": {
+            "name": "John Doe",
+            "email": "john.doe@example.com"
+          }
+        };
+
+        const result = validator.validate(resume);
+        if (result.valid) {
+          console.log('Resume is valid!');
+        } else {
+          result.errors.forEach(e => console.error(e.message));
+        }
+
+  - id: python
+    icon: "🐍"
+    iconLabel: "Snake"
+    title: "Python"
+    name: "schema-resume-validator"
+    description: "Python 3.8+, jsonschema validation, type hints"
+    install: "pip install schema-resume-validator"
+    badges:
+      - href: "https://pypi.org/project/schema-resume-validator/"
+        img: "https://img.shields.io/pypi/v/schema-resume-validator.svg"
+        alt: "PyPI version"
+    links:
+      - label: "PyPI Registry"
+        url: "https://pypi.org/project/schema-resume-validator/"
+      - label: "Documentation"
+        url: "https://github.com/tradik/schema-resume/tree/main/packages/python"
+    example:
+      heading: "Python"
+      file: "validate.py — python3"
+      code: |
+        from schema_resume import validate_resume
+
+        resume = {
+            "$schema": "https://schema-resume.org/schema.json",
+            "basics": {
+                "name": "John Doe",
+                "email": "john.doe@example.com"
+            }
+        }
+
+        result = validate_resume(resume)
+        if result["valid"]:
+            print("Resume is valid!")
+        else:
+            for error in result["errors"]:
+                print(f"Error: {error['message']}")
+
+  - id: golang
+    icon: "🔵"
+    iconLabel: "Blue circle"
+    title: "Go"
+    name: "github.com/tradik/schema-resume/validator"
+    description: "Go 1.21+, embedded schemas, zero dependencies"
+    install: "go get github.com/tradik/schema-resume/validator"
+    badges:
+      - href: "https://pkg.go.dev/github.com/tradik/schema-resume/validator"
+        img: "https://pkg.go.dev/badge/github.com/tradik/schema-resume/validator.svg"
+        alt: "Go Reference"
+    links:
+      - label: "pkg.go.dev"
+        url: "https://pkg.go.dev/github.com/tradik/schema-resume/validator"
+      - label: "Documentation"
+        url: "https://github.com/tradik/schema-resume/tree/main/packages/golang"
+    example:
+      heading: "Go"
+      file: "main.go — go run"
+      code: |
+        import validator "github.com/tradik/schema-resume/validator"
+
+        v, _ := validator.NewValidator()
+        resume := map[string]interface{}{
+            "$schema": "https://schema-resume.org/schema.json",
+            "basics": map[string]interface{}{
+                "name":  "John Doe",
+                "email": "john.doe@example.com",
+            },
+        }
+
+        result, _ := v.Validate(resume)
+        if result.Valid {
+            fmt.Println("Resume is valid!")
+        }
+
+  - id: java
+    icon: "☕"
+    iconLabel: "Coffee"
+    title: "Java"
+    name: "org.schema-resume:schema-resume-validator"
+    description: "Java 11+, Maven/Gradle support, Jackson integration"
+    install: "<groupId>org.schema-resume</groupId>\n<artifactId>schema-resume-validator</artifactId>"
+    badges:
+      - href: "https://search.maven.org/artifact/org.schema-resume/schema-resume-validator"
+        img: "https://img.shields.io/maven-central/v/org.schema-resume/schema-resume-validator.svg"
+        alt: "Maven Central"
+    links:
+      - label: "Maven Central"
+        url: "https://search.maven.org/artifact/org.schema-resume/schema-resume-validator"
+      - label: "Documentation"
+        url: "https://github.com/tradik/schema-resume/tree/main/packages/java"
+    example:
+      heading: "Java"
+      file: "Validator.java — java"
+      code: |
+        import org.schemaresume.validator.ResumeValidator;
+
+        ResumeValidator validator = new ResumeValidator();
+        String resumeJson = """
+        {
+            "$schema": "https://schema-resume.org/schema.json",
+            "basics": {
+                "name": "John Doe",
+                "email": "john.doe@example.com"
+            }
+        }
+        """;
+
+        ValidationResult result = validator.validateJson(resumeJson);
+        if (result.isValid()) {
+            System.out.println("Resume is valid!");
+        }
+
+  - id: ruby
+    icon: "💎"
+    iconLabel: "Gem"
+    title: "Ruby"
+    name: "schema-resume-validator"
+    description: "Ruby 2.7+, json-schema validation"
+    install: "gem install schema-resume-validator"
+    badges:
+      - href: "https://rubygems.org/gems/schema-resume-validator"
+        img: "https://badge.fury.io/rb/schema-resume-validator.svg"
+        alt: "Gem Version"
+    links:
+      - label: "RubyGems"
+        url: "https://rubygems.org/gems/schema-resume-validator"
+      - label: "Documentation"
+        url: "https://github.com/tradik/schema-resume/tree/main/packages/ruby"
+    example:
+      heading: "Ruby"
+      file: "validate.rb — ruby"
+      code: |
+        require 'schema_resume'
+
+        resume = {
+          "$schema" => "https://schema-resume.org/schema.json",
+          "basics" => {
+            "name" => "John Doe",
+            "email" => "john.doe@example.com"
+          }
+        }
+
+        result = SchemaResume.validate(resume)
+        puts "Resume is valid!" if result[:valid]
+
+  - id: php
+    icon: "🐘"
+    iconLabel: "Elephant"
+    title: "PHP"
+    name: "schema-resume/validator"
+    description: "PHP 8.0+, Composer support, PSR-4 autoloading"
+    install: "composer require schema-resume/validator"
+    badges:
+      - href: "https://packagist.org/packages/schema-resume/validator"
+        img: "https://img.shields.io/packagist/v/schema-resume/validator.svg"
+        alt: "Packagist Version"
+    links:
+      - label: "Packagist"
+        url: "https://packagist.org/packages/schema-resume/validator"
+      - label: "Documentation"
+        url: "https://github.com/tradik/schema-resume/tree/main/packages/php"
+    example:
+      heading: "PHP"
+      file: "validate.php — php"
+      code: |
+        use SchemaResume\Validator;
+
+        $validator = new Validator();
+        $resume = [
+            '$schema' => 'https://schema-resume.org/schema.json',
+            'basics' => [
+                'name' => 'John Doe',
+                'email' => 'john.doe@example.com',
+            ],
+        ];
+
+        $result = $validator->validate($resume);
+        if ($result['valid']) {
+            echo "Resume is valid!";
+        }
+
+# Schema files shipped inside every package.
+schemaFiles:
+  - name: "schema.json"
+    description: "Main JSON Schema for resume validation"
+  - name: "meta-schema.json"
+    description: "Meta-schema for self-validation"
+  - name: "context.jsonld"
+    description: "JSON-LD context for semantic web integration"
+  - name: "schema-resume.xsd"
+    description: "XML Schema Definition (XSD) for XML validation"
+
+# Capabilities every package provides.
+features:
+  - name: "Validation"
+    description: "Validate resume JSON against the Schema Resume specification"
+  - name: "Error Reporting"
+    description: "Detailed validation errors with field paths"
+  - name: "Schema Access"
+    description: "Programmatic access to schema files"
+  - name: "Examples"
+    description: "Working code examples and usage guides"
+  - name: "Documentation"
+    description: "Comprehensive API reference"
+  - name: "Testing"
+    description: "Unit tests and validation examples"

@@ -1,3 +1,12 @@
+---
+title: "Migration Guide: v1.1 to v1.2"
+slug: "migration-v1-2"
+status: "publish"
+type: "page"
+description: "Upgrade a resume document from Schema Resume v1.1.0 to v1.2.0: work authorization, tools tracking, and the positions array on work entries."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Migration Guide: v1.1.0 to v1.2.0
 
 This guide helps you upgrade your resume JSON from version 1.1.0 to 1.2.0.

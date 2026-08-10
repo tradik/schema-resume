@@ -1,0 +1,310 @@
+# Schema Resume — site build configuration for spagu/ssg.
+#
+#   make site         build into output/
+#   make site-serve   build and serve on http://127.0.0.1:8888
+#
+# The published site is this repository: schema.json, context.jsonld, the XSD
+# and the editor are served from the same origin as the pages that document
+# them. Those files are staged into static/ by tools/stage-static.sh (run by
+# `make site`) rather than duplicated in git — see docs/SETUP.md.
+
+source: site
+template: schema-resume
+domain: schema-resume.org
+
+content_dir: content
+templates_dir: templates
+output_dir: output
+
+# static_dir is named explicitly and left absent on purpose. It defaults to
+# `static`, and after the staging script was replaced by static_sources a stale
+# `static/` from the old workflow sat on disk and kept being copied into every
+# build — publishing a frozen snapshot of the site from before the migration,
+# including a /1.2/example-minimal.json that was never part of 1.2.0. Pointing
+# it at a directory that does not exist makes the omission deliberate rather
+# than a default nobody notices.
+static_dir: .no-static-dir
+
+# Files published verbatim, from wherever they already live.
+#
+# The specification is the point of this site and its URLs have been stable
+# since v1.0, but the canonical files belong at the repository root, where the
+# validator packages, the test suite and CI read them. static_sources (ssg
+# 1.8.19) publishes them in place, so there is exactly one schema.json in this
+# repository and no staging step to forget.
+static_sources:
+  # The specification, at its permanent addresses.
+  - path: schema.json
+  - path: meta-schema.json
+  - path: context.jsonld
+  - path: example.json
+  - path: example-minimal.json
+  - path: example-with-local-context.json
+  - path: xml
+  - path: docs
+
+  # Version-pinned copies, served from frozen snapshots under versions/.
+  #
+  # These MUST come from committed snapshots, not from the live files at the
+  # repository root. Publishing /1.2/schema.json from the root copy would mean
+  # the pin silently changes the moment the specification moves on — which is
+  # precisely what pinning exists to prevent. `make freeze-version` writes a
+  # snapshot; docs/SETUP.md lists it as the first step of a release.
+  - { path: versions/1.0, dest: "1.0" }
+  - { path: versions/1.1, dest: "1.1" }
+  - { path: versions/1.2, dest: "1.2" }
+  - { path: versions/1.3, dest: "1.3" }
+
+  # Repository documents that have been downloadable from the site root since
+  # v1.0.
+  - path: README.md
+  - path: CHANGELOG.md
+  - path: VALIDATION.md
+  - path: SECURITY.md
+  - path: LICENSE
+
+  # The CV editor, listed file by file so its development files — linter
+  # configuration, package manifest, container recipe — stay out of the site.
+  - { path: editor/index.html, dest: "editor/index.html" }
+  - { path: editor/favicon.svg, dest: "editor/favicon.svg" }
+  - { path: editor/src, dest: "editor/src" }
+  - { path: editor/templates, dest: "editor/templates" }
+  - { path: editor/examples, dest: "editor/examples" }
+  - { path: editor/vendor, dest: "editor/vendor" }
+
+  # robots.txt is hand-written; security.txt is RFC 9116. Browsers request
+  # /favicon.ico without being told to, so it sits at the root as well as in
+  # the theme's images/.
+  - path: robots.txt
+  - path: .well-known
+  - path: templates/schema-resume/images/favicon.ico
+
+# Every previously published URL ends in .html (/validator.html,
+# /converter.html, /packages.html) and is the canonical in the current pages.
+# `flat` keeps them byte-identical; `directory` would move them to /validator/
+# and break every inbound link and canonical.
+page_format: flat
+
+# The prose documentation is this repository's own docs/ folder, published as
+# real HTML pages instead of raw Markdown downloads. Nothing is copied into a
+# second location that could drift.
+content_sources:
+  - path: docs
+    type: page
+    category: Documentation
+
+# docs/*.md cross-link each other as CONFIGURATION.md-style filenames, which
+# only resolve in a repository view; rewrite them to the built page URLs and
+# drop the ".md" from the visible link text.
+rewrite_md_links: true
+strip_md_link_text: true
+
+# Guides also link to repository files the site never publishes as pages.
+link_rewrites:
+  "../packages/": "https://github.com/tradik/schema-resume/tree/main/packages/"
+  "../tests/": "https://github.com/tradik/schema-resume/tree/main/tests/"
+  "../.github/": "https://github.com/tradik/schema-resume/blob/main/.github/"
+
+# Build-time SEO and accessibility gates. Warn mode while the docs pages are
+# brought up to the title/description limits; flip to strict (or add `strict:
+# true`) once they are, so a regression fails CI instead of shipping.
+# Working notes, not documentation. They describe one-off migrations and
+# verification passes ("This document verifies that all files … are aligned"),
+# so they stay in the repository for history but do not become site pages that
+# dilute the guide list.
+content_exclude:
+  - "docs/ALIGNMENT-SUMMARY.md"
+  - "docs/DOMAIN-MIGRATION-SUMMARY.md"
+  - "docs/PROJECT_SUMMARY.md"
+
+check_links: warn
+check_meta: warn
+check_images: warn
+check_orphans: warn
+
+# Cloudflare Pages serves /validator.html at /validator and answers the .html
+# form with a 308. Without this, every canonical, og:url, JSON-LD url and
+# sitemap entry would name a URL the host redirects — the one thing a canonical
+# must not do — and it is invisible locally, because resolving against the
+# output directory is not how Pages answers. `strip` is the Pages shape: no
+# trailing slash. The .html URLs published since v1.0 keep working; they 308,
+# which carries their link equity to the canonical form.
+pretty_urls: strip
+check_redirects: warn
+
+meta_limits:
+  title_min: 20
+  title_max: 65
+  description_min: 70
+  description_max: 160
+
+# Sitemap <lastmod> from each file's last commit, rather than the build date —
+# a build touches every page, which tells crawlers everything changed every
+# time and devalues the signal.
+lastmod_from_git: true
+
+# Ship the route contract with the site so a moved URL is diffable.
+route_manifest: true
+
+# docs/*.md have no "## Excerpt" section; derive one from the opening paragraph
+# so cards and meta descriptions are not blank.
+auto_excerpt: true
+
+# The stylesheet is authored as four files and served as one. Bundle paths are
+# relative to the output root, not to the theme.
+bundles:
+  css/style.css:
+    - css/tokens.css
+    - css/layout.css
+    - css/components.css
+    - css/tools.css
+
+pretty_html: true
+sitemap_off: false
+
+# robots.txt is hand-written and staged from the repository root;
+# static/robots.txt wins over a generated one, so generation stays off.
+robots_off: true
+
+# Cookie consent runs as a Pages Function so the banner can be geo-gated at the
+# edge (EEA + UK) instead of being shown to everyone, and so consent can be
+# demonstrated if anyone asks. Only /api/consent/* reaches the Function; every
+# page stays a static asset. See workers/cookie-consent/README.md.
+workers:
+  - name: cookie-consent
+    dir: workers/cookie-consent
+    routes_include: [/api/consent/*]
+
+# Cloudflare Pages honours these. The specification files are the point of the
+# site and are fetched programmatically, so they are cacheable but revalidated;
+# a CV generator must not pin a year-old schema.json.
+headers:
+  /schema.json:
+    Cache-Control: "public, max-age=3600, must-revalidate"
+    Access-Control-Allow-Origin: "*"
+  /meta-schema.json:
+    Cache-Control: "public, max-age=3600, must-revalidate"
+    Access-Control-Allow-Origin: "*"
+  /context.jsonld:
+    Cache-Control: "public, max-age=3600, must-revalidate"
+    Access-Control-Allow-Origin: "*"
+  /xml/1.0/schema-resume.xsd:
+    Cache-Control: "public, max-age=3600, must-revalidate"
+    Access-Control-Allow-Origin: "*"
+  # Version-pinned copies are immutable by definition, so they get the long
+  # cache the floating URLs cannot have.
+  /1.0/schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.0/meta-schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.0/context.jsonld:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.1/schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.1/meta-schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.1/context.jsonld:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.2/schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.2/meta-schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.2/context.jsonld:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.3/schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.3/meta-schema.json:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  /1.3/context.jsonld:
+    Cache-Control: "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin: "*"
+  # Worker client assets are updated in place, so they must not inherit the
+  # default one-year immutable asset cache.
+  /cookie-consent.js:
+    Cache-Control: "public, max-age=0, must-revalidate"
+  /cookie-consent.css:
+    Cache-Control: "public, max-age=0, must-revalidate"
+
+# Syntax highlighting for the fenced code blocks in docs/*.md. Rendered at
+# build time by Chroma — no client-side highlighter ships with the page.
+highlight: true
+highlight_style: github
+
+toc: true
+toc_depth: 3
+
+# Structured data. The four hand-authored pages carry their own JSON-LD in the
+# theme; `seo` fills in the docs pages, which had none, and the publisher below
+# is merged into every page's graph.
+seo: true
+schema:
+  publisher:
+    "@type": Organization
+    name: Tradik
+    url: https://schema-resume.org/
+
+variables:
+  project_name: Schema Resume
+  schema_version: "1.3.0"
+  # MAJOR.MINOR — the prefix tools/stage-static.sh publishes pinned copies
+  # under. A patch release cannot change the schema's meaning, so it does
+  # not get its own URL.
+  schema_version_minor: "1.3"
+  repository_url: https://github.com/tradik/schema-resume
+  og_image: https://schema-resume.org/images/og-image.png
+  twitter_creator: "@tradik"
+
+  # Google Analytics 4. Rendered by the theme only when set.
+  gtag: "G-NG0TH0GXV1"
+
+  # Cookie-consent banner, rendered by the theme when present. geoMode "edge"
+  # asks /api/consent/geo whether this visitor is in a jurisdiction that
+  # requires prior consent (EEA + UK by default), so the banner is not shown
+  # where it is not needed. logEndpoint records proof of consent — the GDPR
+  # requires being able to demonstrate it — storing the IP only as a salted
+  # hash, and needs the CONSENT_LOG KV namespace bound to the Pages project.
+  cookie_consent:
+    version: "1"
+    policyUrl: /cookies.html
+    position: bottom
+    geoMode: edge
+    expiryDays: 180
+    logEndpoint: /api/consent/log
+    categories:
+      - id: necessary
+        required: true
+      - id: analytics
+  # Google Tag Manager container. Inert while the placeholder is in place —
+  # the loader returns early and makes no request. Replace with the real ID.
+  gtm: "GTM-XXXXXXX"
+
+  # Production users credited in the footer. `logo` is optional and names a file
+  # in templates/schema-resume/images/; without one the built-in mark is used, so
+  # no third-party artwork is hotlinked.
+  used_by:
+    - name: JobTailor
+      url: https://jobtailor.co.uk/
+      description: CV tailoring built on the Schema Resume specification
+
+  nav:
+    - label: Validator
+      url: /validator
+    - label: Converter
+      url: /converter
+    - label: CV Editor
+      url: /editor/
+    - label: Packages
+      url: /packages
+    - label: GitHub
+      url: https://github.com/tradik/schema-resume

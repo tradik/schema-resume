@@ -1,0 +1,338 @@
+/*
+ * Schema Resume — shared components: buttons, cards, terminals, code blocks,
+ * tables, callouts and the package grid.
+ */
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: var(--text-inverse);
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn--secondary {
+    background-color: var(--bg-primary);
+    color: var(--secondary-color);
+    border-color: var(--border-strong);
+}
+
+.btn--secondary:hover {
+    background-color: var(--bg-muted);
+}
+
+.btn--success {
+    background-color: var(--success-color);
+}
+
+.btn--success:hover {
+    background-color: #065f46;
+}
+
+.btn--muted {
+    background-color: var(--bg-muted);
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+}
+
+.btn--muted:hover {
+    background-color: var(--border-color);
+}
+
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* ─── Feature grid ───────────────────────────────────────────────────────── */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.feature-card {
+    background-color: var(--bg-secondary);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.feature-card h3 {
+    color: var(--secondary-color);
+    font-size: 110%;
+    margin: 0 0 10px;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ─── Code and terminals ─────────────────────────────────────────────────── */
+
+.code-block,
+.prose pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.prose :not(pre) > code {
+    background-color: var(--code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-sm);
+}
+
+/* macOS-style terminal chrome around a code sample. */
+.terminal {
+    background-color: var(--terminal-bg);
+    border-radius: var(--radius-lg);
+    margin: 20px 0;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: linear-gradient(180deg, #3c3c3c 0%, #2d2d2d 100%);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 20%);
+}
+
+.terminal-btn.close {
+    background: linear-gradient(180deg, #ff5f57 0%, #e0443e 100%);
+}
+
+.terminal-btn.minimize {
+    background: linear-gradient(180deg, #febc2e 0%, #dea123 100%);
+}
+
+.terminal-btn.maximize {
+    background: linear-gradient(180deg, #28c840 0%, #1aab29 100%);
+}
+
+.terminal-title {
+    flex: 1;
+    text-align: center;
+    color: #b9b9b9; /* 7.4:1 on --terminal-bg */
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-right: 60px;
+}
+
+.terminal-body {
+    padding: 15px 20px;
+    overflow-x: auto;
+}
+
+.terminal-body code {
+    color: var(--terminal-fg);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    white-space: pre;
+    display: block;
+}
+
+.schema-url {
+    background-color: var(--code-bg);
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    word-break: break-all;
+    margin: 20px 0;
+}
+
+/* ─── Callouts ───────────────────────────────────────────────────────────── */
+
+.callout {
+    border: 1px solid var(--info-border);
+    border-left-width: 4px;
+    background-color: var(--info-bg);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: var(--radius-sm);
+}
+
+.callout h3 {
+    margin: 0 0 8px;
+    font-size: 105%;
+    color: var(--info-color);
+}
+
+.callout p + p {
+    margin-top: 10px;
+}
+
+.callout--warning {
+    background-color: var(--warning-bg);
+    border-color: var(--warning-border);
+}
+
+.callout--warning h3 {
+    color: var(--warning-color);
+}
+
+/* ─── Tables ─────────────────────────────────────────────────────────────── */
+
+.property-table,
+.prose table {
+    width: 100%;
+    margin: 15px 0;
+    font-size: 95%;
+}
+
+.property-table th,
+.property-table td,
+.prose th,
+.prose td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.property-table th,
+.prose th {
+    background-color: var(--bg-secondary);
+    font-weight: 700;
+}
+
+.property-table tr:hover,
+.prose tbody tr:hover {
+    background-color: rgb(37 99 235 / 3%);
+}
+
+/* ─── Lists with a leading term ──────────────────────────────────────────── */
+
+.term-list {
+    list-style-position: inside;
+    color: var(--text-secondary);
+    line-height: 2;
+}
+
+.term-list strong {
+    color: var(--text-primary);
+}
+
+/* ─── Package grid ───────────────────────────────────────────────────────── */
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.package-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.package-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.package-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.package-title h3 {
+    margin: 0;
+    font-size: 110%;
+    color: var(--secondary-color);
+}
+
+.package-name {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    word-break: break-all;
+}
+
+.package-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-height: 20px;
+}
+
+.package-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+.package-install {
+    background-color: var(--terminal-bg);
+    color: var(--terminal-fg);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.package-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+}
+
+.package-links a {
+    color: var(--primary-color);
+    font-weight: 500;
+}

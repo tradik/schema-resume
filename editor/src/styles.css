@@ -48,8 +48,11 @@
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     
-    /* Typography */
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Typography.
+       'Inter' is kept first so a reader who has it installed still gets it,
+       but it is no longer downloaded from Google Fonts — see index.html. */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -117,6 +120,33 @@ body {
     max-width: 100%;
 }
 
+/* Brand block: the way back to the main site, above the editor's own title. */
+.app-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.app-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-bg-primary);
+    opacity: 0.85;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.app-back:hover,
+.app-back:focus-visible {
+    opacity: 1;
+    text-decoration: underline;
+}
+
 .app-title {
     display: flex;
     align-items: center;
@@ -124,8 +154,8 @@ body {
     /* font-size: var(--font-size-xl);
      font-weight: 600; */
     color: var(--color-bg-primary);
-    margin: 0; 
-    font-size: 140%; 
+    margin: 0;
+    font-size: 140%;
     font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; 
     font-weight: bold;
 }

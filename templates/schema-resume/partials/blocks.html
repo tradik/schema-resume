@@ -1,0 +1,31 @@
+{{/*
+  Schema Resume — small reusable blocks.
+
+  Kept apart from chrome.html so the document-level concerns (head, header,
+  footer) stay readable next to the page-level ones.
+*/}}
+
+{{/*
+  macOS-style terminal frame around a code sample.
+
+      {{ template "sr-terminal" (dict "File" "resume.json" "Code" `…`) }}
+
+  The three window buttons are decorative: they carry no text and are hidden
+  from assistive technology, so a screen reader reads the filename and the code,
+  not "button button button".
+*/}}
+{{define "sr-terminal"}}
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-buttons" aria-hidden="true">
+            <span class="terminal-btn close"></span>
+            <span class="terminal-btn minimize"></span>
+            <span class="terminal-btn maximize"></span>
+        </div>
+        <span class="terminal-title">{{ .File }}</span>
+    </div>
+    <div class="terminal-body">
+<pre><code>{{ .Code }}</code></pre>
+    </div>
+</div>
+{{end}}

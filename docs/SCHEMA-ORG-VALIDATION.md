@@ -1,3 +1,12 @@
+---
+title: "Schema.org Validation Guide"
+slug: "schema-org-validation"
+status: "publish"
+type: "page"
+description: "Validate a Schema Resume document against Schema.org: which @type values are emitted, how to test with the Rich Results Test, and common failures."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Schema.org Validation Guide
 
 ## Overview

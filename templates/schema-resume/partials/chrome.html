@@ -1,0 +1,202 @@
+{{/*
+  Schema Resume — shared document head, header and footer.
+
+  Files under partials/ are parsed into the same template set as the theme root,
+  so these define names are callable from any role template. Each takes a dict
+  so a role can pass its own metadata:
+
+      {{ template "sr-head" (dict
+          "Title"     "…"      full <title>, also used for og:title
+          "Desc"      "…"      meta description / og:description
+          "Canonical" "/x.html" site-absolute path of this page
+          "Keywords"  "…"      optional
+          "Ctx"       .) }}
+
+  Structured data is deliberately NOT emitted here. ssg injects JSON-LD and a
+  BreadcrumbList for every page when the theme supplies OpenGraph but no
+  ld+json (see internal/generator/render_transforms.go), deriving the graph
+  from frontmatter and deep-merging `schema:` from .ssg.yaml and the page. One
+  source of truth, and the docs pages get structured data for free.
+*/}}
+
+{{define "sr-head"}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ .Desc }}">
+    {{ with .Keywords }}<meta name="keywords" content="{{ . }}">{{ end }}
+    <meta name="author" content="Tradik">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://{{ .Ctx.Domain }}{{ .Canonical }}">
+    <meta name="generator" content="SSG">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="color-scheme" content="light">
+
+    {{/* Icons live in the theme (templates/schema-resume/images/), which ssg
+         copies to /images/. A copy of favicon.ico is also staged at the site
+         root, because browsers and crawlers request /favicon.ico blindly. */}}
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+    {{/* OpenGraph / Twitter. Emitting og:title here tells ssg the theme owns
+         social metadata, so it contributes only the JSON-LD block. */}}
+    <meta property="og:type" content="{{ if .OgType }}{{ .OgType }}{{ else }}website{{ end }}">
+    <meta property="og:site_name" content="Schema Resume">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:description" content="{{ .Desc }}">
+    <meta property="og:url" content="https://{{ .Ctx.Domain }}{{ .Canonical }}">
+    <meta property="og:image" content="{{ .Ctx.Vars.og_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Schema Resume — JSON-LD schema for CV and resume data">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:description" content="{{ .Desc }}">
+    <meta name="twitter:image" content="{{ .Ctx.Vars.og_image }}">
+    <meta name="twitter:creator" content="{{ .Ctx.Vars.twitter_creator }}">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    {{/* Cookie consent. The banner and its styles come from the
+         cookie-consent worker's public/ (workers/cookie-consent), served from
+         the site root; the JSON below is its client config, from
+         variables.cookie_consent. Rendered only when that variable is set. */}}
+    {{ with .Ctx.Vars.cookie_consent }}
+    <link rel="stylesheet" href="/cookie-consent.css">
+    <script id="ssg-consent-config" type="application/json">{{ . | toJSON }}</script>
+    <script src="/cookie-consent.js" defer></script>
+    {{ end }}
+
+    {{/* Google Analytics 4 under Consent Mode v2. Every storage type defaults
+         to "denied", so no analytics cookie is written before the visitor
+         accepts; the consent banner emits the gtag('consent','update', …) that
+         grants analytics_storage. Rendered only when variables.gtag is set. */}}
+    {{ with .Ctx.Vars.gtag }}
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+      });
+      gtag('js', new Date());
+      gtag('config', '{{ . }}', { anonymize_ip: true });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+    {{ end }}
+
+    {{/* Google Tag Manager container. Inert while the placeholder ID is in
+         place: the loader returns early and makes no request. Replace
+         variables.gtm in .ssg.yaml with the real container to activate it. */}}
+    {{ with .Ctx.Vars.gtm }}
+    <script>
+      (function (w, d, s, l, i) {
+        if (!i || i.indexOf('XXXXXXX') !== -1) { return; }
+        w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0], j = d.createElement(s),
+            dl = l !== 'dataLayer' ? '&l=' + l : '';
+        j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', '{{ . }}');
+    </script>
+    {{ end }}
+{{end}}
+
+
+{{define "sr-header"}}
+    {{/* .Current is the site-absolute path of the page being rendered, used to
+         mark the active nav item for assistive technology. */}}
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="/">
+                <span class="brand-mark" role="img" aria-label="Document">📄</span>
+                <span class="brand-name">Schema Resume</span>
+            </a>
+            <nav aria-label="Main">
+                <ul class="nav-list">
+                    {{ $current := .Current }}
+                    {{ range .Ctx.Vars.nav }}
+                    <li>
+                        <a href="{{ .url }}"{{ if eq .url $current }} aria-current="page"{{ end }}>{{ .label }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+    </header>
+{{end}}
+
+
+{{/*
+  The page title band carries the document's single <h1>. The brand in the
+  header is deliberately a <span>, not a heading: an <h1> repeated verbatim on
+  every page tells a crawler each page is about "Schema Resume" rather than
+  about validation, conversion or packages.
+*/}}
+{{define "sr-page-title"}}
+    <div class="page-title">
+        <div class="container">
+            <h1>{{ .Heading }}</h1>
+            {{ with .Lead }}<p>{{ . }}</p>{{ end }}
+        </div>
+    </div>
+{{end}}
+
+
+{{define "sr-footer"}}
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025–2026 Schema Resume. Released under the MIT License.</p>
+            <nav aria-label="Footer">
+                <ul class="links">
+                    <li><a href="{{ .Vars.repository_url }}">GitHub</a></li>
+                    <li><a href="{{ .Vars.repository_url }}/issues">Issues</a></li>
+                    <li><a href="{{ .Vars.repository_url }}/blob/main/LICENSE">License</a></li>
+                    <li><a href="/validator">Validator</a></li>
+                    <li><a href="/converter">Converter</a></li>
+                    <li><a href="/packages">Packages</a></li>
+                    <li><a href="/privacy">Privacy</a></li>
+                    <li><a href="/terms">Terms</a></li>
+                    <li><a href="/cookies">Cookies</a></li>
+                    <li><a href="/sitemap.xml">Sitemap</a></li>
+                </ul>
+            </nav>
+            {{/* Production users. Editorial credits, so the links are plain
+                 follow links rather than rel="nofollow" sponsored ones. */}}
+            {{ with .Vars.used_by }}
+            <section class="used-by" aria-labelledby="used-by-heading">
+                <h2 id="used-by-heading">Used by</h2>
+                <ul>
+                    {{ range . }}
+                    <li>
+                        <a href="{{ .url }}" title="{{ .description }}">
+                            {{ if .logo }}
+                            <img src="/images/{{ .logo }}" alt="" width="24" height="24" loading="lazy" decoding="async">
+                            {{ else }}
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            {{ end }}
+                            <span>{{ .name }}</span>
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+            <p class="colophon">
+                Made with <span role="img" aria-label="love">❤️</span> for the developer community.
+                Built with <a href="https://github.com/spagu/ssg">SSG</a>.
+            </p>
+        </div>
+    </footer>
+{{end}}

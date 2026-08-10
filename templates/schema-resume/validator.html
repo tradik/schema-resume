@@ -1,0 +1,127 @@
+{{define "validator.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+{{ $title := "Schema Resume Validator - JSON-LD CV Linter" }}
+    <title>{{ $title }}</title>
+{{ template "sr-head" (dict
+    "Title" $title
+    "Desc" .Page.Description
+    "Keywords" .Page.Keywords
+    "Canonical" (trimSuffix .Page.GetURL ".html")
+    "Ctx" .) }}
+</head>
+<body>
+{{ template "sr-header" (dict "Current" (trimSuffix .Page.GetURL ".html") "Ctx" .) }}
+{{ template "sr-page-title" (dict "Heading" "Validator" "Lead" .Page.Extra.lead) }}
+
+<main class="tool-main" id="main-content">
+    <div class="panel-grid">
+        <!-- Input -->
+        <section class="panel" aria-labelledby="input-heading">
+            <div class="panel-header">
+                <h2 id="input-heading">
+                    {{ template "icon-code" (dict "Size" 20) }}
+                    JSON-LD input
+                </h2>
+                <div class="btn-group">
+                    <button type="button" id="loadExample" class="btn-ghost">
+                        {{ template "icon-file-text" (dict "Size" 16) }}
+                        Example
+                    </button>
+                    <button type="button" id="clearInput" class="btn-ghost">
+                        {{ template "icon-trash-2" (dict "Size" 16) }}
+                        Clear
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <label for="jsonInput" class="visually-hidden">Your JSON-LD CV</label>
+                <textarea id="jsonInput" class="code-editor" spellcheck="false"
+                          autocapitalize="off" autocorrect="off"
+                          placeholder="Paste your JSON-LD CV here…"></textarea>
+
+                <div class="btn-row">
+                    <button type="button" id="validateBtn" class="btn" style="flex:1">
+                        {{ template "icon-circle-check" (dict "Size" 20) }}
+                        Validate JSON-LD
+                    </button>
+                    <button type="button" id="formatBtn" class="btn btn--muted">
+                        {{ template "icon-align-left" (dict "Size" 20) }}
+                        Format
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="panel" aria-labelledby="results-heading">
+            <div class="panel-header panel-header--muted">
+                <h2 id="results-heading">
+                    {{ template "icon-list-checks" (dict "Size" 20) }}
+                    Validation results
+                </h2>
+            </div>
+
+            {{/* Results are announced to assistive technology as they change:
+                 the outcome of pressing "Validate" is the whole point of the
+                 page and is otherwise silent. */}}
+            <div id="results" class="results" role="status" aria-live="polite" aria-atomic="false">
+                <div class="results-empty">
+                    {{ template "icon-arrow-left" (dict "Size" 48) }}
+                    <p>Paste your JSON-LD and select “Validate”</p>
+                    <p>The validator checks your CV against the Schema Resume specification.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="info-cards">
+        <article class="info-card">
+            <span class="icon-badge">{{ template "icon-shield-check" (dict "Size" 24) }}</span>
+            <div>
+                <h2>JSON Schema validation</h2>
+                <p>Validates against the official Schema Resume v{{ .Vars.schema_version }} specification.</p>
+            </div>
+        </article>
+        <article class="info-card">
+            <span class="icon-badge">{{ template "icon-link" (dict "Size" 24) }}</span>
+            <div>
+                <h2>JSON-LD support</h2>
+                <p>Checks for a proper <code>@context</code> and Schema.org compatibility.</p>
+            </div>
+        </article>
+        <article class="info-card">
+            <span class="icon-badge">{{ template "icon-zap" (dict "Size" 24) }}</span>
+            <div>
+                <h2>Runs in your browser</h2>
+                <p>Validation happens entirely on this page — your CV is never uploaded.</p>
+            </div>
+        </article>
+    </div>
+
+    <section class="help-panel" aria-labelledby="help-heading">
+        <span class="icon-badge">{{ template "icon-book-open" (dict "Size" 28) }}</span>
+        <div>
+            <h2 id="help-heading">Need help?</h2>
+            <p>Read the documentation to learn more about the Schema Resume format and JSON-LD integration.</p>
+            <div class="btn-row">
+                <a href="{{ .Vars.repository_url }}" class="btn btn--secondary">
+                    {{ template "icon-external-link" (dict "Size" 18) }}
+                    GitHub repository
+                </a>
+                <a href="/json-ld" class="btn btn--secondary">
+                    {{ template "icon-file-text" (dict "Size" 18) }}
+                    JSON-LD guide
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+{{ template "sr-footer" . }}
+<script src="/js/vendor/icons.js"></script>
+<script src="/js/vendor/ajv.js"></script>
+<script src="/js/validator.js" defer></script>
+</body>
+</html>{{end}}
