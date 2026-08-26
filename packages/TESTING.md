@@ -159,7 +159,7 @@ import org.schemaresume.validator.ResumeValidator;
 
 ResumeValidator validator = new ResumeValidator();
 JsonNode schema = validator.getSchema();
-System.out.println(schema.get("version").asText()); // Should print: 1.2.0
+System.out.println(schema.get("title").asText()); // Should print: Schema Resume v1.2.0
 ```
 
 ### Ruby

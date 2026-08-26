@@ -2,6 +2,7 @@ package org.schemaresume.validator;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.schema.JsonMetaSchema;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
@@ -17,6 +18,9 @@ import java.util.Set;
  * Validator for Schema Resume JSON documents.
  */
 public class ResumeValidator {
+    /** IRI declared in the {@code $schema} keyword of schema.json; resolved locally as a Draft-07 dialect. */
+    private static final String META_SCHEMA_IRI = "https://schema-resume.org/meta-schema.json";
+
     private final JsonSchema schema;
     private final JsonNode schemaNode;
     private final JsonNode metaSchemaNode;
@@ -36,8 +40,14 @@ public class ResumeValidator {
         this.metaSchemaNode = loadResource("/schemas/meta-schema.json");
         this.contextNode = loadResource("/schemas/context.jsonld");
         
-        // Create JSON Schema validator
-        JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7);
+        // Create JSON Schema validator. schema.json declares our own meta-schema IRI as its
+        // $schema; register that IRI as a Draft-07 dialect so it is never fetched over the network.
+        JsonMetaSchema draft7 = JsonMetaSchema.getV7();
+        JsonMetaSchema resumeMetaSchema = JsonMetaSchema.builder(META_SCHEMA_IRI, draft7).build();
+        JsonSchemaFactory factory = JsonSchemaFactory.builder(
+                JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7))
+            .metaSchema(resumeMetaSchema)
+            .build();
         this.schema = factory.getSchema(schemaNode);
     }
 
@@ -69,7 +79,7 @@ public class ResumeValidator {
         List<ValidationError> errorList = new ArrayList<>();
         for (ValidationMessage msg : errors) {
             errorList.add(new ValidationError(
-                msg.getPath(),
+                msg.getInstanceLocation().toString(),
                 msg.getType(),
                 msg.getMessage()
             ));

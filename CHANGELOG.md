@@ -10,6 +10,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Additive. Every document valid under 1.2.0 is still valid — see the
 [migration guide](docs/MIGRATION_v1.3.md).
 
+### Security
+
+- **Java: `jackson-databind` 2.15.2 → 2.22.2.** Closes Dependabot alerts #1–#5 (two high:
+  PolymorphicTypeValidator bypass via generic type parameters, array-subtype allowlist bypass;
+  three medium: `@JsonIgnore` bypass with a `PropertyNamingStrategy`, case-insensitive
+  `@JsonIgnoreProperties` bypass, eager DNS resolution on `InetSocketAddress` deserialization).
+  Supersedes Dependabot PR #15, which only went to 2.18.9.
+
+### Changed — Java package
+
+- `json-schema-validator` 1.0.87 → 1.5.9, JUnit 5.10.0 → 5.14.4, `maven-compiler-plugin`
+  3.15.0, `maven-surefire-plugin` 3.5.6, `maven-jar-plugin` 3.5.1. Java 11 remains the minimum.
+- `ResumeValidator` registers `https://schema-resume.org/meta-schema.json` as a Draft-07 dialect
+  with the validator factory, so the embedded schema is never resolved over the network
+  (networknt 1.5 tries to fetch an unknown `$schema` IRI; 1.0 silently ignored it). The public
+  API is unchanged; `ValidationError.getPath()` now returns the JSON Pointer of the failing
+  instance location (`/basics/email` rather than `$.basics.email`).
+- Added a JUnit suite (`ResumeValidatorTest`) covering schema loading, a valid minimal resume,
+  the repository `example.json`, format and type errors.
+
 ### Added — specification
 
 - **`basics.demographics`** now holds `age`, `dateOfBirth` and `gender`. These are protected
