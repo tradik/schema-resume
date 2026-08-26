@@ -1,0 +1,10 @@
+{
+  "categories": [
+    { "id": 1, "count": 0, "description": "Browser tools built on the specification", "link": "/category/tools/", "name": "Tools", "slug": "tools", "parent": 0 },
+    { "id": 2, "count": 0, "description": "Privacy, terms and cookies", "link": "/category/legal/", "name": "Legal", "slug": "legal", "parent": 0 }
+  ],
+  "users": [
+    { "id": 1, "name": "Schema Resume", "slug": "schema-resume" }
+  ],
+  "media": []
+}

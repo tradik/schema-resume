@@ -18,6 +18,16 @@ Additive. Every document valid under 1.2.0 is still valid — see the
   `@JsonIgnoreProperties` bypass, eager DNS resolution on `InetSocketAddress` deserialization).
   Supersedes Dependabot PR #15, which only went to 2.18.9.
 
+### Fixed — site build
+
+- **The Pages build failed with `open content/site/metadata.json: no such file`.**
+  `.gitignore` carried a MkDocs-style `site/` pattern that also matched `content/site/`, so
+  the tool and legal pages documented in `docs/SETUP.md` were never committed. The pattern is
+  now anchored to the repository root and `content/site/` is tracked: `metadata.json` plus
+  `validator`, `converter`, `packages` (metadata only — the markup is in the theme) and the
+  legal pages `privacy`, `terms` and `cookies` that the footer and the consent banner link to.
+- CI builds with ssg 1.8.51 (was 1.8.23).
+
 ### Changed — repository
 
 - `.github/dependabot.yml` was the unedited GitHub template (empty `package-ecosystem`), which

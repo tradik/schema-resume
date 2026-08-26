@@ -173,7 +173,8 @@ out/
 
 # Documentation build
 docs/_build/
-site/
+# (root only — content/site/ holds the tool and legal pages and must be tracked)
+/site/
 
 # Backup files
 *.orig
