@@ -18,6 +18,12 @@ Additive. Every document valid under 1.2.0 is still valid — see the
   `@JsonIgnoreProperties` bypass, eager DNS resolution on `InetSocketAddress` deserialization).
   Supersedes Dependabot PR #15, which only went to 2.18.9.
 
+### Changed — repository
+
+- `.github/dependabot.yml` was the unedited GitHub template (empty `package-ecosystem`), which
+  Dependabot rejects. It now covers GitHub Actions, npm (root, `editor/`, `packages/npm`), pip,
+  Go modules, Maven, Bundler and Composer, with weekly grouped updates.
+
 ### Changed — Java package
 
 - `json-schema-validator` 1.0.87 → 1.5.9, JUnit 5.10.0 → 5.14.4, `maven-compiler-plugin`
