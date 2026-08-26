@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed — site build
+
+- `deploy-pages.yml` uses `cloudflare/wrangler-action@v4` with Wrangler pinned to 4.126.0 (v3 of
+  the action installed Wrangler 3.90.0). The first `main` deploy after 1.3.0 failed before this
+  mattered: the `cloudflare-pages` environment has no `CLOUDFLARE_API_TOKEN` /
+  `CLOUDFLARE_ACCOUNT_ID` secrets — see `docs/SETUP.md`.
+
 ## [1.3.0] - 2026-08-26
 
 Additive. Every document valid under 1.2.0 is still valid — see the
