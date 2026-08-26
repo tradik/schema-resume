@@ -134,8 +134,11 @@ which installs `ssg`, builds with `--minify-all --fingerprint
 --check-links=strict`, and deploys `output/` to Cloudflare Pages. Pull requests
 are built but not deployed, so a broken site is caught before merge.
 
-Two repository secrets are required: `CLOUDFLARE_API_TOKEN` and
-`CLOUDFLARE_ACCOUNT_ID`.
+Two secrets are required on the `cloudflare-pages` **environment** (Settings →
+Environments → cloudflare-pages → Environment secrets), not just the repository:
+`CLOUDFLARE_API_TOKEN` (an API token with *Cloudflare Pages: Edit*) and
+`CLOUDFLARE_ACCOUNT_ID`. Without them the Build job passes and the Publish job
+fails with "it's necessary to set a CLOUDFLARE_API_TOKEN".
 
 The consent banner's audit log needs a KV namespace bound to the Pages project
 as `CONSENT_LOG`, plus a `CONSENT_IP_SALT` secret. Without them the banner still
