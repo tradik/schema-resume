@@ -95,10 +95,13 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if npx --yes wrangler@4.126.0 pages project list | grep -qE '(^|[│| ])schema-resume([│| ]|$)'; then
-            echo "Pages project schema-resume exists"
+          # Same name as wrangler.toml. The *.pages.dev subdomain is global,
+          # so a generic name may be taken by someone else (API code 8000000).
+          npx --yes wrangler@4.126.0 pages project list | tee projects.txt
+          if grep -qE '(^|[│| ])schema-resume-org([│| ]|$)' projects.txt; then
+            echo "Pages project schema-resume-org exists"
           else
-            npx --yes wrangler@4.126.0 pages project create schema-resume --production-branch=main
+            npx --yes wrangler@4.126.0 pages project create schema-resume-org --production-branch=main
           fi
 
       - name: Publish
@@ -107,4 +110,4 @@ jobs:
           wranglerVersion: "4.126.0"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy output --project-name=schema-resume --branch=main
+          command: pages deploy output --project-name=schema-resume-org --branch=main

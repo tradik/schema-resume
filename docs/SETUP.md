@@ -140,8 +140,8 @@ Environments → cloudflare-pages → Environment secrets), not just the reposit
 `CLOUDFLARE_ACCOUNT_ID`. Without them the Build job passes and the Publish job
 fails with "it's necessary to set a CLOUDFLARE_API_TOKEN". The token needs
 *Cloudflare Pages: Edit* on the account. The workflow creates the Pages project
-`schema-resume` on first run if it is missing; attaching the custom domain
-`schema-resume.org` to that project (Pages → schema-resume → Custom domains) is
+`schema-resume-org` (the name in `wrangler.toml`) on first run if it is missing; attaching the custom domain
+`schema-resume.org` to that project (Pages → schema-resume-org → Custom domains) is
 a one-off manual step in the dashboard.
 
 The consent banner's audit log needs a KV namespace bound to the Pages project

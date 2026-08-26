@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed — site build
 
-- `deploy-pages.yml` creates the Pages project `schema-resume` if the account does not have
+- `deploy-pages.yml` creates the Pages project `schema-resume-org` (the `wrangler.toml` name) if the account does not have
   one yet (`wrangler pages project create`, idempotent) — the first deploy failed with
   "The Pages project \"schema-resume\" does not exist".
 - `deploy-pages.yml` uses `cloudflare/wrangler-action@v4` with Wrangler pinned to 4.126.0 (v3 of
