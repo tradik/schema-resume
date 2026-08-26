@@ -5,10 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.0] — unreleased
+## [1.3.0] - 2026-08-26
 
 Additive. Every document valid under 1.2.0 is still valid — see the
 [migration guide](docs/MIGRATION_v1.3.md).
+
+### Changed — packages
+
+- All six validator packages (npm, PyPI, Go, Maven, RubyGems, Packagist) are **1.3.0** and ship
+  the 1.3.0 `schema.json`, `meta-schema.json`, `context.jsonld` and XSD (`tools/sync-schema-files.sh`).
+  The XSD carries `version="1.3.0"` to match.
+- **npm** no longer calls `ajv.addMetaSchema()` — `schema.json` declares draft-07, which Ajv
+  ships with. `metaSchema` is still exported.
+- **Ruby** validates again. The `json-schema` gem implements draft-06 at most and refuses any
+  `$schema` it does not know — it rejected the old `https://schema-resume.org/meta-schema.json`
+  IRI just as it rejects draft-07 — so `Validator` now pins `version: :draft6` and validates a
+  copy of the schema without the `$schema` key. Draft-07 adds nothing this schema relies on beyond
+  `$comment`, which the gem ignores. The gem constraint is widened to `>= 4.0, < 7`.
+  Note: the gem does not enforce `format: email`; type and structure errors are reported.
 
 ### Security
 

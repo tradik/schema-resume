@@ -61,7 +61,7 @@ The schema is **self-contained** and does not rely on external JSON Schema defin
 **Try the live validator**: [validator.html](https://schema-resume.org/validator.html)
 
 The online validator provides:
-- **Real-time validation** against Schema Resume v1.2.0
+- **Real-time validation** against Schema Resume v1.3.0
 - **JSON-LD compatibility checks** for @context and Schema.org mapping
 - **Detailed error messages** with suggestions for fixes
 - **Example CV** to get started quickly
@@ -688,7 +688,7 @@ go get github.com/tradik/schema-resume/validator
 <dependency>
     <groupId>org.schema-resume</groupId>
     <artifactId>schema-resume-validator</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 - **Package**: [Maven Central](https://search.maven.org/artifact/org.schema-resume/schema-resume-validator)

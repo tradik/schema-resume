@@ -1,23 +1,7 @@
 {
-  "@context": {
-    "@vocab": "https://schema-resume.org/",
-    "schema": "http://schema.org/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "name": "schema:name",
-    "email": "schema:email",
-    "url": "schema:url",
-    "telephone": "schema:telephone",
-    "address": "schema:address",
-    "jobTitle": "schema:jobTitle",
-    "worksFor": "schema:worksFor",
-    "alumniOf": "schema:alumniOf",
-    "award": "schema:award",
-    "knowsAbout": "schema:knowsAbout",
-    "knowsLanguage": "schema:knowsLanguage"
-  },
-  "$schema": "https://schema-resume.org/meta-schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://schema-resume.org/schema.json",
-  "$comment": "Primary domain: https://schema-resume.org/ | Alternate domain: https://tradik.github.io/schema-resume/",
+  "$comment": "The JSON-LD context for documents that follow this schema is published separately at https://schema-resume.org/context.jsonld — a resume document references it from its own @context. Until 1.3.0 a 14-term fragment of it was embedded here as a top-level @context, which covered 9 of the 102 canonical terms, defined 7 that did not exist, contradicted the canonical definition of `address`, and made this file fail JSON Schema strict-mode validation as an unknown keyword.",
   "additionalProperties": true,
   "definitions": {
     "iso8601": {
@@ -59,16 +43,45 @@
         },
         "age": {
           "type": "integer",
-          "description": "Age of the person in years",
+          "description": "DEPRECATED since 1.3.0 — use basics.demographics.age. Still accepted so that every 1.x document keeps validating; scheduled for removal in 2.0.0.",
+          "deprecated": true,
           "minimum": 0
         },
         "dateOfBirth": {
           "$ref": "#/definitions/iso8601",
-          "description": "Date of birth in ISO 8601 format"
+          "description": "DEPRECATED since 1.3.0 — use basics.demographics.dateOfBirth. Still accepted so that every 1.x document keeps validating; scheduled for removal in 2.0.0.",
+          "deprecated": true
         },
         "gender": {
           "type": "string",
-          "description": "Gender identity of the person"
+          "description": "DEPRECATED since 1.3.0 — use basics.demographics.gender. Still accepted so that every 1.x document keeps validating; scheduled for removal in 2.0.0.",
+          "deprecated": true
+        },
+        "demographics": {
+          "type": "object",
+          "description": "Protected personal characteristics. Omit this object entirely unless the receiving market expects it. In the UK and most of the EU a CV should not carry age, date of birth or gender: they are protected characteristics under the Equality Act 2010 and comparable law, employers are advised not to request them, and including them invites discrimination claims. Some markets, notably Germany and Japan, do conventionally include a date of birth. Provided as a separate object so that supplying it is a deliberate choice and so that a processor can drop it in one step.",
+          "additionalProperties": true,
+          "properties": {
+            "@type": {
+              "type": "string",
+              "description": "Schema.org type. Use 'Person' for Schema.org validation.",
+              "default": "Person"
+            },
+            "age": {
+              "type": "integer",
+              "description": "Age in years. Derived data that goes stale; prefer dateOfBirth if either is genuinely required.",
+              "minimum": 0,
+              "maximum": 150
+            },
+            "dateOfBirth": {
+              "$ref": "#/definitions/iso8601",
+              "description": "Date of birth in ISO 8601 format. Conventional in some markets (DE, JP), discouraged in others (UK, US)."
+            },
+            "gender": {
+              "type": "string",
+              "description": "Gender identity, in the person's own words. Free text on purpose: an enumeration here would exclude people. In the EU this may be special-category data under GDPR Article 9."
+            }
+          }
         },
         "legalNote": {
           "type": "object",
@@ -119,7 +132,6 @@
         "keyAchievements": {
           "type": "array",
           "description": "Notable career achievements and accomplishments",
-          "additionalItems": false,
           "items": {
             "type": "string",
             "description": "Individual achievement"
@@ -128,7 +140,6 @@
         "coreCompetencies": {
           "type": "array",
           "description": "Core professional competencies and areas of expertise",
-          "additionalItems": false,
           "items": {
             "type": "string",
             "description": "Competency or area of expertise"
@@ -167,7 +178,6 @@
         "profiles": {
           "type": "array",
           "description": "List of social media and professional network profiles",
-          "additionalItems": false,
           "items": {
             "type": "object",
             "additionalProperties": true,
@@ -191,7 +201,6 @@
         "nationalities": {
           "type": "array",
           "description": "Citizenship and nationality information",
-          "additionalItems": false,
           "items": {
             "type": "object",
             "additionalProperties": true,
@@ -214,7 +223,6 @@
         "workAuthorization": {
           "type": "array",
           "description": "Work authorization information for multiple countries",
-          "additionalItems": false,
           "items": {
             "type": "object",
             "additionalProperties": true,
@@ -256,7 +264,6 @@
     "work": {
       "type": "array",
       "description": "Employment history including current and previous positions",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -365,7 +372,6 @@
           "highlights": {
             "type": "array",
             "description": "Notable achievements and accomplishments in this role",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Individual achievement or accomplishment"
@@ -374,7 +380,6 @@
           "positions": {
             "type": "array",
             "description": "Multiple roles held at the same organization over time, capturing career progression such as promotions. Use this to avoid repeating organization details (name, location, url) for each role. The top-level 'position', 'startDate', 'endDate', 'summary', and 'highlights' fields remain valid for single-role entries; prefer either the singular fields or this array, not both, for the same information.",
-            "additionalItems": false,
             "items": {
               "type": "object",
               "additionalProperties": true,
@@ -407,7 +412,6 @@
                 "highlights": {
                   "type": "array",
                   "description": "Notable achievements and accomplishments in this specific role",
-                  "additionalItems": false,
                   "items": {
                     "type": "string",
                     "description": "Individual achievement or accomplishment"
@@ -422,7 +426,6 @@
     "volunteer": {
       "type": "array",
       "description": "Volunteer work and community involvement activities",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -459,7 +462,6 @@
           "highlights": {
             "type": "array",
             "description": "Key accomplishments and impact made through volunteer work",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Specific achievement or contribution"
@@ -471,7 +473,6 @@
     "education": {
       "type": "array",
       "description": "Academic qualifications and educational background",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -532,7 +533,6 @@
           "courses": {
             "type": "array",
             "description": "Relevant modules, courses, or subjects studied",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Course name or code"
@@ -544,7 +544,6 @@
     "awards": {
       "type": "array",
       "description": "Professional awards, honours, and recognitions received",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -575,7 +574,6 @@
     "certificates": {
       "type": "array",
       "description": "Professional certifications and accreditations obtained",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -603,7 +601,6 @@
     "publications": {
       "type": "array",
       "description": "Published works including papers, articles, and books",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -635,7 +632,6 @@
     "skills": {
       "type": "array",
       "description": "Technical and professional competencies",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -660,7 +656,6 @@
           "keywords": {
             "type": "array",
             "description": "Specific technologies, tools, or techniques within this skill area",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Technology or tool name"
@@ -672,7 +667,6 @@
     "tools": {
       "type": "array",
       "description": "Specific tools, software, and platforms used professionally",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -713,7 +707,6 @@
     "languages": {
       "type": "array",
       "description": "Languages spoken and proficiency levels",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -736,7 +729,6 @@
     "interests": {
       "type": "array",
       "description": "Personal interests and hobbies outside of work",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -752,7 +744,6 @@
           "keywords": {
             "type": "array",
             "description": "Specific topics or activities within this interest",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Specific topic or activity"
@@ -764,7 +755,6 @@
     "references": {
       "type": "array",
       "description": "Professional references and testimonials",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -783,7 +773,6 @@
     "projects": {
       "type": "array",
       "description": "Personal and professional projects undertaken",
-      "additionalItems": false,
       "items": {
         "type": "object",
         "additionalProperties": true,
@@ -803,7 +792,6 @@
           "highlights": {
             "type": "array",
             "description": "Key features, achievements, or outcomes of the project",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Individual highlight or achievement"
@@ -812,7 +800,6 @@
           "keywords": {
             "type": "array",
             "description": "Technologies, methodologies, or tools used in the project",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Technology or tool name"
@@ -834,7 +821,6 @@
           "roles": {
             "type": "array",
             "description": "Roles held or responsibilities taken in the project",
-            "additionalItems": false,
             "items": {
               "type": "string",
               "description": "Role or responsibility"
@@ -887,8 +873,7 @@
       }
     }
   },
-  "title": "Schema Resume v1.2.0",
+  "title": "Schema Resume v1.3.0",
   "description": "Self-hosted JSON-LD schema for CV/Resume parsing and validation with work authorization and tools tracking",
-  "type": "object",
-  "version": "1.2.0"
+  "type": "object"
 }

@@ -27,6 +27,11 @@
       "@type": "xsd:string"
     },
     
+    "demographics": {
+      "@id": "schema:Person",
+      "@type": "@id"
+    },
+    
     "age": {
       "@id": "schema:age",
       "@type": "xsd:integer"
