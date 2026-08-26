@@ -47,9 +47,9 @@
     "ajv-cli": "^5.0.0",
     "ajv-formats": "^3.0.1",
     "chart.js": "^4.5.1",
-    "esbuild": "^0.28.1",
-    "lucide-static": "^1.28.0",
-    "mermaid": "^11.16.1"
+    "esbuild": "^0.28.2",
+    "lucide-static": "^1.33.0",
+    "mermaid": "^11.17.0"
   },
   "engines": {
     "node": ">=20.0.0"
