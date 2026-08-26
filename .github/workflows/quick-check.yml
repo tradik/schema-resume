@@ -22,13 +22,13 @@ jobs:
       
       - name: Lint all schemas
         run: |
-          chmod +x lint-schemas.py
-          python3 lint-schemas.py || exit 1
+          chmod +x tools/lint-schemas.py
+          python3 tools/lint-schemas.py || exit 1
       
       - name: Compare schemas
         run: |
-          chmod +x compare-schemas.py
-          python3 compare-schemas.py
+          chmod +x tools/compare-schemas.py
+          python3 tools/compare-schemas.py
       
       - name: Check JSON syntax
         run: |

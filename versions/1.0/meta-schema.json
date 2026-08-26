@@ -1,0 +1,257 @@
+{
+  "$schema": "https://tradik.github.io/schema-resume/meta-schema.json",
+  "$id": "https://tradik.github.io/schema-resume/meta-schema.json",
+  "title": "Schema Resume Meta-Schema",
+  "description": "Self-hosted meta-schema providing validation rules for resume documents without external dependencies",
+  "type": "object",
+  "definitions": {
+    "schemaArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#" }
+    },
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonNegativeIntegerDefault0": {
+      "allOf": [
+        { "$ref": "#/definitions/nonNegativeInteger" },
+        { "default": 0 }
+      ]
+    },
+    "simpleTypes": {
+      "enum": [
+        "array",
+        "boolean",
+        "integer",
+        "null",
+        "number",
+        "object",
+        "string"
+      ]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "default": []
+    }
+  },
+  "properties": {
+    "$id": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "$ref": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "$comment": {
+      "type": "string"
+    },
+    "@context": {
+      "description": "JSON-LD context for semantic web integration"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title for the schema"
+    },
+    "description": {
+      "type": "string",
+      "description": "Explanatory text describing the purpose or usage"
+    },
+    "default": {
+      "description": "Default value for this property"
+    },
+    "readOnly": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indicates if the property is read-only"
+    },
+    "examples": {
+      "type": "array",
+      "items": true,
+      "description": "Example values demonstrating valid data"
+    },
+    "multipleOf": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Value must be divisible by this number"
+    },
+    "maximum": {
+      "type": "number",
+      "description": "Maximum allowed value (inclusive)"
+    },
+    "exclusiveMaximum": {
+      "type": "number",
+      "description": "Maximum allowed value (exclusive)"
+    },
+    "minimum": {
+      "type": "number",
+      "description": "Minimum allowed value (inclusive)"
+    },
+    "exclusiveMinimum": {
+      "type": "number",
+      "description": "Minimum allowed value (exclusive)"
+    },
+    "maxLength": { 
+      "$ref": "#/definitions/nonNegativeInteger",
+      "description": "Maximum length for string values"
+    },
+    "minLength": { 
+      "$ref": "#/definitions/nonNegativeIntegerDefault0",
+      "description": "Minimum length for string values"
+    },
+    "pattern": {
+      "type": "string",
+      "format": "regex",
+      "description": "Regular expression pattern that string must match"
+    },
+    "additionalItems": { 
+      "$ref": "#",
+      "description": "Schema for additional array items beyond defined positions"
+    },
+    "items": {
+      "anyOf": [
+        { "$ref": "#" },
+        { "$ref": "#/definitions/schemaArray" }
+      ],
+      "default": true,
+      "description": "Schema for array items"
+    },
+    "maxItems": { 
+      "$ref": "#/definitions/nonNegativeInteger",
+      "description": "Maximum number of items allowed in array"
+    },
+    "minItems": { 
+      "$ref": "#/definitions/nonNegativeIntegerDefault0",
+      "description": "Minimum number of items required in array"
+    },
+    "uniqueItems": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether all array items must be unique"
+    },
+    "contains": { 
+      "$ref": "#",
+      "description": "Schema that at least one array item must match"
+    },
+    "maxProperties": { 
+      "$ref": "#/definitions/nonNegativeInteger",
+      "description": "Maximum number of properties allowed in object"
+    },
+    "minProperties": { 
+      "$ref": "#/definitions/nonNegativeIntegerDefault0",
+      "description": "Minimum number of properties required in object"
+    },
+    "required": { 
+      "$ref": "#/definitions/stringArray",
+      "description": "List of property names that must be present"
+    },
+    "additionalProperties": { 
+      "$ref": "#",
+      "description": "Schema for properties not explicitly defined"
+    },
+    "definitions": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#" },
+      "default": {},
+      "description": "Reusable schema definitions referenced elsewhere"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#" },
+      "default": {},
+      "description": "Schema definitions for object properties"
+    },
+    "patternProperties": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#" },
+      "propertyNames": { "format": "regex" },
+      "default": {},
+      "description": "Schema for properties matching regex patterns"
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          { "$ref": "#" },
+          { "$ref": "#/definitions/stringArray" }
+        ]
+      },
+      "description": "Property dependencies and requirements"
+    },
+    "propertyNames": { 
+      "$ref": "#",
+      "description": "Schema that all property names must match"
+    },
+    "const": {
+      "description": "Exact value that must match"
+    },
+    "enum": {
+      "type": "array",
+      "items": true,
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "List of allowed values"
+    },
+    "type": {
+      "anyOf": [
+        { "$ref": "#/definitions/simpleTypes" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/definitions/simpleTypes" },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      ],
+      "description": "Expected data type or types"
+    },
+    "format": { 
+      "type": "string",
+      "description": "Semantic format for string validation (email, uri, date, etc.)"
+    },
+    "contentMediaType": { 
+      "type": "string",
+      "description": "Media type of string content"
+    },
+    "contentEncoding": { 
+      "type": "string",
+      "description": "Encoding used for string content"
+    },
+    "if": { 
+      "$ref": "#",
+      "description": "Conditional schema - if this matches, then 'then' applies"
+    },
+    "then": { 
+      "$ref": "#",
+      "description": "Schema to apply when 'if' condition is met"
+    },
+    "else": { 
+      "$ref": "#",
+      "description": "Schema to apply when 'if' condition is not met"
+    },
+    "allOf": { 
+      "$ref": "#/definitions/schemaArray",
+      "description": "Value must match all of these schemas"
+    },
+    "anyOf": { 
+      "$ref": "#/definitions/schemaArray",
+      "description": "Value must match at least one of these schemas"
+    },
+    "oneOf": { 
+      "$ref": "#/definitions/schemaArray",
+      "description": "Value must match exactly one of these schemas"
+    },
+    "not": { 
+      "$ref": "#",
+      "description": "Value must not match this schema"
+    }
+  },
+  "default": true
+}

@@ -1,3 +1,12 @@
+---
+title: "Project Summary"
+slug: "project-summary"
+status: "publish"
+type: "page"
+description: "What Schema Resume is, what ships with it, and how the specification, the validator packages and the browser tools fit together."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Schema Resume - Project Summary
 
 ## 🎯 Project Overview
@@ -40,7 +49,6 @@ schema-resume/
 ├── CONTRIBUTING.md               # Contribution guidelines
 ├── SETUP.md                      # Setup instructions
 ├── JSON-LD.md                    # JSON-LD integration guide
-├── STYLE_GUIDE.md               # Design and accessibility guide
 ├── LICENSE                       # MIT License
 ├── .gitignore                    # Git ignore rules
 ├── .dockerignore                 # Docker ignore rules

@@ -42,13 +42,13 @@ Before pushing, you can run the same checks locally:
 
 ```bash
 # Run linting
-./run-lint.sh
+./tools/run-lint.sh
 
 # Run comparison
-./run-comparison.sh
+./tools/run-comparison.sh
 
 # Run both (linting, comparison, and the work[].positions feature tests)
-./validate-all.sh
+./tools/validate-all.sh
 ```
 
 > **Note:** the `work[].positions` feature tests require the `jsonschema` Python

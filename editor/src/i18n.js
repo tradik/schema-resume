@@ -135,13 +135,16 @@ class I18nManager {
             metaDesc.content = this.t('app.description');
         }
 
-        // Update header title
-        const appTitle = document.querySelector('.app-title');
+        // Update header title.
+        //
+        // This used to walk to the <h1>'s last child node and write to it if it
+        // was a text node. The <h1> wraps its contents in an <a>, so the last
+        // child is the whitespace after that link — writing the title there
+        // appended a second copy and the header read "Resume Editor Resume
+        // Editor". The text now has an element of its own.
+        const appTitle = document.querySelector('.app-title-text');
         if (appTitle) {
-            const titleText = appTitle.childNodes[appTitle.childNodes.length - 1];
-            if (titleText && titleText.nodeType === Node.TEXT_NODE) {
-                titleText.textContent = ' ' + this.t('app.title');
-            }
+            appTitle.textContent = this.t('app.title');
         }
 
         // Update template selector

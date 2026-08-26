@@ -1,0 +1,316 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://tradik.github.io/schema-resume/",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    
+    "Resume": {
+      "@id": "schema:Person",
+      "@type": "@id"
+    },
+    
+    "basics": {
+      "@id": "schema:Person",
+      "@type": "@id"
+    },
+    
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
+    "label": {
+      "@id": "schema:jobTitle",
+      "@type": "xsd:string"
+    },
+    
+    "image": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    
+    "phone": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    
+    "summary": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    
+    "location": {
+      "@id": "schema:address",
+      "@type": "@id"
+    },
+    
+    "address": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    
+    "postalCode": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    
+    "countryCode": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    
+    "region": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    
+    "profiles": {
+      "@id": "schema:sameAs",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "network": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
+    "username": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    
+    "work": {
+      "@id": "schema:worksFor",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "position": {
+      "@id": "schema:jobTitle",
+      "@type": "xsd:string"
+    },
+    
+    "startDate": {
+      "@id": "schema:startDate",
+      "@type": "xsd:date"
+    },
+    
+    "endDate": {
+      "@id": "schema:endDate",
+      "@type": "xsd:date"
+    },
+    
+    "highlights": {
+      "@id": "schema:description",
+      "@type": "xsd:string",
+      "@container": "@list"
+    },
+    
+    "volunteer": {
+      "@id": "schema:performerIn",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "organization": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
+    "education": {
+      "@id": "schema:alumniOf",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "institution": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
+    "area": {
+      "@id": "schema:educationalCredentialAwarded",
+      "@type": "xsd:string"
+    },
+    
+    "studyType": {
+      "@id": "schema:educationalLevel",
+      "@type": "xsd:string"
+    },
+    
+    "score": {
+      "@id": "schema:grade",
+      "@type": "xsd:string"
+    },
+    
+    "courses": {
+      "@id": "schema:courseCode",
+      "@type": "xsd:string",
+      "@container": "@list"
+    },
+    
+    "awards": {
+      "@id": "schema:award",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
+    "date": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:date"
+    },
+    
+    "awarder": {
+      "@id": "schema:sourceOrganization",
+      "@type": "xsd:string"
+    },
+    
+    "certificates": {
+      "@id": "schema:hasCredential",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "issuer": {
+      "@id": "schema:issuedBy",
+      "@type": "xsd:string"
+    },
+    
+    "publications": {
+      "@id": "schema:publishedBy",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "publisher": {
+      "@id": "schema:publisher",
+      "@type": "xsd:string"
+    },
+    
+    "releaseDate": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:date"
+    },
+    
+    "skills": {
+      "@id": "schema:knowsAbout",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "level": {
+      "@id": "schema:proficiencyLevel",
+      "@type": "xsd:string"
+    },
+    
+    "keywords": {
+      "@id": "schema:keywords",
+      "@type": "xsd:string",
+      "@container": "@list"
+    },
+    
+    "languages": {
+      "@id": "schema:knowsLanguage",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "language": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    
+    "fluency": {
+      "@id": "schema:proficiencyLevel",
+      "@type": "xsd:string"
+    },
+    
+    "interests": {
+      "@id": "schema:hasOccupation",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "references": {
+      "@id": "schema:review",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "reference": {
+      "@id": "schema:reviewBody",
+      "@type": "xsd:string"
+    },
+    
+    "projects": {
+      "@id": "schema:project",
+      "@type": "@id",
+      "@container": "@list"
+    },
+    
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    
+    "roles": {
+      "@id": "schema:roleName",
+      "@type": "xsd:string",
+      "@container": "@list"
+    },
+    
+    "entity": {
+      "@id": "schema:affiliation",
+      "@type": "xsd:string"
+    },
+    
+    "type": {
+      "@id": "rdf:type",
+      "@type": "@id"
+    },
+    
+    "meta": {
+      "@id": "schema:about",
+      "@type": "@id"
+    },
+    
+    "canonical": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    
+    "version": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    
+    "lastModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

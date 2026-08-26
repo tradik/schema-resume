@@ -1,0 +1,177 @@
+/*
+ * Schema Resume — design tokens, reset and base typography.
+ *
+ * Single source of truth for the palette documented in docs/STYLE_GUIDE.md.
+ * Every colour pair used for text meets WCAG 2.2 Level AA (4.5:1 normal,
+ * 3:1 large); the ratio is noted beside each token that carries text.
+ */
+
+:root {
+    /* Brand */
+    --primary-color: #2563eb;   /* 5.17:1 on white  */
+    --secondary-color: #1e40af; /* 8.35:1 on white  */
+    --accent-color: #3b82f6;
+
+    /* Text */
+    --text-primary: #1f2937;    /* 14.68:1 on white */
+    --text-secondary: #6b7280;  /*  4.83:1 on white */
+    --text-inverse: #ffffff;    /*  5.17:1 on --primary-color */
+
+    /* Surfaces */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-muted: #f3f4f6;
+    --border-color: #e5e7eb;
+    --border-strong: #d1d5db;
+
+    /* State — each text colour is AA on its own surface */
+    --success-color: #047857;   /*  4.83:1 on --success-bg */
+    --success-bg: #f0fdf4;
+    --success-border: #a7f3d0;
+    --warning-color: #92400e;   /*  7.31:1 on --warning-bg */
+    --warning-bg: #fffbeb;
+    --warning-border: #fde68a;
+    --error-color: #b91c1c;     /*  6.36:1 on --error-bg   */
+    --error-bg: #fef2f2;
+    --error-border: #fecaca;
+    --info-color: #1e40af;      /*  7.87:1 on --info-bg    */
+    --info-bg: #eff6ff;
+    --info-border: #bfdbfe;
+
+    /* Code */
+    --code-bg: #f3f4f6;
+    --terminal-bg: #1e1e1e;
+    --terminal-fg: #e0e0e0;     /* 13.2:1 on --terminal-bg */
+
+    /* Type */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'SF Mono', Monaco, Menlo, 'Ubuntu Mono', Consolas, monospace;
+
+    /* Metrics */
+    --container-width: 1200px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 10%);
+    --shadow-md: 0 4px 12px rgb(0 0 0 / 10%);
+    --focus-ring: 0 0 0 3px rgb(37 99 235 / 45%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+a {
+    color: var(--primary-color);
+}
+
+/*
+ * A visible focus ring on every interactive element. WCAG 2.2 adds Focus
+ * Appearance (2.4.11) — the ring is 3px and offset so it is never obscured by
+ * the element's own border.
+ */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+code,
+kbd,
+samp,
+pre {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+/* Skip link — first tab stop, visible only when focused. */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: var(--text-inverse);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}

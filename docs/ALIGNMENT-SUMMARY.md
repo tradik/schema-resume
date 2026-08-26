@@ -1,3 +1,12 @@
+---
+title: "File Alignment Summary"
+slug: "alignment-summary"
+status: "publish"
+type: "page"
+description: "How schema.json, meta-schema.json, context.jsonld and the XSD stay aligned on Schema.org @type support, and how to verify it."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Schema Resume - File Alignment Summary
 
 This document verifies that all files in the Schema Resume project are aligned with the `@type` additions for Schema.org validation support.

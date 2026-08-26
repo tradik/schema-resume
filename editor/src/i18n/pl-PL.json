@@ -171,17 +171,21 @@
         "label": "Tytuł",
         "description": "Tytuł stanowiska lub zawodowy tytuł osoby"
       },
-      "age": {
-        "label": "Wiek",
-        "description": "Wiek osoby w latach"
-      },
-      "dateOfBirth": {
-        "label": "Data urodzenia",
-        "description": "Data urodzenia w formacie ISO 8601"
-      },
-      "gender": {
-        "label": "Płeć",
-        "description": "Tożsamość płciowa osoby"
+      "demographics": {
+        "label": "Demographics",
+        "description": "Protected characteristics. Omit unless the receiving market expects them — in the UK and most of the EU a CV should not carry age, date of birth or gender.",
+        "age": {
+          "label": "Wiek",
+          "description": "Wiek osoby w latach"
+        },
+        "dateOfBirth": {
+          "label": "Data urodzenia",
+          "description": "Data urodzenia w formacie ISO 8601"
+        },
+        "gender": {
+          "label": "Płeć",
+          "description": "Tożsamość płciowa osoby"
+        }
       },
       "keyAchievements": {
         "label": "Kluczowe osiągnięcia",

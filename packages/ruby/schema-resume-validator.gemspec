@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "schema-resume-validator"
-  spec.version       = "1.2.0"
+  spec.version       = "1.3.0"
   spec.authors       = ["Schema Resume", "Tradik"]
   spec.email         = ["info@schema-resume.org", "support@tradik.com"]
 
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   ]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "json-schema", "~> 4.0"
+  spec.add_dependency "json-schema", ">= 4.0", "< 7"
   spec.add_dependency "json", "~> 2.6"
 
   spec.add_development_dependency "rspec", "~> 3.12"

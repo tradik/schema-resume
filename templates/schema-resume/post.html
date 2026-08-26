@@ -1,0 +1,37 @@
+{{define "post.html"}}<!DOCTYPE html>
+<html lang="{{ if .Lang }}{{ .Lang }}{{ else }}en{{ end }}">
+<head>
+{{/*
+  Schema Resume publishes no blog. This role exists because ssg requires the
+  five standard templates and would otherwise scaffold a starter it does not
+  control; if posts are ever added, they render with the same chrome as pages.
+*/}}
+{{ $title := (printf "%s — Schema Resume" .Post.Title) }}
+    <title>{{ $title }}</title>
+{{ template "sr-head" (dict
+    "Title" $title
+    "Desc" (default .Post.Excerpt .Post.Description)
+    "Keywords" .Post.Keywords
+    "Canonical" (trimSuffix .Post.GetURL ".html")
+    "OgType" "article"
+    "Ctx" .) }}
+</head>
+<body>
+{{ template "sr-header" (dict "Current" (trimSuffix .Post.GetURL ".html") "Ctx" .) }}
+{{ template "sr-page-title" (dict "Heading" .Post.Title "Lead" .Post.Description) }}
+
+<div class="container">
+    <main class="surface prose" id="main-content">
+        <article>
+            <p class="colophon">
+                {{ if .Post.Date }}<time datetime="{{ .Post.Date.Format "2006-01-02" }}">{{ .Post.Date.Format "2 January 2006" }}</time>{{ end }}
+                {{ if .Post.ReadingTime }}· {{ .Post.ReadingTime }} min read{{ end }}
+            </p>
+            {{ .Post.Content | safeHTML }}
+        </article>
+    </main>
+</div>
+
+{{ template "sr-footer" . }}
+</body>
+</html>{{end}}

@@ -1,0 +1,35 @@
+{{define "category.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+{{ $title := (printf "%s — Schema Resume" .Name) }}
+    <title>{{ $title }}</title>
+{{ template "sr-head" (dict
+    "Title" $title
+    "Desc" (printf "Schema Resume pages filed under %s." .Name)
+    "Canonical" (printf "/%s/%s/" .Kind .Category.Slug)
+    "Ctx" .) }}
+</head>
+<body>
+{{ template "sr-header" (dict "Current" "" "Ctx" .) }}
+{{ template "sr-page-title" (dict
+    "Heading" .Name
+    "Lead" (printf "Everything filed under %s" .Name)) }}
+
+<div class="container">
+    <main class="surface" id="main-content">
+        <div class="feature-grid">
+            {{ range .Posts }}
+            <article class="feature-card">
+                <h2><a href="{{ trimSuffix .GetURL ".html" }}">{{ .Title }}</a></h2>
+                <p>{{ .Excerpt }}</p>
+            </article>
+            {{ else }}
+            <p>Nothing here yet.</p>
+            {{ end }}
+        </div>
+    </main>
+</div>
+
+{{ template "sr-footer" . }}
+</body>
+</html>{{end}}

@@ -1,3 +1,12 @@
+---
+title: "Validator Guide"
+slug: "validator-guide"
+status: "publish"
+type: "page"
+description: "How the online Schema Resume validator works, what it checks beyond JSON Schema, and how to run the same validation from the command line or CI."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # Schema Resume Validator
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-validator.html-blue.svg)](https://tradik.github.io/schema-resume/validator.html)

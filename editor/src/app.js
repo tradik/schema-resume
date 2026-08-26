@@ -99,32 +99,27 @@ class ResumeEditor {
      * Load JSON Resume Schema
      */
     async loadSchema() {
+        // The editor is published alongside the specification, so /schema.json
+        // is the same origin and the same file the rest of the site documents.
+        //
+        // It used to fetch https://schema-resume.org/schema.json first and fall
+        // back to a copy in editor/. That made a cross-origin request on every
+        // load, validated local development against production, and left a
+        // second copy of the schema to drift — which it had: editor/schema.json
+        // was missing basics.legalNote. There is one schema.json now.
         try {
-            // Try loading from external URL first
-            console.log('Loading schema from external URL...');
-            const response = await fetch('https://schema-resume.org/schema.json');
+            const response = await fetch('/schema.json');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             this.schema = await response.json();
             this.formGenerator = new FormGenerator(this.schema, this.i18n);
-            console.log('✓ Schema loaded successfully from external URL');
+            console.log('✓ Schema loaded');
         } catch (error) {
-            console.warn('Failed to load external schema:', error);
-            console.log('Attempting to load local schema.json...');
-
-            try {
-                // Fallback to local schema.json
-                const localResponse = await fetch('schema.json');
-                if (!localResponse.ok) throw new Error(`HTTP ${localResponse.status}`);
-                this.schema = await localResponse.json();
-                this.formGenerator = new FormGenerator(this.schema, this.i18n);
-                console.log('✓ Schema loaded successfully from local file');
-            } catch (localError) {
-                console.error('Failed to load local schema:', localError);
-                alert('Failed to load schema.json from both external and local sources. The editor may not work properly.');
-                // Set a minimal fallback schema to prevent complete failure
-                this.schema = { properties: {} };
-                this.formGenerator = new FormGenerator(this.schema, this.i18n);
-            }
+            console.error('Failed to load /schema.json:', error);
+            alert('Failed to load the resume schema. The editor cannot build its form without it — check your connection and reload.');
+            // A minimal schema keeps the shell usable instead of throwing
+            // during construction.
+            this.schema = { properties: {} };
+            this.formGenerator = new FormGenerator(this.schema, this.i18n);
         }
     }
 
@@ -2258,10 +2253,9 @@ class ResumeEditor {
             // Store the code for copying
             this.currentMermaidCode = mermaidCode;
 
-            // Wait for mermaid to be available
-            if (!window.mermaid) {
-                throw new Error('Mermaid library not loaded');
-            }
+            // Mermaid is fetched on first use from editor/vendor/ rather than
+            // downloaded on every page load — see src/lazy-libs.js.
+            await window.lazyLibs.mermaid();
 
             // Create a unique ID for this diagram
             const diagramId = 'timeline-' + Date.now();
@@ -2625,6 +2619,10 @@ class ResumeEditor {
 
             // Get person's name
             const name = this.resumeData.basics?.name || 'Your';
+
+            // Chart.js is fetched on first use from editor/vendor/ rather than
+            // downloaded on every page load — see src/lazy-libs.js.
+            const Chart = await window.lazyLibs.chart();
 
             // Create Chart.js horizontal bar chart
             const ctx = canvas.getContext('2d');

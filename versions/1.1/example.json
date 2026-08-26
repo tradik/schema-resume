@@ -1,0 +1,875 @@
+{
+  "@context": "https://schema-resume.org/schema.json",
+  "$schema": "https://schema-resume.org/schema.json",
+  "basics": {
+    "@type": "schema:Person",
+    "name": "Eleanor Fitzwilliam",
+    "label": "Lead DevOps Engineer",
+    "image": "https://avatars.example.co.uk/efitzwilliam.jpg",
+    "email": "e.fitzwilliam@techmail.co.uk",
+    "phone": "+44 7700 900123",
+    "url": "https://eleanor-fitzwilliam.dev",
+    "summary": "Experienced DevOps engineer with 8+ years building scalable cloud infrastructure. Passionate about automation, infrastructure as code, and fostering collaborative engineering cultures.",
+    "keyAchievements": [
+      "Reduced infrastructure costs by 38% through automated resource optimization and right-sizing strategies",
+      "Led migration of 50+ microservices to Kubernetes, achieving 99.97% uptime",
+      "Implemented zero-downtime deployment pipeline serving 2M+ daily active users",
+      "Mentored and developed 4 junior engineers who advanced to mid-level positions",
+      "Designed disaster recovery system with 15-minute RTO for financial services platform",
+      "Automated compliance reporting reducing audit preparation time by 75%"
+    ],
+    "coreCompetencies": [
+      "Cloud Architecture & Infrastructure Design",
+      "Container Orchestration (Kubernetes, Docker)",
+      "Infrastructure as Code (Terraform, CloudFormation)",
+      "CI/CD Pipeline Development",
+      "Monitoring & Observability",
+      "Security & Compliance Automation",
+      "Team Leadership & Mentoring",
+      "AWS, Azure, GCP Multi-Cloud Expertise",
+      "Python, Go, Bash Scripting"
+    ],
+    "legalNote": {
+      "text": "I consent to my personal data being processed in accordance with GDPR and UK Data Protection Act 2018 for recruitment purposes.",
+      "country": "GB",
+      "type": "gdpr_consent",
+      "url": "https://eleanor-fitzwilliam.dev/privacy-policy"
+    },
+    "location": {
+      "@type": "schema:PostalAddress",
+      "streetAddress": "42 Kensington Gardens\nFlat 3B",
+      "postalCode": "W2 4RU",
+      "city": "London",
+      "countryCode": "GB",
+      "region": "Greater London"
+    },
+    "profiles": [
+      {
+        "@type": "schema:ContactPoint",
+        "network": "LinkedIn",
+        "username": "eleanor-fitzwilliam",
+        "url": "https://linkedin.com/in/eleanor-fitzwilliam"
+      },
+      {
+        "@type": "schema:ContactPoint",
+        "network": "GitHub",
+        "username": "efitzdev",
+        "url": "https://github.com/efitzdev"
+      },
+      {
+        "@type": "schema:ContactPoint",
+        "network": "Twitter",
+        "username": "ellie_devops",
+        "url": "https://twitter.com/ellie_devops"
+      }
+    ],
+    "nationalities": [
+      {
+        "@type": "schema:Country",
+        "country": "GB",
+        "born": true
+      }
+    ],
+    "workAuthorization": [
+      {
+        "country": "GB",
+        "status": "Citizen",
+        "rightToWork": true
+      },
+      {
+        "country": "IE",
+        "status": "EU Citizen Rights",
+        "rightToWork": true,
+        "notes": "Right to work through UK-Ireland Common Travel Area"
+      },
+      {
+        "country": "US",
+        "status": "Work Visa",
+        "rightToWork": false,
+        "visaType": "H-1B Skilled Worker Visa",
+        "validFrom": "2023-08-15",
+        "validTo": "2026-08-15"
+      }
+    ]
+  },
+  "work": [
+    {
+      "@type": "schema:Organization",
+      "name": "CloudScale Technologies Ltd",
+      "industry": "Cloud Computing & Enterprise Software",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "15 Deansgate Square\nSuite 400",
+        "city": "Manchester",
+        "region": "Greater Manchester",
+        "postalCode": "M3 1BJ",
+        "countryCode": "GB",
+        "country": "United Kingdom"
+      },
+      "workLocation": "Manchester, UK",
+      "contactDetails": {
+        "email": "careers@cloudscale.tech",
+        "phone": "+44 161 123 4567",
+        "fax": "+44 161 123 4568"
+      },
+      "description": "Enterprise cloud solutions provider",
+      "position": "Lead DevOps Engineer",
+      "workType": "full-time",
+      "url": "https://cloudscale.tech",
+      "startDate": "2021-06",
+      "summary": "Leading a team of 6 engineers in designing and implementing cloud infrastructure for enterprise clients across Europe",
+      "highlights": [
+        "Reduced infrastructure costs by 38% through automated resource optimization",
+        "Implemented zero-downtime deployment pipeline serving 2M+ daily users",
+        "Mentored 4 junior engineers who were promoted to mid-level roles",
+        "Migrated legacy monolith to microservices architecture on Kubernetes"
+      ]
+    },
+    {
+      "@type": "schema:Organization",
+      "name": "FinTech Innovations plc",
+      "industry": "Financial Technology",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "22 George Street",
+        "city": "Edinburgh",
+        "region": "Scotland",
+        "postalCode": "EH2 2PQ",
+        "countryCode": "GB",
+        "country": "United Kingdom"
+      },
+      "workLocation": "Edinburgh, Scotland",
+      "contactDetails": {
+        "email": "info@fintechinnovations.co.uk",
+        "phone": "+44 131 555 7890"
+      },
+      "description": "Financial technology startup",
+      "position": "Senior DevOps Engineer",
+      "workType": "remote",
+      "url": "https://fintechinnovations.co.uk",
+      "startDate": "2018-03",
+      "endDate": "2021-05",
+      "summary": "Built and maintained cloud infrastructure for payment processing platform handling £50M+ in daily transactions",
+      "highlights": [
+        "Achieved 99.97% uptime across all production services",
+        "Designed disaster recovery system with 15-minute RTO",
+        "Automated compliance reporting reducing audit preparation time by 75%",
+        "Implemented GitOps workflow improving deployment frequency by 400%"
+      ]
+    },
+    {
+      "@type": "schema:Organization",
+      "name": "Digital Solutions UK",
+      "industry": "Web Development & Digital Services",
+      "location": {
+        "@type": "schema:PostalAddress",
+        "address": "45 Colston Street",
+        "city": "Bristol",
+        "region": "South West England",
+        "postalCode": "BS1 5AP",
+        "countryCode": "GB",
+        "country": "United Kingdom"
+      },
+      "workLocation": "Bristol, UK",
+      "contactDetails": {
+        "email": "contact@digitalsolutions-uk.com",
+        "phone": "+44 117 456 7890",
+        "fax": "+44 117 456 7891"
+      },
+      "description": "Web development agency",
+      "position": "DevOps Engineer",
+      "workType": "onsite",
+      "url": "https://digitalsolutions-uk.com",
+      "startDate": "2016-01",
+      "endDate": "2018-02",
+      "summary": "Managed infrastructure for 20+ client projects and internal development platforms",
+      "highlights": [
+        "Built CI/CD pipelines reducing deployment time from hours to minutes",
+        "Containerized 15 legacy applications improving resource utilization",
+        "Established monitoring and alerting system across all client projects"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "@type": "schema:Organization",
+      "organization": "Code Club UK",
+      "position": "Technical Mentor",
+      "url": "https://codeclub.org.uk",
+      "startDate": "2019-09",
+      "summary": "Teaching programming fundamentals to children aged 9-13 at local community centre",
+      "highlights": [
+        "Delivered weekly coding sessions to 25+ students",
+        "Developed curriculum materials for Python and web development",
+        "Helped 12 students complete their first software projects"
+      ]
+    },
+    {
+      "@type": "schema:Organization",
+      "organization": "Women in Tech Manchester",
+      "position": "Speaker and Organizer",
+      "url": "https://womenintech-mcr.org.uk",
+      "startDate": "2020-02",
+      "summary": "Supporting women entering and advancing in technology careers",
+      "highlights": [
+        "Organized quarterly meetups with 50-100 attendees",
+        "Delivered talks on DevOps practices and career development",
+        "Mentored 8 women transitioning into tech roles"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "@type": "schema:EducationalOrganization",
+      "institution": "University of Edinburgh",
+      "url": "https://ed.ac.uk",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science (Honours)",
+      "degree": "BSc (Hons) Computer Science",
+      "description": "Focused on distributed systems, cloud computing, and software engineering. Completed final year dissertation on microservices architecture patterns.",
+      "startDate": "2012-09",
+      "endDate": "2016-06",
+      "score": "First Class Honours (78%)",
+      "gpa": "3.9/4.0",
+      "location": "Edinburgh, Scotland",
+      "country": "GB",
+      "courses": [
+        "CS3102 - Distributed Systems",
+        "CS4103 - Cloud Computing Architecture",
+        "CS3201 - Software Engineering Principles",
+        "CS4204 - Computer Security"
+      ]
+    },
+    {
+      "@type": "schema:EducationalOrganization",
+      "institution": "King Edward VI Grammar School",
+      "school": "King Edward VI Grammar School",
+      "url": "https://kegs.org.uk",
+      "area": "Mathematics, Computer Science, Physics",
+      "studyType": "A-Levels",
+      "startDate": "2010-09",
+      "endDate": "2012-06",
+      "score": "A*A*A",
+      "location": "Chelmsford, Essex",
+      "country": "GB",
+      "courses": []
+    }
+  ],
+  "awards": [
+    {
+      "@type": "schema:Award",
+      "title": "DevOps Excellence Award",
+      "date": "2023-11",
+      "awarder": "CloudScale Technologies Ltd",
+      "summary": "Recognized for outstanding contribution to infrastructure modernization and team leadership"
+    },
+    {
+      "@type": "schema:Award",
+      "title": "Best Technical Innovation",
+      "date": "2020-03",
+      "awarder": "FinTech UK Awards",
+      "summary": "Awarded for implementing automated compliance monitoring system"
+    },
+    {
+      "@type": "schema:Award",
+      "title": "Dean's List",
+      "date": "2015-06",
+      "awarder": "University of Edinburgh",
+      "summary": "Academic excellence in Computer Science programme"
+    }
+  ],
+  "certificates": [
+    {
+      "@type": "schema:EducationalOccupationalCredential",
+      "name": "AWS Certified Solutions Architect - Professional",
+      "date": "2023-07",
+      "url": "https://aws.amazon.com/certification/",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "@type": "schema:EducationalOccupationalCredential",
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "date": "2022-11",
+      "url": "https://www.cncf.io/certification/cka/",
+      "issuer": "Cloud Native Computing Foundation"
+    },
+    {
+      "@type": "schema:EducationalOccupationalCredential",
+      "name": "HashiCorp Certified: Terraform Associate",
+      "date": "2021-09",
+      "url": "https://www.hashicorp.com/certification/terraform-associate",
+      "issuer": "HashiCorp"
+    },
+    {
+      "@type": "schema:EducationalOccupationalCredential",
+      "name": "Google Cloud Professional Cloud Architect",
+      "date": "2020-04",
+      "url": "https://cloud.google.com/certification/cloud-architect",
+      "issuer": "Google Cloud"
+    }
+  ],
+  "publications": [
+    {
+      "@type": "schema:Article",
+      "name": "Infrastructure as Code: Best Practices for Enterprise Deployments",
+      "publisher": "DevOps Weekly",
+      "releaseDate": "2023-05",
+      "url": "https://devopsweekly.co.uk/articles/iac-best-practices",
+      "summary": "Comprehensive guide covering Terraform, Ansible, and CloudFormation patterns for large-scale infrastructure management"
+    },
+    {
+      "@type": "schema:Article",
+      "name": "Zero-Downtime Deployments in Kubernetes",
+      "publisher": "Cloud Architecture Journal",
+      "releaseDate": "2022-08",
+      "url": "https://cloudarchjournal.com/zero-downtime-k8s",
+      "summary": "Technical deep-dive into rolling updates, blue-green deployments, and canary releases in production Kubernetes environments"
+    }
+  ],
+  "skills": [
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Project Management",
+      "level": "Advanced",
+      "yearsOfExperience": 6,
+      "comment": "Led multiple cross-functional teams using Agile methodologies",
+      "keywords": [
+        "Scrum",
+        "Agile Project Management",
+        "Sprint Planning",
+        "Backlog Management",
+        "Risk Management"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Financial Management",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Managed infrastructure budgets and cost optimization initiatives",
+      "keywords": [
+        "Budget Planning",
+        "Cost Optimization",
+        "Resource Allocation",
+        "Financial Forecasting",
+        "ROI Analysis"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Strategic Planning",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Developed long-term technical roadmaps and infrastructure strategies",
+      "keywords": [
+        "Technical Roadmap Development",
+        "Capacity Planning",
+        "Technology Evaluation",
+        "Strategic Decision Making",
+        "Vendor Management"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Documentation",
+      "level": "Expert",
+      "yearsOfExperience": 8,
+      "comment": "Created comprehensive technical documentation and knowledge bases",
+      "keywords": [
+        "Technical Writing",
+        "API Documentation",
+        "Architecture Diagrams",
+        "Runbooks",
+        "Knowledge Base Management"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Mentoring & Coaching",
+      "level": "Advanced",
+      "yearsOfExperience": 6,
+      "comment": "Mentored junior engineers and led technical training programs",
+      "keywords": [
+        "Technical Mentoring",
+        "Career Development",
+        "Knowledge Transfer",
+        "Training Program Development",
+        "Performance Coaching"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Stakeholder Communication",
+      "level": "Advanced",
+      "yearsOfExperience": 6,
+      "comment": "Effectively communicated technical concepts to non-technical stakeholders",
+      "keywords": [
+        "Executive Presentations",
+        "Technical Communication",
+        "Requirement Gathering",
+        "Status Reporting",
+        "Conflict Resolution"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Team Leadership",
+      "level": "Advanced",
+      "yearsOfExperience": 4,
+      "comment": "Led engineering teams and fostered collaborative work environments",
+      "keywords": [
+        "Team Building",
+        "Performance Management",
+        "Delegation",
+        "Motivation",
+        "Cross-functional Collaboration"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Stress Management",
+      "level": "Advanced",
+      "yearsOfExperience": 8,
+      "comment": "Maintained high performance during critical incidents and high-pressure situations",
+      "keywords": [
+        "Incident Response",
+        "Crisis Management",
+        "Time Management",
+        "Prioritization",
+        "Resilience"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Problem Solving",
+      "level": "Expert",
+      "yearsOfExperience": 8,
+      "comment": "Analytical approach to complex technical and organizational challenges",
+      "keywords": [
+        "Root Cause Analysis",
+        "Critical Thinking",
+        "Troubleshooting",
+        "Decision Making",
+        "Innovation"
+      ]
+    },
+    {
+      "@type": "schema:DefinedTerm",
+      "name": "Change Management",
+      "level": "Advanced",
+      "yearsOfExperience": 5,
+      "comment": "Successfully led organizational and technical transformation initiatives",
+      "keywords": [
+        "Process Improvement",
+        "Organizational Change",
+        "Adoption Strategy",
+        "Risk Mitigation",
+        "Continuous Improvement"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Terraform",
+      "group": "Infrastructure as Code",
+      "category": "Infrastructure as Code",
+      "yearsOfExperience": 7,
+      "level": "Expert",
+      "comment": "Primary IaC tool, authored 50+ reusable modules and contributed to open source",
+      "url": "https://www.terraform.io"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Kubernetes",
+      "group": "Container Orchestration",
+      "category": "Container Orchestration",
+      "yearsOfExperience": 6,
+      "level": "Expert",
+      "comment": "CKA certified, manage production clusters with 100+ nodes",
+      "url": "https://kubernetes.io"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "AWS",
+      "group": "Cloud Platforms",
+      "category": "Cloud Platforms",
+      "yearsOfExperience": 8,
+      "level": "Expert",
+      "comment": "Solutions Architect Professional certified, extensive experience across 30+ services",
+      "url": "https://aws.amazon.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Docker",
+      "group": "Container Orchestration",
+      "category": "Container Orchestration",
+      "yearsOfExperience": 7,
+      "level": "Expert",
+      "comment": "Containerized 100+ applications, optimized images for production use",
+      "url": "https://www.docker.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Prometheus",
+      "group": "Monitoring & Logging",
+      "category": "Monitoring & Logging",
+      "yearsOfExperience": 5,
+      "level": "Advanced",
+      "comment": "Designed monitoring architecture for large-scale distributed systems",
+      "url": "https://prometheus.io"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Grafana",
+      "group": "Monitoring & Logging",
+      "category": "Monitoring & Logging",
+      "yearsOfExperience": 5,
+      "level": "Advanced",
+      "comment": "Created custom dashboards and alerting rules for infrastructure monitoring",
+      "url": "https://grafana.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "ELK Stack",
+      "group": "Monitoring & Logging",
+      "category": "Monitoring & Logging",
+      "yearsOfExperience": 4,
+      "level": "Intermediate",
+      "comment": "Implemented centralized logging for microservices architecture",
+      "url": "https://www.elastic.co/elastic-stack"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Nginx",
+      "group": "Web & Servers",
+      "category": "Web & Servers",
+      "yearsOfExperience": 8,
+      "level": "Advanced",
+      "comment": "Configured as reverse proxy, load balancer, and API gateway",
+      "url": "https://nginx.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "GitHub Actions",
+      "group": "CI/CD",
+      "category": "CI/CD",
+      "yearsOfExperience": 4,
+      "level": "Advanced",
+      "comment": "Created custom actions and workflows for complex deployment scenarios",
+      "url": "https://github.com/features/actions"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Ansible",
+      "group": "Infrastructure as Code",
+      "category": "Infrastructure as Code",
+      "yearsOfExperience": 6,
+      "level": "Advanced",
+      "comment": "Configuration management and automation for infrastructure provisioning",
+      "url": "https://www.ansible.com"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "ArgoCD",
+      "group": "CI/CD",
+      "category": "CI/CD",
+      "yearsOfExperience": 3,
+      "level": "Intermediate",
+      "comment": "Implemented GitOps workflows for Kubernetes deployments",
+      "url": "https://argo-cd.readthedocs.io"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Helm",
+      "group": "Container Orchestration",
+      "category": "Container Orchestration",
+      "yearsOfExperience": 5,
+      "level": "Advanced",
+      "comment": "Package management for Kubernetes, created 20+ charts",
+      "url": "https://helm.sh"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Python",
+      "group": "Programming Languages",
+      "category": "Programming Languages",
+      "yearsOfExperience": 9,
+      "level": "Advanced",
+      "comment": "Primary language for automation scripts and infrastructure tooling",
+      "url": "https://www.python.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Go",
+      "group": "Programming Languages",
+      "category": "Programming Languages",
+      "yearsOfExperience": 5,
+      "level": "Intermediate",
+      "comment": "Used for building cloud-native applications and CLI tools",
+      "url": "https://golang.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "JavaScript",
+      "group": "Programming Languages",
+      "category": "Programming Languages",
+      "yearsOfExperience": 15,
+      "level": "Expert",
+      "comment": "Full-stack development, automation, and tooling",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "JSON",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 8,
+      "level": "Expert",
+      "comment": "API design, configuration management, and data interchange",
+      "url": "https://www.json.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "XML",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 10,
+      "level": "Expert",
+      "comment": "Schema design, data transformation, and enterprise integration",
+      "url": "https://www.w3.org/XML/"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "XSLT",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 10,
+      "level": "Advanced",
+      "comment": "XML transformations and data processing pipelines",
+      "url": "https://www.w3.org/TR/xslt"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "XSD",
+      "group": "Data Formats",
+      "category": "Data Formats",
+      "yearsOfExperience": 8,
+      "level": "Advanced",
+      "comment": "XML Schema design and validation for structured data",
+      "url": "https://www.w3.org/XML/Schema"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "PostgreSQL",
+      "group": "Databases",
+      "category": "Databases",
+      "yearsOfExperience": 6,
+      "level": "Intermediate",
+      "comment": "Database administration, query optimization, and replication",
+      "url": "https://www.postgresql.org"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Redis",
+      "group": "Databases",
+      "category": "Databases",
+      "yearsOfExperience": 5,
+      "level": "Intermediate",
+      "comment": "Caching strategies and session management",
+      "url": "https://redis.io"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Git",
+      "group": "Version Control",
+      "category": "Version Control",
+      "yearsOfExperience": 10,
+      "level": "Expert",
+      "comment": "Version control, branching strategies, and GitOps workflows",
+      "url": "https://git-scm.com"
+    }
+  ],
+  "languages": [
+    {
+      "@type": "schema:Language",
+      "language": "English",
+      "fluency": "Native"
+    },
+    {
+      "@type": "schema:Language",
+      "language": "French",
+      "fluency": "Intermediate"
+    },
+    {
+      "@type": "schema:Language",
+      "language": "Spanish",
+      "fluency": "Basic"
+    }
+  ],
+  "interests": [
+    {
+      "@type": "schema:Thing",
+      "name": "Open Source",
+      "keywords": [
+        "Contributing to CNCF projects",
+        "Maintaining Terraform modules",
+        "Documentation improvements"
+      ]
+    },
+    {
+      "@type": "schema:Thing",
+      "name": "Technology",
+      "keywords": [
+        "Cloud native architecture",
+        "Platform engineering",
+        "Site reliability engineering"
+      ]
+    },
+    {
+      "@type": "schema:Thing",
+      "name": "Outdoor Activities",
+      "keywords": [
+        "Hiking in the Lake District",
+        "Rock climbing",
+        "Trail running"
+      ]
+    },
+    {
+      "@type": "schema:Thing",
+      "name": "Community",
+      "keywords": [
+        "Tech meetups",
+        "Conference speaking",
+        "Mentoring"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "@type": "schema:Review",
+      "name": "Dr. James Morrison",
+      "reference": "Eleanor is an exceptional engineer who combines deep technical expertise with outstanding leadership abilities. Her work on our infrastructure modernization project exceeded all expectations and set new standards for our engineering practices."
+    },
+    {
+      "@type": "schema:Review",
+      "name": "Sarah Chen",
+      "reference": "I had the pleasure of working with Eleanor for three years at FinTech Innovations. Her ability to design robust, scalable systems while maintaining a pragmatic approach to problem-solving made her invaluable to our team. She's also an excellent mentor who genuinely cares about helping others grow."
+    }
+  ],
+  "projects": [
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "K8s-AutoScale",
+      "description": "Open-source Kubernetes autoscaling solution with predictive scaling based on historical metrics",
+      "highlights": [
+        "1,200+ GitHub stars",
+        "Used in production by 50+ companies",
+        "Featured in CNCF landscape",
+        "Active community with 30+ contributors"
+      ],
+      "keywords": [
+        "Kubernetes",
+        "Go",
+        "Prometheus",
+        "Machine Learning",
+        "Autoscaling"
+      ],
+      "startDate": "2022-01",
+      "url": "https://github.com/efitzdev/k8s-autoscale",
+      "roles": [
+        "Creator",
+        "Lead Maintainer"
+      ],
+      "entity": "Personal Project",
+      "type": "application"
+    },
+    {
+      "@type": "schema:Event",
+      "name": "DevOps Masterclass Series",
+      "description": "Educational workshop series covering modern DevOps practices and cloud architecture",
+      "highlights": [
+        "Delivered to 300+ engineers across UK",
+        "4.9/5 average rating",
+        "Presented at DevOps Days London and Manchester",
+        "Created comprehensive learning materials"
+      ],
+      "keywords": [
+        "DevOps",
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "Education"
+      ],
+      "startDate": "2021-03",
+      "url": "https://devops-masterclass.uk",
+      "roles": [
+        "Instructor",
+        "Content Creator",
+        "Speaker"
+      ],
+      "entity": "CloudScale Technologies Ltd",
+      "type": "conference"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Terraform AWS Modules Collection",
+      "description": "Comprehensive collection of production-ready Terraform modules for AWS infrastructure",
+      "highlights": [
+        "800+ GitHub stars",
+        "Downloaded 50,000+ times",
+        "Covers 25+ AWS services",
+        "Fully documented with examples"
+      ],
+      "keywords": [
+        "Terraform",
+        "AWS",
+        "Infrastructure as Code",
+        "Modules"
+      ],
+      "startDate": "2020-06",
+      "url": "https://github.com/efitzdev/terraform-aws-modules",
+      "roles": [
+        "Creator",
+        "Maintainer"
+      ],
+      "entity": "Personal Project",
+      "type": "application"
+    },
+    {
+      "@type": "schema:SoftwareApplication",
+      "name": "Schema Resume",
+      "description": "Self-hosted JSON-LD and XML schema for CV/Resume parsing and validation with semantic web integration",
+      "highlights": [
+        "Comprehensive resume schema with Schema.org compatibility",
+        "Support for JSON, XML, and JSON-LD formats",
+        "Includes work authorization and tools tracking",
+        "Open-source MIT licensed project"
+      ],
+      "keywords": [
+        "JSON Schema",
+        "XML",
+        "XSD",
+        "JSON-LD",
+        "Resume",
+        "CV",
+        "Schema.org"
+      ],
+      "startDate": "2024-01",
+      "url": "https://schema-resume.org",
+      "roles": [
+        "Creator",
+        "Lead Developer",
+        "Maintainer"
+      ],
+      "entity": "Personal Project",
+      "type": "application"
+    }
+  ],
+  "meta": {
+    "canonical": "https://eleanor-fitzwilliam.dev/resume.json",
+    "version": "v2.4.0",
+    "lastModified": "2025-10-09T12:47:00+01:00",
+    "dateCreated": "2023-01-15T09:30:00+00:00"
+  }
+}

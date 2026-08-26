@@ -1,0 +1,20 @@
+# cookie-consent — all optional. Uncomment what you use.
+#
+# The banner works client-side with none of this. These bindings enable the
+# extras: geo-gating reads the country automatically (no binding needed), the
+# audit log needs a KV namespace, and the country/behaviour can be tuned here.
+
+# Proof-of-consent audit log. Create the namespace, then paste its id:
+#   npx wrangler kv namespace create CONSENT_LOG
+# [[kv_namespaces]]
+# binding = "CONSENT_LOG"
+# id = "<paste-kv-namespace-id>"
+
+# [vars]
+# CONSENT_ALWAYS = "0"          # "1" to require the banner everywhere
+# CONSENT_COUNTRIES = ""        # e.g. "DE,FR,PL,GB" to replace the EEA+UK default
+# CONSENT_RETENTION_DAYS = "365"
+
+# Secrets (do NOT put here — set with `wrangler pages secret put <NAME>`):
+#   TURNSTILE_SECRET   verifies the audit-log token (optional, anti-flood)
+#   CONSENT_IP_SALT    salt for the stored IP hash

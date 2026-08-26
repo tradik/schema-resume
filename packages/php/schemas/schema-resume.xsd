@@ -3,11 +3,11 @@
            xmlns:sr="https://schema-resume.org/xml/1.0"
            targetNamespace="https://schema-resume.org/xml/1.0"
            elementFormDefault="qualified"
-           version="1.2.0">
+           version="1.3.0">
 
   <xs:annotation>
     <xs:documentation>
-      Schema Resume XML Schema Definition (XSD) v1.2.0
+      Schema Resume XML Schema Definition (XSD) v1.3.0
       Self-hosted XML schema for CV/Resume validation with work authorization and tools tracking
       
       This schema provides comprehensive validation for resume/CV documents in XML format.
@@ -17,7 +17,7 @@
       Primary domain: https://schema-resume.org/
       Alternate domain: https://tradik.github.io/schema-resume/
       
-      Version: 1.2.0
+      Version: 1.3.0
       License: MIT
       Repository: https://github.com/tradik/schema-resume
     </xs:documentation>
@@ -105,15 +105,33 @@
     </xs:sequence>
   </xs:complexType>
 
+  <!--
+    Protected personal characteristics. Omit unless the receiving market expects
+    them: in the UK and most of the EU a CV should not carry age, date of birth
+    or gender. Grouped so that including them is a deliberate choice and a
+    processor can strip them in one step.
+  -->
+  <xs:complexType name="DemographicsType">
+    <xs:sequence>
+      <xs:element name="age" type="xs:integer" minOccurs="0"/>
+      <xs:element name="dateOfBirth" type="sr:iso8601DateType" minOccurs="0"/>
+      <xs:element name="gender" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string"/>
+  </xs:complexType>
+
   <!-- Basics Section -->
   <xs:complexType name="BasicsType">
     <xs:sequence>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
       <xs:element name="label" type="xs:string" minOccurs="0"/>
       <xs:element name="title" type="xs:string" minOccurs="0"/>
+      <!-- DEPRECATED since 1.3.0: use <demographics>. Kept, in their original
+           sequence position, so every 1.x document keeps validating. -->
       <xs:element name="age" type="xs:integer" minOccurs="0"/>
       <xs:element name="dateOfBirth" type="sr:iso8601DateType" minOccurs="0"/>
       <xs:element name="gender" type="xs:string" minOccurs="0"/>
+      <xs:element name="demographics" type="sr:DemographicsType" minOccurs="0"/>
       <xs:element name="legalNote" type="sr:LegalNoteType" minOccurs="0"/>
       <xs:element name="image" type="xs:anyURI" minOccurs="0"/>
       <xs:element name="email" type="xs:string" minOccurs="0"/>

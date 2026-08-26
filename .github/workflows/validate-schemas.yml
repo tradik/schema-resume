@@ -35,8 +35,8 @@ jobs:
       
       - name: Run schema linter
         run: |
-          chmod +x lint-schemas.py
-          python3 lint-schemas.py
+          chmod +x tools/lint-schemas.py
+          python3 tools/lint-schemas.py
       
       - name: Upload linting report
         if: always()
@@ -44,7 +44,7 @@ jobs:
         with:
           name: linting-report
           path: |
-            lint-schemas.py
+            tools/lint-schemas.py
           retention-days: 30
 
   compare-schemas:
@@ -63,8 +63,8 @@ jobs:
       
       - name: Run schema comparison
         run: |
-          chmod +x compare-schemas.py
-          python3 compare-schemas.py
+          chmod +x tools/compare-schemas.py
+          python3 tools/compare-schemas.py
       
       - name: Upload comparison report
         if: always()
@@ -72,7 +72,7 @@ jobs:
         with:
           name: comparison-report
           path: |
-            compare-schemas.py
+            tools/compare-schemas.py
           retention-days: 30
 
   validate-json:
@@ -147,8 +147,8 @@ jobs:
 
       - name: Run full validation
         run: |
-          chmod +x validate-all.sh
-          ./validate-all.sh
+          chmod +x tools/validate-all.sh
+          ./tools/validate-all.sh
       
       - name: Generate validation badge
         if: success()

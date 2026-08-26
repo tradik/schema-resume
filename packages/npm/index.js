@@ -24,10 +24,10 @@ function createValidator(options = {}) {
   });
   
   addFormats(ajv);
-  
-  // Add meta-schema
-  ajv.addMetaSchema(metaSchema);
-  
+
+  // schema.json declares the draft-07 dialect (since 1.3.0), which Ajv ships
+  // with, so the project meta-schema no longer has to be registered.
+
   // Compile the schema
   const validate = ajv.compile(schema);
   

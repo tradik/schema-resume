@@ -1,3 +1,12 @@
+---
+title: "JSON-LD Integration Guide"
+slug: "json-ld"
+status: "publish"
+type: "page"
+description: "How Schema Resume maps to JSON-LD and the Semantic Web: the @context, Schema.org vocabulary mapping, and embedding a CV so search engines can read it."
+categories: [Documentation]
+modified: 2026-08-06
+---
 # JSON-LD Integration Guide
 
 This document explains how Schema Resume integrates with JSON-LD (JSON for Linking Data) and the Semantic Web.

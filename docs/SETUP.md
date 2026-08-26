@@ -1,291 +1,181 @@
-# Setup Guide for Schema Resume
-
-This guide will help you set up the Schema Resume repository with GitHub Pages hosting.
-
-## 📋 Prerequisites
-
-- Git installed on your system
-- GitHub account
-- Node.js 18+ (for local validation)
-
-## 🚀 Initial Setup
-
-### 1. Push to GitHub
-
-If you haven't already pushed the repository to GitHub:
-
-```bash
-# Initialize git (if not already done)
-git init
-
-# Add all files
-git add .
-
-# Commit
-git commit -m "feat: initial commit - schema resume v1.0.0"
-
-# Add remote (replace with your repository URL)
-git remote add origin https://github.com/tradik/schema-resume.git
-
-# Push to main branch
-git branch -M main
-git push -u origin main
-```
-
-### 2. Enable GitHub Pages
-
-1. Go to your repository on GitHub: `https://github.com/tradik/schema-resume`
-2. Click on **Settings** tab
-3. Scroll down to **Pages** section in the left sidebar
-4. Under **Build and deployment**:
-   - **Source**: Select "GitHub Actions"
-5. Save the settings
-
-The GitHub Actions workflow will automatically deploy your site when you push to the main branch.
-
-### 3. Verify Deployment
-
-After pushing, check the Actions tab:
-1. Go to `https://github.com/tradik/schema-resume/actions`
-2. You should see the "Deploy to GitHub Pages" workflow running
-3. Wait for it to complete (usually takes 1-2 minutes)
-4. Your site will be available at: `https://tradik.github.io/schema-resume/`
-
-### 4. Test Schema URL
-
-Once deployed, test the schema URL:
-
-```bash
-# Using curl
-curl https://tradik.github.io/schema-resume/schema.json
-
-# Using wget
-wget https://tradik.github.io/schema-resume/schema.json
-```
-
-## 🔧 Local Development
-
-### Install Dependencies
-
-```bash
-# Install project dependencies (optional - only needed for local development)
-npm install
-
-# OR install AJV globally for validation
-npm install -g ajv-cli ajv-formats
-```
-
-### Validate Schema
-
-```bash
-# If you installed project dependencies:
-npm run validate        # Validate schema structure
-npm run validate:example # Validate example against schema
-npm test                # Run all tests
-
-# If you installed AJV globally:
-ajv compile -s schema.json --strict=false
-ajv validate -s schema.json -d example.json --strict=false
-```
-
-### Check JSON Formatting
-
-```bash
-npm run format:check
-```
-
-## 📝 Making Changes
-
-### 1. Create a Branch
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-### 2. Make Your Changes
-
-Edit the relevant files:
-- `schema.json` - Schema definition
-- `example.json` - Example resume
-- `README.md` - Documentation
-- `CHANGELOG.md` - Version history
-
-### 3. Validate Changes
-
-```bash
-npm test
-```
-
-### 4. Commit and Push
-
-```bash
-git add .
-git commit -m "feat: description of your changes"
-git push origin feature/your-feature-name
-```
-
-### 5. Create Pull Request
-
-1. Go to your repository on GitHub
-2. Click "Pull requests" tab
-3. Click "New pull request"
-4. Select your branch
-5. Fill in the PR description
-6. Submit the PR
-
-## 🔄 Continuous Integration
-
-The repository includes two GitHub Actions workflows:
-
-### 1. Schema Validation (`validate-schema.yml`)
-
-Runs on every push and pull request:
-- Validates schema structure
-- Validates example.json against schema
-- Checks JSON formatting
-
-### 2. GitHub Pages Deployment (`deploy-pages.yml`)
-
-Runs on every push to main branch:
-- Deploys the site to GitHub Pages
-- Makes schema.json publicly accessible
-
-## 🌐 Using the Schema
-
-### In Your Resume JSON
-
-```json
-{
-  "$schema": "https://tradik.github.io/schema-resume/schema.json",
-  "basics": {
-    "name": "Your Name",
-    ...
-  }
-}
-```
-
-### Validation with AJV
-
-```bash
-# Install AJV CLI globally
-npm install -g ajv-cli ajv-formats
-
-# Validate your resume
-ajv validate -s https://tradik.github.io/schema-resume/schema.json -d your-resume.json
-```
-
-### Validation with Python
-
-```python
-import json
-import jsonschema
-import requests
-
-# Load schema from GitHub Pages
-schema_url = "https://tradik.github.io/schema-resume/schema.json"
-schema = requests.get(schema_url).json()
-
-# Load your resume
-with open('your-resume.json') as f:
-    resume = json.load(f)
-
-# Validate
-jsonschema.validate(instance=resume, schema=schema)
-print("Resume is valid!")
-```
-
-## 📊 Version Management
-
-### Creating a New Release
-
-1. Update version in `package.json`
-2. Update `CHANGELOG.md` with changes
-3. Update version in schema `meta` section (if applicable)
-4. Commit changes:
-   ```bash
-   git add .
-   git commit -m "chore: bump version to x.y.z"
-   git push
-   ```
-5. Create a GitHub release:
-   - Go to Releases tab
-   - Click "Create a new release"
-   - Tag: `vx.y.z`
-   - Title: `Version x.y.z`
-   - Description: Copy from CHANGELOG.md
-   - Publish release
-
-## 🐛 Troubleshooting
-
-### GitHub Pages Not Deploying
-
-1. Check Actions tab for errors
-2. Ensure GitHub Pages is enabled in Settings
-3. Verify workflow file is in `.github/workflows/`
-4. Check repository permissions
-
-### Schema Validation Failing
-
-1. Validate JSON syntax:
-   ```bash
-   node -e "JSON.parse(require('fs').readFileSync('schema.json', 'utf8'))"
-   ```
-2. Check schema structure:
-   ```bash
-   npm run validate
-   ```
-3. Review error messages carefully
-
-### Example Not Validating
-
-1. Ensure example.json follows schema structure
-2. Check for missing required fields
-3. Verify date formats (ISO 8601)
-4. Validate URLs and email formats
-
-## 📚 Additional Resources
-
-- [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [JSON Schema Documentation](https://json-schema.org/)
-- [AJV Documentation](https://ajv.js.org/)
-
-## 🆘 Getting Help
-
-If you encounter issues:
-
-1. Check existing [issues](https://github.com/tradik/schema-resume/issues)
-2. Review [CONTRIBUTING.md](./CONTRIBUTING.md)
-3. Open a new issue with:
-   - Clear description of the problem
-   - Steps to reproduce
-   - Expected vs actual behavior
-   - Environment details
-
-## ✅ Checklist
-
-Before considering setup complete:
-
-- [ ] Repository pushed to GitHub
-- [ ] GitHub Pages enabled
-- [ ] GitHub Actions workflows running successfully
-- [ ] Schema accessible at `https://tradik.github.io/schema-resume/schema.json`
-- [ ] Website accessible at `https://tradik.github.io/schema-resume/`
-- [ ] Local validation working (`npm test`)
-- [ ] Example validates against schema
-- [ ] README.md reviewed and accurate
-- [ ] CHANGELOG.md up to date
-
-## 🎉 Next Steps
-
-Once setup is complete:
-
-1. Share the schema URL with your team
-2. Create additional example resumes
-3. Integrate with your applications
-4. Contribute improvements
-5. Share with the community
-
+---
+title: "Setup Guide"
+slug: "setup"
+status: "publish"
+type: "page"
+description: "Set up the Schema Resume repository locally: building the site with ssg, staging the specification files, and publishing to Cloudflare Pages."
+categories: [Documentation]
+modified: 2026-08-06
 ---
 
-**Need help?** Open an [issue](https://github.com/tradik/schema-resume/issues) or check the [documentation](./README.md).
+# Setup Guide
+
+How to work on this repository: build the site, validate the specification, and
+understand what happens on deploy.
+
+## Prerequisites
+
+| Tool | Why | Install |
+|---|---|---|
+| [ssg](https://github.com/spagu/ssg) | Generates the site | `brew install spagu/tap/ssg` |
+| Node.js 20+ | Vendors the browser libraries; runs the schema validator | [nodejs.org](https://nodejs.org/) |
+| Python 3.8+ | Runs the schema linting and comparison tools | Preinstalled on macOS and most Linux |
+
+Only `ssg` and Node are needed to build the site. Python is needed for
+`make validate`.
+
+## First build
+
+```bash
+git clone https://github.com/tradik/schema-resume.git
+cd schema-resume
+
+make install        # npm ci — build dependencies only; nothing is published from here
+make serve          # http://127.0.0.1:8888, rebuilds on every save
+```
+
+`make serve` runs two steps:
+
+1. **`npm run build:assets`** vendors the browser libraries — Ajv, Chart.js,
+   Mermaid, the XSLT processor — and inlines the icon set. Output lands in
+   `templates/schema-resume/js/vendor/`, `editor/vendor/` and
+   `templates/schema-resume/partials/icons.html`. All generated, all gitignored.
+2. **`ssg --config .ssg.yaml`** generates `output/`, publishing the
+   specification, `xml/`, `docs/` and the editor straight from where they live
+   via `static_sources`.
+
+There is exactly one live copy of `schema.json` in this repository, at the root.
+The snapshots under `versions/` are frozen past releases and are never edited.
+If you find yourself changing a file under `output/`, stop — the next build will
+erase it.
+
+## Everyday commands
+
+```bash
+make help           # every target, with a description
+make site           # build once into output/
+make site-release   # minified and fingerprinted, exactly as CI builds it
+make check-links    # fail on a dead internal link
+make validate       # lint and cross-check every schema file
+make freeze-version # snapshot the current specification into versions/
+make clean          # remove generated output and vendored libraries
+```
+
+`make site-release` is worth running before opening a pull request: minification
+and fingerprinting occasionally surface a template problem a development build
+does not.
+
+## Validating the specification
+
+```bash
+npm test            # compile schema.json and validate example.json with Ajv
+make validate       # the Python linting and comparison suite
+```
+
+The linter checks syntax and structure across all four specification files. The
+comparison tool reports JSON-LD coverage — which schema fields have a `@context`
+mapping, and therefore which produce RDF triples.
+
+To validate your own document:
+
+```bash
+npx ajv validate -s schema.json -c ajv-formats -d your-resume.json
+```
+
+No `--strict=false` and no `-r` flag. `$schema` names the draft-07 dialect, so
+any validator resolves it unaided, and the schema carries no keyword that ajv's
+strict mode rejects.
+
+## Where things live
+
+```
+schema.json, meta-schema.json,     the specification — the canonical copies
+  context.jsonld, example*.json
+xml/1.0/                           the XSD and its example
+docs/                              documentation; published as HTML and served raw
+content/site/pages/                tool and legal pages (metadata only)
+data/packages.yaml                 drives the packages page
+templates/schema-resume/           the theme: templates, CSS, JS, images
+tools/                             build and validation scripts
+workers/cookie-consent/            the Pages Function behind the consent banner
+packages/                          the six language validator packages
+versions/                          frozen past releases, served at /1.2/, /1.3/…
+output/                            generated — not in git
+```
+
+## Adding a documentation page
+
+Drop a Markdown file in `docs/` with front matter:
+
+```yaml
+---
+title: "Short Title"
+slug: "short-title"
+status: "publish"
+type: "page"
+description: "One sentence, 70–160 characters — the build warns outside that range."
+categories: [Documentation]
+---
+```
+
+It appears at `/short-title.html` and in the guide list on the home page
+automatically. The build checks that every page has a title and a description of
+a sensible length, that no internal link is dead, that every image has `alt`
+text, and that nothing is orphaned.
+
+To keep a file in the repository without publishing it, add it to
+`content_exclude` in `.ssg.yaml`.
+
+## Deployment
+
+Pushing to `main` runs
+[`.github/workflows/deploy-pages.yml`](../.github/workflows/deploy-pages.yml),
+which installs `ssg`, builds with `--minify-all --fingerprint
+--check-links=strict`, and deploys `output/` to Cloudflare Pages. Pull requests
+are built but not deployed, so a broken site is caught before merge.
+
+Two repository secrets are required: `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID`.
+
+The consent banner's audit log needs a KV namespace bound to the Pages project
+as `CONSENT_LOG`, plus a `CONSENT_IP_SALT` secret. Without them the banner still
+works and still records the visitor's choice; only the proof-of-consent record
+is skipped. See
+[`workers/cookie-consent/README.md`](../workers/cookie-consent/README.md).
+
+The checkout uses `fetch-depth: 0` deliberately: sitemap `<lastmod>` values come
+from each file's last commit, which a shallow clone does not have.
+
+## Releasing a schema version
+
+Order matters: freeze **before** bumping, or the outgoing version's pinned URL
+picks up the incoming changes.
+
+1. **`make freeze-version`** — snapshots the current specification into
+   `versions/<MAJOR.MINOR>/`. This is what `/1.3/schema.json` serves, and it is
+   why a pin cannot change underneath a document.
+2. Add the new snapshot to `static_sources` in `.ssg.yaml`.
+3. Update `version` in `package.json`, `title` in `schema.json` and
+   `meta-schema.json`, and `meta.version` in the examples.
+4. Update `schema_version` and `schema_version_minor` in `.ssg.yaml`, and the
+   schema badge in `README.md`.
+5. Add a `CHANGELOG.md` entry and, for a minor or major bump, a migration guide
+   in `docs/`. See [versioning and stability](VERSIONING.md) for which bump a
+   change deserves.
+6. Run `make validate && npm test && make site-release`.
+7. Run `./tools/sync-schema-files.sh` to copy the schema into every language
+   package.
+8. Tag `vMAJOR.MINOR.PATCH` and push. That triggers
+   [`release-packages.yml`](../.github/workflows/release-packages.yml), which
+   publishes to npm, PyPI, Go, Maven Central, RubyGems and Packagist.
+
+**Check the registries afterwards.** The v1.2.0 release reported success while
+npm actually failed with `E404` — the log was piped through `tee`, which
+swallowed the exit code. That specific masking is fixed, but a release is not
+done until the versions are visible:
+
+```bash
+npm view schema-resume-validator version
+curl -s https://pypi.org/pypi/schema-resume-validator/json | jq -r .info.version
+curl -s https://rubygems.org/api/v1/gems/schema-resume-validator.json | jq -r .version
+```
