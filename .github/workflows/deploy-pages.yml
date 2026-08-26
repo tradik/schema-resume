@@ -86,6 +86,21 @@ jobs:
           name: site
           path: output
 
+      # A fresh account has no Pages project yet; `pages deploy` refuses to
+      # create one. Create it once, idempotently, so the first deploy works
+      # without a manual dashboard step. The custom domain still has to be
+      # attached in the dashboard — see docs/SETUP.md.
+      - name: Ensure the Pages project exists
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if npx --yes wrangler@4.126.0 pages project list | grep -qE '(^|[│| ])schema-resume([│| ]|$)'; then
+            echo "Pages project schema-resume exists"
+          else
+            npx --yes wrangler@4.126.0 pages project create schema-resume --production-branch=main
+          fi
+
       - name: Publish
         uses: cloudflare/wrangler-action@v4
         with:
