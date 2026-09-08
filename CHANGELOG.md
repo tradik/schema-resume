@@ -41,6 +41,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed — site build
 
+- **The `<!--email_off-->` guard shipped as nothing.** CI builds with
+  `--minify-all`, whose minifier strips every HTML comment except `<!--[if`, so the guard was
+  removed on the way to production: the fix verified clean locally with `make site` (which does
+  not minify) and the live site went on serving `[email protected]` inside the JSON samples,
+  unchanged. The markers are now wrapped in ssg's `htmlmin:ignore`, which lifts a block out
+  before comments are stripped and restores it afterwards. **Verify this one with
+  `make site-release`, never `make site`** — the two builds differ in exactly the way that hid it.
 - **Cloudflare was corrupting the specification's own code samples.** Email Address Obfuscation
   rewrites anything that looks like an email address in the served HTML, so the example addresses
   inside the JSON and JSON-LD samples — `john@example.com`, `jane@example.com` — were being served

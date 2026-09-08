@@ -124,11 +124,22 @@
          (info@schema-resume.org) is meant to be readable, and is published in
          .well-known/security.txt anyway.
 
-         Emitted through safeHTML rather than written literally: Go's
-         html/template strips HTML comments as it parses, so a literal
-         <!--email_off--> here reaches the output as nothing at all — which is
-         exactly how the first attempt at this fix silently did nothing. */}}
-    {{ "<!--email_off-->" | safeHTML }}
+         Two layers of comment-stripping stand between this and the output,
+         and the marker has to survive both:
+
+           1. Go's html/template removes comments as it parses, so the marker
+              is emitted through safeHTML rather than written literally.
+           2. `--minify-all`, which is how CI builds (and `make site-release`,
+              never `make site`), strips every comment except `<!--[if`. That
+              is why the first version of this fix worked locally and shipped
+              nothing: production served the obfuscated addresses exactly as
+              before, and the local build looked correct.
+
+         `htmlmin:ignore` is ssg's opt-out from (2): the minifier lifts the
+         block's contents out before it strips comments and puts them back
+         afterwards, so the email_off marker inside it reaches the output.
+         Verify with `make site-release`, not `make site`. */}}
+    {{ "<!--htmlmin:ignore--><!--email_off--><!--/htmlmin:ignore-->" | safeHTML }}
     {{/* .Current is the site-absolute path of the page being rendered, used to
          mark the active nav item for assistive technology. */}}
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -218,7 +229,7 @@
             </p>
         </div>
     </footer>
-    {{/* Closes the email_off region opened at the top of sr-header; safeHTML for
-         the same reason it is used there. */}}
-    {{ "<!--/email_off-->" | safeHTML }}
+    {{/* Closes the email_off region opened at the top of sr-header, wrapped and
+         emitted the same way and for the same two reasons. */}}
+    {{ "<!--htmlmin:ignore--><!--/email_off--><!--/htmlmin:ignore-->" | safeHTML }}
 {{end}}
