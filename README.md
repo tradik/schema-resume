@@ -646,6 +646,11 @@ have read is a specification developers get right the first time.
 > guard is a second line of defence, not a substitute. **AI Scrapers and Crawlers** blocking must
 > also stay off, or it will block at the edge the crawlers `robots.txt` invites.
 
+> **Check anything that touches the served HTML with `make site-release`, not `make site`.**
+> CI builds with `--minify-all`, and the minifier strips HTML comments — so a host directive such
+> as Cloudflare's `<!--email_off-->` is present in a `make site` build and absent from the one that
+> ships. Wrap such a marker in `<!--htmlmin:ignore-->…<!--/htmlmin:ignore-->` so it survives.
+
 ### Build gates
 
 `make site` fails, rather than warns, on a dead internal link, a missing title or description, an
