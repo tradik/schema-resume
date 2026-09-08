@@ -7,7 +7,89 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — site build
+
+- **Every page is published as Markdown as well as HTML**, at the same URL with a `.md` extension
+  (`/json-ld.md`), linked from the page `<head>` as a `text/markdown` alternate, and indexed with
+  a one-line summary each in a new **`/llms.txt`** ([llmstxt.org](https://llmstxt.org/)).
+  `markdown_publish` in `.ssg.yaml`; static files, no runtime cost. This site documents a
+  machine-readable specification and a growing share of its readers are assistants rather than
+  browsers — serving the authored Markdown means an answer is built from the guide instead of
+  from a guess about which `<div>` held the content.
+- **`robots.txt` states an AI policy** instead of leaving it to the wildcard. Search and answer
+  engines and training crawlers are named individually and allowed. An Ahrefs crawl reported an
+  *inconsistent* policy — some AI bots allowed, others blocked — because the wildcard said one
+  thing, Cloudflare's managed bot rules said another, and nothing in this repository stated an
+  intent either way. Note that the Cloudflare **AI Scrapers and Crawlers** toggle overrides this
+  at the edge and must be off for it to take effect.
+- **`check_schema`** now validates the JSON-LD every page emits — previously unchecked, on a site
+  whose entire subject is JSON-LD. Search engines reject structured data with missing required
+  properties and report it nowhere the author can see.
+
+### Changed — site build
+
+- **The build's SEO and accessibility gates are strict**, as `.ssg.yaml` always said they should
+  become. A dead internal link, a missing title or description, an image with no alt attribute, an
+  orphan page, invalid structured data or a link that only resolves through a redirect now fails
+  the build. All of them were already passing, so warn mode was buying nothing but the chance to
+  ship a regression into a CI log nobody reads.
+- **The CV editor's `<head>` was brought up to the rest of the site's standard**: canonical,
+  OpenGraph, Twitter card, `robots`, apple-touch-icon and a description within the length limits.
+  It is published verbatim by `static_sources`, so it gets none of the theme's head partial and
+  had none of these — on the second most-linked page of the site (17 internal inlinks), which
+  meant every share of the editor rendered as a bare URL.
+
 ### Fixed — site build
+
+- **Cloudflare was corrupting the specification's own code samples.** Email Address Obfuscation
+  rewrites anything that looks like an email address in the served HTML, so the example addresses
+  inside the JSON and JSON-LD samples — `john@example.com`, `jane@example.com` — were being served
+  as the literal text `[email protected]`: a reader copying a sample out of the documentation got a
+  document that does not validate. The rewritten links also 404, which is how it surfaced (six
+  pages linking to a broken `/cdn-cgi/l/email-protection` URL in an Ahrefs crawl). The theme now
+  wraps the body of every page in Cloudflare's documented `<!--email_off-->` opt-out.
+  **The dashboard toggle should be turned off as well** — the guard in the theme is a second line
+  of defence, not a substitute.
+- **The CV editor loaded Google Analytics with no consent call at all**, setting an analytics
+  cookie on first paint while every other page on the same domain waited for the banner. It now
+  uses the same Consent Mode v2 defaults as the theme (every storage type denied until the banner
+  grants it) and ships the banner itself, with a config block matching `variables.cookie_consent`
+  — the script's own defaults name a `/cookie-policy/` page this site does not have, show the
+  banner in every country rather than only where consent is required, and offer a `marketing`
+  category the site does not use.
+- **`/setup` linked to a 404.** `docs/SETUP.md` sends the reader to the consent worker's README;
+  `workers/` is deliberately not published, so the relative link resolved to
+  `/workers/cookie-consent/README.md` on the live site. It now rewrites to the file on GitHub,
+  alongside the existing rewrites for `../packages/`, `../tests/` and `../.github/`.
+- **`/editor/` carries a `<lastmod>`** like every other sitemap entry. `static_sources` entries
+  emitted a date only when git could answer, with no front-matter dates to fall back on as a page
+  has — reported as [spagu/ssg#260](https://github.com/spagu/ssg/issues/260) and fixed in ssg
+  1.8.58, which falls back to the file's modification time and says when git could not answer.
+- **`/editor/` is in `sitemap.xml`.** It is published verbatim through `static_sources`, so it
+  never became a page the sitemap generator could see — an Ahrefs crawl reported it as an
+  indexable page missing from the sitemap, with 17 internal inlinks, the most-linked page on the
+  site after the home page. Reported as
+  [spagu/ssg#255](https://github.com/spagu/ssg/issues/255) and fixed in ssg 1.8.57, which adds
+  `sitemap: true` to a `static_sources` entry; the editor is listed at priority 0.9.
+- **`/category/documentation/` and `/category/legal/` are no longer in `sitemap.xml`.** Both were
+  listed and both 404'd — the archives were never rendered. Fixed upstream in ssg 1.8.54 and
+  1.8.56 ([#228](https://github.com/spagu/ssg/issues/228),
+  [#243](https://github.com/spagu/ssg/issues/243)); this build picks it up.
+
+### Known — site build
+
+- **A local `make site` cannot produce git-derived `<lastmod>` values.** ssg is installed here as a
+  strictly confined snap, which cannot see the host's `git`, so `lastmod_from_git` silently fell
+  back to other dates — the site's own pages have `modified:` in their front matter and so looked
+  correct, which is what hid it. ssg 1.8.58 now warns once per build when this happens. CI is
+  unaffected: it installs the release tarball, `git` is on PATH, and the checkout uses
+  `fetch-depth: 0` for exactly this reason — so the published sitemap carries real commit dates.
+- Go's `html/template` strips HTML comments, so a theme cannot emit one directly and the first
+  `<!--email_off-->` fix silently did nothing. `safeHTML` is the escape hatch, now used in
+  `partials/chrome.html`. Reported as
+  [spagu/ssg#256](https://github.com/spagu/ssg/issues/256) and **documented upstream in 1.8.57**.
+
+### Fixed — site build (earlier)
 
 - `deploy-pages.yml` creates the Pages project `schema-resume` if the account does not have
   one yet (`wrangler pages project create`, idempotent) — the first deploy failed with

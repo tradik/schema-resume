@@ -9,6 +9,7 @@
 [![Deploy site](https://github.com/tradik/schema-resume/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/tradik/schema-resume/actions/workflows/deploy-pages.yml)
 [![Built with SSG](https://img.shields.io/badge/Built%20with-SSG-orange.svg)](https://github.com/spagu/ssg)
 [![Zero CDN](https://img.shields.io/badge/Third--party%20CDNs-0-brightgreen.svg)](#-the-website)
+[![llms.txt](https://img.shields.io/badge/llms.txt-available-blueviolet.svg)](https://schema-resume.org/llms.txt)
 
 A comprehensive, self-hosted JSON-LD schema for CV/Resume parsing and validation. This schema provides a standardized format for representing professional resumes in JSON format with semantic web integration, making it easy to parse, validate, and exchange resume data between systems without relying on external schema definitions.
 
@@ -618,6 +619,39 @@ The specification is published straight from the repository root through `static
 `schema.json` exists once and is served at its permanent URL. Version-pinned copies come from
 the frozen snapshots in `versions/`, never from the live files — that is what makes a pin a
 pin. See [docs/VERSIONING.md](docs/VERSIONING.md).
+
+### Machine readers
+
+Every page is published twice: as HTML, and as the Markdown it was authored from at the same URL
+with a `.md` extension.
+
+| URL | What it serves |
+|---|---|
+| `/json-ld` | The rendered page |
+| `/json-ld.md` | The same guide as Markdown, linked from the page `<head>` as a `text/markdown` alternate |
+| `/llms.txt` | An index of every page's Markdown copy, with a one-line summary each ([llmstxt.org](https://llmstxt.org/)) |
+
+This site documents a machine-readable specification, and a growing share of the people who need
+it never open the page — they ask an assistant. Serving the authored Markdown means the answer is
+built from the guide rather than from a guess about which `<div>` held the content. It costs
+nothing at runtime: `markdown_publish` in `.ssg.yaml` writes static files at build time.
+
+`robots.txt` names the AI crawlers explicitly, search and training alike, and allows them. The
+schema is MIT-licensed and every example address in it is fictional; a specification that models
+have read is a specification developers get right the first time.
+
+> **Cloudflare settings this repository cannot set.** Two dashboard toggles override what is
+> committed here. **Email Address Obfuscation** must stay **off** — it rewrites the example
+> addresses inside the JSON samples into `[email protected]`, and the theme's `<!--email_off-->`
+> guard is a second line of defence, not a substitute. **AI Scrapers and Crawlers** blocking must
+> also stay off, or it will block at the edge the crawlers `robots.txt` invites.
+
+### Build gates
+
+`make site` fails, rather than warns, on a dead internal link, a missing title or description, an
+image with no alt text, an orphan page, structured data missing a required property, or a link
+that only resolves through a redirect. All seven checks were passing in warn mode, so warn was
+buying nothing but the chance to ship a regression into a log nobody reads.
 
 ## 🔍 Validation Tools
 

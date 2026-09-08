@@ -65,7 +65,14 @@ static_sources:
 
   # The CV editor, listed file by file so its development files — linter
   # configuration, package manifest, container recipe — stay out of the site.
-  - { path: editor/index.html, dest: "editor/index.html" }
+  #
+  # `sitemap: true` (ssg 1.8.57) is what puts it in sitemap.xml. A verbatim copy
+  # never becomes a page, so no branch of the sitemap generator could reach it —
+  # and an Ahrefs crawl duly reported the editor as an indexable page missing
+  # from the sitemap, with 17 internal inlinks, the most-linked page on the site
+  # after the home page. The generator cannot tell a document from an asset by
+  # looking, so this says which of the files declared here is one.
+  - { path: editor/index.html, dest: "editor/index.html", sitemap: true, priority: 0.9 }
   - { path: editor/favicon.svg, dest: "editor/favicon.svg" }
   - { path: editor/src, dest: "editor/src" }
   - { path: editor/templates, dest: "editor/templates" }
@@ -104,6 +111,11 @@ link_rewrites:
   "../packages/": "https://github.com/tradik/schema-resume/tree/main/packages/"
   "../tests/": "https://github.com/tradik/schema-resume/tree/main/tests/"
   "../.github/": "https://github.com/tradik/schema-resume/blob/main/.github/"
+  # docs/SETUP.md sends the reader to the consent worker's own README for the KV
+  # binding. workers/ is deliberately not published — it is deployment source,
+  # not documentation — so without this the link resolved to
+  # /workers/cookie-consent/README.md and 404'd on the live site.
+  "../workers/": "https://github.com/tradik/schema-resume/blob/main/workers/"
 
 # Build-time SEO and accessibility gates. Warn mode while the docs pages are
 # brought up to the title/description limits; flip to strict (or add `strict:
@@ -117,10 +129,23 @@ content_exclude:
   - "docs/DOMAIN-MIGRATION-SUMMARY.md"
   - "docs/PROJECT_SUMMARY.md"
 
-check_links: warn
-check_meta: warn
-check_images: warn
-check_orphans: warn
+# Strict, as the note above always intended. Every one of these passed in warn
+# mode on the 1.3.0 build, so the only thing warn was still buying was the
+# chance to ship a regression: a build that prints a warning into a CI log
+# nobody reads is a check that does not exist. A dead internal link, a missing
+# title or description, an image with no alt text or a page nothing links to now
+# fails the build instead.
+check_links: strict
+check_meta: strict
+check_images: strict
+check_orphans: strict
+
+# The JSON-LD this site emits was checked by nothing — on a site whose entire
+# subject is JSON-LD. Search engines reject structured data with missing
+# required properties and report it nowhere the author can see: the build
+# succeeds, the page ships, and the rich result simply never appears. It passed
+# on first run, so it joins the others at strict rather than warning into a log.
+check_schema: strict
 
 # Cloudflare Pages serves /validator.html at /validator and answers the .html
 # form with a 308. Without this, every canonical, og:url, JSON-LD url and
@@ -149,6 +174,19 @@ route_manifest: true
 # docs/*.md have no "## Excerpt" section; derive one from the opening paragraph
 # so cards and meta descriptions are not blank.
 auto_excerpt: true
+
+# Publish a clean Markdown copy of every page beside its HTML (/setup.md next to
+# /setup.html), link it from the page <head> as a text/markdown alternate, and
+# index the lot in /llms.txt.
+#
+# This site documents a machine-readable specification, and the readers that
+# matter most for it are increasingly not people with browsers: an assistant
+# asked "how do I express work authorization in a CV schema?" should be able to
+# fetch the guide as prose rather than scrape a rendered page and guess which
+# <div> was the content. ssg is Markdown-native, so the published copy is the
+# authored source — not an HTML round-trip — which is the difference between a
+# usable answer and a mangled one. Costs nothing at runtime: static files.
+markdown_publish: true
 
 # The stylesheet is authored as four files and served as one. Bundle paths are
 # relative to the output root, not to the theme.
