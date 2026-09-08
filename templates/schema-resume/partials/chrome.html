@@ -110,6 +110,25 @@
 
 
 {{define "sr-header"}}
+    {{/* Cloudflare's Email Address Obfuscation rewrites anything that looks like
+         an email address into a <a href="/cdn-cgi/l/email-protection"> whose
+         text is the literal "[email protected]". On a specification site that is
+         not a privacy feature but content corruption: every example address in
+         the JSON and JSON-LD samples — john@example.com, jane@example.com — was
+         being served as "[email protected]", so a reader copying a sample got a
+         document that does not validate. The rewritten links also 404 for
+         crawlers, which is how this surfaced (six pages linking to a broken
+         /cdn-cgi/l/ URL). <!--email_off--> is Cloudflare's documented opt-out;
+         opened here and closed at the end of sr-footer, it covers the whole
+         body of every role template. The one real address on the site
+         (info@schema-resume.org) is meant to be readable, and is published in
+         .well-known/security.txt anyway.
+
+         Emitted through safeHTML rather than written literally: Go's
+         html/template strips HTML comments as it parses, so a literal
+         <!--email_off--> here reaches the output as nothing at all — which is
+         exactly how the first attempt at this fix silently did nothing. */}}
+    {{ "<!--email_off-->" | safeHTML }}
     {{/* .Current is the site-absolute path of the page being rendered, used to
          mark the active nav item for assistive technology. */}}
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -199,4 +218,7 @@
             </p>
         </div>
     </footer>
+    {{/* Closes the email_off region opened at the top of sr-header; safeHTML for
+         the same reason it is used there. */}}
+    {{ "<!--/email_off-->" | safeHTML }}
 {{end}}

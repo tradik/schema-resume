@@ -153,6 +153,38 @@ is skipped. See
 The checkout uses `fetch-depth: 0` deliberately: sitemap `<lastmod>` values come
 from each file's last commit, which a shallow clone does not have.
 
+**A local build cannot reproduce those dates.** If ssg was installed as a snap
+(the usual way on Linux), strict confinement means it cannot see the host's
+`git` at all, so `lastmod_from_git` falls back to front-matter `modified:` dates
+and, for files that have no front matter, to the file's modification time. ssg
+1.8.58 and later warn once per build when this happens. Nothing needs fixing —
+CI installs the release tarball, where `git` is on PATH — but it does mean the
+`<lastmod>` values in a locally built `output/sitemap.xml` are not the ones that
+get published. Use the Homebrew or tarball install if you need to check them.
+
+### Cloudflare settings this repository cannot set
+
+Two dashboard toggles override what is committed here. Both default to a value
+that is wrong for this site, and neither leaves a trace in the build.
+
+**Email Address Obfuscation — turn it off.** (Cloudflare dashboard → the zone →
+Scrape Shield → Email Address Obfuscation.) It rewrites anything that looks like
+an email address in the served HTML into a `/cdn-cgi/l/email-protection` link
+whose visible text is the literal `[email protected]`. On a site whose subject is
+a data format, that is not a privacy feature: it corrupts the example addresses
+inside the JSON and JSON-LD samples, so a reader copying one out of the
+documentation gets a document that does not validate. It also 404s, which is how
+it was found — six pages linking to a broken `/cdn-cgi/l/` URL in an Ahrefs
+crawl. The theme wraps every page body in Cloudflare's `<!--email_off-->`
+opt-out, but that is a second line of defence and the toggle is the fix.
+
+**AI Scrapers and Crawlers blocking — turn it off.** (Security → Bots.) It
+blocks at the edge the crawlers `robots.txt` explicitly invites, which is how the
+site came to have an *inconsistent AI bot policy*: some AI bots allowed, others
+blocked, with nothing in the repository asking for either. The specification is
+MIT-licensed and every example address in it is fictional; being read is the
+point of publishing it.
+
 ## Releasing a schema version
 
 Order matters: freeze **before** bumping, or the outgoing version's pinned URL

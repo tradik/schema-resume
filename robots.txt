@@ -1,7 +1,58 @@
+# Schema Resume — https://schema-resume.org/
+#
+# This site documents an open specification. Being read, quoted and learned
+# from is the point of publishing it, so nothing here is disallowed: an
+# assistant that can answer "how do I express work authorization in a CV
+# schema?" correctly is the specification doing its job.
+#
+# The AI crawlers are named explicitly rather than left to the wildcard. An
+# Ahrefs crawl of the live site reported an inconsistent policy — some AI
+# search bots allowed, others blocked, some training bots allowed and others
+# blocked — because the wildcard said one thing and Cloudflare's managed bot
+# rules said another, and nothing in this repository stated an intent either
+# way. This file is now that statement.
+
 User-agent: *
 Allow: /
 
-# Primary domain
+# AI search and answer engines: these send readers back here, and a citation
+# of the specification is worth more than a page view of it.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Claude-Web
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: DuckAssistBot
+User-agent: Amazonbot
+User-agent: Amzn-SearchBot
+User-agent: Applebot
+User-agent: Google-Agent
+User-agent: GitHubCopilotChat
+User-agent: MistralAI-User
+User-agent: YouBot
+Allow: /
+
+# Training crawlers. A schema whose field names and examples are in the models
+# that developers ask for CV code is a schema those developers get right first
+# time. MIT-licensed, and the examples are fictional by construction.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: DeepseekBot
+User-agent: xAI-Bot
+Allow: /
+
+# Primary domain. Only XML sitemaps belong in a Sitemap: directive — llms.txt
+# is a plain-text index and naming it here would hand a search engine a file its
+# sitemap parser cannot read.
 Sitemap: https://schema-resume.org/sitemap.xml
 
-
+# Markdown copies of every page, indexed for language models and agents, at
+# https://schema-resume.org/llms.txt (see https://llmstxt.org/). Every page is
+# also served as Markdown at its own URL with a .md extension — /json-ld.md —
+# and links to it from <head> as a text/markdown alternate.

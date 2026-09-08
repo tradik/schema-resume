@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SSG_VERSION: v1.8.51
+  SSG_VERSION: v1.8.58
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
 
       - name: Install build dependencies

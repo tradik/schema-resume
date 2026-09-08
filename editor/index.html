@@ -1,24 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NG0TH0GXV1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-NG0TH0GXV1');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Resume Editor - JSON Resume Schema</title>
-    <meta name="description" content="Visual resume editor based on JSON Resume Schema with XSLT template rendering">
+
+    <!--
+      This page is hand-authored and published verbatim by static_sources, so it
+      gets none of the theme's head partial. Everything the theme would have
+      contributed is therefore spelled out here, and a change to
+      templates/schema-resume/partials/chrome.html does NOT reach it.
+
+      A crawl of the live site found the consequences: no canonical, no
+      OpenGraph and no Twitter card on the second most-linked page of the site
+      (17 internal inlinks), so every share of the editor rendered as a bare
+      URL.
+    -->
+    <title>CV Editor - Build and Validate a Schema Resume CV</title>
+    <meta name="description" content="Free browser-based CV editor for the Schema Resume specification: fill in a form, validate against the JSON Schema and export JSON-LD, all on your device.">
+    <meta name="author" content="Tradik">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://schema-resume.org/editor/">
+    <meta name="theme-color" content="#2563eb">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Schema Resume">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content="CV Editor - Build and Validate a Schema Resume CV">
+    <meta property="og:description" content="Free browser-based CV editor for the Schema Resume specification: fill in a form, validate against the JSON Schema and export JSON-LD, all on your device.">
+    <meta property="og:url" content="https://schema-resume.org/editor/">
+    <meta property="og:image" content="https://schema-resume.org/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Schema Resume - JSON-LD schema for CV and resume data">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CV Editor - Build and Validate a Schema Resume CV">
+    <meta name="twitter:description" content="Free browser-based CV editor for the Schema Resume specification. Validate against the JSON Schema and export JSON-LD, entirely in your browser.">
+    <meta name="twitter:image" content="https://schema-resume.org/images/og-image.png">
+    <meta name="twitter:creator" content="@tradik">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+    <!--
+      Google Analytics 4 under Consent Mode v2, matching the rest of the site.
+
+      This block used to load gtag.js unconditionally, with no consent call at
+      all: the editor set an analytics cookie on first paint while every other
+      page on the same domain waited for the banner. The consent banner is
+      site-wide and stores its decision under the same origin, so granting
+      analytics anywhere grants it here too - the defaults below simply stop
+      this page being the one that asks nobody.
+    -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-NG0TH0GXV1', { anonymize_ip: true });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NG0TH0GXV1"></script>
+    <!--
+      Consent banner, and its client config. The config MUST be kept in step
+      with variables.cookie_consent in .ssg.yaml: the script's own defaults name
+      a /cookie-policy/ page this site does not have, show the banner in every
+      country rather than only where consent is required, and offer a
+      "marketing" category the site does not use. The `version` in particular is
+      what ties a stored decision to the terms it was given under - a different
+      value here would re-prompt a visitor who already answered on the main
+      site.
+    -->
+    <link rel="stylesheet" href="/cookie-consent.css">
+    <script id="ssg-consent-config" type="application/json">
+      {
+        "version": "1",
+        "policyUrl": "/cookies.html",
+        "position": "bottom",
+        "geoMode": "edge",
+        "expiryDays": 180,
+        "logEndpoint": "/api/consent/log",
+        "categories": [
+          { "id": "necessary", "required": true },
+          { "id": "analytics" }
+        ]
+      }
+    </script>
+    <script src="/cookie-consent.js" defer></script>
     <!--
       Inter used to be fetched from Google Fonts here. That put a request to
       Google — carrying the visitor's IP — on every editor page load, which is
