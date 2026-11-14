@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-11-14
+
+Schema rules unchanged. The first release on Packagist and Maven Central.
+
 ### Fixed — packages
 
 - **PHP: a resume passed as a PHP array failed validation.** `Validator::validate()` turned only

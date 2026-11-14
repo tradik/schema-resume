@@ -113,7 +113,7 @@ try {
     echo str_repeat("-", 60) . "\n\n";
     
     $schema = $validator->getSchema();
-    // schema.json carries its version in the title ("Schema Resume v1.3.1"), not a version key.
+    // schema.json carries its version in the title ("Schema Resume v1.3.2"), not a version key.
     echo "Schema title: {$schema->title}\n";
     
     $metaSchema = $validator->getMetaSchema();
