@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed — release
+
+- **npm is published with Trusted Publishing (OIDC) instead of a token.** npm now rejects
+  tokens for this package, so the last two releases (1.3.1, 1.3.2) failed in CI with `EOTP`
+  and were published by hand. The release job asks GitHub for an OIDC identity
+  (`id-token: write`) and npm exchanges it for a short-lived publish credential; nothing is
+  stored, the package keeps requiring 2FA, and every version gets a provenance statement.
+  Runs on Node 24 with the latest npm (11.5.1 or later is required). The `NPM_TOKEN` secret is
+  no longer used.
+
 ## [1.3.2] - 2026-11-14
 
 Schema rules unchanged. The first release on Packagist and Maven Central.

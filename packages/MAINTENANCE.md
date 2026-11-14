@@ -108,6 +108,7 @@ Before creating a release:
 
 ### NPM
 - Update dependencies: `cd packages/npm && npm update`
+- Publishing: CI uses npm Trusted Publishing (OIDC), no token. The trusted publisher is set on npmjs.com → schema-resume-validator → Settings → Trusted Publisher (GitHub Actions, `tradik` / `schema-resume` / `release-packages.yml`). A manual fallback is `npm publish --otp=<code>` from `packages/npm` on the release tag.
 - Check for vulnerabilities: `npm audit`
 
 ### Python

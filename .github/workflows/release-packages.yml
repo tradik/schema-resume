@@ -40,10 +40,18 @@ jobs:
           echo "Version: ${VERSION}"
           echo "Tag: ${TAG}"
 
+  # npm Trusted Publishing (OIDC): the job proves to npm that it is this workflow in
+  # tradik/schema-resume, and npm issues a short-lived publish credential. No token is
+  # stored, so the package can require 2FA and disallow tokens. Configured once on
+  # npmjs.com → schema-resume-validator → Settings → Trusted Publisher (GitHub Actions,
+  # tradik / schema-resume / release-packages.yml). Provenance is attached automatically.
   release-npm:
     name: Release NPM Package
     runs-on: ubuntu-latest
     needs: prepare
+    permissions:
+      contents: read
+      id-token: write
     outputs:
       status: ${{ steps.publish.outcome }}
     steps:
@@ -53,8 +61,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
+
+      # Trusted Publishing needs npm 11.5.1 or later.
+      - name: Update npm
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         working-directory: packages/npm
@@ -82,8 +94,6 @@ jobs:
             cat npm_publish.log
             exit 1
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   release-python:
     name: Release Python Package
