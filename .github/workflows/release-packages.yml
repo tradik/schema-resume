@@ -193,12 +193,12 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v6
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
 
       - name: Build with Maven
         working-directory: packages/java
-        run: mvn clean package
+        run: mvn -B clean verify
 
       - name: Verify package
         id: publish
@@ -386,9 +386,9 @@ jobs:
 
           ### Go
           \`\`\`bash
-          go get github.com/tradik/schema-resume/validator@${{ needs.prepare.outputs.tag }}
+          go get github.com/tradik/schema-resume/packages/golang@${{ needs.prepare.outputs.tag }}
           \`\`\`
-          - Package: [github.com/tradik/schema-resume/validator](https://pkg.go.dev/github.com/tradik/schema-resume/validator)
+          - Package: [github.com/tradik/schema-resume/packages/golang](https://pkg.go.dev/github.com/tradik/schema-resume/packages/golang)
 
           ### Java (Maven)
           \`\`\`xml

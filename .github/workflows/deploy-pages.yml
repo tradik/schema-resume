@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SSG_VERSION: v1.8.58
+  SSG_VERSION: v1.9.8
 
 jobs:
   build:

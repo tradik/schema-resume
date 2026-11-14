@@ -2,26 +2,30 @@ package org.schemaresume.validator;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.schema.JsonMetaSchema;
-import com.networknt.schema.JsonSchema;
-import com.networknt.schema.JsonSchemaFactory;
-import com.networknt.schema.SpecVersion;
-import com.networknt.schema.ValidationMessage;
+import com.networknt.schema.Error;
+import com.networknt.schema.InputFormat;
+import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaRegistry;
+import com.networknt.schema.dialect.Dialect;
+import com.networknt.schema.dialect.Dialects;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Validator for Schema Resume JSON documents.
+ *
+ * <p>The public API takes and returns Jackson 2 ({@code com.fasterxml.jackson}) nodes, as it
+ * always has. networknt json-schema-validator 3.x is built on Jackson 3, so documents are handed
+ * to it as JSON text and callers never see the second Jackson.
  */
 public class ResumeValidator {
     /** IRI declared in the {@code $schema} keyword of schema.json; resolved locally as a Draft-07 dialect. */
     private static final String META_SCHEMA_IRI = "https://schema-resume.org/meta-schema.json";
 
-    private final JsonSchema schema;
+    private final Schema schema;
     private final JsonNode schemaNode;
     private final JsonNode metaSchemaNode;
     private final JsonNode contextNode;
@@ -40,15 +44,12 @@ public class ResumeValidator {
         this.metaSchemaNode = loadResource("/schemas/meta-schema.json");
         this.contextNode = loadResource("/schemas/context.jsonld");
         
-        // Create JSON Schema validator. schema.json declares our own meta-schema IRI as its
-        // $schema; register that IRI as a Draft-07 dialect so it is never fetched over the network.
-        JsonMetaSchema draft7 = JsonMetaSchema.getV7();
-        JsonMetaSchema resumeMetaSchema = JsonMetaSchema.builder(META_SCHEMA_IRI, draft7).build();
-        JsonSchemaFactory factory = JsonSchemaFactory.builder(
-                JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7))
-            .metaSchema(resumeMetaSchema)
-            .build();
-        this.schema = factory.getSchema(schemaNode);
+        // schema.json declares draft-07 as its $schema; copies embedded before 1.3.0 declared our own
+        // meta-schema IRI. Register both, the IRI as a Draft-07 dialect, so neither is ever fetched
+        // over the network (networknt 3.x refuses dialects it was not given).
+        Dialect resumeDialect = Dialect.builder(META_SCHEMA_IRI, Dialects.getDraft7()).build();
+        SchemaRegistry registry = SchemaRegistry.withDialects(List.of(Dialects.getDraft7(), resumeDialect));
+        this.schema = registry.getSchema(schemaNode.toString(), InputFormat.JSON);
     }
 
     /**
@@ -58,7 +59,7 @@ public class ResumeValidator {
      * @return JsonNode of the resource
      * @throws IOException if resource cannot be loaded
      */
-    private JsonNode loadResource(String path) throws IOException {
+    JsonNode loadResource(String path) throws IOException {
         try (InputStream is = getClass().getResourceAsStream(path)) {
             if (is == null) {
                 throw new IOException("Resource not found: " + path);
@@ -74,14 +75,14 @@ public class ResumeValidator {
      * @return ValidationResult containing validation outcome
      */
     public ValidationResult validate(JsonNode resume) {
-        Set<ValidationMessage> errors = schema.validate(resume);
-        
+        List<Error> errors = schema.validate(resume.toString(), InputFormat.JSON);
+
         List<ValidationError> errorList = new ArrayList<>();
-        for (ValidationMessage msg : errors) {
+        for (Error error : errors) {
             errorList.add(new ValidationError(
-                msg.getInstanceLocation().toString(),
-                msg.getType(),
-                msg.getMessage()
+                error.getInstanceLocation().toString(),
+                error.getKeyword(),
+                error.getMessage()
             ));
         }
         

@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-11-14
+
+A packaging release: the schema itself is unchanged from 1.3.0 (`/1.3/` keeps serving the
+same documents), but three of the six validator packages could not be used as published.
+
+### Changed — packages (breaking for Java 11)
+
+- **The Java package needs Java 17.** Dependabot moved it to networknt json-schema-validator
+  3.0.9 and JUnit 6.1.3, both built for Java 17, so `packages/java` stopped compiling on the
+  Java 11 the release job used. `ResumeValidator` is ported to the 3.x API (`SchemaRegistry`,
+  `Dialect`, `Error`); its public API is unchanged and still takes Jackson 2 `JsonNode`s
+  (networknt 3.x is on Jackson 3, so documents reach it as JSON text). `ValidationError.getType()`
+  is the failing keyword (`format`, `type`, …), as before. Stay on 1.3.0 for Java 11. The build
+  now runs JaCoCo (`mvn verify`) and fails below 98% line coverage per class; it is at 100%.
+
+### Fixed — packages
+
+- **The Ruby gem shipped without its code.** A Python-style `lib/` pattern in `.gitignore`
+  swallowed `packages/ruby/lib/`, so the gem built in CI contained only the README, the licence
+  and the schemas — `require "schema_resume"` failed for every published version up to 1.3.0.
+  `!packages/ruby/lib/` restores it; 1.3.1 is the first gem with `SchemaResume::Validator` in it.
+
+- **The Go module could not be installed, under any name.** `packages/golang/go.mod` declared
+  `github.com/tradik/schema-resume/validator`, but Go derives a module's path from where it lives
+  in the repository, and the release tags (`packages/golang/vX.Y.Z`) point at
+  `github.com/tradik/schema-resume/packages/golang`. The proxy rejected every version with
+  "module declares its path as … but was required as …", and pkg.go.dev listed nothing. The
+  module is now `github.com/tradik/schema-resume/packages/golang`; the package is still called
+  `validator`, so code changes only its import path. The first installable release is
+  `packages/golang/v1.3.1`. Every README, `data/packages.yaml` (the /packages page),
+  `docs/UPGRADING.md` and the release notes template use the new path.
+- **The Go package has tests** (it had none, so the release job's `go test` passed vacuously):
+  100% statement coverage, plus a test that fails if `go.mod` ever declares a path other than
+  the directory's again.
+
+### Changed — site build
+
+- **ssg 1.9.8** in CI (was 1.8.58). The site builds unchanged with every strict gate passing;
+  nothing in `.ssg.yaml` or the theme needed changing.
+- **Editor libraries upgraded**: `@tradik/xslt-processor` 1.3.5 (was 1.0.3 — Safari 15.4–16.3
+  could not load the bundle before 1.3.5; Chrome-compatible sorting and HTML fragments since
+  1.3.x), Mermaid 12.3.0 (was 11.17.2), Chart.js 4.6.1, lucide-static 1.73.0. Checked in
+  headless Chromium with native XSLT disabled (what Chrome 158 ships): the career-timeline Gantt
+  renders and the fallback XSLT processor transforms.
+- **`npm audit` is clean.** `fast-json-patch` (prototype pollution, GHSA-8gh8-hqwg-xf34, pulled
+  in by `ajv-cli`) is held at ^3.1.1 through `overrides`; npm's own fix would have downgraded
+  `ajv-cli` to 0.6.0.
+
 ### Added — site build
 
 - **Every page is published as Markdown as well as HTML**, at the same URL with a `.md` extension

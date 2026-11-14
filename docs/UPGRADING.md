@@ -107,12 +107,20 @@ document's own `@context` should point at.
 The packages embed the schema, so their version *is* the schema version:
 
 ```bash
-npm  install schema-resume-validator@1.3.0
-pip  install schema-resume-validator==1.3.0
-gem  install schema-resume-validator -v 1.3.0
+npm  install schema-resume-validator@1.3.1
+pip  install schema-resume-validator==1.3.1
+gem  install schema-resume-validator -v 1.3.1
 composer require schema-resume/validator:^1.3
-go get github.com/tradik/schema-resume/validator@v1.3.0
+go get github.com/tradik/schema-resume/packages/golang@v1.3.1
 ```
+
+1.3.1 changes no schema rule, but three packages change how you install them:
+
+- **Go**: the import path is now `github.com/tradik/schema-resume/packages/golang`
+  (the package is still `validator`). The old path never resolved.
+- **Java**: needs Java 17. On Java 11, stay on 1.3.0.
+- **Ruby**: 1.3.1 is the first gem that contains its code; earlier gems failed on
+  `require "schema_resume"`.
 
 Staying on an older schema means pinning the matching package version. That is
 the recommended way to depend on a specific release: it removes this site from

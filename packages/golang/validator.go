@@ -28,7 +28,7 @@ type Validator struct {
 
 // ValidationResult contains the validation outcome
 type ValidationResult struct {
-	Valid  bool            `json:"valid"`
+	Valid  bool              `json:"valid"`
 	Errors []ValidationError `json:"errors"`
 }
 

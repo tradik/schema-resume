@@ -10,6 +10,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -69,5 +70,20 @@ class ResumeValidatorTest {
             ResumeValidator.ValidationResult result = validator.validate(MAPPER.readTree(is));
             assertTrue(result.isValid(), () -> "unexpected errors: " + result.getErrors());
         }
+    }
+
+    @Test
+    void reportsMissingResource() {
+        IOException e = assertThrows(IOException.class, () -> validator.loadResource("/schemas/missing.json"));
+        assertTrue(e.getMessage().contains("/schemas/missing.json"));
+    }
+
+    @Test
+    void reportsErrorLocationAndKeyword() throws IOException {
+        ResumeValidator.ValidationResult result =
+            validator.validateJson("{\"basics\":{\"name\":\"Jane\",\"email\":\"not-an-email\"}}");
+        ResumeValidator.ValidationError error = result.getErrors().get(0);
+        assertEquals("format", error.getType());
+        assertTrue(error.getPath().contains("email"), error::getPath);
     }
 }

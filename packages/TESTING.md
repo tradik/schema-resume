@@ -41,14 +41,14 @@ node example.js
 npm pack
 
 # Test in another project
-npm install /path/to/schema-resume-validator-1.3.0.tgz
+npm install /path/to/schema-resume-validator-1.3.1.tgz
 ```
 
 **Verify installation:**
 ```javascript
 const { createValidator } = require('@schema-resume/validator');
 const validator = createValidator();
-console.log(validator.getSchema().title); // Should print: Schema Resume v1.3.0
+console.log(validator.getSchema().title); // Should print: Schema Resume v1.3.1
 ```
 
 ### Python
@@ -66,7 +66,7 @@ pip install -e .
 # Or build and install from wheel
 pip install build
 python -m build
-pip install dist/schema_resume_validator-1.3.0-py3-none-any.whl
+pip install dist/schema_resume_validator-1.3.1-py3-none-any.whl
 
 # Run example
 python example.py
@@ -79,7 +79,7 @@ pytest
 **Verify installation:**
 ```python
 from schema_resume import validate_resume, __version__
-print(__version__)  # Should print: 1.3.0
+print(__version__)  # Should print: 1.3.1
 
 result = validate_resume({"basics": {"name": "Test"}})
 print(result['valid'])  # Should print: True
@@ -110,16 +110,16 @@ go build
 
 Create a test project and add to `go.mod`:
 ```go
-replace github.com/tradik/schema-resume/validator => /absolute/path/to/packages/golang
+replace github.com/tradik/schema-resume/packages/golang => /absolute/path/to/packages/golang
 ```
 
 Then:
 ```go
-import "github.com/tradik/schema-resume/validator"
+import "github.com/tradik/schema-resume/packages/golang"
 
 v, _ := validator.NewValidator()
 schema := v.GetSchema()
-fmt.Println(schema["title"]) // Should print: Schema Resume v1.3.0
+fmt.Println(schema["title"]) // Should print: Schema Resume v1.3.1
 ```
 
 ### Java
@@ -140,7 +140,7 @@ mvn package
 mvn install
 ```
 
-The package will be installed to `~/.m2/repository/org/schema-resume/schema-resume-validator/1.3.0/`
+The package will be installed to `~/.m2/repository/org/schema-resume/schema-resume-validator/1.3.1/`
 
 **Test in another project:**
 
@@ -149,7 +149,7 @@ Add to `pom.xml`:
 <dependency>
     <groupId>org.schema-resume</groupId>
     <artifactId>schema-resume-validator</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
@@ -159,7 +159,7 @@ import org.schemaresume.validator.ResumeValidator;
 
 ResumeValidator validator = new ResumeValidator();
 JsonNode schema = validator.getSchema();
-System.out.println(schema.get("title").asText()); // Should print: Schema Resume v1.3.0
+System.out.println(schema.get("title").asText()); // Should print: Schema Resume v1.3.1
 ```
 
 ### Ruby
@@ -171,7 +171,7 @@ cd packages/ruby
 gem build schema-resume-validator.gemspec
 
 # Install locally
-gem install ./schema-resume-validator-1.3.0.gem
+gem install ./schema-resume-validator-1.3.1.gem
 
 # Test in irb
 irb
@@ -180,7 +180,7 @@ irb
 **Verify installation:**
 ```ruby
 require 'schema_resume'
-puts SchemaResume::VERSION  # Should print: 1.3.0
+puts SchemaResume::VERSION  # Should print: 1.3.1
 
 result = SchemaResume.validate({"basics" => {"name" => "Test"}})
 puts result[:valid]  # Should print: true
@@ -240,7 +240,7 @@ use SchemaResume\Validator;
 
 $validator = new Validator();
 $schema = $validator->getSchema();
-echo $schema->title; // Should print: Schema Resume v1.3.0
+echo $schema->title; // Should print: Schema Resume v1.3.1
 ```
 
 ## Validation Checklist
@@ -274,7 +274,7 @@ cp ../../xml/1.0/schema-resume.xsd packages/npm/schema-resume.xsd
 
 If Go can't find the module, ensure:
 1. `go.mod` is in the correct location
-2. Module path matches: `github.com/tradik/schema-resume/validator`
+2. Module path matches: `github.com/tradik/schema-resume/packages/golang`
 3. Run `go mod tidy` to clean up dependencies
 
 ### Python Import Errors
@@ -287,7 +287,7 @@ If Python can't import the module:
 ### Maven Build Failures
 
 If Maven fails:
-1. Ensure Java 11+ is installed: `java -version`
+1. Ensure Java 17+ is installed: `java -version`
 2. Clear Maven cache: `mvn clean`
 3. Check `pom.xml` syntax
 

@@ -1,6 +1,6 @@
 # Schema Resume Validator (Go)
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/tradik/schema-resume/validator.svg)](https://pkg.go.dev/github.com/tradik/schema-resume/validator)
+[![Go Reference](https://pkg.go.dev/badge/github.com/tradik/schema-resume/packages/golang.svg)](https://pkg.go.dev/github.com/tradik/schema-resume/packages/golang)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Official Go package for validating resumes against the [Schema Resume](https://schema-resume.org/) JSON Schema.
@@ -8,8 +8,14 @@ Official Go package for validating resumes against the [Schema Resume](https://s
 ## Installation
 
 ```bash
-go get github.com/tradik/schema-resume/validator
+go get github.com/tradik/schema-resume/packages/golang
 ```
+
+Use **v1.3.1 or later**. Releases v1.1.0–v1.3.0 declared the module as
+`github.com/tradik/schema-resume/validator`, a path that does not match the
+`packages/golang` directory the tags point at, so `go get` rejected them under
+either name. The package name is still `validator`, so only the import path
+changes.
 
 ## Usage
 
@@ -22,7 +28,7 @@ import (
     "fmt"
     "log"
 
-    validator "github.com/tradik/schema-resume/validator"
+    validator "github.com/tradik/schema-resume/packages/golang"
 )
 
 func main() {
@@ -75,7 +81,7 @@ import (
     "fmt"
     "log"
 
-    validator "github.com/tradik/schema-resume/validator"
+    validator "github.com/tradik/schema-resume/packages/golang"
 )
 
 func main() {
@@ -107,7 +113,7 @@ import (
     "fmt"
     "log"
 
-    validator "github.com/tradik/schema-resume/validator"
+    validator "github.com/tradik/schema-resume/packages/golang"
 )
 
 func main() {
@@ -138,7 +144,7 @@ import (
     "fmt"
     "log"
 
-    validator "github.com/tradik/schema-resume/validator"
+    validator "github.com/tradik/schema-resume/packages/golang"
 )
 
 func main() {
@@ -235,7 +241,7 @@ import (
     "fmt"
     "log"
 
-    validator "github.com/tradik/schema-resume/validator"
+    validator "github.com/tradik/schema-resume/packages/golang"
 )
 
 func main() {
@@ -320,7 +326,7 @@ This package embeds all necessary schema files:
 - **Website**: https://schema-resume.org/
 - **Documentation**: https://github.com/tradik/schema-resume
 - **Online Validator**: https://schema-resume.org/validator.html
-- **Go Package**: https://pkg.go.dev/github.com/tradik/schema-resume/validator
+- **Go Package**: https://pkg.go.dev/github.com/tradik/schema-resume/packages/golang
 - **Issues**: https://github.com/tradik/schema-resume/issues
 
 ## Support

@@ -873,7 +873,7 @@
       }
     }
   },
-  "title": "Schema Resume v1.3.0",
+  "title": "Schema Resume v1.3.1",
   "description": "Self-hosted JSON-LD schema for CV/Resume parsing and validation with work authorization and tools tracking",
   "type": "object"
 }
