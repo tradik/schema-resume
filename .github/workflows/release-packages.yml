@@ -190,28 +190,40 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      # server-id/username/password write ~/.m2/settings.xml for the Central Portal;
+      # gpg-private-key imports the signing key. Both read secrets, nothing is echoed.
       - name: Setup Java
         uses: actions/setup-java@v6
         with:
           java-version: '17'
           distribution: 'temurin'
+          server-id: central
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
-      - name: Build with Maven
+      - name: Build and test
         working-directory: packages/java
         run: mvn -B clean verify
 
-      - name: Verify package
+      # Publishes to Maven Central once the four secrets exist; until then the job
+      # only builds, as it always did, so a release is not blocked on Central setup.
+      - name: Publish to Maven Central
         id: publish
         working-directory: packages/java
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          HAS_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY != '' }}
         run: |
-          echo "✅ Java package built successfully"
-          echo "📦 JAR file created: $(ls -1 target/*.jar | head -1)"
-          echo ""
-          echo "ℹ️  Maven Central publishing requires additional setup:"
-          echo "  - GPG key for signing"
-          echo "  - Sonatype OSSRH account"
-          echo "  - Distribution management in pom.xml"
-          echo "  - See packages/java/MAVEN_CENTRAL_SETUP.md for details"
+          if [ -z "$MAVEN_CENTRAL_USERNAME" ] || [ -z "$MAVEN_CENTRAL_TOKEN" ] || [ "$HAS_GPG_KEY" != "true" ]; then
+            echo "ℹ️ Maven Central secrets not set; built only. See packages/java/MAVEN_CENTRAL_SETUP.md"
+            exit 0
+          fi
+          mvn -B -P release -DskipTests deploy
+          echo "✅ Published to Maven Central"
 
   release-ruby:
     name: Release Ruby Gem
@@ -269,14 +281,19 @@ jobs:
           php-version: '8.2'
           tools: composer
 
+      # composer.json is at the repository root: Packagist only reads it there.
       - name: Validate composer.json
         id: validate
-        working-directory: packages/php
-        run: composer validate
+        run: composer validate --strict
 
       - name: Install dependencies
-        working-directory: packages/php
         run: composer install --prefer-dist --no-progress
+
+      - name: Run tests
+        run: vendor/bin/phpunit
+
+      - name: Run example
+        run: php packages/php/example.php
 
       - name: Create release note
         run: |

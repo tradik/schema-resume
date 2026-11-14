@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use SchemaResume\Validator;
 
@@ -113,7 +113,7 @@ try {
     echo str_repeat("-", 60) . "\n\n";
     
     $schema = $validator->getSchema();
-    echo "Schema version: {$schema->version}\n";
+    // schema.json carries its version in the title ("Schema Resume v1.3.2"), not a version key.
     echo "Schema title: {$schema->title}\n";
     
     $metaSchema = $validator->getMetaSchema();

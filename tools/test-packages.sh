@@ -152,11 +152,10 @@ test_ruby() {
 # Test PHP package
 test_php() {
     print_info "Testing PHP package..."
-    cd packages/php
-    
+    # composer.json lives at the repository root: Packagist only reads it there.
+
     if ! command -v composer &> /dev/null; then
         print_error "Composer not found. Skipping PHP tests."
-        cd ../..
         return
     fi
     
@@ -167,9 +166,8 @@ test_php() {
     composer validate
     
     print_info "Running PHP example..."
-    php example.php
-    
-    cd ../..
+    php packages/php/example.php
+
     print_success "PHP package tests passed"
     echo ""
 }

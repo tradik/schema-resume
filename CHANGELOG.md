@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-11-14
+
+Schema rules unchanged. The first release on Packagist and Maven Central.
+
+### Fixed — packages
+
+- **PHP: a resume passed as a PHP array failed validation.** `Validator::validate()` turned only
+  the top level of the array into an object, so every nested object (`basics`, `work[0]`, …)
+  failed with "Array value found, but an object is required" — including in the package's own
+  `example.php`. Nested associative arrays now become objects and lists stay arrays; `[]` is still
+  an empty resume. A JSON string or array that is a list, not an object, now raises
+  `InvalidArgumentException` instead of a `TypeError`. PHPStan level max passes (it reported 8
+  errors), and the package has PHPUnit tests for the first time (100% line coverage), run by the
+  release job.
+
+### Changed — packages
+
+- **`composer.json` moved to the repository root**, where Packagist reads it; the package's
+  code stays in `packages/php/`. Run Composer from the root (`composer install`,
+  `vendor/bin/phpunit`, `php packages/php/example.php`). The first tag carrying it is the first
+  version Packagist can list.
+- **Maven Central publishing.** The release job publishes the Java package once the
+  `MAVEN_CENTRAL_*` and `MAVEN_GPG_*` secrets exist (sources and javadoc jars, GPG-signed, via
+  the Central Portal); until then it only builds, as before. Steps in
+  `packages/java/MAVEN_CENTRAL_SETUP.md`, which the workflow referred to but which did not exist.
+
 ## [1.3.1] - 2026-11-14
 
 A packaging release: the schema itself is unchanged from 1.3.0 (`/1.3/` keeps serving the

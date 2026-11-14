@@ -27,7 +27,8 @@
     "support": {
         "email": "info@schema-resume.org",
         "issues": "https://github.com/tradik/schema-resume/issues",
-        "source": "https://github.com/tradik/schema-resume"
+        "source": "https://github.com/tradik/schema-resume",
+        "docs": "https://github.com/tradik/schema-resume/tree/main/packages/php"
     },
     "require": {
         "php": ">=8.0",
@@ -39,17 +40,17 @@
     },
     "autoload": {
         "psr-4": {
-            "SchemaResume\\": "src/"
+            "SchemaResume\\": "packages/php/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SchemaResume\\Tests\\": "tests/"
+            "SchemaResume\\Tests\\": "packages/php/tests/"
         }
     },
     "scripts": {
         "test": "phpunit",
-        "phpstan": "phpstan analyse src --level=max"
+        "phpstan": "phpstan analyse packages/php/src --level=max"
     },
     "config": {
         "sort-packages": true,

@@ -44,6 +44,6 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "composer"
-    directory: "/packages/php"
+    directory: "/"
     schedule:
       interval: "weekly"
