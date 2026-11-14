@@ -294,7 +294,7 @@ schema:
 
 variables:
   project_name: Schema Resume
-  schema_version: "1.3.2"
+  schema_version: "1.3.3"
   # MAJOR.MINOR — the prefix tools/stage-static.sh publishes pinned copies
   # under. A patch release cannot change the schema's meaning, so it does
   # not get its own URL.

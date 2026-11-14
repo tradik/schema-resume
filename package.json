@@ -1,6 +1,6 @@
 {
   "name": "schema-resume",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": true,
   "description": "A comprehensive JSON-LD Schema for CV/Resume parsing and validation with work authorization and tools tracking",
   "main": "schema.json",

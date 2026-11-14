@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3] - 2026-11-14
+
+Schema rules and package code unchanged; this release exists to publish to npm from CI again.
+
 ### Changed — release
 
 - **npm is published with Trusted Publishing (OIDC) instead of a token.** npm now rejects
