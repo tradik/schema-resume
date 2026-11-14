@@ -7,7 +7,7 @@ Official Java package for validating resumes against the [Schema Resume](https:/
 
 ## Requirements
 
-- Java 11 or newer
+- Java 17 or newer (1.3.0 and earlier ran on Java 11)
 - Transitive dependencies: `com.networknt:json-schema-validator` 1.5.x and
   `com.fasterxml.jackson.core:jackson-databind` 2.22.x (both pulled in automatically)
 
@@ -19,14 +19,14 @@ Official Java package for validating resumes against the [Schema Resume](https:/
 <dependency>
     <groupId>org.schema-resume</groupId>
     <artifactId>schema-resume-validator</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'org.schema-resume:schema-resume-validator:1.3.0'
+implementation 'org.schema-resume:schema-resume-validator:1.3.1'
 ```
 
 ## Usage
@@ -258,7 +258,7 @@ public class CompleteExample {
 
 ## Requirements
 
-- Java 11 or higher
+- Java 17 or higher
 - Maven 3.6+ or Gradle 7.0+
 
 ## Links

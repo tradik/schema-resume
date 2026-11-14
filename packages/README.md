@@ -19,9 +19,9 @@ This directory contains official packages for Schema Resume validator in multipl
 - **Features**: Python 3.8+, jsonschema validation, type hints
 
 ### Go
-- **Package**: `github.com/tradik/schema-resume/validator`
-- **Registry**: [pkg.go.dev](https://pkg.go.dev/github.com/tradik/schema-resume/validator)
-- **Installation**: `go get github.com/tradik/schema-resume/validator`
+- **Package**: `github.com/tradik/schema-resume/packages/golang`
+- **Registry**: [pkg.go.dev](https://pkg.go.dev/github.com/tradik/schema-resume/packages/golang)
+- **Installation**: `go get github.com/tradik/schema-resume/packages/golang`
 - **Documentation**: [golang/README.md](./golang/README.md)
 - **Features**: Go 1.21+, embedded schemas, zero dependencies
 
@@ -30,7 +30,7 @@ This directory contains official packages for Schema Resume validator in multipl
 - **Registry**: [Maven Central](https://search.maven.org/artifact/org.schema-resume/schema-resume-validator)
 - **Installation**: Maven/Gradle (see documentation)
 - **Documentation**: [java/README.md](./java/README.md)
-- **Features**: Java 11+, Maven/Gradle support, Jackson integration
+- **Features**: Java 17+, Maven/Gradle support, Jackson integration
 
 ### Ruby
 - **Package**: `schema-resume-validator`
@@ -83,7 +83,7 @@ result = validate_resume(resume_data)
 
 ### Go
 ```go
-import "github.com/tradik/schema-resume/validator"
+import "github.com/tradik/schema-resume/packages/golang"
 v, _ := validator.NewValidator()
 result, _ := v.Validate(resume)
 ```
@@ -113,8 +113,8 @@ $result = $validator->validate($resume);
 Packages are automatically released via GitHub Actions when a version tag is pushed:
 
 ```bash
-git tag v1.3.0
-git push origin v1.3.0
+git tag v1.3.1
+git push origin v1.3.1
 ```
 
 The workflow (`.github/workflows/release-packages.yml`) will:
@@ -128,7 +128,7 @@ The workflow (`.github/workflows/release-packages.yml`) will:
 - **Email**: info@schema-resume.org or support@tradik.com
 - **Repository**: https://github.com/tradik/schema-resume
 - **License**: MIT
-- **Version**: 1.3.0
+- **Version**: 1.3.1
 
 ## Schema File Synchronization
 

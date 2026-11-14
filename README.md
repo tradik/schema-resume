@@ -1,6 +1,6 @@
 # Schema Resume
 
-[![Schema Version](https://img.shields.io/badge/Schema-v1.3.0-blue.svg)](https://schema-resume.org/schema.json)
+[![Schema Version](https://img.shields.io/badge/Schema-v1.3.1-blue.svg)](https://schema-resume.org/schema.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Website](https://img.shields.io/badge/Website-Live-success.svg)](https://schema-resume.org/)
 [![Self Hosted](https://img.shields.io/badge/Self--Hosted-Yes-brightgreen.svg)](https://schema-resume.org/meta-schema.json)
@@ -62,7 +62,7 @@ The schema is **self-contained** and does not rely on external JSON Schema defin
 **Try the live validator**: [validator.html](https://schema-resume.org/validator.html)
 
 The online validator provides:
-- **Real-time validation** against Schema Resume v1.3.0
+- **Real-time validation** against Schema Resume v1.3.1
 - **JSON-LD compatibility checks** for @context and Schema.org mapping
 - **Detailed error messages** with suggestions for fixes
 - **Example CV** to get started quickly
@@ -717,9 +717,9 @@ pip install schema-resume-validator
 
 ### Go
 ```bash
-go get github.com/tradik/schema-resume/validator
+go get github.com/tradik/schema-resume/packages/golang
 ```
-- **Package**: [github.com/tradik/schema-resume/validator](https://pkg.go.dev/github.com/tradik/schema-resume/validator)
+- **Package**: [github.com/tradik/schema-resume/packages/golang](https://pkg.go.dev/github.com/tradik/schema-resume/packages/golang)
 - **Documentation**: [packages/golang/README.md](./packages/golang/README.md)
 
 ### Java (Maven)
@@ -727,7 +727,7 @@ go get github.com/tradik/schema-resume/validator
 <dependency>
     <groupId>org.schema-resume</groupId>
     <artifactId>schema-resume-validator</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 - **Package**: [Maven Central](https://search.maven.org/artifact/org.schema-resume/schema-resume-validator)

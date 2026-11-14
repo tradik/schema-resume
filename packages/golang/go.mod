@@ -1,4 +1,4 @@
-module github.com/tradik/schema-resume/validator
+module github.com/tradik/schema-resume/packages/golang
 
 go 1.21
 

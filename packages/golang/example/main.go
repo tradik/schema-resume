@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	validator "github.com/tradik/schema-resume/validator"
+	validator "github.com/tradik/schema-resume/packages/golang"
 )
 
 func main() {
@@ -92,12 +92,12 @@ func main() {
 
 	if result.Valid {
 		fmt.Println("✓ Resume is valid!")
-		
+
 		basics := resume["basics"].(map[string]interface{})
 		work := resume["work"].([]map[string]interface{})
 		education := resume["education"].([]map[string]interface{})
 		skills := resume["skills"].([]map[string]interface{})
-		
+
 		fmt.Println("\nResume Summary:")
 		fmt.Printf("  Name: %s\n", basics["name"])
 		fmt.Printf("  Title: %s\n", basics["label"])
@@ -120,7 +120,7 @@ func main() {
 	fmt.Println("\n" + strings.Repeat("=", 60))
 	fmt.Println("Testing invalid resume:")
 	fmt.Println(strings.Repeat("-", 60))
-	
+
 	invalidResume := map[string]interface{}{
 		"basics": map[string]interface{}{
 			"email": "not-an-email", // Invalid email format
@@ -143,11 +143,11 @@ func main() {
 	fmt.Println("\n" + strings.Repeat("=", 60))
 	fmt.Println("Schema Information:")
 	fmt.Println(strings.Repeat("-", 60))
-	
+
 	schema := v.GetSchema()
 	fmt.Printf("Schema version: %v\n", schema["version"])
 	fmt.Printf("Schema title: %v\n", schema["title"])
-	
+
 	metaSchema := v.GetMetaSchema()
 	fmt.Printf("Meta-schema title: %v\n", metaSchema["title"])
 

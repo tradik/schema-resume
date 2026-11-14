@@ -78,6 +78,9 @@ downloads/
 eggs/
 .eggs/
 lib/
+# …but not the Ruby gem's source: this pattern used to swallow packages/ruby/lib/, so
+# every published gem up to 1.3.0 shipped without its code.
+!packages/ruby/lib/
 lib64/
 parts/
 sdist/

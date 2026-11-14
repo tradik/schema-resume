@@ -84,23 +84,23 @@ languages:
     icon: "🔵"
     iconLabel: "Blue circle"
     title: "Go"
-    name: "github.com/tradik/schema-resume/validator"
+    name: "github.com/tradik/schema-resume/packages/golang"
     description: "Go 1.21+, embedded schemas, zero dependencies"
-    install: "go get github.com/tradik/schema-resume/validator"
+    install: "go get github.com/tradik/schema-resume/packages/golang"
     badges:
-      - href: "https://pkg.go.dev/github.com/tradik/schema-resume/validator"
-        img: "https://pkg.go.dev/badge/github.com/tradik/schema-resume/validator.svg"
+      - href: "https://pkg.go.dev/github.com/tradik/schema-resume/packages/golang"
+        img: "https://pkg.go.dev/badge/github.com/tradik/schema-resume/packages/golang.svg"
         alt: "Go Reference"
     links:
       - label: "pkg.go.dev"
-        url: "https://pkg.go.dev/github.com/tradik/schema-resume/validator"
+        url: "https://pkg.go.dev/github.com/tradik/schema-resume/packages/golang"
       - label: "Documentation"
         url: "https://github.com/tradik/schema-resume/tree/main/packages/golang"
     example:
       heading: "Go"
       file: "main.go — go run"
       code: |
-        import validator "github.com/tradik/schema-resume/validator"
+        import validator "github.com/tradik/schema-resume/packages/golang"
 
         v, _ := validator.NewValidator()
         resume := map[string]interface{}{
@@ -121,7 +121,7 @@ languages:
     iconLabel: "Coffee"
     title: "Java"
     name: "org.schema-resume:schema-resume-validator"
-    description: "Java 11+, Maven/Gradle support, Jackson integration"
+    description: "Java 17+, Maven/Gradle support, Jackson integration"
     install: "<groupId>org.schema-resume</groupId>\n<artifactId>schema-resume-validator</artifactId>"
     badges:
       - href: "https://search.maven.org/artifact/org.schema-resume/schema-resume-validator"
