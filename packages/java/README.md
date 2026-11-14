@@ -19,14 +19,14 @@ Official Java package for validating resumes against the [Schema Resume](https:/
 <dependency>
     <groupId>org.schema-resume</groupId>
     <artifactId>schema-resume-validator</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.3</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'org.schema-resume:schema-resume-validator:1.3.2'
+implementation 'org.schema-resume:schema-resume-validator:1.3.3'
 ```
 
 ## Usage

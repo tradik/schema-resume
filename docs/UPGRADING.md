@@ -107,11 +107,11 @@ document's own `@context` should point at.
 The packages embed the schema, so their version *is* the schema version:
 
 ```bash
-npm  install schema-resume-validator@1.3.2
-pip  install schema-resume-validator==1.3.2
-gem  install schema-resume-validator -v 1.3.2
+npm  install schema-resume-validator@1.3.3
+pip  install schema-resume-validator==1.3.3
+gem  install schema-resume-validator -v 1.3.3
 composer require schema-resume/validator:^1.3
-go get github.com/tradik/schema-resume/packages/golang@v1.3.2
+go get github.com/tradik/schema-resume/packages/golang@v1.3.3
 ```
 
 1.3.1 changes no schema rule, but three packages change how you install them:
