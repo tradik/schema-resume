@@ -193,9 +193,10 @@ gem uninstall schema-resume-validator
 
 ### PHP
 
-```bash
-cd packages/php
+composer.json is at the repository root (Packagist only reads it there), so run
+Composer from the root:
 
+```bash
 # Install dependencies
 composer install
 
@@ -203,7 +204,7 @@ composer install
 composer validate
 
 # Run example
-php example.php
+php packages/php/example.php
 
 # Run tests (if PHPUnit is configured)
 ./vendor/bin/phpunit
@@ -217,7 +218,7 @@ Add to `composer.json`:
     "repositories": [
         {
             "type": "path",
-            "url": "/absolute/path/to/packages/php"
+            "url": "/absolute/path/to/schema-resume"
         }
     ],
     "require": {

@@ -60,7 +60,7 @@ When releasing a new version (e.g., 1.1.1), update the version in these files:
 - [ ] `packages/java/pom.xml` - version tag
 - [ ] `packages/ruby/schema-resume-validator.gemspec` - spec.version
 - [ ] `packages/ruby/lib/schema_resume/version.rb` - VERSION
-- [ ] `packages/php/composer.json` - version field
+- [ ] `composer.json` (repository root) - no version field; Packagist takes the version from the git tag
 
 ### XML Schema
 - [ ] `xml/1.0/schema-resume.xsd` - version attribute
@@ -127,7 +127,7 @@ Before creating a release:
 - Check for vulnerabilities: `bundle audit`
 
 ### PHP
-- Update dependencies: `cd packages/php && composer update`
+- Update dependencies: `composer update` (from the repository root, where composer.json lives)
 - Check for vulnerabilities: `composer audit`
 
 ## Common Issues
